@@ -12,7 +12,6 @@ namespace EasySave.Views.ConsoleViews.ViewStates
         { 
             while (true)
             {
-                Console.Clear();
                 Console.WriteLine("0. Exit EasySave");
                 Console.WriteLine("1. Create a backup environment");
                 //Console.WriteLine("2. List saves");
@@ -30,6 +29,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                             break;
                     }
                 }
+                Console.Clear();
             } 
         }
     }
