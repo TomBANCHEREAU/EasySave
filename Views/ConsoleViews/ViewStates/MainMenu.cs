@@ -16,6 +16,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 Console.WriteLine("1. Create a backup environment");
                 Console.WriteLine("2. Display backup environment list");
                 Console.WriteLine("3. Delete a backup environment");
+                Console.WriteLine("4. Run a backup");
                 Console.WriteLine("");
                 String strChoice = Console.ReadLine();
                 int choice;
@@ -27,6 +28,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         case 1: return new AddBackupEnvironment();
                         case 2: return new DisplayBackupEnvironments();
                         case 3: return new DeleteBackupEnvironment();
+                        case 4: return new RunBackup();
                         default:
                             break;
                     }

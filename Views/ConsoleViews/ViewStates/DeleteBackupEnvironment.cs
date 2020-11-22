@@ -43,7 +43,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         return new MainMenu();
                     }
 
-                    if (choice >= 0 && choice <= backupEnvironmentList.Count)
+                    if (choice > 0 && choice <= backupEnvironmentList.Count)
                     {
                         controller.DeleteBackupEnvironment(backupEnvironmentList[choice - 1]);
 
