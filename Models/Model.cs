@@ -34,7 +34,7 @@ namespace EasySave.Models
             return BackupEnvironments.Remove(backupEnvironment);
         }
 
-        public IReadOnlyList<object> GetBackupEnvironments()
+        public IReadOnlyList<BackupEnvironment> GetBackupEnvironments()
         {
             return BackupEnvironments.AsReadOnly();
         }

@@ -6,6 +6,6 @@ namespace EasySave.Models
 {
     public interface IReadOnlyModel
     {
-        public IReadOnlyList<Object> GetBackupEnvironments();
+        public IReadOnlyList<BackupEnvironment> GetBackupEnvironments();
     }
 }
