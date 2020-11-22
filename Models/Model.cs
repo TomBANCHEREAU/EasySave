@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave.Models
@@ -27,11 +28,13 @@ namespace EasySave.Models
                 throw new Exception("No more backup environments can be added");
             else
                 BackupEnvironments.Add(backupEnvironment);
+            saveBackupEnvironments();
         }
 
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
             return BackupEnvironments.Remove(backupEnvironment);
+            saveBackupEnvironments();
         }
 
         public IReadOnlyList<BackupEnvironment> GetBackupEnvironments()
@@ -44,7 +47,10 @@ namespace EasySave.Models
 
         public void RestoreBackup(Backup backup)
         {
-            throw new NotImplementedException();
+            if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
+                throw new ArgumentException("The backup environment need to be registered before running a backup");
+            backup.Restore();
+
         }
 
         public void RunBackup(Backup backup)
@@ -57,12 +63,46 @@ namespace EasySave.Models
 
         public void Start()
         {
-            if (this.backupEnvironments==null)
+            if (this.backupEnvironments == null)
+            {
                 this.backupEnvironments = new List<BackupEnvironment>();
+                if (File.Exists("./environment.dat"))
+                {
+                    try
+                    {
+                        foreach (String Line in File.ReadAllLines("./environment.dat"))
+                        {
+                            String[] data = Line.Split('|');
+                            backupEnvironments.Add(new BackupEnvironment(data[0], data[1], data[2]));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("An Error has occured during the loading of the environments");
+                    }
+                }
+            }
             else
                 throw new InvalidOperationException();
         }
 
+        private void saveBackupEnvironments()
+        {
+            if (this.backupEnvironments != null)
+            {
+                try
+                {
+                    foreach (BackupEnvironment backupEnvironment in backupEnvironments)
+                    {
+                        File.AppendAllLines("./environment.dat", new String[1] { backupEnvironment.Name+"|"+ backupEnvironment.SourceDirectory+"|"+ backupEnvironment.DestinationDirectory});
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception();
+                }
+            }
+        }
         public void Stop()
         {
             throw new NotImplementedException();
