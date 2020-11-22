@@ -31,7 +31,7 @@ namespace EasySave.Models
                     throw new ArgumentException("Source path cannot be empty");
                 if (!Directory.Exists(value))
                     throw new ArgumentException("Source directory doesn't exist");
-                sourceDirectory = value;
+                sourceDirectory = new DirectoryInfo(value).FullName;
             }
         }
         #endregion
@@ -46,7 +46,7 @@ namespace EasySave.Models
                     throw new ArgumentException("Destination path cannot be empty");
                 if (!Directory.Exists(value))
                     throw new ArgumentException("Destination directory doesn't exist");
-                destinationDirectory = value;
+                destinationDirectory = new DirectoryInfo(value).FullName;
             }
         }
 

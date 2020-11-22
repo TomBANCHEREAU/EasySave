@@ -9,12 +9,13 @@ namespace EasySave.Models
     {
         public void Execute(Backup backup)
         {
-            copyContent(backup.BackupEnvironment.SourceDirectory, backup.BackupEnvironment.DestinationDirectory);
+            Directory.CreateDirectory(backup.DestinationDirectory);
+            copyContent(backup.BackupEnvironment.SourceDirectory, backup.DestinationDirectory);
         }
 
         public void Restore(Backup backup)
         {
-            copyContent(backup.BackupEnvironment.DestinationDirectory, backup.BackupEnvironment.SourceDirectory);
+            copyContent(backup.DestinationDirectory, backup.BackupEnvironment.SourceDirectory);
         }
         private void copyContent(String srcBasePath, String destBasePath,String pathFromBase = "")
         {

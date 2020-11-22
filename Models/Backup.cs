@@ -1,11 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave.Models
 {
     public class Backup
     {
+        private DateTime executionDate;
+
+        public DateTime ExecutionDate
+        {
+            get { return executionDate; }
+        }
+        private String destinationDir;
+
+        public String DestinationDirectory
+        {
+            get { return destinationDir; }
+        }
+
         private BackupEnvironment backupEnvironment;
 
         public BackupEnvironment BackupEnvironment
@@ -26,6 +40,10 @@ namespace EasySave.Models
         }
         public void Execute()
         {
+            if (this.destinationDir != null)
+                throw new Exception();
+            this.executionDate = DateTime.Now;
+            this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory,this.ExecutionDate.ToString().Replace('/','-').Replace(':','-'));
             backupStrategy.Execute(this);
         }
         public void Restore()
