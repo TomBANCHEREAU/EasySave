@@ -29,6 +29,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         case 2: return new DisplayBackupEnvironments();
                         case 3: return new DeleteBackupEnvironment();
                         case 4: return new RunBackup();
+                        case 5: return new RestoreBackup();
                         default:
                             break;
                     }
