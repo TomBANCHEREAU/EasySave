@@ -21,13 +21,14 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 return new MainMenu();
             }
 
-            // Listing all the backup environments
+            // Listing all backup environments
             Console.WriteLine("Actual backup environment(s) list:");
             for (int i = 1; backupEnvironmentList.Count >= i; i++)
             {
-                Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
+               Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
             }
 
+            // Exit
             Console.WriteLine("");
             Console.WriteLine("Press enter to continue...");
             Console.ReadLine();

@@ -23,7 +23,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
 
             while (true)
             {
-                // Listing all the backup environments
+                // Listing all backup environments
                 Console.WriteLine("Select the backup environment you wish to use:");
                 Console.WriteLine("0. Return to menu");
                 for (int i = 1; backupEnvironmentList.Count >= i; i++)
@@ -31,41 +31,49 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
                 }
 
+                // User chooses an environment
                 Console.WriteLine("");
                 string strChoice = Console.ReadLine();
                 Console.Clear();
                 int choiceEnvironment;
 
+                // Verification
                 if (int.TryParse(strChoice, out choiceEnvironment))
                 {
+                    // Exit
                     if (choiceEnvironment == 0)
                     {
                         Console.Clear();
                         return new MainMenu();
                     }
 
+                    // An environment is selected
                     if (choiceEnvironment > 0 && choiceEnvironment <= backupEnvironmentList.Count)
                     {
+                        // Display all backups
                         Console.WriteLine("Which backup would you like to run:");
-                        Console.WriteLine("");
+                        Console.WriteLine("0. Return to the menu");
                         for (int i = 1; backupEnvironmentList[choiceEnvironment - 1].Backups.Count >= i; i++)
                         {
-                            // Console.WriteLine(i + ". " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].ExecutionDate);
-                            // Add Backup's type
+                            Console.WriteLine(i + ". " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].ExecutionDate + "\t| " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].BackupStrategy.Name);
                         }
 
+                        // User chooses a backup
                         Console.WriteLine("");
                         strChoice = Console.ReadLine();
                         int choiceBackup;
 
+                        // Verification
                         if (int.TryParse(strChoice, out choiceBackup))
                         {
+                            // Exit
                             if (choiceBackup == 0)
                             {
                                 Console.Clear();
                                 return new MainMenu();
                             }
 
+                            // If there is no backup
                             if (backupEnvironmentList[choiceEnvironment - 1].Backups.Count == 0)
                             {
                                 Console.WriteLine("There is no backup available in this environment");
@@ -76,9 +84,15 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                                 return new MainMenu();
                             }
 
+                            // A backup is selected
                             if (choiceBackup > 0 && choiceBackup <= backupEnvironmentList[choiceEnvironment - 1].Backups.Count)
                             {
                                 controller.RestoreBackup(backupEnvironmentList[choiceEnvironment - 1].Backups[choiceBackup - 1]);
+
+                                Console.Clear();
+                                Console.WriteLine("The restoration has been done");
+                                Console.WriteLine("");
+                                return new MainMenu();
                             }
                         }
                         Console.Clear();
