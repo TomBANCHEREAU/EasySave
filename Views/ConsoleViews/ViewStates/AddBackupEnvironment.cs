@@ -16,7 +16,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             {
                 try
                 {
-                    Console.Write("Name :");
+                    Console.Write("Name: ");
                     backupEnvironment.Name = Console.ReadLine();
                     break;
                 }
@@ -29,7 +29,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             {
                 try
                 {
-                    Console.Write("Source directory :");
+                    Console.Write("Source directory: ");
                     backupEnvironment.SourceDirectory = Console.ReadLine();
                     break;
                 }
@@ -42,7 +42,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             {
                 try
                 {
-                    Console.Write("Destination directory :");
+                    Console.Write("Destination directory: ");
                     backupEnvironment.DestinationDirectory = Console.ReadLine();
                     break;
                 }
@@ -52,6 +52,10 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 }
             }
             controller.AddBackupEnvironment(backupEnvironment);
+
+            Console.Clear();
+            Console.WriteLine("A new backup environment has been created");
+            Console.WriteLine("");
             return new MainMenu();
         }
     }
