@@ -7,6 +7,8 @@ namespace EasySave.Models
 {
     class DifferentialBackupStrategy : IBackupStrategy
     {
+        public string Name => "Differential";
+
         private Backup fullBackup;
 
         public Backup FullBackup
@@ -19,7 +21,6 @@ namespace EasySave.Models
             }
         }
 
-        public string Name => "Differential";
 
         public DifferentialBackupStrategy(Backup fullBackup)
         {
@@ -28,18 +29,13 @@ namespace EasySave.Models
         public void Execute(Backup backup)
         {
             Directory.CreateDirectory(backup.DestinationDirectory);
-            copyContent(backup.BackupEnvironment.SourceDirectory, backup.DestinationDirectory, fullBackup.DestinationDirectory);
-        }
 
-        public void Restore(Backup backup)
-        {
-            throw new NotImplementedException();
-        }
-        private void copyContent(String srcBasePath, String destBasePath,String fullBackupBasePath)
-        {
+            String srcBasePath = backup.BackupEnvironment.SourceDirectory;
+            String destBasePath = backup.DestinationDirectory;
+            String fullBackupBasePath = fullBackup.DestinationDirectory;
 
             // Saving new and edited files
-            foreach (String srcFile in Directory.EnumerateFiles(srcBasePath, "*",new EnumerationOptions(){ RecurseSubdirectories=true }))
+            foreach (String srcFile in Directory.EnumerateFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
                 String filePathFromBase = Path.GetRelativePath(srcBasePath, srcFile);
                 Console.WriteLine(filePathFromBase);
@@ -56,11 +52,34 @@ namespace EasySave.Models
             {
                 String filePathFromBase = Path.GetRelativePath(fullBackupBasePath, savedFile);
                 String srcFile = Path.Join(srcBasePath, filePathFromBase);
-
                 if (!File.Exists(srcFile))
                 {
-                    File.AppendAllLines(Path.Join(destBasePath, "./.easysave"),new String[1]{ filePathFromBase });
+                    File.AppendAllLines(Path.Join(destBasePath, "./.easysave"), new String[1] { filePathFromBase });
                 }
+            }
+        }
+
+        public void Restore(Backup backup)
+        {
+            this.fullBackup.Restore();
+
+            Directory.CreateDirectory(backup.DestinationDirectory);
+
+            String srcBasePath = backup.BackupEnvironment.SourceDirectory;
+            String destBasePath = backup.DestinationDirectory;
+
+            // Creating new and edited files
+            foreach (String destFile in Directory.EnumerateFiles(destBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            {
+                String filePathFromBase = Path.GetRelativePath(destBasePath, destFile);
+                Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
+                File.Copy(destFile, Path.Join(srcBasePath, filePathFromBase), true);
+            }
+
+            // Deleting deleted files
+            foreach (String filePathFromBase in File.ReadAllLines(Path.Join(destBasePath, "./.easysave")))
+            {
+                File.Delete(Path.Join(srcBasePath, filePathFromBase));
             }
         }
     }
