@@ -1,4 +1,5 @@
-﻿using EasySave.Models;
+﻿using EasySave.Controllers;
+using EasySave.Models;
 using EasySave.Views.ConsoleViews.ViewStates;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,17 @@ namespace EasySave.Views.ConsoleViews
         public IReadOnlyModel Model
         {
             get => model;
-            set => model = value;
         }
         public void SetModel(IReadOnlyModel model)
         {
-            Model = model;
+            this.model = model;
         }
 
-        public void Start()
+        public void Start(IReadOnlyModel model, IController controller)
         {
             IViewState viewState = new MainMenu();
             while (viewState!=null)
-                viewState = viewState.Execute(this);
+                viewState = viewState.Execute(model, controller);
         }
     }
 }

@@ -18,28 +18,27 @@ namespace EasySave.Controllers
         public void Start()
         {
             this.model.Start();
-            this.view.SetModel(model);
-            this.view.Start();
+            this.view.Start(model,this);
         }
 
-        public bool AddBackupEnvironment()
+        public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            return this.model.AddBackupEnvironment();
+            this.model.AddBackupEnvironment(backupEnvironment);
         }
 
-        public bool DeleteBackupEnvironment()
+        public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            return this.model.DeleteBackupEnvironment();
+            return this.model.DeleteBackupEnvironment(backupEnvironment);
         }
 
-        public bool RestoreBackup()
+        public void RestoreBackup()
         {
-            return this.model.RestoreBackup();
+            this.model.RestoreBackup();
         }
 
-        public bool RunBackup()
+        public void RunBackup()
         {
-            return this.model.RunBackup();
+            this.model.RunBackup();
         }
     }
 }

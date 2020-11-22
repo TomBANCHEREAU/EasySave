@@ -8,9 +8,9 @@ namespace EasySave.Models
     {
         public void Start();
         public void Stop();
-        public Boolean AddBackupEnvironment();
-        public Boolean DeleteBackupEnvironment();
-        public Boolean RunBackup();
-        public Boolean RestoreBackup();
+        public void AddBackupEnvironment(BackupEnvironment backupEnvironment);
+        public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
+        public void RunBackup();
+        public void RestoreBackup();
     }
 }
