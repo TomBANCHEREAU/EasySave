@@ -31,14 +31,14 @@ namespace EasySave.Controllers
             return this.model.DeleteBackupEnvironment(backupEnvironment);
         }
 
-        public void RestoreBackup()
+        public void RestoreBackup(Backup backup)
         {
-            this.model.RestoreBackup();
+            this.model.RestoreBackup(backup);
         }
 
-        public void RunBackup()
+        public void RunBackup(Backup backup)
         {
-            this.model.RunBackup();
+            this.model.RunBackup(backup);
         }
     }
 }

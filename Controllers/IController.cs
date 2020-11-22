@@ -10,7 +10,7 @@ namespace EasySave.Controllers
         public void Start();
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment);
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
-        public void RunBackup();
-        public void RestoreBackup();
+        public void RunBackup(Backup backup);
+        public void RestoreBackup(Backup backup);
     }
 }
