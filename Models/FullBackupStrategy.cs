@@ -7,6 +7,7 @@ namespace EasySave.Models
 {
     class FullBackupStrategy : IBackupStrategy
     {
+        public string Name => "Full";
         public void Execute(Backup backup)
         {
             Directory.CreateDirectory(backup.DestinationDirectory);

@@ -6,6 +6,10 @@ namespace EasySave.Models
 {
     public interface IBackupStrategy
     {
+        public String Name
+        {
+            get;
+        }
         public void Execute(Backup backup);
         public void Restore(Backup backup);
     }

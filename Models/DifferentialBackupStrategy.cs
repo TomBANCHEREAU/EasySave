@@ -19,6 +19,8 @@ namespace EasySave.Models
             }
         }
 
+        public string Name => "Differential";
+
         public DifferentialBackupStrategy(Backup fullBackup)
         {
             FullBackup = fullBackup;
