@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    interface IReadOnlyModel
+    public interface IReadOnlyModel
     {
         public IReadOnlyList<Object> GetBackupEnvironments();
     }

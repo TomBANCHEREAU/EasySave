@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    class BackupEnvironment
+    public class BackupEnvironment
     {
         #region Name
         private String name = "default";
@@ -21,7 +21,7 @@ namespace EasySave.Models
         }
         #endregion
         #region SourceDirectory
-        private String sourceDirectory = @"./files-to-save";
+        private String sourceDirectory = "";
         public String SourceDirectory
         {
             get { return sourceDirectory; }
@@ -36,7 +36,7 @@ namespace EasySave.Models
         }
         #endregion
         #region DestinationDirectory
-        private String destinationDirectory = @"./files-saved";
+        private String destinationDirectory = "";
         public String DestinationDirectory
         {
             get { return destinationDirectory; }
@@ -49,13 +49,25 @@ namespace EasySave.Models
                 destinationDirectory = value;
             }
         }
+
+        internal void AddBackup()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region Backups
         private List<Backup> backups = new List<Backup>();
 
         public IReadOnlyList<Backup> Backups
         {
-            get { return backups; }
+            get { return backups.AsReadOnly(); }
+        }
+        private List<Backup> fullBackups = new List<Backup>();
+        public IReadOnlyList<Backup> FullBackups
+        {
+            get { 
+                return fullBackups.AsReadOnly(); 
+            }
         }
         #endregion
         public BackupEnvironment()
@@ -68,7 +80,13 @@ namespace EasySave.Models
             SourceDirectory = src;
             DestinationDirectory = dest;
         }
-
-
+        internal void AddBackup(Backup backup)
+        {
+            if (backup.BackupEnvironment != this)
+                throw new ArgumentException("A backup cannot be added to another backup environment");
+            this.backups.Add(backup);
+            if (backup.BackupStrategy is FullBackupStrategy)
+                this.fullBackups.Add(backup);
+        }
     }
 }

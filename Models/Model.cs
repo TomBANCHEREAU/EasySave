@@ -4,20 +4,23 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    class Model : IModel
+    public class Model : IModel
     {
+
+
+        #region BackupEnvironment
         private List<BackupEnvironment> backupEnvironments;
 
-        public List<BackupEnvironment> BackupEnvironments
+        List<BackupEnvironment> BackupEnvironments
         {
-            get {
-                if(backupEnvironments!=null)
+            get
+            {
+                if (backupEnvironments != null)
                     return backupEnvironments;
                 else
                     throw new InvalidOperationException("Model need to be started doing anything");
             }
         }
-
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
             if (BackupEnvironments.Count >= 5)
@@ -33,17 +36,23 @@ namespace EasySave.Models
 
         public IReadOnlyList<object> GetBackupEnvironments()
         {
-            throw new NotImplementedException();
+            return BackupEnvironments.AsReadOnly();
         }
+        #endregion
 
-        public void RestoreBackup()
+
+
+        public void RestoreBackup(Backup backup)
         {
             throw new NotImplementedException();
         }
 
-        public void RunBackup()
+        public void RunBackup(Backup backup)
         {
-            throw new NotImplementedException();
+            if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
+                throw new ArgumentException("The backup environment need to be registered before running a backup");
+            backup.BackupEnvironment.AddBackup(backup);
+            backup.Execute();
         }
 
         public void Start()
