@@ -24,6 +24,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             while (true)
             {
                 // Listing all backup environments
+                Console.Clear();
                 Console.WriteLine("Select the backup environment you wish to use:");
                 Console.WriteLine("0. Return to menu");
                 for (int i = 1; backupEnvironmentList.Count >= i; i++)
@@ -33,73 +34,71 @@ namespace EasySave.Views.ConsoleViews.ViewStates
 
                 // User chooses an environment
                 Console.WriteLine("");
-                string strChoice = Console.ReadLine();
-                Console.Clear();
-                int choiceEnvironment;
+                int choice;
 
                 // Verification
-                if (int.TryParse(strChoice, out choiceEnvironment))
+                if (int.TryParse(Console.ReadLine(), out choice))
                 {
-                    // Exit
-                    if (choiceEnvironment == 0)
-                    {
-                        Console.Clear();
-                        return new MainMenu();
-                    }
-
                     // Display all backup's types
-                    if (choiceEnvironment > 0 && choiceEnvironment <= backupEnvironmentList.Count)
+                    if (choice > 0 && choice <= backupEnvironmentList.Count)
                     {
-                        Console.WriteLine("Which type of backup would you like to run:");
-                        Console.WriteLine("0. Return to menu");
-                        Console.WriteLine("1. Run a full backup");
-                        Console.WriteLine("2. Run a differential backup");
-
-                        // User chooses a backup's type
-                        Console.WriteLine("");
-                        strChoice = Console.ReadLine();
-                        int choiceBackup;
-
-                        // Verification
-                        if (int.TryParse(strChoice, out choiceBackup))
+                        BackupEnvironment environment = backupEnvironmentList[choice - 1];
+                        while (true)
                         {
-                            switch (choiceBackup)
+                            Console.Clear();
+                            Console.WriteLine("Which type of backup would you like to run:");
+                            Console.WriteLine("0. Return to menu");
+                            Console.WriteLine("1. Run a full backup");
+                            Console.WriteLine("2. Run a differential backup");
+
+                            // User chooses a backup's type
+                            Console.WriteLine("");
+
+                            // Verification
+                            if (int.TryParse(Console.ReadLine(), out choice))
                             {
-                                // Exit
-                                case 0: 
-                                    Console.Clear();
-                                    return new MainMenu();
-
-                                // Run a full backup
-                                case 1: 
-                                    controller.RunBackup(new Backup(backupEnvironmentList[choiceBackup - 1], new FullBackupStrategy()));
-                                    
-                                    Console.Clear();
-                                    Console.WriteLine("The full backup has been done");
-                                    Console.WriteLine("");
-                                    return new MainMenu();
-
-                                // Run a differential backup
-                                case 2:
-                                    if (backupEnvironmentList[choiceEnvironment - 1].FullBackups.Count > 0)
-                                    {
-                                        controller.RunBackup(new Backup(backupEnvironmentList[choiceBackup - 1], new DifferentialBackupStrategy(backupEnvironmentList[choiceEnvironment - 1].FullBackups[backupEnvironmentList[choiceEnvironment - 1].FullBackups.Count - 1])));
-                                        
+                                switch (choice)
+                                {
+                                    // Exit
+                                    case 0:
                                         Console.Clear();
-                                        Console.WriteLine("The differential backup has been done");
+                                        return new MainMenu();
+
+                                    // Run a full backup
+                                    case 1: 
+                                        controller.RunBackup(new Backup(environment, new FullBackupStrategy()));
+                                    
+                                        Console.Clear();
+                                        Console.WriteLine("The full backup has been done");
                                         Console.WriteLine("");
                                         return new MainMenu();
-                                    }
-                                    Console.Clear();
-                                    Console.WriteLine("No full backup has been done");
-                                    Console.WriteLine("");
-                                    return new MainMenu();
-                                default:
-                                    break;
+
+                                    // Run a differential backup
+                                    case 2:
+                                        if (environment.FullBackups.Count > 0)
+                                        {
+                                            Backup backup = new Backup(environment, new DifferentialBackupStrategy(environment.FullBackups[environment.FullBackups.Count - 1]));
+                                            controller.RunBackup(backup);
+                                        
+                                            Console.Clear();
+                                            Console.WriteLine("The differential backup has been done");
+                                            Console.WriteLine("");
+                                            return new MainMenu();
+                                        }
+                                        Console.Clear();
+                                        Console.WriteLine("No full backup has been done");
+                                        Console.WriteLine("");
+                                        return new MainMenu();
+                                }
                             }
                         }
-                        Console.Clear();
                     }
+                }
+                // Exit
+                if (choice == 0)
+                {
+                    Console.Clear();
+                    return new MainMenu();
                 }
             }
         }
