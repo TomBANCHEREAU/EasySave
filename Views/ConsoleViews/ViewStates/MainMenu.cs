@@ -18,6 +18,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 Console.WriteLine("3. Delete a backup environment");
                 Console.WriteLine("4. Run a backup");
                 Console.WriteLine("5. Restore a backup");
+                Console.WriteLine("6. Run multiple backups");
                 Console.WriteLine("");
                 String strChoice = Console.ReadLine();
                 int choice;
@@ -31,6 +32,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         case 3: return new DeleteBackupEnvironment();
                         case 4: return new RunBackup();
                         case 5: return new RestoreBackup();
+                        case 6: return new RunMultipleBackup();
                         default:
                             break;
                     }
