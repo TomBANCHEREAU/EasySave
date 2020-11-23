@@ -38,12 +38,14 @@ namespace EasySave.Models
             foreach (String srcFile in Directory.EnumerateFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
                 String filePathFromBase = Path.GetRelativePath(srcBasePath, srcFile);
-                Console.WriteLine(filePathFromBase);
                 String savedFile = Path.Join(fullBackupBasePath, filePathFromBase);
                 if (!File.Exists(savedFile) || new FileInfo(savedFile).LastWriteTimeUtc.CompareTo(new FileInfo(srcFile).LastWriteTimeUtc) < 0)
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
+                    long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                     File.Copy(srcFile, Path.Join(destBasePath, filePathFromBase), true);
+                    Logger.Log(backup.BackupEnvironment.Name, srcFile, Path.Join(destBasePath, filePathFromBase), new FileInfo(srcFile).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
+
                 }
             }
 
@@ -75,8 +77,14 @@ namespace EasySave.Models
             foreach (String destFile in Directory.EnumerateFiles(destBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
                 String filePathFromBase = Path.GetRelativePath(destBasePath, destFile);
-                Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
-                File.Copy(destFile, Path.Join(srcBasePath, filePathFromBase), true);
+                if (!filePathFromBase.Equals(".easysave"))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
+                    long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    File.Copy(destFile, Path.Join(srcBasePath, filePathFromBase), true);
+                    Logger.Log(backup.BackupEnvironment.Name, destFile, Path.Join(srcBasePath, filePathFromBase), new FileInfo(destFile).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
+
+                }
             }
 
             // Deleting deleted files
