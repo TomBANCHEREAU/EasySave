@@ -51,10 +51,20 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
-            controller.AddBackupEnvironment(backupEnvironment);
 
-            Console.Clear();
-            Console.WriteLine("A new backup environment has been created");
+
+            try
+            {
+                controller.AddBackupEnvironment(backupEnvironment);
+                Console.Clear();
+                Console.WriteLine("A new backup environment has been created");
+            }
+            catch (Exception ex)
+            {
+                Console.Clear();
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
             Console.WriteLine("");
             return new MainMenu();
         }
