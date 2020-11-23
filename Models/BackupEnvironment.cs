@@ -16,6 +16,8 @@ namespace EasySave.Models
             {
                 if (value == null || value.Length == 0)
                     throw new ArgumentException("Name cannot be empty");
+                if (value.Contains('|'))
+                    throw new ArgumentException("Name cannot contain '|'");
                 name = value;
             }
         }
@@ -50,9 +52,16 @@ namespace EasySave.Models
             }
         }
 
-        internal void AddBackup()
+        internal void Restore(Backup backup)
         {
-            throw new NotImplementedException();
+            backup.Restore();
+            save();
+        }
+
+        internal void Execute(Backup backup)
+        {
+            backup.Execute();
+            save();
         }
         #endregion
         #region Backups
@@ -87,6 +96,57 @@ namespace EasySave.Models
             this.backups.Add(backup);
             if (backup.BackupStrategy is FullBackupStrategy)
                 this.fullBackups.Add(backup);
+            save();
+        }
+
+        internal void LoadFromFile()
+        {
+            if (File.Exists(Path.Join(this.destinationDirectory, "./backups.easysave")))
+            {
+                foreach (String l in File.ReadAllLines(Path.Join(this.destinationDirectory, "./backups.easysave")))
+                {
+                    try
+                    {
+                        String[] data = l.Split('|');
+                        if (data.Length < 3)
+                            throw new Exception("Invalid line");
+                        IBackupStrategy s;
+                        switch (data[0])
+                        {
+                            case "Full": s = new FullBackupStrategy(); break;
+                            case "Diff":
+                                Backup fb = fullBackups.Find((backup)=>backup.DestinationDirectory== data[3]);
+                                if (fb == null)
+                                    throw new Exception("A full backup cant be found");
+                                s = new DifferentialBackupStrategy(fb); 
+                            break;
+                            default: throw new Exception("Unknowned backup type");
+                        }
+                        Backup b = new Backup(this,s);
+                        b.DestinationDirectory = data[1];
+                        b.ExecutionDate = DateTime.Parse(data[2]);
+                        AddBackup(b);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error during backup loading :"+ex.Message);
+                    }
+                }
+            }
+        }
+        internal void save()
+        {
+            /*if (!File.Exists(Path.Join(this.destinationDirectory, "./backups.easysave")))
+                File.Create(Path.Join(this.destinationDirectory, "./backups.easysave"));*/
+            List<String> fileContent = new List<String>();
+            foreach (Backup backup in backups)
+            {
+                fileContent.Add(backup.BackupStrategy.Name.Substring(0, 4) + "|" +
+                    backup.DestinationDirectory + "|" +
+                    backup.ExecutionDate.ToString() +
+                    (backup.BackupStrategy.Name.Substring(0, 4).Equals("Diff") ? "|" + ((DifferentialBackupStrategy)backup.BackupStrategy).FullBackup.DestinationDirectory : ""));
+            }
+            File.WriteAllLines(Path.Join(this.destinationDirectory, "./backups.easysave"), fileContent);
         }
     }
 }

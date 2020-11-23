@@ -33,8 +33,9 @@ namespace EasySave.Models
 
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            return BackupEnvironments.Remove(backupEnvironment);
+            Boolean b = BackupEnvironments.Remove(backupEnvironment);
             saveBackupEnvironments();
+            return b;
         }
 
         public IReadOnlyList<BackupEnvironment> GetBackupEnvironments()
@@ -49,7 +50,7 @@ namespace EasySave.Models
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
-            backup.Restore();
+            backup.BackupEnvironment.Restore(backup);
 
         }
 
@@ -58,7 +59,7 @@ namespace EasySave.Models
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
             backup.BackupEnvironment.AddBackup(backup);
-            backup.Execute();
+            backup.BackupEnvironment.Execute(backup);
         }
 
         public void Start()
@@ -68,18 +69,20 @@ namespace EasySave.Models
                 this.backupEnvironments = new List<BackupEnvironment>();
                 if (File.Exists("./environment.dat"))
                 {
-                    try
-                    {
+                    /*try
+                    {*/
                         foreach (String Line in File.ReadAllLines("./environment.dat"))
                         {
                             String[] data = Line.Split('|');
-                            backupEnvironments.Add(new BackupEnvironment(data[0], data[1], data[2]));
+                            BackupEnvironment n = new BackupEnvironment(data[0], data[1], data[2]);
+                            n.LoadFromFile();
+                            backupEnvironments.Add(n);
                         }
-                    }
+                    /*}
                     catch (Exception ex)
                     {
                         throw new Exception("An Error has occured during the loading of the environments");
-                    }
+                    }*/
                 }
             }
             else
@@ -92,6 +95,7 @@ namespace EasySave.Models
             {
                 try
                 {
+                    File.WriteAllText("./environment.dat", "");
                     foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                     {
                         File.AppendAllLines("./environment.dat", new String[1] { backupEnvironment.Name+"|"+ backupEnvironment.SourceDirectory+"|"+ backupEnvironment.DestinationDirectory});

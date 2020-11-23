@@ -47,6 +47,7 @@ namespace EasySave.Models
                 }
             }
 
+            List<String> fileContent = new List<string>();
             // Saving Deleted files
             foreach (String savedFile in Directory.EnumerateFiles(fullBackupBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
@@ -54,9 +55,11 @@ namespace EasySave.Models
                 String srcFile = Path.Join(srcBasePath, filePathFromBase);
                 if (!File.Exists(srcFile))
                 {
-                    File.AppendAllLines(Path.Join(destBasePath, "./.easysave"), new String[1] { filePathFromBase });
+                    fileContent.Add(filePathFromBase);
                 }
             }
+            File.WriteAllLines(Path.Join(destBasePath, "./.easysave"),fileContent);
+
         }
 
         public void Restore(Backup backup)
@@ -77,9 +80,12 @@ namespace EasySave.Models
             }
 
             // Deleting deleted files
-            foreach (String filePathFromBase in File.ReadAllLines(Path.Join(destBasePath, "./.easysave")))
+            if (File.Exists(Path.Join(destBasePath, "./.easysave")))
             {
-                File.Delete(Path.Join(srcBasePath, filePathFromBase));
+                foreach (String filePathFromBase in File.ReadAllLines(Path.Join(destBasePath, "./.easysave")))
+                {
+                    File.Delete(Path.Join(srcBasePath, filePathFromBase));
+                }
             }
         }
     }

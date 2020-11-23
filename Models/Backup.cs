@@ -12,12 +12,14 @@ namespace EasySave.Models
         public DateTime ExecutionDate
         {
             get { return executionDate; }
+            internal set => executionDate = value;
         }
         private String destinationDir;
 
         public String DestinationDirectory
         {
             get { return destinationDir; }
+            internal set => destinationDir = value;
         }
 
         private BackupEnvironment backupEnvironment;
