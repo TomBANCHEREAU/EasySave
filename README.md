@@ -6,18 +6,11 @@ Nothing to see here, it's only a school project for CESI Exia
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
-
-* Visual Studio 2019
-* Windows 10
 
 ### Installing
 
 * Download everything.
-* Open folder with Visual Studio 2019, and you open it.
-  Or
-    git clone https://github.com/TomBANCHEREAU/EasySave
-* When you opened it click on the green arrow just below to analyze.
+* Start EasySave.exe
 * And the program EasySave start.
 
 ## Built With
@@ -28,11 +21,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 Before making any request see code of conduct.
 
-
-## Versioning
-```diff
-- No real versioning needed since this is an abandonware.
-```
 ## Authors
 
 - Tom BANCHEREAU
