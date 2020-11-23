@@ -33,12 +33,36 @@ namespace EasySave.Models
             String srcBasePath = backup.BackupEnvironment.SourceDirectory;
             String destBasePath = backup.DestinationDirectory;
             String fullBackupBasePath = fullBackup.DestinationDirectory;
-
-            // Saving new and edited files
-            foreach (String srcFile in Directory.EnumerateFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            String[] sourceFiles = Directory.GetFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true });
+            long size = 0;
+            foreach (String srcFile in sourceFiles)
             {
+                size += new FileInfo(srcFile).Length;
+            }
+            long currentSize = 0;
+            // Saving new and edited files
+            for (int i = 0; i < sourceFiles.Length; i++)
+            {
+                String srcFile = sourceFiles[i];
+                currentSize += new FileInfo(srcFile).Length;
                 String filePathFromBase = Path.GetRelativePath(srcBasePath, srcFile);
                 String savedFile = Path.Join(fullBackupBasePath, filePathFromBase);
+                State.SetState(new State.StateStatus()
+                {
+                    Name = backup.BackupEnvironment.Name,
+                    Running = true,
+                    Status = new State.Status()
+                    {
+                        FileNumber = sourceFiles.Length,
+                        FileSize = size,
+                        Progression = (float)((float)i / sourceFiles.Length * 100.0),
+                        FileLeft = sourceFiles.Length - i,
+                        SizeLeft = size - currentSize,
+                        CurrentSourceFile = srcFile,
+                        DestinationFile = Path.Join(destBasePath, filePathFromBase)
+                    }
+                });
+
                 if (!File.Exists(savedFile) || new FileInfo(savedFile).LastWriteTimeUtc.CompareTo(new FileInfo(srcFile).LastWriteTimeUtc) < 0)
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));

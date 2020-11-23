@@ -55,12 +55,14 @@ namespace EasySave.Models
         internal void Restore(Backup backup)
         {
             backup.Restore();
+            State.SetState(new State.StateStatus() { Name = Name, Running = false });
             save();
         }
 
         internal void Execute(Backup backup)
         {
             backup.Execute();
+            State.SetState(new State.StateStatus() { Name = Name, Running = false });
             save();
         }
         #endregion

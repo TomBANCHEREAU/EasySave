@@ -28,6 +28,7 @@ namespace EasySave.Models
                 throw new Exception("No more backup environments can be added");
             else
                 BackupEnvironments.Add(backupEnvironment);
+            State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
             saveBackupEnvironments();
         }
 
@@ -35,6 +36,7 @@ namespace EasySave.Models
         {
             Boolean b = BackupEnvironments.Remove(backupEnvironment);
             saveBackupEnvironments();
+            State.RemoveState(backupEnvironment.Name);
             return b;
         }
 
@@ -76,6 +78,7 @@ namespace EasySave.Models
                             String[] data = Line.Split('|');
                             BackupEnvironment n = new BackupEnvironment(data[0], data[1], data[2]);
                             n.LoadFromFile();
+                            State.SetState(new State.StateStatus() { Name = n.Name, Running = false });
                             backupEnvironments.Add(n);
                         }
                     /*}

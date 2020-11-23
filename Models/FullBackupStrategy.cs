@@ -18,24 +18,44 @@ namespace EasySave.Models
         {
             copyContent(backup,backup.DestinationDirectory, backup.BackupEnvironment.SourceDirectory);
         }
-        private void copyContent(Backup backup,String srcBasePath, String destBasePath,String pathFromBase = "")
+        private void copyContent(Backup backup,String srcBasePath, String destBasePath)
         {
-            String srcPath = Path.Join(srcBasePath,pathFromBase);
-            String destPath = Path.Join(destBasePath, pathFromBase);
-            
-            foreach (String filePath in Directory.EnumerateFiles(srcPath))
+            String[] sourceFiles = Directory.GetFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true });
+            long size = 0;
+            foreach (String srcFile in sourceFiles)
             {
-                String fileName = Path.GetFileName(filePath);
-                long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                File.Copy(Path.Join(srcPath, fileName), Path.Join(destPath, fileName), true);
-                Logger.Log(backup.BackupEnvironment.Name, Path.Join(srcPath, fileName), Path.Join(destPath, fileName), new FileInfo(Path.Join(srcPath, fileName)).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
-
+                size += new FileInfo(srcFile).Length;
             }
-            foreach (String dirPath in Directory.EnumerateDirectories(srcPath))
+            long currentSize = 0;
+            for (int i = 0; i < sourceFiles.Length; i++)
             {
-                String dirName = Path.GetFileName(dirPath);
-                Directory.CreateDirectory(Path.Join(destPath, dirName));
-                copyContent(backup,srcBasePath, destBasePath, Path.Join(pathFromBase, dirName));
+                String srcFile = sourceFiles[i];
+
+                currentSize += new FileInfo(srcFile).Length;
+                String filePathFromBase = Path.GetRelativePath(srcBasePath, srcFile);
+
+
+                State.SetState(new State.StateStatus()
+                {
+                    Name = backup.BackupEnvironment.Name,
+                    Running = true,
+                    Status = new State.Status()
+                    {
+                        FileNumber = sourceFiles.Length,
+                        FileSize = size,
+                        Progression = (float)((float)i / sourceFiles.Length * 100.0),
+                        FileLeft = sourceFiles.Length - i,
+                        SizeLeft = size - currentSize,
+                        CurrentSourceFile = srcFile,
+                        DestinationFile = Path.Join(destBasePath, filePathFromBase)
+                    }
+                });
+
+                long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
+                File.Copy(Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), true);
+                Logger.Log(backup.BackupEnvironment.Name, Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), new FileInfo(Path.Join(srcBasePath, filePathFromBase)).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
+
             }
         }
     }
