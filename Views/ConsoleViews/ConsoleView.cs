@@ -29,7 +29,7 @@ namespace EasySave.Views.ConsoleViews
                 viewState = viewState.Execute(model, controller);
             Console.Clear();
             Console.WriteLine(File.ReadAllText("./end-message.txt"));
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
         }
     }
 }
