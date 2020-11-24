@@ -15,9 +15,15 @@ namespace EasySave.Models
         {
             if (File.Exists(logFilePath))
             {
-                logs = JsonConvert.DeserializeObject<List<Object>>(File.ReadAllText(logFilePath));
+                try
+                {
+                    logs = JsonConvert.DeserializeObject<List<Object>>(File.ReadAllText(logFilePath));
+                }
+                catch (Exception)
+                {
+                }
             }
-            else
+            if (logs == null)
             {
                 logs = new List<object>();
             }
