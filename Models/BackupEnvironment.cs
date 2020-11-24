@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -103,21 +104,19 @@ namespace EasySave.Models
 
         internal void LoadFromFile()
         {
-            if (File.Exists(Path.Join(this.destinationDirectory, "./backups.easysave")))
+            if (File.Exists(Path.Join(this.destinationDirectory, "./backups.json")))
             {
-                foreach (String l in File.ReadAllLines(Path.Join(this.destinationDirectory, "./backups.easysave")))
+                List<Backup.BackupData> backupDatas = JsonConvert.DeserializeObject<List<Backup.BackupData>>(File.ReadAllText(Path.Join(this.destinationDirectory, "./backups.json")));
+                foreach (Backup.BackupData backupData in backupDatas)
                 {
                     try
                     {
-                        String[] data = l.Split('|');
-                        if (data.Length < 3)
-                            throw new Exception("Invalid line");
                         IBackupStrategy s;
-                        switch (data[0])
+                        switch (backupData.BackupType)
                         {
                             case "Full": s = new FullBackupStrategy(); break;
-                            case "Diff":
-                                Backup fb = fullBackups.Find((backup)=>backup.DestinationDirectory== data[3]);
+                            case "Differential":
+                                Backup fb = fullBackups.Find((backup)=>backup.DestinationDirectory== backupData.FullBackupDirectory);
                                 if (fb == null)
                                     throw new Exception("A full backup cant be found");
                                 s = new DifferentialBackupStrategy(fb); 
@@ -125,8 +124,8 @@ namespace EasySave.Models
                             default: throw new Exception("Unknowned backup type");
                         }
                         Backup b = new Backup(this,s);
-                        b.DestinationDirectory = data[1];
-                        b.ExecutionDate = DateTime.Parse(data[2]);
+                        b.DestinationDirectory = backupData.DestinationDirectory;
+                        b.ExecutionDate = DateTime.Parse(backupData.ExecutionDate);
                         AddBackup(b);
                     }
                     catch (Exception ex)
@@ -138,17 +137,22 @@ namespace EasySave.Models
         }
         internal void save()
         {
-            /*if (!File.Exists(Path.Join(this.destinationDirectory, "./backups.easysave")))
-                File.Create(Path.Join(this.destinationDirectory, "./backups.easysave"));*/
-            List<String> fileContent = new List<String>();
+            List<Backup.BackupData> backupDatas = new List<Backup.BackupData>();
             foreach (Backup backup in backups)
             {
-                fileContent.Add(backup.BackupStrategy.Name.Substring(0, 4) + "|" +
-                    backup.DestinationDirectory + "|" +
-                    backup.ExecutionDate.ToString() +
-                    (backup.BackupStrategy.Name.Substring(0, 4).Equals("Diff") ? "|" + ((DifferentialBackupStrategy)backup.BackupStrategy).FullBackup.DestinationDirectory : ""));
+                Backup.BackupData data = new Backup.BackupData();
+                data.BackupType = backup.BackupStrategy.Name;
+                data.DestinationDirectory = backup.DestinationDirectory;
+                data.ExecutionDate = backup.ExecutionDate.ToString();
+                data.FullBackupDirectory = backup.BackupStrategy is DifferentialBackupStrategy ? ((DifferentialBackupStrategy)backup.BackupStrategy).FullBackup.DestinationDirectory : "";
             }
-            File.WriteAllLines(Path.Join(this.destinationDirectory, "./backups.easysave"), fileContent);
+            File.WriteAllText(Path.Join(this.destinationDirectory, "./backups.json"), JsonConvert.SerializeObject(backupDatas, Formatting.Indented));
+        }
+        public class BackupEnvironmentData
+        {
+            public String Name;
+            public String SourceDirectory;
+            public String DestinationDirectory;
         }
     }
 }

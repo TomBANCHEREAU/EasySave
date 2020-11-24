@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,7 +8,6 @@ namespace EasySave.Models
 {
     public class Model : IModel
     {
-
 
         #region BackupEnvironment
         private List<BackupEnvironment> backupEnvironments;
@@ -69,23 +69,22 @@ namespace EasySave.Models
             if (this.backupEnvironments == null)
             {
                 this.backupEnvironments = new List<BackupEnvironment>();
-                if (File.Exists("./environment.dat"))
+                if (File.Exists("./environment.json"))
                 {
-                    /*try
-                    {*/
-                        foreach (String Line in File.ReadAllLines("./environment.dat"))
-                        {
-                            String[] data = Line.Split('|');
-                            BackupEnvironment n = new BackupEnvironment(data[0], data[1], data[2]);
-                            n.LoadFromFile();
-                            State.SetState(new State.StateStatus() { Name = n.Name, Running = false });
-                            backupEnvironments.Add(n);
-                        }
-                    /*}
-                    catch (Exception ex)
+                    List<BackupEnvironment.BackupEnvironmentData> backupEnvironmentDatas = JsonConvert.DeserializeObject<List<BackupEnvironment.BackupEnvironmentData>>(File.ReadAllText("./environment.json"));
+                    foreach (BackupEnvironment.BackupEnvironmentData backupEnvironmentData in backupEnvironmentDatas)
                     {
-                        throw new Exception("An Error has occured during the loading of the environments");
-                    }*/
+                        try
+                        {
+                            BackupEnvironment backupEnvironment = new BackupEnvironment(backupEnvironmentData.Name,backupEnvironmentData.SourceDirectory,backupEnvironmentData.DestinationDirectory);
+                            AddBackupEnvironment(backupEnvironment);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            Console.ReadLine();
+                        }
+                    }
                 }
             }
             else
@@ -96,18 +95,16 @@ namespace EasySave.Models
         {
             if (this.backupEnvironments != null)
             {
-                try
+                List<BackupEnvironment.BackupEnvironmentData> backupEnvironmentDatas = new List<BackupEnvironment.BackupEnvironmentData>();
+                foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
-                    File.WriteAllText("./environment.dat", "");
-                    foreach (BackupEnvironment backupEnvironment in backupEnvironments)
-                    {
-                        File.AppendAllLines("./environment.dat", new String[1] { backupEnvironment.Name+"|"+ backupEnvironment.SourceDirectory+"|"+ backupEnvironment.DestinationDirectory});
-                    }
+                    BackupEnvironment.BackupEnvironmentData env = new BackupEnvironment.BackupEnvironmentData();
+                    env.Name = backupEnvironment.Name;
+                    env.SourceDirectory = backupEnvironment.SourceDirectory;
+                    env.DestinationDirectory = backupEnvironment.DestinationDirectory;
+                    backupEnvironmentDatas.Add(env);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception();
-                }
+                File.WriteAllText("./environment.json", JsonConvert.SerializeObject(backupEnvironmentDatas, Formatting.Indented));
             }
         }
         public void Stop()

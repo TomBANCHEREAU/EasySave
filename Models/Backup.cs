@@ -52,5 +52,12 @@ namespace EasySave.Models
         {
             backupStrategy.Restore(this);
         }
+        public class BackupData
+        {
+            public String BackupType;
+            public String ExecutionDate;
+            public String DestinationDirectory;
+            public String FullBackupDirectory;
+        }
     }
 }
