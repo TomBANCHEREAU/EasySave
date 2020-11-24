@@ -23,12 +23,35 @@ namespace EasySave.Views.ConsoleViews
 
         public void Start(IReadOnlyModel model, IController controller)
         {
-            Console.WriteLine(File.ReadAllText("./start-message.txt"));
+            Console.WriteLine(@"
+              ___                        _  _                                         
+     o O O   | __|    __ _      ___     | || |                                        
+    o        | _|    / _` |    (_-<      \_, |                                        
+   TS__[O]   |___|   \__,_|    /__/_    _|__/                                         
+  {======| _|'''''| _|'''''| _|'''''| _|'''''|                                        
+ ./o--000' '`-0-0-' '`-0-0-' '`-0-0-' '`-0-0-'                                        
+                                                     ___                              
+                                            o O O   / __|    __ _     __ __     ___   
+                                           o        \__ \   / _` |    \ V /    / -_)  
+                                          TS__[O]   |___/   \__,_|    _\_/_    \___|  
+                                         {======| _|'''''| _|'''''| _|'''''| _|'''''| 
+                                        ./o--000' '`-0-0-' '`-0-0-' '`-0-0-' '`-0-0-' ");
             IViewState viewState = new MainMenu();
             while (viewState!=null)
                 viewState = viewState.Execute(model, controller);
             Console.Clear();
-            Console.WriteLine(File.ReadAllText("./end-message.txt"));
+            Console.WriteLine(@"             ___      _  _                               
+    o O O   | _ )    | || |    ___                       
+   o        | _ \     \_, |   / -_)                      
+  TS__[O]   |___/    _|__/    \___|                      
+ {======| _|'''''| _|'''''| _|'''''|                     
+./o--000' '`-0-0-' '`-0-0-' '`-0-0-'                     
+                                 ___      _  _           
+    o O O     o O O     o O O   | _ )    | || |    ___   
+   o         o         o        | _ \     \_, |   / -_)  
+  TS__[O]   TS__[O]   TS__[O]   |___/    _|__/    \___|  
+ {======|  {======|  {======| _|'''''| _|'''''| _|'''''| 
+./o--000' ./o--000' ./o--000' '`-0-0-' '`-0-0-' '`-0-0-' ");
             Thread.Sleep(2000);
         }
     }
