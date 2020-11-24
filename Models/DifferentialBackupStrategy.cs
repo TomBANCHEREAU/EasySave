@@ -65,11 +65,18 @@ namespace EasySave.Models
 
                 if (!File.Exists(savedFile) || new FileInfo(savedFile).LastWriteTimeUtc.CompareTo(new FileInfo(srcFile).LastWriteTimeUtc) < 0)
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
                     long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    File.Copy(srcFile, Path.Join(destBasePath, filePathFromBase), true);
-                    Logger.Log(backup.BackupEnvironment.Name, srcFile, Path.Join(destBasePath, filePathFromBase), new FileInfo(srcFile).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
-
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
+                        File.Copy(srcFile, Path.Join(destBasePath, filePathFromBase), true);
+                    }
+                    catch (Exception ex)
+                    {
+                        msbefore = -1;
+                    }
+                    Logger.Log(backup.BackupEnvironment.Name, srcFile, Path.Join(destBasePath, filePathFromBase), new FileInfo(srcFile).Length,
+                        msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
                 }
             }
 
@@ -103,10 +110,17 @@ namespace EasySave.Models
                 String filePathFromBase = Path.GetRelativePath(destBasePath, destFile);
                 if (!filePathFromBase.Equals(".easysave"))
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
                     long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
                     File.Copy(destFile, Path.Join(srcBasePath, filePathFromBase), true);
-                    Logger.Log(backup.BackupEnvironment.Name, destFile, Path.Join(srcBasePath, filePathFromBase), new FileInfo(destFile).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
+                    }
+                    catch (Exception ex)
+                    {
+                        msbefore = -1;
+                    }
+                    Logger.Log(backup.BackupEnvironment.Name, destFile, Path.Join(srcBasePath, filePathFromBase), new FileInfo(destFile).Length, msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
 
                 }
             }

@@ -52,9 +52,17 @@ namespace EasySave.Models
                 });
 
                 long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
-                File.Copy(Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), true);
-                Logger.Log(backup.BackupEnvironment.Name, Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), new FileInfo(Path.Join(srcBasePath, filePathFromBase)).Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
+                try
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
+                    File.Copy(Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), true);
+                }
+                catch (Exception ex)
+                {
+                    msbefore = -1;
+                }
+                Logger.Log(backup.BackupEnvironment.Name, Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), new FileInfo(Path.Join(srcBasePath, filePathFromBase)).Length, 
+                    msbefore==-1?-1:DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
 
             }
         }
