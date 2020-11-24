@@ -8,7 +8,7 @@ namespace EasySave.Models
 {
     class State
     {
-        private const String stateFilePath = "./backupState.log";
+        private const String stateFilePath = "./backupState.json";
         private static State state;
         private static List<StateStatus> stateObject;
         private State()

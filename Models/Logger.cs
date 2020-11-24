@@ -8,7 +8,7 @@ namespace EasySave.Models
 {
     class Logger
     {
-        private const String logFilePath = "./backup.log";
+        private const String logFilePath = "./backup.json";
         private static Logger logger;
         private List<Object> logs;
         private Logger()
