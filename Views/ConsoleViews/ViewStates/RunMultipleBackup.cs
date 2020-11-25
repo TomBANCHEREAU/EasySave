@@ -13,6 +13,14 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             IReadOnlyList<BackupEnvironment> backupEnvironments = model.GetBackupEnvironments();
             List<Backup> toExecute = new List<Backup>();
 
+            if (backupEnvironments.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("There is no backup environment available");
+                Console.WriteLine("");
+                return new MainMenu();
+            }
+
             foreach (BackupEnvironment backupEnvironment in backupEnvironments)
             {
                 Console.Clear();
@@ -22,6 +30,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     Console.WriteLine("0. Do not run a backup on this environment");
                     Console.WriteLine("1. Run a full backup");
                     Console.WriteLine("2. Run a differential backup");
+                    Console.WriteLine("");
                     int choice;
                     String strchoice = Console.ReadLine();
                     Console.Clear();
@@ -41,6 +50,10 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                             }
                             else
                                 Console.WriteLine("You can't execute a differential backup because no full backup has been done before");
+                        } 
+                        else
+                        {
+                            break;
                         }
                     }
                 }

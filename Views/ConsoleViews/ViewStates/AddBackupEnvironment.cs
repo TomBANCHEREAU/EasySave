@@ -11,7 +11,16 @@ namespace EasySave.Views.ConsoleViews.ViewStates
         public IViewState Execute(IReadOnlyModel model, IController controller)
         {
             Console.Clear();
+            
+            if (model.GetBackupEnvironments().Count >= 5)
+            {
+                Console.WriteLine("5 backup environments has already been created");
+                Console.WriteLine("");
+                return new MainMenu();
+            }
+
             BackupEnvironment backupEnvironment = new BackupEnvironment();
+
             while (true) // Name
             {
                 try
