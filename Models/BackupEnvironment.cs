@@ -145,6 +145,7 @@ namespace EasySave.Models
                 data.DestinationDirectory = backup.DestinationDirectory;
                 data.ExecutionDate = backup.ExecutionDate.ToString();
                 data.FullBackupDirectory = backup.BackupStrategy is DifferentialBackupStrategy ? ((DifferentialBackupStrategy)backup.BackupStrategy).FullBackup.DestinationDirectory : "";
+                backupDatas.Add(data);
             }
             File.WriteAllText(Path.Join(this.destinationDirectory, "./backups.json"), JsonConvert.SerializeObject(backupDatas, Formatting.Indented));
         }
