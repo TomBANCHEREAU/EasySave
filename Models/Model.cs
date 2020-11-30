@@ -78,6 +78,7 @@ namespace EasySave.Models
                         {
                             BackupEnvironment backupEnvironment = new BackupEnvironment(backupEnvironmentData.Name,backupEnvironmentData.SourceDirectory,backupEnvironmentData.DestinationDirectory);
                             AddBackupEnvironment(backupEnvironment);
+                            backupEnvironment.LoadFromFile();
                         }
                         catch (Exception ex)
                         {
