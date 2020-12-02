@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySave", "EasySave.csproj", "{857B619C-83DC-46CD-989D-83B923E20311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySave", "EasySave.csproj", "{EB569892-0091-48F5-A352-5BDD15A9B4C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoSoft", "CryptoSoft\CryptoSoft.csproj", "{F2A221A2-228B-438C-9B91-C6E0B68DC75E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoSoft", "CryptoSoft\CryptoSoft.csproj", "{F2A221A2-228B-438C-9B91-C6E0B68DC75E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{857B619C-83DC-46CD-989D-83B923E20311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{857B619C-83DC-46CD-989D-83B923E20311}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{857B619C-83DC-46CD-989D-83B923E20311}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{857B619C-83DC-46CD-989D-83B923E20311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB569892-0091-48F5-A352-5BDD15A9B4C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB569892-0091-48F5-A352-5BDD15A9B4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB569892-0091-48F5-A352-5BDD15A9B4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB569892-0091-48F5-A352-5BDD15A9B4C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2A221A2-228B-438C-9B91-C6E0B68DC75E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2A221A2-228B-438C-9B91-C6E0B68DC75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2A221A2-228B-438C-9B91-C6E0B68DC75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F8A552A5-07A1-4639-86E2-785D71129937}
+		SolutionGuid = {5C99EA15-7969-49BA-9563-546537C01BF9}
 	EndGlobalSection
 EndGlobal
