@@ -14,5 +14,15 @@ namespace EasySave.Views.WindowsFormViews
         {
             InitializeComponent();
         }
+
+        private void MainView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
