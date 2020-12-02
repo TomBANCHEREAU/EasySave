@@ -8,6 +8,10 @@ namespace EasySave.Models
 {
     public class BackupEnvironment
     {
+
+        public event EventHandler<FileTransferEvent> OnFileTransfert;
+        private void onFileTransfert(Object a, FileTransferEvent f) => OnFileTransfert?.Invoke(this, f);
+
         #region Name
         private String name = "default";
         public String Name
@@ -53,19 +57,6 @@ namespace EasySave.Models
             }
         }
 
-        internal void Restore(Backup backup)
-        {
-            backup.Restore();
-            State.SetState(new State.StateStatus() { Name = Name, Running = false });
-            save();
-        }
-
-        internal void Execute(Backup backup)
-        {
-            backup.Execute();
-            State.SetState(new State.StateStatus() { Name = Name, Running = false });
-            save();
-        }
         #endregion
         #region Backups
         private List<Backup> backups = new List<Backup>();
@@ -96,10 +87,13 @@ namespace EasySave.Models
         {
             if (backup.BackupEnvironment != this)
                 throw new ArgumentException("A backup cannot be added to another backup environment");
-            this.backups.Add(backup);
-            if (backup.BackupStrategy is FullBackupStrategy)
-                this.fullBackups.Add(backup);
-            save();
+            if (!this.backups.Contains(backup)) {
+                this.backups.Add(backup);
+                if (backup.BackupStrategy is FullBackupStrategy)
+                    this.fullBackups.Add(backup);
+                backup.OnFileTransfert += onFileTransfert;
+                save();
+            }
         }
 
         internal void LoadFromFile()
@@ -154,6 +148,19 @@ namespace EasySave.Models
             public String Name;
             public String SourceDirectory;
             public String DestinationDirectory;
+        }
+        internal void Restore(Backup backup)
+        {
+            backup.Restore();
+            State.SetState(new State.StateStatus() { Name = Name, Running = false });
+            save();
+        }
+
+        internal void Execute(Backup backup)
+        {
+            backup.Execute();
+            State.SetState(new State.StateStatus() { Name = Name, Running = false });
+            save();
         }
     }
 }

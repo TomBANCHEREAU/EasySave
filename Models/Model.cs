@@ -9,6 +9,9 @@ namespace EasySave.Models
     public class Model : IModel
     {
 
+        public event EventHandler<FileTransferEvent> OnFileTransfert;
+        private void onFileTransfert(Object a, FileTransferEvent f) => OnFileTransfert?.Invoke(this, f);
+
         #region BackupEnvironment
         private List<BackupEnvironment> backupEnvironments;
 
@@ -24,16 +27,15 @@ namespace EasySave.Models
         }
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            if (BackupEnvironments.Count >= 5)
-                throw new Exception("No more backup environments can be added");
-            else
-                BackupEnvironments.Add(backupEnvironment);
+            BackupEnvironments.Add(backupEnvironment);
+            backupEnvironment.OnFileTransfert += onFileTransfert;
             State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
             saveBackupEnvironments();
         }
 
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
+            backupEnvironment.OnFileTransfert -= onFileTransfert;
             Boolean b = BackupEnvironments.Remove(backupEnvironment);
             saveBackupEnvironments();
             State.RemoveState(backupEnvironment.Name);
@@ -68,6 +70,7 @@ namespace EasySave.Models
         {
             if (this.backupEnvironments == null)
             {
+                this.OnFileTransfert += Logger.getInstance().OnFileTransfert;
                 this.backupEnvironments = new List<BackupEnvironment>();
                 if (File.Exists("./environment.json"))
                 {
@@ -89,7 +92,7 @@ namespace EasySave.Models
                 }
             }
             else
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Model has already been started");
         }
 
         private void saveBackupEnvironments()

@@ -11,36 +11,39 @@ namespace EasySave.Models
         private const String logFilePath = "./backup.json";
         private static Logger logger;
         private List<Object> logs;
+        private static Logger LoggerInstance
+        {
+            get
+            {
+                if (logger == null)
+                    logger = new Logger();
+                return logger;
+            }
+        }
+        internal static Logger getInstance() => LoggerInstance;
         private Logger()
         {
             if (File.Exists(logFilePath))
-            {
-                try
-                {
-                    logs = JsonConvert.DeserializeObject<List<Object>>(File.ReadAllText(logFilePath));
-                }
-                catch (Exception)
-                {
-                }
-            }
+                try{ logs = JsonConvert.DeserializeObject<List<Object>>(File.ReadAllText(logFilePath)); }
+                catch{}
             if (logs == null)
-            {
                 logs = new List<object>();
-            }
         }
-
-        public static void Log(String name,String src,String dest,long size,long ms)
+        internal void OnFileTransfert(object sender, FileTransferEvent transfertEvent)
         {
-            if (logger == null)
+            lock(logger)
             {
-                logger = new Logger();
+                logs.Add(new { 
+                    TransfertDate = transfertEvent.TransfertDate,
+                    EnvironmentName = transfertEvent.BackupEnvironment.Name,
+                    SourceFile = transfertEvent.SourceFile,
+                    DestinationFile = transfertEvent.DestinationFile,
+                    FileSize = transfertEvent.FileSize,
+                    TransferTime = transfertEvent.TransferTime,
+                    EncryptionTime = transfertEvent.EncryptionTime
+                });
+                File.WriteAllText(logFilePath, JsonConvert.SerializeObject(logs, Formatting.Indented));
             }
-            logger.log(name, src, dest, size, ms);
-        }
-        private void log(String name, String src, String dest, long size, long ms)
-        {
-            logs.Add(new { TransfertDate = DateTime.Now.ToString() ,EnvironmentName = name, SourceFile = src, DestinationFile = dest, FileSize = size, TeansfertTime = ms+"ms" });
-            File.WriteAllText(logFilePath, JsonConvert.SerializeObject(logs, Formatting.Indented));
         }
     }
 }
