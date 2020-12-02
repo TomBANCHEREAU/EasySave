@@ -28,17 +28,18 @@ namespace EasySave.Models
         {
             get { return backupEnvironment; }
         }
-        private IBackupStrategy backupStrategy;
+        private BackupStrategy backupStrategy;
 
-        public IBackupStrategy BackupStrategy
+        public BackupStrategy BackupStrategy
         {
             get { return backupStrategy; }
         }
 
-        public Backup(BackupEnvironment backupEnvironment,IBackupStrategy backupStrategy)
+        public Backup(BackupEnvironment backupEnvironment,BackupStrategy backupStrategy)
         {
             this.backupEnvironment = backupEnvironment;
             this.backupStrategy = backupStrategy;
+            backupStrategy.Backup = this;
         }
         public void Execute()
         {
@@ -46,11 +47,11 @@ namespace EasySave.Models
                 throw new Exception();
             this.executionDate = DateTime.Now;
             this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory,this.ExecutionDate.ToString().Replace('/','-').Replace(':','-'));
-            backupStrategy.Execute(this);
+            backupStrategy.RunExecute();
         }
         public void Restore()
         {
-            backupStrategy.Restore(this);
+            backupStrategy.RunRestore();
         }
         public class BackupData
         {

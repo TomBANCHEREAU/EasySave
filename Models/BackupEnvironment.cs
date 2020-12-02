@@ -111,7 +111,7 @@ namespace EasySave.Models
                 {
                     try
                     {
-                        IBackupStrategy s;
+                        BackupStrategy s;
                         switch (backupData.BackupType)
                         {
                             case "Full": s = new FullBackupStrategy(); break;

@@ -5,134 +5,68 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    class DifferentialBackupStrategy : IBackupStrategy
+    class DifferentialBackupStrategy : BackupStrategy
     {
-        public string Name => "Differential";
+        public new string Name => "Differential";
 
-        private Backup fullBackup;
-
-        public Backup FullBackup
-        {
-            get { return fullBackup; }
-            set {
-                if (!(value.BackupStrategy is FullBackupStrategy))
-                    throw new ArgumentException("The Differential backup strategy need a full backup");
-                fullBackup = value; 
-            }
-        }
-
+        public readonly Backup FullBackup;
+        public String SavedDirectory { get => FullBackup.DestinationDirectory; }
 
         public DifferentialBackupStrategy(Backup fullBackup)
         {
             FullBackup = fullBackup;
         }
-        public void Execute(Backup backup)
+        protected override void Execute()
         {
-            Directory.CreateDirectory(backup.DestinationDirectory);
+            String[] sourceFiles = Directory.GetFiles(SourceDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true });
 
-            String srcBasePath = backup.BackupEnvironment.SourceDirectory;
-            String destBasePath = backup.DestinationDirectory;
-            String fullBackupBasePath = fullBackup.DestinationDirectory;
-            String[] sourceFiles = Directory.GetFiles(srcBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true });
-            long size = 0;
-            foreach (String srcFile in sourceFiles)
-            {
-                size += new FileInfo(srcFile).Length;
-            }
-            long currentSize = 0;
             // Saving new and edited files
-            for (int i = 0; i < sourceFiles.Length; i++)
+            List<String> fileToCopy = new List<String>();
+            foreach (String sourceFile in sourceFiles)
             {
-                String srcFile = sourceFiles[i];
-                currentSize += new FileInfo(srcFile).Length;
-                String filePathFromBase = Path.GetRelativePath(srcBasePath, srcFile);
-                String savedFile = Path.Join(fullBackupBasePath, filePathFromBase);
-                State.SetState(new State.StateStatus()
-                {
-                    Name = backup.BackupEnvironment.Name,
-                    Running = true,
-                    Status = new State.Status()
-                    {
-                        FileNumber = sourceFiles.Length,
-                        FileSize = size,
-                        Progression = (float)((float)i / sourceFiles.Length * 100.0),
-                        FileLeft = sourceFiles.Length - i,
-                        SizeLeft = size - currentSize,
-                        CurrentSourceFile = srcFile,
-                        DestinationFile = Path.Join(destBasePath, filePathFromBase)
-                    }
-                });
-
-                if (!File.Exists(savedFile) || new FileInfo(savedFile).LastWriteTimeUtc.CompareTo(new FileInfo(srcFile).LastWriteTimeUtc) < 0)
-                {
-                    long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    try
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
-                        File.Copy(srcFile, Path.Join(destBasePath, filePathFromBase), true);
-                    }
-                    catch (Exception ex)
-                    {
-                        msbefore = -1;
-                    }
-                    Logger.Log(backup.BackupEnvironment.Name, srcFile, Path.Join(destBasePath, filePathFromBase), new FileInfo(srcFile).Length,
-                        msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
-                }
+                String filePathFromBase = Path.GetRelativePath(SourceDirectory, sourceFile);
+                String savedFile = Path.Join(SavedDirectory, filePathFromBase);
+                if (!File.Exists(savedFile) || new FileInfo(savedFile).LastWriteTimeUtc.CompareTo(new FileInfo(sourceFile).LastWriteTimeUtc) < 0)
+                    fileToCopy.Add(sourceFile);
             }
+            CopyFiles(fileToCopy.ToArray(),SourceDirectory,DestinationDirectory);
 
-            List<String> fileContent = new List<string>();
             // Saving Deleted files
-            foreach (String savedFile in Directory.EnumerateFiles(fullBackupBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            List<String> deletedFileContent = new List<string>();
+            foreach (String savedFile in Directory.EnumerateFiles(SavedDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
-                String filePathFromBase = Path.GetRelativePath(fullBackupBasePath, savedFile);
-                String srcFile = Path.Join(srcBasePath, filePathFromBase);
+                String filePathFromBase = Path.GetRelativePath(SavedDirectory, savedFile);
+                String srcFile = Path.Join(SourceDirectory, filePathFromBase);
                 if (!File.Exists(srcFile))
-                {
-                    fileContent.Add(filePathFromBase);
-                }
+                    deletedFileContent.Add(filePathFromBase);
             }
-            File.WriteAllLines(Path.Join(destBasePath, "./.easysave"),fileContent);
-
+            File.WriteAllLines(Path.Join(DestinationDirectory, "./.easysave"), deletedFileContent);
         }
 
-        public void Restore(Backup backup)
+        protected override void Restore()
         {
-            this.fullBackup.Restore();
+            FullBackup.Restore();
+            Directory.CreateDirectory(DestinationDirectory);
 
-            Directory.CreateDirectory(backup.DestinationDirectory);
-
-            String srcBasePath = backup.BackupEnvironment.SourceDirectory;
-            String destBasePath = backup.DestinationDirectory;
 
             // Creating new and edited files
-            foreach (String destFile in Directory.EnumerateFiles(destBasePath, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            List<String> fileToCopy = new List<String>();
+            foreach (String destFile in Directory.EnumerateFiles(DestinationDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
-                String filePathFromBase = Path.GetRelativePath(destBasePath, destFile);
+                String filePathFromBase = Path.GetRelativePath(DestinationDirectory, destFile);
                 if (!filePathFromBase.Equals(".easysave"))
-                {
-                    long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    try
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(srcBasePath, filePathFromBase)));
-                    File.Copy(destFile, Path.Join(srcBasePath, filePathFromBase), true);
-                    }
-                    catch (Exception ex)
-                    {
-                        msbefore = -1;
-                    }
-                    Logger.Log(backup.BackupEnvironment.Name, destFile, Path.Join(srcBasePath, filePathFromBase), new FileInfo(destFile).Length, msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore);
-
-                }
+                    fileToCopy.Add(destFile);
             }
+            CopyFiles(fileToCopy.ToArray(), DestinationDirectory, SourceDirectory);
 
             // Deleting deleted files
-            if (File.Exists(Path.Join(destBasePath, "./.easysave")))
+            if (File.Exists(Path.Join(DestinationDirectory, "./.easysave")))
             {
-                foreach (String filePathFromBase in File.ReadAllLines(Path.Join(destBasePath, "./.easysave")))
-                {
-                    File.Delete(Path.Join(srcBasePath, filePathFromBase));
-                }
+                foreach (String filePathFromBase in File.ReadAllLines(Path.Join(DestinationDirectory, "./.easysave")))
+                    File.Delete(Path.Join(SourceDirectory, filePathFromBase));
             }
         }
+
+
     }
 }
