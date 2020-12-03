@@ -49,7 +49,35 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
 
         private void seachBar_TextChanged(object sender, EventArgs e)
         {
+            
+            IReadOnlyList<BackupEnvironment> backupEnvironments = Program.Model.GetBackupEnvironments();
+            listBackupEnvironments.Items.Clear();
 
+            if (string.IsNullOrEmpty(seachBar.Text) == false)
+            {
+                foreach (var backupEnvironment in backupEnvironments)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = backupEnvironment;
+                    item.Text = backupEnvironment.Name;
+
+                    if (item.Text.StartsWith(seachBar.Text, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        listBackupEnvironments.Items.Add(item);
+                    }
+                }
+            }
+            else if (seachBar.Text == "")
+            {
+                foreach (var backupEnvironment in backupEnvironments)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = backupEnvironment;
+                    item.Text = backupEnvironment.Name;
+                    listBackupEnvironments.Items.Add(item);
+                }
+            }
+            
         }
 
         private void addBackupEnvironment_Click(object sender, EventArgs e)
