@@ -1,28 +1,44 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 
 namespace CryptoSoft
 {
     class Program
     {
-        
         static int Main(string[] args)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            string OutputFile = @"C:\Users\bonne\OneDrive\Documents\cours exia\Programmation système\EasySave\OutEncryption.txt";
-            byte[] data = File.ReadAllBytes(@"C:\Users\bonne\OneDrive\Documents\cours exia\Programmation système\EasySave\point d'armée.txt");
-
-            byte[] key = File.ReadAllBytes(@"C:\Users\bonne\OneDrive\Documents\cours exia\Programmation système\EasySave\key.txt" );
-
-            for (int i = 0; i < data.Length; i++)
+            //Directory.Exists(args[1]) == false
+            if (args.Length != 2 || File.Exists(args[0]) == false )
             {
-                byte x = key[(byte)(i % key.Length)];
-                data[i] = (byte)(data[i] ^ x);
+                stopwatch.Stop();
+                int timeExe = -1;
+                Console.WriteLine(timeExe);
+                return timeExe;
             }
-            File.WriteAllBytes(OutputFile, data);
+            else
+            {
+                string OutputFile = args[1];
+                byte[] data = File.ReadAllBytes(args[0]);
 
-            return 4; 
+                byte[] key = File.ReadAllBytes(@".\key.txt");
 
+                for (int i = 0; i < data.Length; i++)
+                {
+                    byte x = key[(byte)(i % key.Length)];
+                    data[i] = (byte)(data[i] ^ x);
+                }
+                File.WriteAllBytes(OutputFile, data);
+
+                stopwatch.Stop();
+
+                int timeExe = (int)(stopwatch.Elapsed.TotalSeconds * 1000);
+                Console.WriteLine(timeExe);
+                return timeExe;
+            }
         }
     }
 }
