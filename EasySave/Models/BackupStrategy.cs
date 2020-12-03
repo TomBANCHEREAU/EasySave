@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -88,16 +89,33 @@ namespace EasySave.Models
                 });
 
                 long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                try
+                int encryptionTime = 0;
+                if ((new List<String>() { ".txt" }).Contains(new FileInfo(srcFile).Extension))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
-                    File.Copy(Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), true);
+                    ProcessStartInfo cryptoSoftInfo = new ProcessStartInfo("CryptoSoft.exe");
+                    cryptoSoftInfo.UseShellExecute = true;
+                    cryptoSoftInfo.ArgumentList.Add(new FileInfo(srcFile).FullName);
+                    cryptoSoftInfo.ArgumentList.Add(new FileInfo(Path.Join(destBasePath, filePathFromBase)).FullName);
+                    Process cryptoSoft = Process.Start(cryptoSoftInfo);
+                    cryptoSoft.WaitForExit();
+                    encryptionTime = cryptoSoft.ExitCode;
+                    File.WriteAllText("./test", encryptionTime+"");
+                    //Process  = Process.Start();
                 }
-                catch {msbefore = -1;}
+                else
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
+                        File.Copy(Path.Join(srcBasePath, filePathFromBase), Path.Join(destBasePath, filePathFromBase), true);
+                    }
+                    catch {msbefore = -1;}
+                }
 
                 long TransferTime = msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore;
 
-                OnFileTransfer?.Invoke(this, new FileTransferEvent(Backup,new FileInfo(srcFile), new FileInfo(Path.Join(destBasePath, filePathFromBase)), TransferTime, 0));
+                OnFileTransfer?.Invoke(this, new FileTransferEvent(Backup,new FileInfo(srcFile), new FileInfo(Path.Join(destBasePath, filePathFromBase)), TransferTime, encryptionTime));
             }
         }
     }
