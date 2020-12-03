@@ -7,6 +7,7 @@ namespace EasySave.Models
     public interface IReadOnlyModel
     {
         public event EventHandler<FileTransferEvent> OnFileTransfer;
+        public String[] CryptedExtensions { get; }
         public IReadOnlyList<BackupEnvironment> GetBackupEnvironments();
     }
 }

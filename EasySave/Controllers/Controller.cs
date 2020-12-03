@@ -41,9 +41,9 @@ namespace EasySave.Controllers
             this.model.RunBackup(backup);
         }
 
-        public void setCryptedExtentions(string[] extentions)
+        public void SetCryptedExtensions(string[] extensions)
         {
-            this.model.setCryptedExtentions(extentions);
+            this.model.SetCryptedExtensions(extensions);
         }
     }
 }

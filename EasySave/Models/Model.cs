@@ -8,14 +8,14 @@ namespace EasySave.Models
 {
     public class Model : IModel
     {
-        private String[] cryptedExtentions;
+        private String[] cryptedExtensions;
 
-        public String[] CryptedExtentions
+        public String[] CryptedExtensions
         {
             get {
-                if (cryptedExtentions == null)
+                if (cryptedExtensions == null)
                     return new String[0];
-                return cryptedExtentions;
+                return cryptedExtensions;
 
             }
         }
@@ -110,6 +110,7 @@ namespace EasySave.Models
                                 backupEnvironment.LoadFromFile();
                             }catch{}
                         }
+                        cryptedExtensions = settingsJSON.CryptedExtensions;
                     }catch{}
                 }
             }
@@ -122,7 +123,7 @@ namespace EasySave.Models
             if (this.backupEnvironments != null)
             {
                 SettingsJSON settings = new SettingsJSON();
-                settings.CryptedExtentions = CryptedExtentions;
+                settings.CryptedExtensions = CryptedExtensions;
                 List<SettingsJSON.SettingsEnvironmentJSON> backupEnvironmentDatas = new List<SettingsJSON.SettingsEnvironmentJSON>();
                 foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
@@ -141,14 +142,14 @@ namespace EasySave.Models
             SaveSettings();
         }
 
-        public void setCryptedExtentions(string[] extentions)
+        public void SetCryptedExtensions(string[] extensions)
         {
-            cryptedExtentions = extentions;
+            cryptedExtensions = extensions;
             SaveSettings();
         }
         class SettingsJSON
         {
-            public String[] CryptedExtentions;
+            public String[] CryptedExtensions;
             public SettingsEnvironmentJSON[] Environments;
             public class SettingsEnvironmentJSON
             {
