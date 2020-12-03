@@ -7,7 +7,7 @@ namespace EasySave.Models
 {
     public class FileTransferEvent
     {
-        public readonly DateTime TransfertDate;
+        public readonly DateTime TransferDate;
         public readonly Backup Backup;
         public readonly FileInfo SourceFileInfo;
         public readonly FileInfo DestinationFileInfo;
@@ -20,7 +20,7 @@ namespace EasySave.Models
         public String EnvironmentName { get => BackupEnvironment.Name; }
         public FileTransferEvent(Backup Backup, FileInfo SourceFileInfo, FileInfo DestinationFileInfo, long TransferTime, long EncryptionTime)
         {
-            this.TransfertDate = DateTime.Now;
+            this.TransferDate = DateTime.Now;
             this.Backup = Backup;
             this.SourceFileInfo = SourceFileInfo;
             this.DestinationFileInfo = DestinationFileInfo;

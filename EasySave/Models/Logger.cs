@@ -29,18 +29,18 @@ namespace EasySave.Models
             if (logs == null)
                 logs = new List<object>();
         }
-        internal void OnFileTransfert(object sender, FileTransferEvent transfertEvent)
+        internal void OnFileTransfert(object sender, FileTransferEvent transferEvent)
         {
             lock(logger)
             {
                 logs.Add(new { 
-                    TransfertDate = transfertEvent.TransfertDate,
-                    EnvironmentName = transfertEvent.BackupEnvironment.Name,
-                    SourceFile = transfertEvent.SourceFile,
-                    DestinationFile = transfertEvent.DestinationFile,
-                    FileSize = transfertEvent.FileSize,
-                    TransferTime = transfertEvent.TransferTime,
-                    EncryptionTime = transfertEvent.EncryptionTime
+                    TransferDate = transferEvent.TransferDate,
+                    EnvironmentName = transferEvent.BackupEnvironment.Name,
+                    SourceFile = transferEvent.SourceFile,
+                    DestinationFile = transferEvent.DestinationFile,
+                    FileSize = transferEvent.FileSize,
+                    TransferTime = transferEvent.TransferTime,
+                    EncryptionTime = transferEvent.EncryptionTime
                 });
                 File.WriteAllText(logFilePath, JsonConvert.SerializeObject(logs, Formatting.Indented));
             }

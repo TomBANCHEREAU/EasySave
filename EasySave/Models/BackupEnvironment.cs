@@ -9,8 +9,8 @@ namespace EasySave.Models
     public class BackupEnvironment
     {
 
-        public event EventHandler<FileTransferEvent> OnFileTransfert;
-        private void onFileTransfert(Object a, FileTransferEvent f) => OnFileTransfert?.Invoke(this, f);
+        public event EventHandler<FileTransferEvent> OnFileTransfer;
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
 
         #region Name
         private String name = "default";
@@ -91,7 +91,7 @@ namespace EasySave.Models
                 this.backups.Add(backup);
                 if (backup.BackupStrategy is FullBackupStrategy)
                     this.fullBackups.Add(backup);
-                backup.OnFileTransfert += onFileTransfert;
+                backup.OnFileTransfer += onFileTransfer;
                 save();
             }
         }

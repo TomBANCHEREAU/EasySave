@@ -9,8 +9,8 @@ namespace EasySave.Models
     public class Model : IModel
     {
 
-        public event EventHandler<FileTransferEvent> OnFileTransfert;
-        private void onFileTransfert(Object a, FileTransferEvent f) => OnFileTransfert?.Invoke(this, f);
+        public event EventHandler<FileTransferEvent> OnFileTransfer;
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
 
         #region BackupEnvironment
         private List<BackupEnvironment> backupEnvironments;
@@ -28,14 +28,14 @@ namespace EasySave.Models
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
             BackupEnvironments.Add(backupEnvironment);
-            backupEnvironment.OnFileTransfert += onFileTransfert;
+            backupEnvironment.OnFileTransfer += onFileTransfer;
             State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
             saveBackupEnvironments();
         }
 
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            backupEnvironment.OnFileTransfert -= onFileTransfert;
+            backupEnvironment.OnFileTransfer -= onFileTransfer;
             Boolean b = BackupEnvironments.Remove(backupEnvironment);
             saveBackupEnvironments();
             State.RemoveState(backupEnvironment.Name);
@@ -70,7 +70,7 @@ namespace EasySave.Models
         {
             if (this.backupEnvironments == null)
             {
-                this.OnFileTransfert += Logger.getInstance().OnFileTransfert;
+                this.OnFileTransfer += Logger.getInstance().OnFileTransfert;
                 this.backupEnvironments = new List<BackupEnvironment>();
                 if (File.Exists("./environment.json"))
                 {

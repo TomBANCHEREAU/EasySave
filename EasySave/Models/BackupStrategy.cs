@@ -7,7 +7,7 @@ namespace EasySave.Models
 {
     public abstract class BackupStrategy
     {
-        public event EventHandler<FileTransferEvent> OnFileTransfert = (Object s, FileTransferEvent b) => { };
+        public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => { };
         //private delegate void ExecuteDelegate(BackupStrategy backup);
 
         private Backup backup;
@@ -97,7 +97,7 @@ namespace EasySave.Models
 
                 long TransferTime = msbefore == -1 ? -1 : DateTimeOffset.Now.ToUnixTimeMilliseconds() - msbefore;
 
-                OnFileTransfert?.Invoke(this, new FileTransferEvent(Backup,new FileInfo(srcFile), new FileInfo(Path.Join(destBasePath, filePathFromBase)), TransferTime, 0));
+                OnFileTransfer?.Invoke(this, new FileTransferEvent(Backup,new FileInfo(srcFile), new FileInfo(Path.Join(destBasePath, filePathFromBase)), TransferTime, 0));
             }
         }
     }
