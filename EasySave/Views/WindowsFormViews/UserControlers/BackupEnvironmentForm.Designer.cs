@@ -1,5 +1,5 @@
 ﻿
-namespace EasySave.Views.WindowsFormViews
+namespace EasySave.Views.WindowsFormViews.UserControlers
 {
     partial class BackupEnvironmentForm
     {

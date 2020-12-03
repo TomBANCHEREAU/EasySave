@@ -1,4 +1,6 @@
 ﻿
+using EasySave.Views.WindowsFormViews.UserControlers;
+
 namespace EasySave.Views.WindowsFormViews
 {
     partial class MainView
@@ -30,8 +32,8 @@ namespace EasySave.Views.WindowsFormViews
         private void InitializeComponent()
         {
             this.title = new System.Windows.Forms.Label();
-            this.Main = new EasySave.Views.WindowsFormViews.Home();
-            this.backupEnvironmentForm = new EasySave.Views.WindowsFormViews.BackupEnvironmentForm();
+            this.Main = new EasySave.Views.WindowsFormViews.UserControlers.Home();
+            this.backupEnvironmentForm = new EasySave.Views.WindowsFormViews.UserControlers.BackupEnvironmentForm();
             this.SuspendLayout();
             // 
             // title

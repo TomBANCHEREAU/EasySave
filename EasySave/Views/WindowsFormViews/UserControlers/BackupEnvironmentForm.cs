@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EasySave.Views.WindowsFormViews
+namespace EasySave.Views.WindowsFormViews.UserControlers
 {
     public partial class BackupEnvironmentForm : UserControl
     {
