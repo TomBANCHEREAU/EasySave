@@ -90,5 +90,17 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             GraphicalView.Controller.DeleteBackupEnvironment((BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag);
             UpdateBackupList();
         }
+
+        private void searchBarLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void runBackup_Click(object sender, EventArgs e)
+        {
+            GraphicalView.MainView.runBackup1.selected = (BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag;
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.runBackup1);
+
+        }
     }
 }

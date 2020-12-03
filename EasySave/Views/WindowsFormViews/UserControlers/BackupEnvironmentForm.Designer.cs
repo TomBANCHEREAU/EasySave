@@ -39,6 +39,8 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.destinationDirectoryTextbox = new System.Windows.Forms.TextBox();
             this.sourceDirectory = new System.Windows.Forms.Button();
             this.destinationDirectory = new System.Windows.Forms.Button();
+            this.description = new System.Windows.Forms.RichTextBox();
+            this.decriptionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -52,7 +54,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(175, 325);
+            this.confirmButton.Location = new System.Drawing.Point(172, 393);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(100, 29);
             this.confirmButton.TabIndex = 1;
@@ -68,6 +70,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.returnMenuButton.TabIndex = 2;
             this.returnMenuButton.Text = "Return to the menu";
             this.returnMenuButton.UseVisualStyleBackColor = true;
+            this.returnMenuButton.Click += new System.EventHandler(this.returnMenuButton_Click_1);
             // 
             // sourceDirectoryLabel
             // 
@@ -130,10 +133,29 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.destinationDirectory.UseVisualStyleBackColor = true;
             this.destinationDirectory.Click += new System.EventHandler(this.destinationDirectory_Click);
             // 
+            // description
+            // 
+            this.description.Location = new System.Drawing.Point(100, 316);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(261, 71);
+            this.description.TabIndex = 12;
+            this.description.Text = "";
+            // 
+            // decriptionLabel
+            // 
+            this.decriptionLabel.AutoSize = true;
+            this.decriptionLabel.Location = new System.Drawing.Point(100, 293);
+            this.decriptionLabel.Name = "decriptionLabel";
+            this.decriptionLabel.Size = new System.Drawing.Size(149, 20);
+            this.decriptionLabel.TabIndex = 13;
+            this.decriptionLabel.Text = "Decription (optional)";
+            // 
             // BackupEnvironmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.decriptionLabel);
+            this.Controls.Add(this.description);
             this.Controls.Add(this.destinationDirectory);
             this.Controls.Add(this.sourceDirectory);
             this.Controls.Add(this.destinationDirectoryTextbox);
@@ -164,5 +186,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
         private System.Windows.Forms.TextBox destinationDirectoryTextbox;
         private System.Windows.Forms.Button sourceDirectory;
         private System.Windows.Forms.Button destinationDirectory;
+        private System.Windows.Forms.RichTextBox description;
+        private System.Windows.Forms.Label decriptionLabel;
     }
 }

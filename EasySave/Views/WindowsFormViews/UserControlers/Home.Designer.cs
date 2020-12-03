@@ -34,6 +34,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.listBackupEnvironments = new System.Windows.Forms.ListView();
             this.deleteBackupEnvironment = new System.Windows.Forms.Button();
             this.addBackupEnvironment = new System.Windows.Forms.Button();
+            this.runBackup = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // searchBarLabel
@@ -44,6 +45,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.searchBarLabel.Size = new System.Drawing.Size(62, 20);
             this.searchBarLabel.TabIndex = 0;
             this.searchBarLabel.Text = "Search...";
+            this.searchBarLabel.Click += new System.EventHandler(this.searchBarLabel_Click);
             // 
             // seachBar
             // 
@@ -86,10 +88,21 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.addBackupEnvironment.UseVisualStyleBackColor = true;
             this.addBackupEnvironment.Click += new System.EventHandler(this.addBackupEnvironment_Click);
             // 
+            // runBackup
+            // 
+            this.runBackup.Location = new System.Drawing.Point(260, 203);
+            this.runBackup.Name = "runBackup";
+            this.runBackup.Size = new System.Drawing.Size(179, 29);
+            this.runBackup.TabIndex = 7;
+            this.runBackup.Text = "Run a Backup";
+            this.runBackup.UseVisualStyleBackColor = true;
+            this.runBackup.Click += new System.EventHandler(this.runBackup_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.runBackup);
             this.Controls.Add(this.addBackupEnvironment);
             this.Controls.Add(this.deleteBackupEnvironment);
             this.Controls.Add(this.seachBar);
@@ -110,5 +123,6 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
         private System.Windows.Forms.TextBox seachBar;
         private System.Windows.Forms.Button deleteBackupEnvironment;
         private System.Windows.Forms.Button addBackupEnvironment;
+        private System.Windows.Forms.Button runBackup;
     }
 }

@@ -65,7 +65,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             }
         }
 
-        private void returnMenuButton_Click(object sender, EventArgs e)
+        private void returnMenuButton_Click_1(object sender, EventArgs e)
         {
             GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
         }
