@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EasySave.Controllers
 {
-    class Controller : IController
+    public class Controller : IController
     {
         private IModel model;
         private IView view;
@@ -18,12 +18,6 @@ namespace EasySave.Controllers
         public void Start()
         {
             this.model.Start();
-            BackupEnvironment b = model.GetBackupEnvironments()[0];
-            //RestoreBackup(b.Backups[b.Backups.Count-1]);
-            //AddBackupEnvironment(b);
-            Backup ba = new Backup(b,new FullBackupStrategy());
-            b.AddBackup(ba);
-            RunBackup(ba);
             this.view.Start(model,this);
         }
 
@@ -45,6 +39,11 @@ namespace EasySave.Controllers
         public void RunBackup(Backup backup)
         {
             this.model.RunBackup(backup);
+        }
+
+        public void setCryptedExtentions(string[] extentions)
+        {
+            this.model.setCryptedExtentions(extentions);
         }
     }
 }

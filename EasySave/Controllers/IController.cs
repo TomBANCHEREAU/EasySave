@@ -12,5 +12,6 @@ namespace EasySave.Controllers
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
         public void RunBackup(Backup backup);
         public void RestoreBackup(Backup backup);
+        public void setCryptedExtentions(string[] extentions);
     }
 }

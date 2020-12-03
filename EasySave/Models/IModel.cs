@@ -12,5 +12,6 @@ namespace EasySave.Models
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
         public void RunBackup(Backup backup);
         public void RestoreBackup(Backup backup);
+        public void setCryptedExtentions(String[] extentions);
     }
 }

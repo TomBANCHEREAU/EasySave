@@ -8,6 +8,17 @@ namespace EasySave.Models
 {
     public class Model : IModel
     {
+        private String[] cryptedExtentions;
+
+        public String[] CryptedExtentions
+        {
+            get {
+                if (cryptedExtentions == null)
+                    return new String[0];
+                return cryptedExtentions;
+
+            }
+        }
 
         public event EventHandler<FileTransferEvent> OnFileTransfer;
         private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
@@ -27,19 +38,27 @@ namespace EasySave.Models
         }
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            BackupEnvironments.Add(backupEnvironment);
-            backupEnvironment.OnFileTransfer += onFileTransfer;
-            State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
-            saveBackupEnvironments();
+            if (!BackupEnvironments.Contains(backupEnvironment))
+            {
+                BackupEnvironments.Add(backupEnvironment);
+                backupEnvironment.Model = this;
+                backupEnvironment.OnFileTransfer += onFileTransfer;
+                State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
+                SaveSettings();
+            }
         }
 
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment)
         {
-            backupEnvironment.OnFileTransfer -= onFileTransfer;
-            Boolean b = BackupEnvironments.Remove(backupEnvironment);
-            saveBackupEnvironments();
-            State.RemoveState(backupEnvironment.Name);
-            return b;
+            if (BackupEnvironments.Contains(backupEnvironment))
+            {
+                backupEnvironment.OnFileTransfer -= onFileTransfer;
+                BackupEnvironments.Remove(backupEnvironment);
+                SaveSettings();
+                State.RemoveState(backupEnvironment.Name);
+                return true;
+            }
+            return false;
         }
 
         public IReadOnlyList<BackupEnvironment> GetBackupEnvironments()
@@ -72,48 +91,71 @@ namespace EasySave.Models
             {
                 this.OnFileTransfer += Logger.getInstance().OnFileTransfert;
                 this.backupEnvironments = new List<BackupEnvironment>();
-                if (File.Exists("./environment.json"))
+                if (File.Exists("./settings.json"))
                 {
-                    List<BackupEnvironment.BackupEnvironmentData> backupEnvironmentDatas = JsonConvert.DeserializeObject<List<BackupEnvironment.BackupEnvironmentData>>(File.ReadAllText("./environment.json"));
-                    foreach (BackupEnvironment.BackupEnvironmentData backupEnvironmentData in backupEnvironmentDatas)
+                    try
                     {
-                        try
+                        SettingsJSON settingsJSON = JsonConvert.DeserializeObject<SettingsJSON>(File.ReadAllText("./settings.json"));
+
+                        foreach (SettingsJSON.SettingsEnvironmentJSON backupEnvironments in settingsJSON.Environments)
                         {
-                            BackupEnvironment backupEnvironment = new BackupEnvironment(backupEnvironmentData.Name,backupEnvironmentData.SourceDirectory,backupEnvironmentData.DestinationDirectory);
-                            AddBackupEnvironment(backupEnvironment);
-                            backupEnvironment.LoadFromFile();
+                            try
+                            {
+                                BackupEnvironment backupEnvironment = new BackupEnvironment(
+                                    backupEnvironments.Name,
+                                    backupEnvironments.SourceDirectory,
+                                    backupEnvironments.DestinationDirectory
+                                );
+                                AddBackupEnvironment(backupEnvironment);
+                                backupEnvironment.LoadFromFile();
+                            }catch{}
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            Console.ReadLine();
-                        }
-                    }
+                    }catch{}
                 }
             }
             else
                 throw new InvalidOperationException("Model has already been started");
         }
 
-        private void saveBackupEnvironments()
+        private void SaveSettings()
         {
             if (this.backupEnvironments != null)
             {
-                List<BackupEnvironment.BackupEnvironmentData> backupEnvironmentDatas = new List<BackupEnvironment.BackupEnvironmentData>();
+                SettingsJSON settings = new SettingsJSON();
+                settings.CryptedExtentions = CryptedExtentions;
+                List<SettingsJSON.SettingsEnvironmentJSON> backupEnvironmentDatas = new List<SettingsJSON.SettingsEnvironmentJSON>();
                 foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
-                    BackupEnvironment.BackupEnvironmentData env = new BackupEnvironment.BackupEnvironmentData();
+                    SettingsJSON.SettingsEnvironmentJSON env = new SettingsJSON.SettingsEnvironmentJSON();
                     env.Name = backupEnvironment.Name;
                     env.SourceDirectory = backupEnvironment.SourceDirectory;
                     env.DestinationDirectory = backupEnvironment.DestinationDirectory;
                     backupEnvironmentDatas.Add(env);
                 }
-                File.WriteAllText("./environment.json", JsonConvert.SerializeObject(backupEnvironmentDatas, Formatting.Indented));
+                settings.Environments = backupEnvironmentDatas.ToArray();
+                File.WriteAllText("./settings.json", JsonConvert.SerializeObject(settings, Formatting.Indented));
             }
         }
         public void Stop()
         {
-            throw new NotImplementedException();
+            SaveSettings();
+        }
+
+        public void setCryptedExtentions(string[] extentions)
+        {
+            cryptedExtentions = extentions;
+            SaveSettings();
+        }
+        class SettingsJSON
+        {
+            public String[] CryptedExtentions;
+            public SettingsEnvironmentJSON[] Environments;
+            public class SettingsEnvironmentJSON
+            {
+                public String Name;
+                public String SourceDirectory;
+                public String DestinationDirectory;
+            }
         }
     }
 }

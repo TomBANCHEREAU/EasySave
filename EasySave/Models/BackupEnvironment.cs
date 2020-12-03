@@ -11,7 +11,18 @@ namespace EasySave.Models
 
         public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
         private void onFileTransfer(Object a, FileTransferEvent f)=>OnFileTransfer(a, f);
-        
+        private Model model;
+
+        public Model Model
+        {
+            get { return model; }
+            internal set {
+                if(model!=null)
+                    throw new InvalidOperationException("Model has already been set");
+                model = value; 
+            }
+        }
+
 
         #region Name
         private String name = "default";
@@ -141,12 +152,6 @@ namespace EasySave.Models
                 backupDatas.Add(data);
             }
             File.WriteAllText(Path.Join(this.destinationDirectory, "./backups.json"), JsonConvert.SerializeObject(backupDatas, Formatting.Indented));
-        }
-        public class BackupEnvironmentData
-        {
-            public String Name;
-            public String SourceDirectory;
-            public String DestinationDirectory;
         }
         internal void Restore(Backup backup)
         {

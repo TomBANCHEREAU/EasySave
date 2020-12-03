@@ -96,7 +96,8 @@ namespace EasySave.Models
 
                 long msbefore = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 int encryptionTime = 0;
-                if ((new List<String>() { ".txt" }).Contains(new FileInfo(srcFile).Extension))
+                
+                if ((new List<String>(Backup.BackupEnvironment.Model.CryptedExtentions)).Contains(new FileInfo(srcFile).Extension))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(Path.Join(destBasePath, filePathFromBase)));
                     ProcessStartInfo cryptoSoftInfo = new ProcessStartInfo("CryptoSoft.exe");

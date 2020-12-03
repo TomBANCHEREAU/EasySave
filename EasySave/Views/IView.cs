@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EasySave.Views
 {
-    interface IView
+    public interface IView
     {
         public void Start(IReadOnlyModel model,IController controller);
     }
