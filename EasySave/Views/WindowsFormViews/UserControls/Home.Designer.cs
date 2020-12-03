@@ -1,5 +1,5 @@
 ﻿
-namespace EasySave.Views.WindowsFormViews.UserControlers
+namespace EasySave.Views.WindowsFormViews.UserControls
 {
     partial class Home
     {
@@ -70,6 +70,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             // 
             // deleteBackupEnvironment
             // 
+            this.deleteBackupEnvironment.Enabled = false;
             this.deleteBackupEnvironment.Location = new System.Drawing.Point(260, 67);
             this.deleteBackupEnvironment.Name = "deleteBackupEnvironment";
             this.deleteBackupEnvironment.Size = new System.Drawing.Size(179, 29);

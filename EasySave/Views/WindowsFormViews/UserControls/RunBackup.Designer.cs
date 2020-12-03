@@ -1,7 +1,7 @@
 ﻿
-namespace EasySave.Views.WindowsFormViews.UserControlers
+namespace EasySave.Views.WindowsFormViews.UserControls
 {
-    partial class runBackup
+    partial class RunBackup
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -86,7 +86,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.executeBackup.UseVisualStyleBackColor = true;
             this.executeBackup.Click += new System.EventHandler(this.executeBackup_Click);
             // 
-            // runBackup
+            // RunBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -95,8 +95,9 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Name = "runBackup";
+            this.Name = "RunBackup";
             this.Size = new System.Drawing.Size(399, 475);
+            this.Load += new System.EventHandler(this.runBackup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

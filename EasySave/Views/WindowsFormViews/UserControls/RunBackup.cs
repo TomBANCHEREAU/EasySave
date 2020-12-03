@@ -7,12 +7,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EasySave.Views.WindowsFormViews.UserControlers
+namespace EasySave.Views.WindowsFormViews.UserControls
 {
-    public partial class runBackup : UserControl
+    public partial class RunBackup : UserControl
     {
         internal BackupEnvironment selected;
-        public runBackup()
+
+        public RunBackup()
         {
             InitializeComponent();
         }
@@ -50,6 +51,15 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
                     MessageBox.Show("The differential backup has been done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+            else
+            {
+                executeBackup.Enabled = false;
+            }
+        }
+
+        private void runBackup_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EasySave.Views.WindowsFormViews.UserControlers
+namespace EasySave.Views.WindowsFormViews.UserControls
 {
     public partial class Home : UserControl
     {
@@ -16,7 +16,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             InitializeComponent();
         }
 
-        private void UpdateBackupList()
+        internal void UpdateBackupList()
         {
             IReadOnlyList<BackupEnvironment> backupEnvironments = GraphicalView.Model.GetBackupEnvironments();
             listBackupEnvironments.Items.Clear();
@@ -98,8 +98,8 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
 
         private void runBackup_Click(object sender, EventArgs e)
         {
-            GraphicalView.MainView.runBackup1.selected = (BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag;
-            GraphicalView.MainView.setViewState(GraphicalView.MainView.runBackup1);
+            GraphicalView.MainView.runBackup.selected = (BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag;
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.runBackup);
 
         }
     }

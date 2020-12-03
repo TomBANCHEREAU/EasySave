@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace EasySave.Views.WindowsFormViews.UserControlers
+namespace EasySave.Views.WindowsFormViews.UserControls
 {
     public partial class BackupEnvironmentForm : UserControl
     {
@@ -44,8 +44,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            Regex rx = new Regex("^[a-zA-Z.]{2,30}$");
-            if (rx.IsMatch(nameTextBox.Text))
+            if (nameTextBox.Text.Length >= 3 && nameTextBox.Text.Length <= 30)
             {
                 if (!String.IsNullOrEmpty(sourceDirectoryTextbox.Text) && !String.IsNullOrEmpty(destinationDirectoryTextbox.Text))
                 {
@@ -53,6 +52,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
                     GraphicalView.Controller.AddBackupEnvironment(backupEnvironment);
                     MessageBox.Show("The " + nameTextBox.Text + " environment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+                    GraphicalView.MainView.Main.UpdateBackupList();
                 }
                 else
                 {

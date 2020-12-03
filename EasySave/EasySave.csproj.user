@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Views\WindowsFormViews\UserControlers\BackupEnvironmentForm.cs">
+    <Compile Update="Views\WindowsFormViews\UserControls\BackupEnvironmentForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControlers\Home.cs">
+    <Compile Update="Views\WindowsFormViews\UserControls\Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\WindowsFormViews\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControlers\runBackup.cs">
+    <Compile Update="Views\WindowsFormViews\UserControls\RunBackup.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

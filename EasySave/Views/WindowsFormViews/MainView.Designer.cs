@@ -1,5 +1,5 @@
 ﻿
-using EasySave.Views.WindowsFormViews.UserControlers;
+using EasySave.Views.WindowsFormViews.UserControls;
 
 namespace EasySave.Views.WindowsFormViews
 {
@@ -32,9 +32,9 @@ namespace EasySave.Views.WindowsFormViews
         private void InitializeComponent()
         {
             this.title = new System.Windows.Forms.Label();
-            this.Main = new EasySave.Views.WindowsFormViews.UserControlers.Home();
-            this.backupEnvironmentForm = new EasySave.Views.WindowsFormViews.UserControlers.BackupEnvironmentForm();
-            this.runBackup1 = new EasySave.Views.WindowsFormViews.UserControlers.runBackup();
+            this.Main = new EasySave.Views.WindowsFormViews.UserControls.Home();
+            this.backupEnvironmentForm = new EasySave.Views.WindowsFormViews.UserControls.BackupEnvironmentForm();
+            this.runBackup = new EasySave.Views.WindowsFormViews.UserControls.RunBackup();
             this.SuspendLayout();
             // 
             // title
@@ -65,17 +65,17 @@ namespace EasySave.Views.WindowsFormViews
             // 
             // runBackup1
             // 
-            this.runBackup1.Location = new System.Drawing.Point(2, 59);
-            this.runBackup1.Name = "runBackup1";
-            this.runBackup1.Size = new System.Drawing.Size(446, 490);
-            this.runBackup1.TabIndex = 3;
+            this.runBackup.Location = new System.Drawing.Point(2, 59);
+            this.runBackup.Name = "runBackup1";
+            this.runBackup.Size = new System.Drawing.Size(446, 490);
+            this.runBackup.TabIndex = 3;
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 552);
-            this.Controls.Add(this.runBackup1);
+            this.Controls.Add(this.runBackup);
             this.Controls.Add(this.title);
             this.Controls.Add(this.Main);
             this.Controls.Add(this.backupEnvironmentForm);
@@ -92,6 +92,6 @@ namespace EasySave.Views.WindowsFormViews
         private System.Windows.Forms.Label title;
         internal Home Main;
         internal BackupEnvironmentForm backupEnvironmentForm;
-        internal runBackup runBackup1;
+        internal RunBackup runBackup;
     }
 }
