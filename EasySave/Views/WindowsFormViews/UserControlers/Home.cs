@@ -18,7 +18,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
 
         private void UpdateBackupList()
         {
-            IReadOnlyList<BackupEnvironment> backupEnvironments = Program.Model.GetBackupEnvironments();
+            IReadOnlyList<BackupEnvironment> backupEnvironments = GraphicalView.Model.GetBackupEnvironments();
             listBackupEnvironments.Items.Clear();
 
             foreach (var backupEnvironment in backupEnvironments)
@@ -50,7 +50,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
         private void seachBar_TextChanged(object sender, EventArgs e)
         {
             
-            IReadOnlyList<BackupEnvironment> backupEnvironments = Program.Model.GetBackupEnvironments();
+            IReadOnlyList<BackupEnvironment> backupEnvironments = GraphicalView.Model.GetBackupEnvironments();
             listBackupEnvironments.Items.Clear();
 
             if (string.IsNullOrEmpty(seachBar.Text) == false)
@@ -82,12 +82,12 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
 
         private void addBackupEnvironment_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.backupEnvironmentForm);
         }
 
         private void deleteBackupEnvironment_Click(object sender, EventArgs e)
         {
-            Program.Controller.DeleteBackupEnvironment((BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag);
+            GraphicalView.Controller.DeleteBackupEnvironment((BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag);
             UpdateBackupList();
         }
     }

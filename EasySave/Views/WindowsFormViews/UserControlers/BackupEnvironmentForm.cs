@@ -50,8 +50,9 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
                 if (!String.IsNullOrEmpty(sourceDirectoryTextbox.Text) && !String.IsNullOrEmpty(destinationDirectoryTextbox.Text))
                 {
                     BackupEnvironment backupEnvironment = new BackupEnvironment(nameTextBox.Text, sourceDirectoryTextbox.Text, destinationDirectoryTextbox.Text);
-                    Program.Controller.AddBackupEnvironment(backupEnvironment);
+                    GraphicalView.Controller.AddBackupEnvironment(backupEnvironment);
                     MessageBox.Show("The " + nameTextBox.Text + " environment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
                 }
                 else
                 {
@@ -62,6 +63,11 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             {
                 MessageBox.Show("The name format is incorrect !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void returnMenuButton_Click(object sender, EventArgs e)
+        {
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
         }
     }
 }

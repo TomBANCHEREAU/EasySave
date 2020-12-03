@@ -9,22 +9,39 @@ namespace EasySave.Views.WindowsFormViews
 {
     class GraphicalView : IView
     {
-        private IReadOnlyModel model;
-        public IReadOnlyModel Model
+        private static IReadOnlyModel model;
+
+        public static IReadOnlyModel Model
         {
-            get => model;
+            get { return model; }
+            private set { model = value; }
         }
-        public void SetModel(IReadOnlyModel model)
+        private static IController controller;
+
+        public static IController Controller
         {
-            this.model = model;
+            get { return controller; }
+            private set { controller = value; }
+        }
+        private static MainView view;
+
+        public static MainView MainView
+        {
+            get { return view; }
+            private set { view = value; }
         }
 
         public void Start(IReadOnlyModel model, IController controller)
         {
+            if(Model!=null)
+                throw new InvalidOperationException();
+            Model = model;
+            Controller = controller;
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainView());
+            MainView = new MainView();
+            Application.Run(MainView);
         }
     }
 }

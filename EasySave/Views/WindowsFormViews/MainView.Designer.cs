@@ -81,7 +81,7 @@ namespace EasySave.Views.WindowsFormViews
         #endregion
 
         private System.Windows.Forms.Label title;
-        private Home Main;
-        private BackupEnvironmentForm backupEnvironmentForm;
+        internal Home Main;
+        internal BackupEnvironmentForm backupEnvironmentForm;
     }
 }

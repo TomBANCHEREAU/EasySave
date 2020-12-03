@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasySave.Controllers;
+using EasySave.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,21 @@ namespace EasySave.Views.WindowsFormViews
         public MainView()
         {
             InitializeComponent();
+            setViewState(Main);
+        }
+
+        internal void setViewState(UserControl state)
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is UserControl)
+                {
+                    if (state != control)
+                        control.Hide();
+                    else
+                        control.Show();
+                }
+            }
         }
 
         private void MainView_Load(object sender, EventArgs e)

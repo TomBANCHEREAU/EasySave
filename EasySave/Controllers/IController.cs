@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySave.Controllers
 {
-    interface IController
+    public interface IController
     {
         public void Start();
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment);
