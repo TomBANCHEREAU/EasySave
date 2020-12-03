@@ -16,28 +16,36 @@ namespace CryptoSoft
             {
                 stopwatch.Stop();
                 int timeExe = -1;
-                Console.WriteLine(timeExe);
+                //Console.WriteLine(timeExe);
                 return timeExe;
             }
             else
             {
-                string OutputFile = args[1];
-                byte[] data = File.ReadAllBytes(args[0]);
-
-                byte[] key = File.ReadAllBytes(@".\key.txt");
-
-                for (int i = 0; i < data.Length; i++)
+                try
                 {
-                    byte x = key[(byte)(i % key.Length)];
-                    data[i] = (byte)(data[i] ^ x);
+                    string OutputFile = args[1];
+                    byte[] data = File.ReadAllBytes(args[0]);
+
+                    byte[] key = File.ReadAllBytes(@".\key.txt");
+
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        byte x = key[(byte)(i % key.Length)];
+                        data[i] = (byte)(data[i] ^ x);
+                    }
+                    File.WriteAllBytes(OutputFile, data);
+
+                    stopwatch.Stop();
+
+                    int timeExe = (int)(stopwatch.Elapsed.TotalSeconds * 1000);
+                    //Console.WriteLine(timeExe);
+                    return timeExe;
                 }
-                File.WriteAllBytes(OutputFile, data);
+                catch
+                {
+                    return -1;
+                }
 
-                stopwatch.Stop();
-
-                int timeExe = (int)(stopwatch.Elapsed.TotalSeconds * 1000);
-                Console.WriteLine(timeExe);
-                return timeExe;
             }
         }
     }
