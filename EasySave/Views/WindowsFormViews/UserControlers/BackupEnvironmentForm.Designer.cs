@@ -34,7 +34,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.returnMenuButton = new System.Windows.Forms.Button();
             this.sourceDirectoryLabel = new System.Windows.Forms.Label();
             this.destinationDirectoryLabel = new System.Windows.Forms.Label();
-            this.name = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.sourceDirectoryTextbox = new System.Windows.Forms.TextBox();
             this.destinationDirectoryTextbox = new System.Windows.Forms.TextBox();
             this.sourceDirectory = new System.Windows.Forms.Button();
@@ -58,6 +58,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.confirmButton.TabIndex = 1;
             this.confirmButton.Text = "Confirm";
             this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // returnMenuButton
             // 
@@ -86,12 +87,12 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.destinationDirectoryLabel.TabIndex = 4;
             this.destinationDirectoryLabel.Text = "Destination directory";
             // 
-            // name
+            // nameTextBox
             // 
-            this.name.Location = new System.Drawing.Point(100, 100);
-            this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(250, 27);
-            this.name.TabIndex = 5;
+            this.nameTextBox.Location = new System.Drawing.Point(100, 100);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(250, 27);
+            this.nameTextBox.TabIndex = 5;
             // 
             // sourceDirectoryTextbox
             // 
@@ -117,6 +118,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.sourceDirectory.TabIndex = 8;
             this.sourceDirectory.Text = "...";
             this.sourceDirectory.UseVisualStyleBackColor = true;
+            this.sourceDirectory.Click += new System.EventHandler(this.sourceDirectory_Click);
             // 
             // destinationDirectory
             // 
@@ -126,6 +128,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.destinationDirectory.TabIndex = 9;
             this.destinationDirectory.Text = "...";
             this.destinationDirectory.UseVisualStyleBackColor = true;
+            this.destinationDirectory.Click += new System.EventHandler(this.destinationDirectory_Click);
             // 
             // BackupEnvironmentForm
             // 
@@ -135,7 +138,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
             this.Controls.Add(this.sourceDirectory);
             this.Controls.Add(this.destinationDirectoryTextbox);
             this.Controls.Add(this.sourceDirectoryTextbox);
-            this.Controls.Add(this.name);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.destinationDirectoryLabel);
             this.Controls.Add(this.sourceDirectoryLabel);
             this.Controls.Add(this.returnMenuButton);
@@ -156,7 +159,7 @@ namespace EasySave.Views.WindowsFormViews.UserControlers
         private System.Windows.Forms.Button returnMenuButton;
         private System.Windows.Forms.Label sourceDirectoryLabel;
         private System.Windows.Forms.Label destinationDirectoryLabel;
-        private System.Windows.Forms.TextBox name;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox sourceDirectoryTextbox;
         private System.Windows.Forms.TextBox destinationDirectoryTextbox;
         private System.Windows.Forms.Button sourceDirectory;
