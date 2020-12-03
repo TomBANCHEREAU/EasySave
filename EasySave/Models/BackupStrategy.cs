@@ -100,7 +100,6 @@ namespace EasySave.Models
                     Process cryptoSoft = Process.Start(cryptoSoftInfo);
                     cryptoSoft.WaitForExit();
                     encryptionTime = cryptoSoft.ExitCode;
-                    File.WriteAllText("./test", encryptionTime+"");
                     //Process  = Process.Start();
                 }
                 else

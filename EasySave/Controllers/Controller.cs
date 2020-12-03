@@ -18,6 +18,12 @@ namespace EasySave.Controllers
         public void Start()
         {
             this.model.Start();
+            BackupEnvironment b = model.GetBackupEnvironments()[0];
+            //RestoreBackup(b.Backups[b.Backups.Count-1]);
+            //AddBackupEnvironment(b);
+            Backup ba = new Backup(b,new FullBackupStrategy());
+            b.AddBackup(ba);
+            RunBackup(ba);
             this.view.Start(model,this);
         }
 

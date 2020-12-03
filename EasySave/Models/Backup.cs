@@ -7,7 +7,8 @@ namespace EasySave.Models
 {
     public class Backup
     {
-        public event EventHandler<FileTransferEvent> OnFileTransfer;
+        public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
         private DateTime executionDate;
 
         public DateTime ExecutionDate
@@ -41,7 +42,7 @@ namespace EasySave.Models
             this.backupEnvironment = backupEnvironment;
             this.backupStrategy = backupStrategy;
             backupStrategy.Backup = this;
-            backupStrategy.OnFileTransfer += OnFileTransfer;
+            backupStrategy.OnFileTransfer += onFileTransfer;
         }
         public void Execute()
         {

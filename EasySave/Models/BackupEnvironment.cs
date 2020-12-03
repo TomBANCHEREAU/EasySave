@@ -9,8 +9,9 @@ namespace EasySave.Models
     public class BackupEnvironment
     {
 
-        public event EventHandler<FileTransferEvent> OnFileTransfer;
-        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
+        public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
+        private void onFileTransfer(Object a, FileTransferEvent f)=>OnFileTransfer(a, f);
+        
 
         #region Name
         private String name = "default";
@@ -21,8 +22,6 @@ namespace EasySave.Models
             {
                 if (value == null || value.Length == 0)
                     throw new ArgumentException("Name cannot be empty");
-                if (value.Contains('|'))
-                    throw new ArgumentException("Name cannot contain '|'");
                 name = value;
             }
         }
