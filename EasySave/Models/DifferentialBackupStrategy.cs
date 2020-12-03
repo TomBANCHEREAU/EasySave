@@ -7,12 +7,11 @@ namespace EasySave.Models
 {
     class DifferentialBackupStrategy : BackupStrategy
     {
-        public new string Name => "Differential";
 
         public readonly Backup FullBackup;
         public String SavedDirectory { get => FullBackup.DestinationDirectory; }
 
-        public DifferentialBackupStrategy(Backup fullBackup)
+        public DifferentialBackupStrategy(Backup fullBackup) : base("Differential")
         {
             FullBackup = fullBackup;
         }

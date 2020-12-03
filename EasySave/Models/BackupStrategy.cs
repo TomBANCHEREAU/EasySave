@@ -12,10 +12,16 @@ namespace EasySave.Models
         //private delegate void ExecuteDelegate(BackupStrategy backup);
 
         private Backup backup;
+        private string typeName;
 
         public String Name
         {
-            get;
+            get=> typeName;
+        }
+
+        public BackupStrategy(String typeName)
+        {
+            this.typeName = typeName;
         }
         public Backup Backup
         {

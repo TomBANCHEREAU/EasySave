@@ -7,7 +7,10 @@ namespace EasySave.Models
 {
     class FullBackupStrategy : BackupStrategy
     {
-        public new string Name => "Full";
+        public FullBackupStrategy() : base("Full")
+        {
+
+        }
 
         protected override void Execute()
         {
