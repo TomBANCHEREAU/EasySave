@@ -31,7 +31,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.chooseBackupLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.executeBackup = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -39,7 +39,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(120, 224);
+            this.radioButton1.Location = new System.Drawing.Point(124, 167);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(53, 24);
             this.radioButton1.TabIndex = 1;
@@ -50,25 +50,25 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(120, 270);
+            this.radioButton2.Location = new System.Drawing.Point(124, 213);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(105, 24);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.Text = "Differential";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // chooseBackupLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 189);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Choose backup :";
+            this.chooseBackupLabel.AutoSize = true;
+            this.chooseBackupLabel.Location = new System.Drawing.Point(56, 132);
+            this.chooseBackupLabel.Name = "chooseBackupLabel";
+            this.chooseBackupLabel.Size = new System.Drawing.Size(117, 20);
+            this.chooseBackupLabel.TabIndex = 3;
+            this.chooseBackupLabel.Text = "Choose backup :";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(244, 403);
+            this.button1.Location = new System.Drawing.Point(247, 417);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 29);
             this.button1.TabIndex = 4;
@@ -78,9 +78,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // executeBackup
             // 
-            this.executeBackup.Location = new System.Drawing.Point(131, 348);
+            this.executeBackup.Location = new System.Drawing.Point(101, 277);
             this.executeBackup.Name = "executeBackup";
-            this.executeBackup.Size = new System.Drawing.Size(94, 29);
+            this.executeBackup.Size = new System.Drawing.Size(195, 33);
             this.executeBackup.TabIndex = 5;
             this.executeBackup.Text = "Run backup";
             this.executeBackup.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.executeBackup);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.chooseBackupLabel);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Name = "RunBackup";
@@ -107,7 +107,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label chooseBackupLabel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button executeBackup;
     }

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using EasySave.Properties;
 
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
@@ -16,6 +19,13 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public RunBackup()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            chooseBackupLabel.Text = Resources.chooseBackupLabel;
+            radioButton1.Text = Resources.radioButton1;
+            radioButton2.Text = Resources.radioButton2;
+            executeBackup.Text = Resources.executeBackup;
+            button1.Text = Resources.button1;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

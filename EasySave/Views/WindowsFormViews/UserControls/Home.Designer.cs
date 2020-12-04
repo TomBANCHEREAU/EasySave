@@ -71,9 +71,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // deleteBackupEnvironment
             // 
             this.deleteBackupEnvironment.Enabled = false;
-            this.deleteBackupEnvironment.Location = new System.Drawing.Point(260, 67);
+            this.deleteBackupEnvironment.Location = new System.Drawing.Point(260, 134);
             this.deleteBackupEnvironment.Name = "deleteBackupEnvironment";
-            this.deleteBackupEnvironment.Size = new System.Drawing.Size(179, 29);
+            this.deleteBackupEnvironment.Size = new System.Drawing.Size(179, 61);
             this.deleteBackupEnvironment.TabIndex = 5;
             this.deleteBackupEnvironment.Text = "Delete this environment";
             this.deleteBackupEnvironment.UseVisualStyleBackColor = true;
@@ -81,9 +81,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // addBackupEnvironment
             // 
-            this.addBackupEnvironment.Location = new System.Drawing.Point(260, 136);
+            this.addBackupEnvironment.Location = new System.Drawing.Point(260, 67);
             this.addBackupEnvironment.Name = "addBackupEnvironment";
-            this.addBackupEnvironment.Size = new System.Drawing.Size(179, 29);
+            this.addBackupEnvironment.Size = new System.Drawing.Size(179, 61);
             this.addBackupEnvironment.TabIndex = 6;
             this.addBackupEnvironment.Text = "Add an environment";
             this.addBackupEnvironment.UseVisualStyleBackColor = true;
@@ -91,9 +91,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // runBackup
             // 
-            this.runBackup.Location = new System.Drawing.Point(260, 203);
+            this.runBackup.Enabled = false;
+            this.runBackup.Location = new System.Drawing.Point(260, 201);
             this.runBackup.Name = "runBackup";
-            this.runBackup.Size = new System.Drawing.Size(179, 29);
+            this.runBackup.Size = new System.Drawing.Size(179, 61);
             this.runBackup.TabIndex = 7;
             this.runBackup.Text = "Run a Backup";
             this.runBackup.UseVisualStyleBackColor = true;

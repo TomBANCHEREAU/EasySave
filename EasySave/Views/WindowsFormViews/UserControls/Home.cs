@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using EasySave.Properties;
 
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
@@ -14,6 +17,12 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public Home()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            searchBarLabel.Text = Resources.searchBarLabel;
+            addBackupEnvironment.Text = Resources.addBackupEnvironment;
+            deleteBackupEnvironment.Text = Resources.deleteBackupEnvironment;
+            runBackup.Text = Resources.runBackup;
         }
 
         internal void UpdateBackupList()
@@ -40,10 +49,12 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             if (listBackupEnvironments.SelectedItems.Count == 1)
             {
                 deleteBackupEnvironment.Enabled = true;
-            } 
+                runBackup.Enabled = true;
+            }
             else
             {
                 deleteBackupEnvironment.Enabled = false;
+                runBackup.Enabled = false;
             }
         }
 

@@ -7,6 +7,9 @@ using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using EasySave.Properties;
+using System.Threading;
+using System.Globalization;
 
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
@@ -15,6 +18,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public BackupEnvironmentForm()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            nameLabel.Text = Resources.nameLabel;
+            sourceDirectoryLabel.Text = Resources.sourceDirectoryLabel;
+            destinationDirectoryLabel.Text = Resources.destinationDirectoryLabel;
+            decriptionLabel.Text = Resources.decriptionLabel;
+            confirmButton.Text = Resources.confirmButton;
+            returnMenuButton.Text = Resources.returnMenuButton;
         }
 
         private void BackupEnvironmentForm_Load(object sender, EventArgs e)
