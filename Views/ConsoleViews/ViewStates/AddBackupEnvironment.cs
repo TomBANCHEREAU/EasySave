@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             
             if (model.GetBackupEnvironments().Count >= 5)
             {
-                Console.WriteLine("5 backup environments has already been created");
+                
+                Console.WriteLine(Language.GetText("AddBackupEnvironment-Error-5Backups"));
                 Console.WriteLine("");
                 return new MainMenu();
             }
