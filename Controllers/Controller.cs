@@ -1,7 +1,9 @@
-﻿using EasySave.Models;
+﻿using EasySave.Languages;
+using EasySave.Models;
 using EasySave.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave.Controllers
@@ -17,6 +19,14 @@ namespace EasySave.Controllers
         }
         public void Start()
         {
+            try
+            {
+                Language.LoadLanguage(File.ReadAllText("./lang")) ;
+            }
+            catch
+            {
+                Language.LoadLanguage("en");
+            }
             this.model.Start();
             this.view.Start(model,this);
         }

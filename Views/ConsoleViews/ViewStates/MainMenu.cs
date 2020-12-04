@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
         { 
             while (true)
             {
-                Console.WriteLine("0. Exit EasySave");
+                Console.WriteLine(Language.GetText("MainMenu-Choice-0"));
                 Console.WriteLine("1. Create a backup environment");
                 Console.WriteLine("2. Display backup environment list");
                 Console.WriteLine("3. Delete a backup environment");
