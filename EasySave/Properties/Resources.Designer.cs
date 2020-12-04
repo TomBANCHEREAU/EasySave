@@ -31,7 +31,8 @@ namespace EasySave.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
+
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
@@ -194,5 +195,14 @@ namespace EasySave.Properties {
                 return ResourceManager.GetString("sourceDirectoryLabel", resourceCulture);
             }
         }
+
+        internal static string restoreBackup {
+            get {
+                return ResourceManager.GetString("restoreBackup", resourceCulture);
+            }
+        }
+
+
+
     }
 }
