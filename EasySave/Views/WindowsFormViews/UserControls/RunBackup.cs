@@ -19,8 +19,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public RunBackup()
         {
             InitializeComponent();
+        }
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+        public void changeLanguage()
+        {
             chooseBackupLabel.Text = Resources.chooseBackupLabel;
             radioButton1.Text = Resources.radioButton1;
             radioButton2.Text = Resources.radioButton2;

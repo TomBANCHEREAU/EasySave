@@ -171,7 +171,6 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.Load += new System.EventHandler(this.BackupEnvironmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

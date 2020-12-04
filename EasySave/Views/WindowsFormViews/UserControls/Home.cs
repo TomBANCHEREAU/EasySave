@@ -17,8 +17,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public Home()
         {
             InitializeComponent();
+        }
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+        public void changeLanguage()
+        {
             searchBarLabel.Text = Resources.searchBarLabel;
             addBackupEnvironment.Text = Resources.addBackupEnvironment;
             deleteBackupEnvironment.Text = Resources.deleteBackupEnvironment;
@@ -102,15 +104,15 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             UpdateBackupList();
         }
 
-        private void searchBarLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void runBackup_Click(object sender, EventArgs e)
         {
             GraphicalView.MainView.runBackup.selected = (BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag;
             GraphicalView.MainView.setViewState(GraphicalView.MainView.runBackup);
+
+        }
+
+        private void searchBarLabel_Click(object sender, EventArgs e)
+        {
 
         }
     }

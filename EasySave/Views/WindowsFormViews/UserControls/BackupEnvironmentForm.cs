@@ -18,8 +18,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         public BackupEnvironmentForm()
         {
             InitializeComponent();
+        }
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+        public void changeLanguage()
+        {
             nameLabel.Text = Resources.nameLabel;
             sourceDirectoryLabel.Text = Resources.sourceDirectoryLabel;
             destinationDirectoryLabel.Text = Resources.destinationDirectoryLabel;

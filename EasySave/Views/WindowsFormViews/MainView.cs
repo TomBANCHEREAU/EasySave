@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace EasySave.Views.WindowsFormViews
@@ -40,6 +42,22 @@ namespace EasySave.Views.WindowsFormViews
         private void Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void frenchButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            Main.changeLanguage();
+            backupEnvironmentForm.changeLanguage();
+            runBackup.changeLanguage();
+        }
+
+        private void englishButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
+            Main.changeLanguage();
+            backupEnvironmentForm.changeLanguage();
+            runBackup.changeLanguage();
         }
     }
 }

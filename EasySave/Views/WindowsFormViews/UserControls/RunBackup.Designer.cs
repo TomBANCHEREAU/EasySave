@@ -78,7 +78,8 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // executeBackup
             // 
-            this.executeBackup.Location = new System.Drawing.Point(101, 277);
+            this.executeBackup.Enabled = false;
+            this.executeBackup.Location = new System.Drawing.Point(105, 277);
             this.executeBackup.Name = "executeBackup";
             this.executeBackup.Size = new System.Drawing.Size(195, 33);
             this.executeBackup.TabIndex = 5;
