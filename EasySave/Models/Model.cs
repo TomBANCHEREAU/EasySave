@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -16,6 +17,18 @@ namespace EasySave.Models
                 if (cryptedExtensions == null)
                     return new String[0];
                 return cryptedExtensions;
+
+            }
+        }
+        private String[] blockingProcesses;
+
+        public String[] BlockingProcesses
+        {
+            get
+            {
+                if (blockingProcesses == null)
+                    return new String[0];
+                return blockingProcesses;
 
             }
         }
@@ -81,6 +94,11 @@ namespace EasySave.Models
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
+            foreach (String processName in new String[1] { "Calculator.exe" })
+            {
+                if (Process.GetProcessesByName(processName).Length!=0)
+                    throw new Exception();
+            }
             backup.BackupEnvironment.AddBackup(backup);
             backup.BackupEnvironment.Execute(backup);
         }
@@ -111,7 +129,9 @@ namespace EasySave.Models
                             }catch{}
                         }
                         cryptedExtensions = settingsJSON.CryptedExtensions;
-                    }catch{}
+                        blockingProcesses = settingsJSON.BlockingProcesses;
+                    }
+                    catch{}
                 }
             }
             else
@@ -124,6 +144,7 @@ namespace EasySave.Models
             {
                 SettingsJSON settings = new SettingsJSON();
                 settings.CryptedExtensions = CryptedExtensions;
+                settings.BlockingProcesses = BlockingProcesses;
                 List<SettingsJSON.SettingsEnvironmentJSON> backupEnvironmentDatas = new List<SettingsJSON.SettingsEnvironmentJSON>();
                 foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
@@ -147,9 +168,24 @@ namespace EasySave.Models
             cryptedExtensions = extensions;
             SaveSettings();
         }
+        public void SetBlockingProcesses(string[] processes)
+        {
+            blockingProcesses = processes;
+            SaveSettings();
+        }
+
+        public void RunBackupMultiple(List<Backup> backups)
+        {
+            foreach (Backup backup in backups)
+            {
+                RunBackup(backup);
+            }
+        }
+
         class SettingsJSON
         {
             public String[] CryptedExtensions;
+            public String[] BlockingProcesses;
             public SettingsEnvironmentJSON[] Environments;
             public class SettingsEnvironmentJSON
             {
