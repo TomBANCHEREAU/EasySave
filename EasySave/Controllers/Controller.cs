@@ -45,9 +45,9 @@ namespace EasySave.Controllers
         {
             this.model.SetCryptedExtensions(extensions);
         }
-        public void RunBackupMultiple(List<Backup> backups)
+        public void RunMultipleBackup(List<Backup> backups)
         {
-            this.model.RunBackupMultiple(backups);
+            this.model.RunMultipleBackup(backups);
         }
 
         public void SetBlockingProcesses(string[] processes)

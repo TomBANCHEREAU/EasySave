@@ -174,7 +174,7 @@ namespace EasySave.Models
             SaveSettings();
         }
 
-        public void RunBackupMultiple(List<Backup> backups)
+        public void RunMultipleBackup(List<Backup> backups)
         {
             foreach (Backup backup in backups)
             {
