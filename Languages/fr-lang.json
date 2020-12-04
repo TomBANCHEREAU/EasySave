@@ -1,3 +1,9 @@
 {
-  "MainMenu-Choice-0": "0. Quitter EasySave"
+  "MainMenu-Choice-0": "0. Quitter EasySave",
+  "MainMenu-Choice-1": "1. Créer un environnement de sauvergarde",
+  "MainMenu-Choice-2": "2. Lister les environnements de sauvegarde",
+  "MainMenu-Choice-3": "3. Supprimer un environnement de sauvegarde",
+  "MainMenu-Choice-4": "4. Lancer une sauvegarde",
+  "MainMenu-Choice-5": "5. Restaurer une sauvegarde",
+  "MainMenu-Choice-6": "6. Lancer plusieurs sauvergarde"
 }
