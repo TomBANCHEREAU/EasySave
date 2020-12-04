@@ -20,6 +20,11 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             InitializeComponent();
         }
 
+        private void BackupEnvironmentForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public void changeLanguage()
         {
             nameLabel.Text = Resources.nameLabel;
@@ -28,11 +33,6 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             decriptionLabel.Text = Resources.decriptionLabel;
             confirmButton.Text = Resources.confirmButton;
             returnMenuButton.Text = Resources.returnMenuButton;
-        }
-
-        private void BackupEnvironmentForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void sourceDirectory_Click(object sender, EventArgs e)

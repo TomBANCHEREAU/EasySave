@@ -56,6 +56,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.radioButton2.TabIndex = 2;
             this.radioButton2.Text = "Differential";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // chooseBackupLabel
             // 

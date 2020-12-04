@@ -19,6 +19,11 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             InitializeComponent();
         }
 
+        private void Home_Load(object sender, EventArgs e)
+        {
+            UpdateBackupList();
+        }
+
         public void changeLanguage()
         {
             searchBarLabel.Text = Resources.searchBarLabel;
@@ -39,11 +44,6 @@ namespace EasySave.Views.WindowsFormViews.UserControls
                 item.Text = backupEnvironment.Name;
                 listBackupEnvironments.Items.Add(item);
             }
-        }
-
-        private void Home_Load(object sender, EventArgs e)
-        {
-            UpdateBackupList();
         }
 
         private void listBackupEnvironments_SelectedIndexChanged(object sender, EventArgs e)
