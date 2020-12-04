@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,13 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             // There is no backup environment available
             if (backupEnvironmentList.Count == 0)
             {
-                Console.WriteLine("There is no backup environment available");
+                Console.WriteLine(Language.GetText("DisplayBackupEnvironment-NoBackupAvailable"));
                 Console.WriteLine("");
                 return new MainMenu();
             }
 
             // Listing all backup environments
-            Console.WriteLine("Actual backup environment(s) list:");
+            Console.WriteLine(Language.GetText("DisplayBackupEnvironment-DisplayList"));
             for (int i = 1; backupEnvironmentList.Count >= i; i++)
             {
                Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
@@ -30,7 +31,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
 
             // Exit
             Console.WriteLine("");
-            Console.WriteLine("Press enter to continue...");
+            Console.WriteLine(Language.GetText("DisplayBackupEnvironment-EnterContinue"));
             Console.ReadLine();
             Console.Clear();
             return new MainMenu();

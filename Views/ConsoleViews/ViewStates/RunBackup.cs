@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             // There is no backup environment available
             if (backupEnvironmentList.Count == 0)
             {
-                Console.WriteLine("There is no backup environment available");
+                Console.WriteLine(Language.GetText("RunBackup-NoBackupEnvrionmentAvailable"));
                 Console.WriteLine("");
                 return new MainMenu();
             }
@@ -25,8 +26,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             {
                 // Listing all backup environments
                 Console.Clear();
-                Console.WriteLine("Select the backup environment you wish to use:");
-                Console.WriteLine("0. Return to menu");
+                Console.WriteLine(Language.GetText("RunBackup-WishBackupEnvironment"));
+                Console.WriteLine(Language.GetText("RunBackup-ReturnMenu"));
                 for (int i = 1; backupEnvironmentList.Count >= i; i++)
                 {
                     Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
@@ -46,10 +47,10 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         while (true)
                         {
                             Console.Clear();
-                            Console.WriteLine("Which type of backup would you like to run:");
-                            Console.WriteLine("0. Return to menu");
-                            Console.WriteLine("1. Run a full backup");
-                            Console.WriteLine("2. Run a differential backup");
+                            Console.WriteLine(Language.GetText("RunBackup-WishBackup"));
+                            Console.WriteLine(Language.GetText("RunBackup-ReturnMenu"));
+                            Console.WriteLine(Language.GetText("RunBackup-RunFull"));
+                            Console.WriteLine(Language.GetText("RunBackup-RunDifferential"));
 
                             // User chooses a backup's type
                             Console.WriteLine("");
@@ -69,7 +70,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                                         controller.RunBackup(new Backup(environment, new FullBackupStrategy()));
                                     
                                         Console.Clear();
-                                        Console.WriteLine("The full backup has been done");
+                                        Console.WriteLine(Language.GetText("RunBackup-RunFullDone"));
                                         Console.WriteLine("");
                                         return new MainMenu();
 
@@ -81,12 +82,12 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                                             controller.RunBackup(backup);
                                         
                                             Console.Clear();
-                                            Console.WriteLine("The differential backup has been done");
+                                            Console.WriteLine(Language.GetText("RunBackup-RunDifferentialDone"));
                                             Console.WriteLine("");
                                             return new MainMenu();
                                         }
                                         Console.Clear();
-                                        Console.WriteLine("No full backup has been done");
+                                        Console.WriteLine(Language.GetText("RunBackup-NoFullBackup"));
                                         Console.WriteLine("");
                                         return new MainMenu();
                                 }

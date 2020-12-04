@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             // There is no backup environment available
             if (backupEnvironmentList.Count == 0)
             {
-                Console.WriteLine("There is no backup environment available");
+                Console.WriteLine(Language.GetText("DeleteBackup-Error-Available Environment"));
                 Console.WriteLine("");
                 return new MainMenu();
             }
@@ -24,8 +25,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             while (true)
             {
                 // Listing all backup environments
-                Console.WriteLine("Select the backup environment you wish to delete:");
-                Console.WriteLine("0. Return to the menu");
+                Console.WriteLine(Language.GetText("DeleteBackup-WishBackup"));
+                Console.WriteLine(Language.GetText("DeleteBackup-ReturnMenu"));
                 for (int i = 1; backupEnvironmentList.Count >= i; i++)
                 {
                     Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
@@ -50,8 +51,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     if (choice > 0 && choice <= backupEnvironmentList.Count)
                     {
                         Console.WriteLine("Do you really want to delete the environment named : \"" + backupEnvironmentList[choice - 1] + "\"");
-                        Console.WriteLine("0:yes");
-                        Console.WriteLine("1:no");
+                        Console.WriteLine(Language.GetText("DeleteBackup-Yes"));
+                        Console.WriteLine(Language.GetText("DeleteBackup-No"));
                         int confirm;
                         if (int.TryParse(Console.ReadLine(),out confirm) && confirm==0)
                         {
@@ -59,10 +60,10 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                             controller.DeleteBackupEnvironment(backupEnvironmentList[choice - 1]);
 
                             Console.Clear();
-                            Console.WriteLine("The backup environment selected has been deleted");
+                            Console.WriteLine(Language.GetText("DeleteBackup-DeleteBackup"));
                         }
                         Console.Clear();
-                        Console.WriteLine("Deletion canceled");
+                        Console.WriteLine(Language.GetText("DeleteBackup-CancelDeletion"));
                         Console.WriteLine("");
                         return new MainMenu();
                     }

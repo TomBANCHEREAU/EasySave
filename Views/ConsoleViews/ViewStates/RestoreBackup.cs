@@ -1,4 +1,5 @@
 ﻿using EasySave.Controllers;
+using EasySave.Languages;
 using EasySave.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             // There is no backup environment available
             if (backupEnvironmentList.Count == 0)
             {
-                Console.WriteLine("There is no backup environment available");
+                Console.WriteLine(Language.GetText("RestoreBackup-NoBackupAvailable"));
                 Console.WriteLine("");
                 return new MainMenu();
             }
@@ -24,8 +25,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             while (true)
             {
                 // Listing all backup environments
-                Console.WriteLine("Select the backup environment you wish to use:");
-                Console.WriteLine("0. Return to menu");
+                Console.WriteLine(Language.GetText("RestoreBackup-SelectBackupEnvironment"));
+                Console.WriteLine(Language.GetText("RestoreBackup-ReturnMenu"));
                 for (int i = 1; backupEnvironmentList.Count >= i; i++)
                 {
                     Console.WriteLine(i + ". " + backupEnvironmentList[i - 1].Name);
@@ -51,8 +52,8 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     if (choiceEnvironment > 0 && choiceEnvironment <= backupEnvironmentList.Count)
                     {
                         // Display all backups
-                        Console.WriteLine("Which backup would you like to run:");
-                        Console.WriteLine("0. Return to the menu");
+                        Console.WriteLine(Language.GetText("RestoreBackup-SelectBackup"));
+                        Console.WriteLine(Language.GetText("RestoreBackup-ReturnMenu"));
                         for (int i = 1; backupEnvironmentList[choiceEnvironment - 1].Backups.Count >= i; i++)
                         {
                             Console.WriteLine(i + ". " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].ExecutionDate + "\t| " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].BackupStrategy.Name);
@@ -76,9 +77,9 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                             // If there is no backup
                             if (backupEnvironmentList[choiceEnvironment - 1].Backups.Count == 0)
                             {
-                                Console.WriteLine("There is no backup available in this environment");
+                                Console.WriteLine(Language.GetText("RestoreBackup-Error-NoBackupEnvironment"));
                                 Console.WriteLine("");
-                                Console.WriteLine("Press enter to continue...");
+                                Console.WriteLine(Language.GetText("RestoreBackup-EnterContinue"));
                                 Console.ReadLine();
                                 Console.Clear();
                                 return new MainMenu();
@@ -90,7 +91,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                                 controller.RestoreBackup(backupEnvironmentList[choiceEnvironment - 1].Backups[choiceBackup - 1]);
 
                                 Console.Clear();
-                                Console.WriteLine("The restoration has been done");
+                                Console.WriteLine(Language.GetText("RestoreBackup-RestoreDone"));
                                 Console.WriteLine("");
                                 return new MainMenu();
                             }
