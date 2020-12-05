@@ -11,6 +11,8 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 {
     public partial class BusinessSoftwaresSettings : UserControl
     {
+        public List<String> processes;
+
         public BusinessSoftwaresSettings()
         {
             InitializeComponent();
@@ -18,8 +20,20 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void BusinessSoftwaresSettings_Load(object sender, EventArgs e)
         {
+            loadProcesses();
 
         }
+        private void loadProcesses()
+        {
+            processes = new List<string>(GraphicalView.Model.BlockingProcesses);
+            processesList.Items.Clear();
+            foreach (String item in processes)
+            {
+                processesList.Items.Add(item);
+            }
+        }
+
+
 
         public void changeLanguage()
         {
@@ -32,6 +46,30 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private void returnMenuButton_Click(object sender, EventArgs e)
         {
             GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+        }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in processesList.SelectedItems)
+            {
+                processes.Remove(item.Text);
+            }
+            GraphicalView.Controller.SetBlockingProcesses(processes.ToArray());
+            loadProcesses();
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            if (input.Text.Length > 0)
+            {
+                String proc = input.Text;
+                if (!processes.Contains(proc))
+                    processes.Add(proc);
+                GraphicalView.Controller.SetBlockingProcesses(processes.ToArray());
+            }
+            loadProcesses();
+
+
         }
     }
 }
