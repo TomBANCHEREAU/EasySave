@@ -38,6 +38,8 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.businessSoftwaresButton = new System.Windows.Forms.Button();
             this.filesToEncryptButton = new System.Windows.Forms.Button();
             this.settingsLabel = new System.Windows.Forms.Label();
+            this.runMultipleBackup = new System.Windows.Forms.Button();
+            this.restoreBackup = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // searchBarLabel
@@ -131,10 +133,32 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.settingsLabel.TabIndex = 10;
             this.settingsLabel.Text = "Settings";
             // 
+            // runMultipleBackup
+            // 
+            this.runMultipleBackup.Location = new System.Drawing.Point(260, 268);
+            this.runMultipleBackup.Name = "runMultipleBackup";
+            this.runMultipleBackup.Size = new System.Drawing.Size(179, 61);
+            this.runMultipleBackup.TabIndex = 11;
+            this.runMultipleBackup.Text = "Run multiple backup";
+            this.runMultipleBackup.UseVisualStyleBackColor = true;
+            this.runMultipleBackup.Click += new System.EventHandler(this.runMultipleBackup_Click);
+            // 
+            // restoreBackup
+            // 
+            this.restoreBackup.Location = new System.Drawing.Point(260, 335);
+            this.restoreBackup.Name = "restoreBackup";
+            this.restoreBackup.Size = new System.Drawing.Size(179, 61);
+            this.restoreBackup.TabIndex = 12;
+            this.restoreBackup.Text = "Restore a backup";
+            this.restoreBackup.UseVisualStyleBackColor = true;
+            this.restoreBackup.Click += new System.EventHandler(this.restoreBackup_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.restoreBackup);
+            this.Controls.Add(this.runMultipleBackup);
             this.Controls.Add(this.settingsLabel);
             this.Controls.Add(this.filesToEncryptButton);
             this.Controls.Add(this.businessSoftwaresButton);
@@ -163,5 +187,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private System.Windows.Forms.Button businessSoftwaresButton;
         private System.Windows.Forms.Button filesToEncryptButton;
         private System.Windows.Forms.Label settingsLabel;
+        private System.Windows.Forms.Button runMultipleBackup;
+        private System.Windows.Forms.Button restoreBackup;
     }
 }

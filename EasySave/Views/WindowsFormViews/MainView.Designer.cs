@@ -40,7 +40,8 @@ namespace EasySave.Views.WindowsFormViews
             this.englishButton = new System.Windows.Forms.Button();
             this.businessSoftwaresSettings = new EasySave.Views.WindowsFormViews.UserControls.BusinessSoftwaresSettings();
             this.extensionsSettings = new EasySave.Views.WindowsFormViews.UserControls.ExtensionsSettings();
-            this.restoreBackup1 = new EasySave.Views.WindowsFormViews.UserControls.RestoreBackup();
+            this.restoreBackup = new EasySave.Views.WindowsFormViews.UserControls.RestoreBackup();
+            this.runMultipleBackup = new EasySave.Views.WindowsFormViews.UserControls.RunMultipleBackup();
             this.SuspendLayout();
             // 
             // title
@@ -110,18 +111,26 @@ namespace EasySave.Views.WindowsFormViews
             this.extensionsSettings.Size = new System.Drawing.Size(446, 500);
             this.extensionsSettings.TabIndex = 10;
             // 
-            // restoreBackup1
+            // restoreBackup
             // 
-            this.restoreBackup1.Location = new System.Drawing.Point(2, 49);
-            this.restoreBackup1.Name = "restoreBackup1";
-            this.restoreBackup1.Size = new System.Drawing.Size(446, 500);
-            this.restoreBackup1.TabIndex = 11;
+            this.restoreBackup.Location = new System.Drawing.Point(2, 49);
+            this.restoreBackup.Name = "restoreBackup1";
+            this.restoreBackup.Size = new System.Drawing.Size(446, 500);
+            this.restoreBackup.TabIndex = 11;
+            // 
+            // runMultipleBackup
+            // 
+            this.runMultipleBackup.Location = new System.Drawing.Point(2, 49);
+            this.runMultipleBackup.Name = "runMultipleBackup1";
+            this.runMultipleBackup.Size = new System.Drawing.Size(446, 500);
+            this.runMultipleBackup.TabIndex = 12;
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 553);
+            this.Controls.Add(this.runMultipleBackup);
             this.Controls.Add(this.englishButton);
             this.Controls.Add(this.frenchButton);
             this.Controls.Add(this.title);
@@ -130,7 +139,7 @@ namespace EasySave.Views.WindowsFormViews
             this.Controls.Add(this.Main);
             this.Controls.Add(this.backupEnvironmentForm);
             this.Controls.Add(this.runBackup);
-            this.Controls.Add(this.restoreBackup1);
+            this.Controls.Add(this.restoreBackup);
             this.Name = "MainView";
             this.Text = "MainView";
             this.Load += new System.EventHandler(this.MainView_Load);
@@ -149,6 +158,7 @@ namespace EasySave.Views.WindowsFormViews
         internal RunBackup runBackup;
         internal BusinessSoftwaresSettings businessSoftwaresSettings;
         internal ExtensionsSettings extensionsSettings;
-        private RestoreBackup restoreBackup1;
+        internal RestoreBackup restoreBackup;
+        internal RunMultipleBackup runMultipleBackup;
     }
 }

@@ -123,5 +123,15 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             GraphicalView.MainView.setViewState(GraphicalView.MainView.extensionsSettings);
         }
+
+        private void runMultipleBackup_Click(object sender, EventArgs e)
+        {
+            //GraphicalView.MainView.setViewState(GraphicalView.MainView.runMultipleBackup);
+        }
+
+        private void restoreBackup_Click(object sender, EventArgs e)
+        {
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.restoreBackup);
+        }
     }
 }

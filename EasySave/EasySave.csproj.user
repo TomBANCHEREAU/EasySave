@@ -22,5 +22,8 @@
     <Compile Update="Views\WindowsFormViews\UserControls\RunBackup.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\WindowsFormViews\UserControls\RunMultipleBackup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
