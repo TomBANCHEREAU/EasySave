@@ -104,6 +104,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private void deleteBackupEnvironment_Click(object sender, EventArgs e)
         {
             GraphicalView.Controller.DeleteBackupEnvironment((BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag);
+            listBackupEnvironments.SelectedItems.Clear();
             UpdateBackupList();
         }
 
