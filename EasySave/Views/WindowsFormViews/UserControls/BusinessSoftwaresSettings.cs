@@ -23,6 +23,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             loadProcesses();
 
         }
+
         private void loadProcesses()
         {
             processes = new List<string>(GraphicalView.Model.BlockingProcesses);
@@ -33,14 +34,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             }
         }
 
-
-
         public void changeLanguage()
         {
             titleBusinessSoftwares.Text = Resources.titleBusinessSoftwares;
             subtitleBusinessSoftwares1.Text = Resources.subtitleBusinessSoftwares1;
             subtitleBusinessSoftwares2.Text = Resources.subtitleBusinessSoftwares2;
             returnMenuButton.Text = Resources.returnMenuButton;
+            add.Text = Resources.add;
+            remove.Text = Resources.remove;
         }
 
         private void returnMenuButton_Click(object sender, EventArgs e)

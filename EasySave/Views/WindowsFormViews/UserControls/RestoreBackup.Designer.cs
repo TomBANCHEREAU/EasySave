@@ -45,9 +45,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // restoreButton
             // 
-            this.restoreButton.Location = new System.Drawing.Point(260, 67);
+            this.restoreButton.Location = new System.Drawing.Point(263, 67);
             this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(179, 61);
+            this.restoreButton.Size = new System.Drawing.Size(175, 61);
             this.restoreButton.TabIndex = 1;
             this.restoreButton.Text = "Restore a backup";
             this.restoreButton.UseVisualStyleBackColor = true;

@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
   <data name="addBackupEnvironment" xml:space="preserve">
     <value>Ajouter un environnement</value>
+  </data>
+  <data name="BackupType" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="businessSoftwaresButton" xml:space="preserve">
     <value>Logiciels métiers</value>
@@ -127,7 +133,7 @@
     <value>Menu principal</value>
   </data>
   <data name="chooseBackupLabel" xml:space="preserve">
-    <value>Choisir un type de sauvegarde :</value>
+    <value>Type de sauvegarde :</value>
   </data>
   <data name="confirmButton" xml:space="preserve">
     <value>Confirmer</value>
@@ -141,20 +147,41 @@
   <data name="destinationDirectoryLabel" xml:space="preserve">
     <value>Dossier de destination</value>
   </data>
+  <data name="differentialBackup" xml:space="preserve">
+    <value>Différentielle</value>
+  </data>
+  <data name="EnvironmentName" xml:space="preserve">
+    <value>Environnements</value>
+  </data>
+  <data name="Environments" xml:space="preserve">
+    <value>Environnements</value>
+  </data>
   <data name="executeBackup" xml:space="preserve">
     <value>Exécuter la sauvegarde</value>
   </data>
   <data name="filesToEncryptButton" xml:space="preserve">
     <value>Fichiers à chiffrer</value>
   </data>
+  <data name="fullBackup" xml:space="preserve">
+    <value>Complète</value>
+  </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Aucune sauvegarde</value>
   </data>
   <data name="radioButton1" xml:space="preserve">
     <value>Sauvegarde complète</value>
   </data>
   <data name="radioButton2" xml:space="preserve">
     <value>Sauvegarde différentielle</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="restoreBackup" xml:space="preserve">
+    <value>Restorer une sauvegarde</value>
   </data>
   <data name="restoreButton" xml:space="preserve">
     <value>Restorer une sauvegarde</value>
@@ -164,6 +191,12 @@
   </data>
   <data name="runBackup" xml:space="preserve">
     <value>Exécuter une sauvegarde</value>
+  </data>
+  <data name="runBackups" xml:space="preserve">
+    <value>Exécuter les sauvegardes</value>
+  </data>
+  <data name="runMultipleBackup" xml:space="preserve">
+    <value>Exécuter plusieurs sauvegarde</value>
   </data>
   <data name="searchBarLabel" xml:space="preserve">
     <value>Rechercher...</value>

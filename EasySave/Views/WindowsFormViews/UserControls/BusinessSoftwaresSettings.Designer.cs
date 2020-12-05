@@ -78,14 +78,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // input
             // 
-            this.input.Location = new System.Drawing.Point(35, 112);
+            this.input.Location = new System.Drawing.Point(70, 145);
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(114, 27);
             this.input.TabIndex = 4;
             // 
             // add
             // 
-            this.add.Location = new System.Drawing.Point(157, 112);
+            this.add.Location = new System.Drawing.Point(192, 145);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(86, 31);
             this.add.TabIndex = 5;
@@ -95,7 +95,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // remove
             // 
-            this.remove.Location = new System.Drawing.Point(249, 112);
+            this.remove.Location = new System.Drawing.Point(284, 145);
             this.remove.Name = "remove";
             this.remove.Size = new System.Drawing.Size(86, 31);
             this.remove.TabIndex = 6;
@@ -106,10 +106,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // processesList
             // 
             this.processesList.HideSelection = false;
-            this.processesList.Location = new System.Drawing.Point(35, 151);
+            this.processesList.Location = new System.Drawing.Point(70, 180);
             this.processesList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.processesList.Name = "processesList";
-            this.processesList.Size = new System.Drawing.Size(299, 212);
+            this.processesList.Size = new System.Drawing.Size(300, 220);
             this.processesList.TabIndex = 7;
             this.processesList.UseCompatibleStateImageBehavior = false;
             this.processesList.View = System.Windows.Forms.View.List;

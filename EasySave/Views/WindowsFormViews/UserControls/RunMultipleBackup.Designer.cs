@@ -37,14 +37,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.differentialBackup = new System.Windows.Forms.RadioButton();
             this.none = new System.Windows.Forms.RadioButton();
             this.runBackups = new System.Windows.Forms.Button();
+            this.chooseBackupLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // returnMenuButton
             // 
-            this.returnMenuButton.Location = new System.Drawing.Point(230, 344);
-            this.returnMenuButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.returnMenuButton.Location = new System.Drawing.Point(263, 459);
             this.returnMenuButton.Name = "returnMenuButton";
-            this.returnMenuButton.Size = new System.Drawing.Size(153, 22);
+            this.returnMenuButton.Size = new System.Drawing.Size(175, 29);
             this.returnMenuButton.TabIndex = 0;
             this.returnMenuButton.Text = "Main menu";
             this.returnMenuButton.UseVisualStyleBackColor = true;
@@ -57,11 +57,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.BackupType});
             this.listEnvironments.FullRowSelect = true;
             this.listEnvironments.HideSelection = false;
-            this.listEnvironments.Location = new System.Drawing.Point(7, 50);
-            this.listEnvironments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listEnvironments.Location = new System.Drawing.Point(8, 67);
             this.listEnvironments.MultiSelect = false;
             this.listEnvironments.Name = "listEnvironments";
-            this.listEnvironments.Size = new System.Drawing.Size(211, 320);
+            this.listEnvironments.Size = new System.Drawing.Size(241, 425);
             this.listEnvironments.TabIndex = 1;
             this.listEnvironments.UseCompatibleStateImageBehavior = false;
             this.listEnvironments.View = System.Windows.Forms.View.Details;
@@ -70,20 +69,19 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // Environments
             // 
             this.Environments.Text = "Environments";
-            this.Environments.Width = 100;
+            this.Environments.Width = 125;
             // 
             // BackupType
             // 
-            this.BackupType.Text = "Backup type";
+            this.BackupType.Text = "Type";
             this.BackupType.Width = 100;
             // 
             // fullBackup
             // 
             this.fullBackup.AutoSize = true;
-            this.fullBackup.Location = new System.Drawing.Point(253, 144);
-            this.fullBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.fullBackup.Location = new System.Drawing.Point(275, 170);
             this.fullBackup.Name = "fullBackup";
-            this.fullBackup.Size = new System.Drawing.Size(86, 19);
+            this.fullBackup.Size = new System.Drawing.Size(105, 24);
             this.fullBackup.TabIndex = 4;
             this.fullBackup.TabStop = true;
             this.fullBackup.Text = "Full backup";
@@ -93,10 +91,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // differentialBackup
             // 
             this.differentialBackup.AutoSize = true;
-            this.differentialBackup.Location = new System.Drawing.Point(253, 188);
-            this.differentialBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.differentialBackup.Location = new System.Drawing.Point(275, 215);
             this.differentialBackup.Name = "differentialBackup";
-            this.differentialBackup.Size = new System.Drawing.Size(125, 19);
+            this.differentialBackup.Size = new System.Drawing.Size(157, 24);
             this.differentialBackup.TabIndex = 5;
             this.differentialBackup.TabStop = true;
             this.differentialBackup.Text = "Differential backup";
@@ -106,9 +103,10 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // none
             // 
             this.none.AutoSize = true;
-            this.none.Location = new System.Drawing.Point(253, 99);
+            this.none.Location = new System.Drawing.Point(275, 125);
+            this.none.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.none.Name = "none";
-            this.none.Size = new System.Drawing.Size(83, 19);
+            this.none.Size = new System.Drawing.Size(102, 24);
             this.none.TabIndex = 6;
             this.none.TabStop = true;
             this.none.Text = "No backup";
@@ -117,27 +115,37 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // 
             // runBackups
             // 
-            this.runBackups.Location = new System.Drawing.Point(230, 298);
+            this.runBackups.Location = new System.Drawing.Point(263, 391);
+            this.runBackups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.runBackups.Name = "runBackups";
-            this.runBackups.Size = new System.Drawing.Size(153, 41);
+            this.runBackups.Size = new System.Drawing.Size(175, 61);
             this.runBackups.TabIndex = 7;
             this.runBackups.Text = "Run backups";
             this.runBackups.UseVisualStyleBackColor = true;
             this.runBackups.Click += new System.EventHandler(this.runBackups_Click);
             // 
+            // chooseBackupLabel
+            // 
+            this.chooseBackupLabel.AutoSize = true;
+            this.chooseBackupLabel.Location = new System.Drawing.Point(263, 67);
+            this.chooseBackupLabel.Name = "chooseBackupLabel";
+            this.chooseBackupLabel.Size = new System.Drawing.Size(158, 20);
+            this.chooseBackupLabel.TabIndex = 8;
+            this.chooseBackupLabel.Text = "Choose a backup type:";
+            // 
             // RunMultipleBackup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chooseBackupLabel);
             this.Controls.Add(this.runBackups);
             this.Controls.Add(this.none);
             this.Controls.Add(this.differentialBackup);
             this.Controls.Add(this.fullBackup);
             this.Controls.Add(this.listEnvironments);
             this.Controls.Add(this.returnMenuButton);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "RunMultipleBackup";
-            this.Size = new System.Drawing.Size(394, 375);
+            this.Size = new System.Drawing.Size(450, 500);
             this.Load += new System.EventHandler(this.RunMultipleBackup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -154,5 +162,6 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private System.Windows.Forms.ColumnHeader BackupType;
         private System.Windows.Forms.RadioButton none;
         private System.Windows.Forms.Button runBackups;
+        private System.Windows.Forms.Label chooseBackupLabel;
     }
 }

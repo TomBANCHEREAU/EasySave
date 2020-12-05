@@ -61,11 +61,29 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add.
+        /// </summary>
+        internal static string add {
+            get {
+                return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Add an environment.
         /// </summary>
         internal static string addBackupEnvironment {
             get {
                 return ResourceManager.GetString("addBackupEnvironment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type.
+        /// </summary>
+        internal static string BackupType {
+            get {
+                return ResourceManager.GetString("BackupType", resourceCulture);
             }
         }
         
@@ -133,6 +151,33 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Differential backup.
+        /// </summary>
+        internal static string differentialBackup {
+            get {
+                return ResourceManager.GetString("differentialBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Environments.
+        /// </summary>
+        internal static string EnvironmentName {
+            get {
+                return ResourceManager.GetString("EnvironmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Environments.
+        /// </summary>
+        internal static string Environments {
+            get {
+                return ResourceManager.GetString("Environments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Run backup.
         /// </summary>
         internal static string executeBackup {
@@ -151,11 +196,29 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Full backup.
+        /// </summary>
+        internal static string fullBackup {
+            get {
+                return ResourceManager.GetString("fullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Name.
         /// </summary>
         internal static string nameLabel {
             get {
                 return ResourceManager.GetString("nameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No backup.
+        /// </summary>
+        internal static string none {
+            get {
+                return ResourceManager.GetString("none", resourceCulture);
             }
         }
         
@@ -174,6 +237,24 @@ namespace EasySave.Properties {
         internal static string radioButton2 {
             get {
                 return ResourceManager.GetString("radioButton2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Remove.
+        /// </summary>
+        internal static string remove {
+            get {
+                return ResourceManager.GetString("remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Restore a backup.
+        /// </summary>
+        internal static string restoreBackup {
+            get {
+                return ResourceManager.GetString("restoreBackup", resourceCulture);
             }
         }
         
@@ -201,6 +282,24 @@ namespace EasySave.Properties {
         internal static string runBackup {
             get {
                 return ResourceManager.GetString("runBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Run backups.
+        /// </summary>
+        internal static string runBackups {
+            get {
+                return ResourceManager.GetString("runBackups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Run multiple backups.
+        /// </summary>
+        internal static string runMultipleBackup {
+            get {
+                return ResourceManager.GetString("runMultipleBackup", resourceCulture);
             }
         }
         

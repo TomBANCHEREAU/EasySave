@@ -37,6 +37,8 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             titleExtensions.Text = Resources.titleExtentions;
             subtitleExtentions.Text = Resources.subtitleExtentions;
             returnMenuButton.Text = Resources.returnMenuButton;
+            add.Text = Resources.add;
+            remove.Text = Resources.remove;
         }
 
         private void returnMenuButton_Click(object sender, EventArgs e)

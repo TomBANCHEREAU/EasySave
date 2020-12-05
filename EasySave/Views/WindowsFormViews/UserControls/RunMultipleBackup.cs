@@ -6,6 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using EasySave.Properties;
+using System.Threading;
+using System.Globalization;
 
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
@@ -22,10 +25,22 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             IReadOnlyList<BackupEnvironment> backupEnvironments = GraphicalView.Model.GetBackupEnvironments();
             foreach (BackupEnvironment backupEnvironment in backupEnvironments)
             {
-                ListViewItem listViewItem = new ListViewItem(new string[2] { backupEnvironment.Name, "none" });
+                ListViewItem listViewItem = new ListViewItem(new string[2] { backupEnvironment.Name, "" });
                 listViewItem.Tag = backupEnvironment;
                 listEnvironments.Items.Add(listViewItem);
             }
+        }
+
+        public void changeLanguage()
+        {
+            Environments.Text = Resources.Environments;
+            BackupType.Text = Resources.BackupType;            
+            fullBackup.Text = Resources.fullBackup;
+            differentialBackup.Text = Resources.differentialBackup;
+            none.Text = Resources.none;
+            runBackups.Text = Resources.runBackups;
+            chooseBackupLabel.Text = Resources.chooseBackupLabel;
+            returnMenuButton.Text = Resources.returnMenuButton;
         }
 
         private void returnMenuButton_Click(object sender, EventArgs e)
@@ -35,12 +50,12 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void listEnvironments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listEnvironments.SelectedItems.Count>0)
+            if (listEnvironments.SelectedItems.Count > 0)
             {
                 selected = listEnvironments.SelectedItems[0];
-                none.Checked = selected.SubItems[1].Text.Equals("none");
-                fullBackup.Checked = selected.SubItems[1].Text.Equals("full");
-                differentialBackup.Checked = selected.SubItems[1].Text.Equals("differential");
+                none.Checked = selected.SubItems[1].Text.Equals("None");
+                fullBackup.Checked = selected.SubItems[1].Text.Equals("Full");
+                differentialBackup.Checked = selected.SubItems[1].Text.Equals("Differential");
                 differentialBackup.Enabled = ((BackupEnvironment)selected.Tag).FullBackups.Count > 0;
             }
             else
@@ -51,9 +66,16 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void none_CheckedChanged(object sender, EventArgs e)
         {
-            if (selected!=null && none.Checked)
+            if (selected != null && none.Checked)
             {
-                selected.SubItems[1].Text = "none";
+                if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo(""))
+                {
+                    selected.SubItems[1].Text = "None";
+                }
+                else
+                {
+                    selected.SubItems[1].Text = "Aucune";
+                }
             }
         }
 
@@ -61,7 +83,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             if (selected != null && fullBackup.Checked)
             {
-                selected.SubItems[1].Text = "full";
+                if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo(""))
+                {
+                    selected.SubItems[1].Text = "Full";
+                }
+                else
+                {
+                    selected.SubItems[1].Text = "Complète";
+                }
             }
 
         }
@@ -70,9 +99,15 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             if (selected != null && differentialBackup.Checked)
             {
-                selected.SubItems[1].Text = "differential";
+                if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo(""))
+                {
+                    selected.SubItems[1].Text = "Differential";
+                }
+                else
+                {
+                    selected.SubItems[1].Text = "Différentielle";
+                }
             }
-
         }
 
         private void runBackups_Click(object sender, EventArgs e)
@@ -81,13 +116,13 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             foreach (ListViewItem item in listEnvironments.Items)
             {
                 String type = item.SubItems[1].Text;
-                if (type == "full")
+                if (type == "Full" || type == "Complète")
                 {
-                    Backup full = new Backup((BackupEnvironment)item.Tag,new FullBackupStrategy());
+                    Backup full = new Backup((BackupEnvironment)item.Tag, new FullBackupStrategy());
                     ((BackupEnvironment)item.Tag).AddBackup(full);
                     backups.Add(full);
                 }
-                else if (type == "differential")
+                else if (type == "Differential" || type == "Différentielle")
                 {
                     BackupStrategy backupStrategy = new DifferentialBackupStrategy(((BackupEnvironment)item.Tag).FullBackups[((BackupEnvironment)item.Tag).FullBackups.Count - 1]);
                     Backup differential = new Backup((BackupEnvironment)item.Tag, backupStrategy);

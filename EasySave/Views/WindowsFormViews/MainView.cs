@@ -16,6 +16,7 @@ namespace EasySave.Views.WindowsFormViews
     {
         public MainView()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
             InitializeComponent();
             setViewState(Main);
         }
@@ -50,6 +51,7 @@ namespace EasySave.Views.WindowsFormViews
             Main.changeLanguage();
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
+            runMultipleBackup.changeLanguage();
             businessSoftwaresSettings.changeLanguage();
             extensionsSettings.changeLanguage();
         }
@@ -60,6 +62,7 @@ namespace EasySave.Views.WindowsFormViews
             Main.changeLanguage();
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
+            runMultipleBackup.changeLanguage();
             businessSoftwaresSettings.changeLanguage();
             extensionsSettings.changeLanguage();
         }

@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="addBackupEnvironment" xml:space="preserve">
     <value>Add an environment</value>
+  </data>
+  <data name="BackupType" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="businessSoftwaresButton" xml:space="preserve">
     <value>Business softwares</value>
@@ -141,20 +147,41 @@
   <data name="destinationDirectoryLabel" xml:space="preserve">
     <value>Destination directory</value>
   </data>
+  <data name="differentialBackup" xml:space="preserve">
+    <value>Differential backup</value>
+  </data>
+  <data name="EnvironmentName" xml:space="preserve">
+    <value>Environments</value>
+  </data>
+  <data name="Environments" xml:space="preserve">
+    <value>Environments</value>
+  </data>
   <data name="executeBackup" xml:space="preserve">
     <value>Run backup</value>
   </data>
   <data name="filesToEncryptButton" xml:space="preserve">
     <value>Files to encrypt</value>
   </data>
+  <data name="fullBackup" xml:space="preserve">
+    <value>Full backup</value>
+  </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>No backup</value>
   </data>
   <data name="radioButton1" xml:space="preserve">
     <value>Full backup</value>
   </data>
   <data name="radioButton2" xml:space="preserve">
     <value>Differential backup</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="restoreBackup" xml:space="preserve">
+    <value>Restore a backup</value>
   </data>
   <data name="restoreButton" xml:space="preserve">
     <value>Restore a backup</value>
@@ -164,6 +191,12 @@
   </data>
   <data name="runBackup" xml:space="preserve">
     <value>Run a backup</value>
+  </data>
+  <data name="runBackups" xml:space="preserve">
+    <value>Run backups</value>
+  </data>
+  <data name="runMultipleBackup" xml:space="preserve">
+    <value>Run multiple backups</value>
   </data>
   <data name="searchBarLabel" xml:space="preserve">
     <value>Search...</value>

@@ -33,6 +33,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             settingsLabel.Text = Resources.settingsLabel;
             businessSoftwaresButton.Text = Resources.businessSoftwaresButton;
             filesToEncryptButton.Text = Resources.filesToEncryptButton;
+            restoreBackup.Text = Resources.restoreBackup;
+            runMultipleBackup.Text = Resources.runMultipleBackup;
+            EnvironmentName.Text = Resources.EnvironmentName;
         }
 
         internal void UpdateBackupList()
