@@ -11,6 +11,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 {
     public partial class ExtensionsSettings : UserControl
     {
+        public List<String> extensions;
         public ExtensionsSettings()
         {
             InitializeComponent();
@@ -18,7 +19,17 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void ExtensionsSettings_Load(object sender, EventArgs e)
         {
+            loadExtensions();
+        }
 
+        private void loadExtensions()
+        {
+            extensions = new List<string>(GraphicalView.Model.CryptedExtensions);
+            extensionsList.Items.Clear();
+            foreach (String item in extensions)
+            {
+                extensionsList.Items.Add(item);
+            }
         }
 
         public void changeLanguage()
@@ -31,6 +42,28 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private void returnMenuButton_Click(object sender, EventArgs e)
         {
             GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            if (input.Text.Length>0)
+            {
+                String ext = input.Text.ToCharArray()[0] != '.' ? '.' + input.Text : input.Text;
+                if (!extensions.Contains(ext))
+                    extensions.Add(ext);
+                GraphicalView.Controller.SetCryptedExtensions(extensions.ToArray());
+            }
+            loadExtensions();
+        }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in extensionsList.SelectedItems)
+            {
+                extensions.Remove(item.Text);
+            }
+            GraphicalView.Controller.SetCryptedExtensions(extensions.ToArray());
+            loadExtensions();
         }
     }
 }
