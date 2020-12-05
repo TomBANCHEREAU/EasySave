@@ -1,7 +1,7 @@
 ﻿
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
-    partial class RestoreBackup
+    partial class ExtensionsSettings
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -29,28 +29,28 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBackups = new System.Windows.Forms.ListView();
-            this.restoreButton = new System.Windows.Forms.Button();
+            this.titleExtensions = new System.Windows.Forms.Label();
+            this.subtitleExtentions = new System.Windows.Forms.Label();
             this.returnMenuButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBackups
+            // titleExtensions
             // 
-            this.listBackups.HideSelection = false;
-            this.listBackups.Location = new System.Drawing.Point(8, 67);
-            this.listBackups.Name = "listBackups";
-            this.listBackups.Size = new System.Drawing.Size(241, 425);
-            this.listBackups.TabIndex = 0;
-            this.listBackups.UseCompatibleStateImageBehavior = false;
+            this.titleExtensions.AutoSize = true;
+            this.titleExtensions.Location = new System.Drawing.Point(35, 42);
+            this.titleExtensions.Name = "titleExtensions";
+            this.titleExtensions.Size = new System.Drawing.Size(126, 20);
+            this.titleExtensions.TabIndex = 0;
+            this.titleExtensions.Text = "Define extensions";
             // 
-            // restoreButton
+            // subtitleExtentions
             // 
-            this.restoreButton.Location = new System.Drawing.Point(260, 67);
-            this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(179, 61);
-            this.restoreButton.TabIndex = 1;
-            this.restoreButton.Text = "Restore a backup";
-            this.restoreButton.UseVisualStyleBackColor = true;
+            this.subtitleExtentions.AutoSize = true;
+            this.subtitleExtentions.Location = new System.Drawing.Point(35, 78);
+            this.subtitleExtentions.Name = "subtitleExtentions";
+            this.subtitleExtentions.Size = new System.Drawing.Size(335, 20);
+            this.subtitleExtentions.TabIndex = 1;
+            this.subtitleExtentions.Text = "All files within these extensions will be encrypted.";
             // 
             // returnMenuButton
             // 
@@ -60,25 +60,27 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.returnMenuButton.TabIndex = 2;
             this.returnMenuButton.Text = "Main menu";
             this.returnMenuButton.UseVisualStyleBackColor = true;
+            this.returnMenuButton.Click += new System.EventHandler(this.returnMenuButton_Click);
             // 
-            // RestoreBackup
+            // ExtensionsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.returnMenuButton);
-            this.Controls.Add(this.restoreButton);
-            this.Controls.Add(this.listBackups);
-            this.Name = "RestoreBackup";
+            this.Controls.Add(this.subtitleExtentions);
+            this.Controls.Add(this.titleExtensions);
+            this.Name = "ExtensionsSettings";
             this.Size = new System.Drawing.Size(450, 500);
-            this.Load += new System.EventHandler(this.RestoreBackup_Load);
+            this.Load += new System.EventHandler(this.ExtensionsSettings_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listBackups;
-        private System.Windows.Forms.Button restoreButton;
+        private System.Windows.Forms.Label titleExtensions;
+        private System.Windows.Forms.Label subtitleExtentions;
         private System.Windows.Forms.Button returnMenuButton;
     }
 }

@@ -68,7 +68,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.returnMenuButton.Name = "returnMenuButton";
             this.returnMenuButton.Size = new System.Drawing.Size(175, 29);
             this.returnMenuButton.TabIndex = 2;
-            this.returnMenuButton.Text = "Return to the menu";
+            this.returnMenuButton.Text = "Main menu";
             this.returnMenuButton.UseVisualStyleBackColor = true;
             this.returnMenuButton.Click += new System.EventHandler(this.returnMenuButton_Click_1);
             // 
@@ -171,6 +171,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.Load += new System.EventHandler(this.BackupEnvironmentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

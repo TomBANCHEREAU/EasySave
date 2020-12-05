@@ -32,7 +32,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             radioButton1.Text = Resources.radioButton1;
             radioButton2.Text = Resources.radioButton2;
             executeBackup.Text = Resources.executeBackup;
-            button1.Text = Resources.button1;
+            returnMenuButton.Text = Resources.returnMenuButton;
         }
 
         private void button1_Click(object sender, EventArgs e)

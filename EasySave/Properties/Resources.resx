@@ -120,6 +120,9 @@
   <data name="addBackupEnvironment" xml:space="preserve">
     <value>Add an environment</value>
   </data>
+  <data name="businessSoftwaresButton" xml:space="preserve">
+    <value>Business softwares</value>
+  </data>
   <data name="button1" xml:space="preserve">
     <value>Main menu</value>
   </data>
@@ -139,7 +142,10 @@
     <value>Destination directory</value>
   </data>
   <data name="executeBackup" xml:space="preserve">
-    <value>Execute backup</value>
+    <value>Run backup</value>
+  </data>
+  <data name="filesToEncryptButton" xml:space="preserve">
+    <value>Files to encrypt</value>
   </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Name</value>
@@ -150,6 +156,9 @@
   <data name="radioButton2" xml:space="preserve">
     <value>Differential backup</value>
   </data>
+  <data name="restoreButton" xml:space="preserve">
+    <value>Restore a backup</value>
+  </data>
   <data name="returnMenuButton" xml:space="preserve">
     <value>Main menu</value>
   </data>
@@ -159,7 +168,25 @@
   <data name="searchBarLabel" xml:space="preserve">
     <value>Search...</value>
   </data>
+  <data name="settingsLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="sourceDirectoryLabel" xml:space="preserve">
     <value>Source directory</value>
+  </data>
+  <data name="subtitleBusinessSoftwares1" xml:space="preserve">
+    <value>If they are detected,</value>
+  </data>
+  <data name="subtitleBusinessSoftwares2" xml:space="preserve">
+    <value>you will not be able to run a backup.</value>
+  </data>
+  <data name="subtitleExtentions" xml:space="preserve">
+    <value>All files within these extensions will be encrypted.</value>
+  </data>
+  <data name="titleBusinessSoftwares" xml:space="preserve">
+    <value>Define business softwares</value>
+  </data>
+  <data name="titleExtentions" xml:space="preserve">
+    <value>Define extensions</value>
   </data>
 </root>

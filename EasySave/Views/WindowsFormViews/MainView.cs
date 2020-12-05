@@ -50,6 +50,8 @@ namespace EasySave.Views.WindowsFormViews
             Main.changeLanguage();
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
+            businessSoftwaresSettings.changeLanguage();
+            extensionsSettings.changeLanguage();
         }
 
         private void englishButton_Click(object sender, EventArgs e)
@@ -58,6 +60,8 @@ namespace EasySave.Views.WindowsFormViews
             Main.changeLanguage();
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
+            businessSoftwaresSettings.changeLanguage();
+            extensionsSettings.changeLanguage();
         }
     }
 }

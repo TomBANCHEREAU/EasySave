@@ -1,16 +1,12 @@
-﻿using EasySave.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using EasySave.Models;
 using EasySave.Properties;
-using System.Threading;
-using System.Globalization;
-using System.IO;
 
 namespace EasySave.Views.WindowsFormViews.UserControls
 {
@@ -23,16 +19,15 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             InitializeComponent();
         }
 
-        public void changeLanguage()
-        {
-            returnMenuButton.Text = Resources.returnMenuButton;
-            restore.Text = Resources.restoreBackup;
-        }
-
-
         private void RestoreBackup_Load(object sender, EventArgs e)
         {
             UpdateBackupList();
+        }
+
+        public void changeLanguage()
+        {
+            returnMenuButton.Text = Resources.returnMenuButton;
+            restoreButton.Text = Resources.restoreButton;
         }
 
         internal void UpdateBackupList()
@@ -51,11 +46,11 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             if (listBackups.SelectedItems.Count == 1)
             {
-                restore.Enabled = true;
+                restoreButton.Enabled = true;
             }
             else
             {
-                restore.Enabled = false;
+                restoreButton.Enabled = false;
             }
         }
 
@@ -66,7 +61,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void restore_Click(object sender, EventArgs e)
         {
-            if(restore.Enabled == true)
+            if (restoreButton.Enabled == true)
             {
 
             }

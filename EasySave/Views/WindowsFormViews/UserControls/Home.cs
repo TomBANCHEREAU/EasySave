@@ -30,6 +30,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             addBackupEnvironment.Text = Resources.addBackupEnvironment;
             deleteBackupEnvironment.Text = Resources.deleteBackupEnvironment;
             runBackup.Text = Resources.runBackup;
+            settingsLabel.Text = Resources.settingsLabel;
+            businessSoftwaresButton.Text = Resources.businessSoftwaresButton;
+            filesToEncryptButton.Text = Resources.filesToEncryptButton;
         }
 
         internal void UpdateBackupList()
@@ -111,9 +114,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         }
 
-        private void searchBarLabel_Click(object sender, EventArgs e)
+        private void businessSoftwaresButton_Click(object sender, EventArgs e)
         {
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.businessSoftwaresSettings);
+        }
 
+        private void filesToEncryptButton_Click(object sender, EventArgs e)
+        {
+            GraphicalView.MainView.setViewState(GraphicalView.MainView.extensionsSettings);
         }
     }
 }

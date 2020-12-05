@@ -31,8 +31,7 @@ namespace EasySave.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
-
+        
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
@@ -67,6 +66,15 @@ namespace EasySave.Properties {
         internal static string addBackupEnvironment {
             get {
                 return ResourceManager.GetString("addBackupEnvironment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Business softwares.
+        /// </summary>
+        internal static string businessSoftwaresButton {
+            get {
+                return ResourceManager.GetString("businessSoftwaresButton", resourceCulture);
             }
         }
         
@@ -125,11 +133,20 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Execute backup.
+        ///   Recherche une chaîne localisée semblable à Run backup.
         /// </summary>
         internal static string executeBackup {
             get {
                 return ResourceManager.GetString("executeBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Files to encrypt.
+        /// </summary>
+        internal static string filesToEncryptButton {
+            get {
+                return ResourceManager.GetString("filesToEncryptButton", resourceCulture);
             }
         }
         
@@ -161,6 +178,15 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Restore a backup.
+        /// </summary>
+        internal static string restoreButton {
+            get {
+                return ResourceManager.GetString("restoreButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Main menu.
         /// </summary>
         internal static string returnMenuButton {
@@ -188,6 +214,15 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string settingsLabel {
+            get {
+                return ResourceManager.GetString("settingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Source directory.
         /// </summary>
         internal static string sourceDirectoryLabel {
@@ -195,14 +230,50 @@ namespace EasySave.Properties {
                 return ResourceManager.GetString("sourceDirectoryLabel", resourceCulture);
             }
         }
-
-        internal static string restoreBackup {
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à If they are detected,.
+        /// </summary>
+        internal static string subtitleBusinessSoftwares1 {
             get {
-                return ResourceManager.GetString("restoreBackup", resourceCulture);
+                return ResourceManager.GetString("subtitleBusinessSoftwares1", resourceCulture);
             }
         }
-
-
-
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à you will not be able to run a backup..
+        /// </summary>
+        internal static string subtitleBusinessSoftwares2 {
+            get {
+                return ResourceManager.GetString("subtitleBusinessSoftwares2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à All files within these extensions will be encrypted..
+        /// </summary>
+        internal static string subtitleExtentions {
+            get {
+                return ResourceManager.GetString("subtitleExtentions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Define business softwares.
+        /// </summary>
+        internal static string titleBusinessSoftwares {
+            get {
+                return ResourceManager.GetString("titleBusinessSoftwares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Define extensions.
+        /// </summary>
+        internal static string titleExtentions {
+            get {
+                return ResourceManager.GetString("titleExtentions", resourceCulture);
+            }
+        }
     }
 }

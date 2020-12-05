@@ -35,6 +35,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.deleteBackupEnvironment = new System.Windows.Forms.Button();
             this.addBackupEnvironment = new System.Windows.Forms.Button();
             this.runBackup = new System.Windows.Forms.Button();
+            this.businessSoftwaresButton = new System.Windows.Forms.Button();
+            this.filesToEncryptButton = new System.Windows.Forms.Button();
+            this.settingsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // searchBarLabel
@@ -45,7 +48,6 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.searchBarLabel.Size = new System.Drawing.Size(62, 20);
             this.searchBarLabel.TabIndex = 0;
             this.searchBarLabel.Text = "Search...";
-            this.searchBarLabel.Click += new System.EventHandler(this.searchBarLabel_Click);
             // 
             // seachBar
             // 
@@ -100,10 +102,42 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             this.runBackup.UseVisualStyleBackColor = true;
             this.runBackup.Click += new System.EventHandler(this.runBackup_Click);
             // 
+            // businessSoftwaresButton
+            // 
+            this.businessSoftwaresButton.Location = new System.Drawing.Point(260, 431);
+            this.businessSoftwaresButton.Name = "businessSoftwaresButton";
+            this.businessSoftwaresButton.Size = new System.Drawing.Size(87, 61);
+            this.businessSoftwaresButton.TabIndex = 8;
+            this.businessSoftwaresButton.Text = "Business softwares";
+            this.businessSoftwaresButton.UseVisualStyleBackColor = true;
+            this.businessSoftwaresButton.Click += new System.EventHandler(this.businessSoftwaresButton_Click);
+            // 
+            // filesToEncryptButton
+            // 
+            this.filesToEncryptButton.Location = new System.Drawing.Point(352, 431);
+            this.filesToEncryptButton.Name = "filesToEncryptButton";
+            this.filesToEncryptButton.Size = new System.Drawing.Size(87, 61);
+            this.filesToEncryptButton.TabIndex = 9;
+            this.filesToEncryptButton.Text = "Files to encrypt";
+            this.filesToEncryptButton.UseVisualStyleBackColor = true;
+            this.filesToEncryptButton.Click += new System.EventHandler(this.filesToEncryptButton_Click);
+            // 
+            // settingsLabel
+            // 
+            this.settingsLabel.AutoSize = true;
+            this.settingsLabel.Location = new System.Drawing.Point(260, 408);
+            this.settingsLabel.Name = "settingsLabel";
+            this.settingsLabel.Size = new System.Drawing.Size(62, 20);
+            this.settingsLabel.TabIndex = 10;
+            this.settingsLabel.Text = "Settings";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.settingsLabel);
+            this.Controls.Add(this.filesToEncryptButton);
+            this.Controls.Add(this.businessSoftwaresButton);
             this.Controls.Add(this.runBackup);
             this.Controls.Add(this.addBackupEnvironment);
             this.Controls.Add(this.deleteBackupEnvironment);
@@ -126,5 +160,8 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         private System.Windows.Forms.Button deleteBackupEnvironment;
         private System.Windows.Forms.Button addBackupEnvironment;
         private System.Windows.Forms.Button runBackup;
+        private System.Windows.Forms.Button businessSoftwaresButton;
+        private System.Windows.Forms.Button filesToEncryptButton;
+        private System.Windows.Forms.Label settingsLabel;
     }
 }
