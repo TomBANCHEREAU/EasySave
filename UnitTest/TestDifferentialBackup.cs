@@ -39,6 +39,12 @@ namespace UnitTest
             Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
             model.RunBackup(differentialBackup);
             Assert.IsFalse(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
+
+            File.Delete(file);
+            model.RestoreBackup(differentialBackup);
+            Assert.AreEqual(text, File.ReadAllText(file));
+
+
         }
         [TestMethod]
         public void FileEdited()
@@ -53,7 +59,10 @@ namespace UnitTest
             Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
             model.RunBackup(differentialBackup);
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
-            Assert.AreEqual(text2, File.ReadAllText(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
+
+            File.Delete(file);
+            model.RestoreBackup(differentialBackup);
+            Assert.AreEqual(text2, File.ReadAllText(file));
         }
         [TestMethod]
         public void FileAdded()
@@ -66,7 +75,10 @@ namespace UnitTest
             Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
             model.RunBackup(differentialBackup);
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
-            Assert.AreEqual(text, File.ReadAllText(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
+
+            File.Delete(file);
+            model.RestoreBackup(differentialBackup);
+            Assert.AreEqual(text, File.ReadAllText(file));
         }
         [TestMethod]
         public void FileDeleted()
@@ -81,6 +93,11 @@ namespace UnitTest
             model.RunBackup(differentialBackup);
             Assert.IsFalse(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
             Assert.IsTrue(File.ReadAllText(Path.Join(differentialBackup.DestinationDirectory, ".easysave")).Contains("text.txt"));
+
+
+            File.Delete(file);
+            model.RestoreBackup(differentialBackup);
+            Assert.IsFalse(File.Exists(file));
         }
 
         [TestCleanup]
