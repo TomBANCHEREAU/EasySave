@@ -86,6 +86,11 @@ namespace EasySave.Models
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
+            foreach (String processName in BlockingProcesses)
+            {
+                if (Process.GetProcessesByName(processName).Length != 0)
+                    throw new Exception();
+            }
             backup.BackupEnvironment.Restore(backup);
 
         }
@@ -94,7 +99,7 @@ namespace EasySave.Models
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
-            foreach (String processName in new String[1] { "Calculator.exe" })
+            foreach (String processName in BlockingProcesses)
             {
                 if (Process.GetProcessesByName(processName).Length!=0)
                     throw new Exception();
