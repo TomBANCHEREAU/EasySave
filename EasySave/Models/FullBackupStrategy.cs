@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    class FullBackupStrategy : BackupStrategy
+    public class FullBackupStrategy : BackupStrategy
     {
         public FullBackupStrategy() : base("Full")
         {

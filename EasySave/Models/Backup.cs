@@ -44,7 +44,7 @@ namespace EasySave.Models
             backupStrategy.Backup = this;
             backupStrategy.OnFileTransfer += onFileTransfer;
         }
-        public void Execute()
+        internal void Execute()
         {
             if (this.destinationDir != null)
                 throw new Exception();
@@ -52,11 +52,11 @@ namespace EasySave.Models
             this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory,this.ExecutionDate.ToString().Replace('/','-').Replace(':','-'));
             backupStrategy.RunExecute();
         }
-        public void Restore()
+        internal void Restore()
         {
             backupStrategy.RunRestore();
         }
-        public class BackupData
+        internal class BackupData
         {
             public String BackupType;
             public String ExecutionDate;

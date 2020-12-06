@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    class DifferentialBackupStrategy : BackupStrategy
+    public class DifferentialBackupStrategy : BackupStrategy
     {
 
         public readonly Backup FullBackup;

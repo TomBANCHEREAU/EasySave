@@ -4,9 +4,9 @@ using System.Diagnostics;
 
 namespace CryptoSoft
 {
-    class Program
+    public class Program
     {
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
