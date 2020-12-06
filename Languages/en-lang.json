@@ -41,5 +41,10 @@
   "RunMultipleBackup-NotRuneBackup": "0. Do not run a backup on this environment",
   "RunMultipleBackup-FullBackup": "1. Run a full backup",
   "RunMultipleBackup-DifferentialBackup": "2. Run a differential backup",
-  "RunMultipleBackup-Error-DifferentialBackup": "You can't execute a differential backup because no full backup has been done before"
+  "RunMultipleBackup-Error-DifferentialBackup": "You can't execute a differential backup because no full backup has been done before",
+  "AddBackupEnvironment-Name-Error": "This name is not a valid name",
+  "AddBackupEnvironment-SrcDirectory-Error": "This Path is not a valid path",
+  "AddBackupEnvironment-DstDirectory-Error": "This Path is not a valid path",
+  "DeleteBackup-Question": "Do you really want to delete the environment named : ",
+  "RunMultipleBackup-Question" : "Choose a backup type for the environment : "
 }

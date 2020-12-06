@@ -27,7 +27,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 Console.Clear();
                 while (true)
                 {
-                    Console.WriteLine("Choose a backup type for the environment : " + backupEnvironment.Name);
+                    Console.WriteLine(Language.GetText("RunMultipleBackup-Question") + backupEnvironment.Name);
                     Console.WriteLine(Language.GetText("RunMultipleBackup-NotRuneBackup"));
                     Console.WriteLine(Language.GetText("RunMultipleBackup-FullBackup"));
                     Console.WriteLine(Language.GetText("RunMultipleBackup-DifferentialBackup"));

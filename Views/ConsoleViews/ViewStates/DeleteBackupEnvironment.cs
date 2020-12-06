@@ -50,7 +50,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     // An environment is selected
                     if (choice > 0 && choice <= backupEnvironmentList.Count)
                     {
-                        Console.WriteLine("Do you really want to delete the environment named : \"" + backupEnvironmentList[choice - 1] + "\"");
+                        Console.WriteLine(Language.GetText("DeleteBackup-Question") +"\"" + backupEnvironmentList[choice - 1].Name + "\"");
                         Console.WriteLine(Language.GetText("DeleteBackup-Yes"));
                         Console.WriteLine(Language.GetText("DeleteBackup-No"));
                         int confirm;

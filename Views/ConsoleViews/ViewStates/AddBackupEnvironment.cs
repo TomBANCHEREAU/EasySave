@@ -33,7 +33,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine(Language.GetText("AddBackupEnvironment-Name-Error"));
                 }
             }
             while (true) // Source Directory
@@ -46,7 +46,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine(Language.GetText("AddBackupEnvironment-SrcDirectory-Error"));
                 }
             }
             while (true) // Destination Directory
@@ -59,7 +59,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine(Language.GetText("AddBackupEnvironment-DstDirectory-Error"));
                 }
             }
 
@@ -73,7 +73,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
             catch (Exception ex)
             {
                 Console.Clear();
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine(Language.GetText("AddBackupEnvironment-Error-5Backups"));
             }
 
             Console.WriteLine("");

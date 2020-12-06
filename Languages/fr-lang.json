@@ -8,8 +8,8 @@
   "MainMenu-Choice-6": "6. Lancer plusieurs sauvergarde",
   "AddBackupEnvironment-Error-5Backups": "5 environnements de sauvegarde sont déjà créée",
   "AddBackupEnvironment-Name": "Nom",
-  "AddBackupEnvironment-SrcDirectory": "Fichier source : ",
-  "AddBackupEnvironment-DstDirectory": "Fichier de destination : ",
+  "AddBackupEnvironment-SrcDirectory": "Dossier source : ",
+  "AddBackupEnvironment-DstDirectory": "Dossier de destination : ",
   "AddBackupEnvironment-NewBackup": "Un nouvel environnement de sauvegarde a été créée.",
   "DeleteBackup-Error-Available Environment": "Il n'y a pas d'environnement de sauvegarde disponible",
   "DeleteBackup-WishBackup": "Selectionner l'environnement de sauvegarde que vous voulez supprimer:",
@@ -41,5 +41,10 @@
   "RunMultipleBackup-NotRuneBackup": "0. Ne pas effectuer de sauvegarde pour cette environnement",
   "RunMultipleBackup-FullBackup": "1. Effectuer une sauvegarde complète",
   "RunMultipleBackup-DifferentialBackup": "2. Effectuer une sauvegarde différentielle",
-  "RunMultipleBackup-Error-DifferentialBackup": "Vous ne pouvez pas exectuer une sauvegarde différentielle car il n'existe pas de sauvegarde complète faites auparavant"
+  "RunMultipleBackup-Error-DifferentialBackup": "Vous ne pouvez pas exectuer une sauvegarde différentielle car il n'existe pas de sauvegarde complète faites auparavant",
+  "AddBackupEnvironment-Name-Error": "Ce nom n'est pas un nom valide",
+  "AddBackupEnvironment-SrcDirectory-Error": "Ce chemin n'est pas un chemin valide",
+  "AddBackupEnvironment-DstDirectory-Error": "Ce chemin n'est pas un chemin valide",
+  "DeleteBackup-Question": "Voullez-vous réelement supprimer l'environnement : ",
+  "RunMultipleBackup-Question": "Choisissez un type de backup pour l'environnement : "
 }
