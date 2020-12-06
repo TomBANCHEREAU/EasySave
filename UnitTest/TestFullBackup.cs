@@ -5,7 +5,7 @@ using System.IO;
 namespace UnitTest 
 {
     [TestClass]
-    public class TestBackupType
+    public class TestFullBackup
     {
         private const string SOURCE_DIRECTORY = @".\src-test";
         private const string DESTINATION_DIRECTORY = @".\dest-test";
@@ -34,25 +34,6 @@ namespace UnitTest
             Assert.IsTrue(File.Exists(Path.Join(fullBackup.DestinationDirectory,"text.txt")));
             model.RestoreBackup(fullBackup);
             Assert.AreEqual(text, File.ReadAllText(file));
-        }
-        [TestMethod]
-        public void DifferentialBackup()
-        {
-            string text = "First Text";
-            string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
-            File.WriteAllText(file, text);
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
-            string text2 = "second Text";
-            string file2 = Path.Join(SOURCE_DIRECTORY, "text2.txt");
-            File.WriteAllText(file2, text2);
-            Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
-            model.RunBackup(differentialBackup);
-            File.Delete(file);
-            File.Delete(file2);
-            model.RestoreBackup(differentialBackup);
-            Assert.AreEqual(text, File.ReadAllText(file));
-            Assert.AreEqual(text2, File.ReadAllText(file2));
         }
         [TestCleanup]
         public void Cleanup()
