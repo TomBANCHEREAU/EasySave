@@ -11,10 +11,10 @@ namespace UnitTest
     [TestClass]
     public class TestDifferentialBackup
     {
-        private const string SOURCE_DIRECTORY = @".\src-test";
-        private const string DESTINATION_DIRECTORY = @".\dest-test";
-        private Model model;
-        private BackupEnvironment backupEnvironment;
+        public const string SOURCE_DIRECTORY = @".\src-test";
+        public const string DESTINATION_DIRECTORY = @".\dest-test";
+        public Model model;
+        public BackupEnvironment backupEnvironment;
 
         [TestInitialize]
         public void Initialize()
