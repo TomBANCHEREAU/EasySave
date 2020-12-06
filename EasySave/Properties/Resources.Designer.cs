@@ -205,6 +205,96 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à A business software has been detected!.
+        /// </summary>
+        internal static string mbBusinessSoftwware {
+            get {
+                return ResourceManager.GetString("mbBusinessSoftwware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You first need to run a full backup!.
+        /// </summary>
+        internal static string mbCheckFullBackup {
+            get {
+                return ResourceManager.GetString("mbCheckFullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The .
+        /// </summary>
+        internal static string mbCreatedView1 {
+            get {
+                return ResourceManager.GetString("mbCreatedView1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à  environment has been created..
+        /// </summary>
+        internal static string mbCreatedView2 {
+            get {
+                return ResourceManager.GetString("mbCreatedView2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The differential backup has been done..
+        /// </summary>
+        internal static string mbDifferentialBackup {
+            get {
+                return ResourceManager.GetString("mbDifferentialBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The full backup has been done..
+        /// </summary>
+        internal static string mbFullBackup {
+            get {
+                return ResourceManager.GetString("mbFullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The restore of the backup has been done..
+        /// </summary>
+        internal static string mbRestore {
+            get {
+                return ResourceManager.GetString("mbRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à All the backups have been done..
+        /// </summary>
+        internal static string mbRunMultipleBackup {
+            get {
+                return ResourceManager.GetString("mbRunMultipleBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The name format is incorrect! (between 3 to 35 characters) .
+        /// </summary>
+        internal static string mbWrongFormat {
+            get {
+                return ResourceManager.GetString("mbWrongFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Information incorrect!.
+        /// </summary>
+        internal static string mbWrongInfos {
+            get {
+                return ResourceManager.GetString("mbWrongInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Name.
         /// </summary>
         internal static string nameLabel {

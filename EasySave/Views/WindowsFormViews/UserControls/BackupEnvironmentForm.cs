@@ -63,18 +63,18 @@ namespace EasySave.Views.WindowsFormViews.UserControls
                 {
                     BackupEnvironment backupEnvironment = new BackupEnvironment(nameTextBox.Text, sourceDirectoryTextbox.Text, destinationDirectoryTextbox.Text);
                     GraphicalView.Controller.AddBackupEnvironment(backupEnvironment);
-                    MessageBox.Show("The " + nameTextBox.Text + " environment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.mbCreatedView1 + nameTextBox.Text + Resources.mbCreatedView2, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
                     GraphicalView.MainView.Main.UpdateBackupList();
                 }
                 else
                 {
-                    MessageBox.Show("Information incorrect !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbWrongInfos, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("The name format is incorrect !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.mbWrongFormat, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

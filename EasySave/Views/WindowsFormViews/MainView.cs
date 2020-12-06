@@ -52,6 +52,7 @@ namespace EasySave.Views.WindowsFormViews
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
             runMultipleBackup.changeLanguage();
+            restoreBackup.changeLanguage();
             businessSoftwaresSettings.changeLanguage();
             extensionsSettings.changeLanguage();
         }
@@ -63,6 +64,7 @@ namespace EasySave.Views.WindowsFormViews
             backupEnvironmentForm.changeLanguage();
             runBackup.changeLanguage();
             runMultipleBackup.changeLanguage();
+            restoreBackup.changeLanguage();
             businessSoftwaresSettings.changeLanguage();
             extensionsSettings.changeLanguage();
         }

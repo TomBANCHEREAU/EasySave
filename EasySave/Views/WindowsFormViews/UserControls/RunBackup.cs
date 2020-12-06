@@ -45,10 +45,16 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             if (radioButton1.Checked)
             { 
                 Backup fullbackup = new Backup(selected, new FullBackupStrategy());
-                selected.AddBackup(fullbackup);
-                GraphicalView.Controller.RunBackup(fullbackup);
-                GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
-                MessageBox.Show("The full backup has been done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    GraphicalView.Controller.RunBackup(fullbackup);
+                    MessageBox.Show(Resources.mbFullBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+                }
+                catch
+                {
+                    MessageBox.Show(Resources.mbBusinessSoftwware, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else if (radioButton2.Checked)
             {
@@ -57,14 +63,20 @@ namespace EasySave.Views.WindowsFormViews.UserControls
                     Backup fullbackup = selected.FullBackups[selected.FullBackups.Count - 1];
                     BackupStrategy strategy = new DifferentialBackupStrategy(fullbackup);
                     Backup differentialbackup = new Backup(selected, strategy);
-                    selected.AddBackup(differentialbackup);
-                    GraphicalView.Controller.RunBackup(differentialbackup);
-                    GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
-                    MessageBox.Show("The differential backup has been done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        GraphicalView.Controller.RunBackup(differentialbackup);
+                        MessageBox.Show(Resources.mbDifferentialBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(Resources.mbBusinessSoftwware, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("You first need to run a full backup !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbCheckFullBackup, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

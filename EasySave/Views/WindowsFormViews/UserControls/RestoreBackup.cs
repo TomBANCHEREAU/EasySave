@@ -68,7 +68,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             Backup backupToRestore = (Backup)listBackups.SelectedItems[0].Tag;
             GraphicalView.Controller.RestoreBackup(backupToRestore);
             GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
-            MessageBox.Show("The restore of the backup has been done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            MessageBox.Show(Resources.mbRestore, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
 
         private void returnMenuButton_Click_1(object sender, EventArgs e)

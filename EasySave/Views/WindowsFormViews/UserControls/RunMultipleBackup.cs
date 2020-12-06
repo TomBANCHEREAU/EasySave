@@ -131,6 +131,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
                 }
             }
             GraphicalView.Controller.RunMultipleBackup(backups);
+            MessageBox.Show(Resources.mbRunMultipleBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
         }
     }

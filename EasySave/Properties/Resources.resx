@@ -165,6 +165,36 @@
   <data name="fullBackup" xml:space="preserve">
     <value>Full backup</value>
   </data>
+  <data name="mbBusinessSoftwware" xml:space="preserve">
+    <value>A business software has been detected!</value>
+  </data>
+  <data name="mbCheckFullBackup" xml:space="preserve">
+    <value>You first need to run a full backup!</value>
+  </data>
+  <data name="mbCreatedView1" xml:space="preserve">
+    <value>The </value>
+  </data>
+  <data name="mbCreatedView2" xml:space="preserve">
+    <value> environment has been created.</value>
+  </data>
+  <data name="mbDifferentialBackup" xml:space="preserve">
+    <value>The differential backup has been done.</value>
+  </data>
+  <data name="mbFullBackup" xml:space="preserve">
+    <value>The full backup has been done.</value>
+  </data>
+  <data name="mbRestore" xml:space="preserve">
+    <value>The restore of the backup has been done.</value>
+  </data>
+  <data name="mbRunMultipleBackup" xml:space="preserve">
+    <value>All the backups have been done.</value>
+  </data>
+  <data name="mbWrongFormat" xml:space="preserve">
+    <value>The name format is incorrect! (between 3 to 35 characters) </value>
+  </data>
+  <data name="mbWrongInfos" xml:space="preserve">
+    <value>Information incorrect!</value>
+  </data>
   <data name="nameLabel" xml:space="preserve">
     <value>Name</value>
   </data>
