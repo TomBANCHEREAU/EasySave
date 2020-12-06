@@ -49,7 +49,7 @@ namespace EasySave.Models
             if (this.destinationDir != null)
                 throw new Exception();
             this.executionDate = DateTime.Now;
-            this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory,this.ExecutionDate.ToString().Replace('/','-').Replace(':','-'));
+            this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory,this.ExecutionDate.ToString().Replace('/','-').Replace(':','-') + "-" + this.executionDate.Millisecond);
             backupStrategy.RunExecute();
         }
         internal void Restore()
