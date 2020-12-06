@@ -58,11 +58,13 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             {
                 deleteBackupEnvironment.Enabled = true;
                 runBackup.Enabled = true;
+                restoreBackup.Enabled = true;
             }
             else
             {
                 deleteBackupEnvironment.Enabled = false;
                 runBackup.Enabled = false;
+                restoreBackup.Enabled = false;
             }
         }
 
@@ -135,6 +137,7 @@ namespace EasySave.Views.WindowsFormViews.UserControls
 
         private void restoreBackup_Click(object sender, EventArgs e)
         {
+            GraphicalView.MainView.restoreBackup.selected = (BackupEnvironment)listBackupEnvironments.SelectedItems[0].Tag;
             GraphicalView.MainView.setViewState(GraphicalView.MainView.restoreBackup);
         }
     }

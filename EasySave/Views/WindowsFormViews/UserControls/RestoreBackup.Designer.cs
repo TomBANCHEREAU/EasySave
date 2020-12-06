@@ -37,39 +37,45 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             // listBackups
             // 
             this.listBackups.HideSelection = false;
-            this.listBackups.Location = new System.Drawing.Point(8, 67);
+            this.listBackups.Location = new System.Drawing.Point(7, 50);
+            this.listBackups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBackups.Name = "listBackups";
-            this.listBackups.Size = new System.Drawing.Size(241, 425);
+            this.listBackups.Size = new System.Drawing.Size(211, 320);
             this.listBackups.TabIndex = 0;
             this.listBackups.UseCompatibleStateImageBehavior = false;
             // 
             // restoreButton
             // 
-            this.restoreButton.Location = new System.Drawing.Point(263, 67);
+            this.restoreButton.Location = new System.Drawing.Point(230, 50);
+            this.restoreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(175, 61);
+            this.restoreButton.Size = new System.Drawing.Size(153, 46);
             this.restoreButton.TabIndex = 1;
             this.restoreButton.Text = "Restore a backup";
             this.restoreButton.UseVisualStyleBackColor = true;
+            this.restoreButton.Click += new System.EventHandler(this.restoreButton_Click);
             // 
             // returnMenuButton
             // 
-            this.returnMenuButton.Location = new System.Drawing.Point(263, 459);
+            this.returnMenuButton.Location = new System.Drawing.Point(230, 344);
+            this.returnMenuButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.returnMenuButton.Name = "returnMenuButton";
-            this.returnMenuButton.Size = new System.Drawing.Size(175, 29);
+            this.returnMenuButton.Size = new System.Drawing.Size(153, 22);
             this.returnMenuButton.TabIndex = 2;
             this.returnMenuButton.Text = "Main menu";
             this.returnMenuButton.UseVisualStyleBackColor = true;
+            this.returnMenuButton.Click += new System.EventHandler(this.returnMenuButton_Click_1);
             // 
             // RestoreBackup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.returnMenuButton);
             this.Controls.Add(this.restoreButton);
             this.Controls.Add(this.listBackups);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "RestoreBackup";
-            this.Size = new System.Drawing.Size(450, 500);
+            this.Size = new System.Drawing.Size(394, 375);
             this.Load += new System.EventHandler(this.RestoreBackup_Load);
             this.ResumeLayout(false);
 
