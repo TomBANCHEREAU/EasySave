@@ -20,7 +20,7 @@
   "DeleteBackup-CancelDeletion": "Deletion canceled",
   "DisplayBackupEnvironment-NoBackupAvailable": "There is no backup environment available",
   "DisplayBackupEnvironment-DisplayList": "Actual backup environment(s) list:",
-  "DisplayBackupEnvironment-EnterContinue" "Press enter to continue...",
+  "DisplayBackupEnvironment-EnterContinue" : "Press enter to continue...",
   "RestoreBackup-NoBackupAvailable": "There is no backup environment available",
   "RestoreBackup-SelectBackupEnvironment": "Select the backup environment you wish to use:",
   "RestoreBackup-ReturnMenu": "0. Return to menu",
