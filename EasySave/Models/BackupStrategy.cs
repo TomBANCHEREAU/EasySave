@@ -106,7 +106,7 @@ namespace EasySave.Models
                     cryptoSoftInfo.ArgumentList.Add(new FileInfo(Path.Join(destBasePath, filePathFromBase)).FullName);
                     Process cryptoSoft = Process.Start(cryptoSoftInfo);
                     cryptoSoft.WaitForExit();
-                    encryptionTime = cryptoSoft.ExitCode;
+                    encryptionTime = cryptoSoft.ExitCode>0?cryptoSoft.ExitCode:-1;
                     //Process  = Process.Start();
                 }
                 else
