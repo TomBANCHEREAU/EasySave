@@ -120,6 +120,8 @@ namespace EasySave.Models
                     {
                         SettingsJSON settingsJSON = JsonConvert.DeserializeObject<SettingsJSON>(File.ReadAllText("./settings.json"));
 
+                        cryptedExtensions = settingsJSON.CryptedExtensions;
+                        blockingProcesses = settingsJSON.BlockingProcesses;
                         foreach (SettingsJSON.SettingsEnvironmentJSON backupEnvironments in settingsJSON.Environments)
                         {
                             try
@@ -133,11 +135,10 @@ namespace EasySave.Models
                                 backupEnvironment.LoadFromFile();
                             }catch{}
                         }
-                        cryptedExtensions = settingsJSON.CryptedExtensions;
-                        blockingProcesses = settingsJSON.BlockingProcesses;
                     }
                     catch{}
                 }
+                SaveSettings();
             }
             else
                 throw new InvalidOperationException("Model has already been started");
