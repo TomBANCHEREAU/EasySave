@@ -14,6 +14,7 @@ namespace EasySave.Models
         public void RunMultipleBackup(List<Backup> backups);
         public void RestoreBackup(Backup backup);
         public void SetCryptedExtensions(String[] extensions);
-        public void SetBlockingProcesses(string[] processes);
+        public void SetBlockingProcesses(String[] processes);
+        public void SetHighPriorityExtensions(String[] extensions);
     }
 }

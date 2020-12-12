@@ -20,6 +20,7 @@ namespace EasySave.Models
 
             }
         }
+
         private String[] blockingProcesses;
 
         public String[] BlockingProcesses
@@ -29,6 +30,19 @@ namespace EasySave.Models
                 if (blockingProcesses == null)
                     return new String[0];
                 return blockingProcesses;
+
+            }
+        }
+
+        private String[] highPriorityExtensions;
+
+        public String[] HighPriorityExtensions
+        {
+            get
+            {
+                if (highPriorityExtensions == null)
+                    return new String[0];
+                return highPriorityExtensions;
 
             }
         }
@@ -80,8 +94,6 @@ namespace EasySave.Models
         }
         #endregion
 
-
-
         public void RestoreBackup(Backup backup)
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
@@ -106,6 +118,14 @@ namespace EasySave.Models
             }
             backup.BackupEnvironment.AddBackup(backup);
             backup.BackupEnvironment.Execute(backup);
+        }
+
+        public void RunMultipleBackup(List<Backup> backups)
+        {
+            foreach (Backup backup in backups)
+            {
+                RunBackup(backup);
+            }
         }
 
         public void Start()
@@ -164,28 +184,28 @@ namespace EasySave.Models
                 File.WriteAllText("./settings.json", JsonConvert.SerializeObject(settings, Formatting.Indented));
             }
         }
+
         public void Stop()
         {
             SaveSettings();
         }
 
-        public void SetCryptedExtensions(string[] extensions)
+        public void SetCryptedExtensions(String[] extensions)
         {
             cryptedExtensions = extensions;
             SaveSettings();
         }
-        public void SetBlockingProcesses(string[] processes)
+
+        public void SetBlockingProcesses(String[] processes)
         {
             blockingProcesses = processes;
             SaveSettings();
         }
 
-        public void RunMultipleBackup(List<Backup> backups)
+        public void SetHighPriorityExtensions(String[] extensions)
         {
-            foreach (Backup backup in backups)
-            {
-                RunBackup(backup);
-            }
+            highPriorityExtensions = extensions;
+            SaveSettings();
         }
 
         class SettingsJSON

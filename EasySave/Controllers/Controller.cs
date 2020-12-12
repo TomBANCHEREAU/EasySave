@@ -10,11 +10,13 @@ namespace EasySave.Controllers
     {
         private IModel model;
         private IView view;
+
         public Controller(IModel model, IView view)
         {
             this.model = model;
             this.view = view;
         }
+
         public void Start()
         {
             this.model.Start();
@@ -41,18 +43,24 @@ namespace EasySave.Controllers
             this.model.RunBackup(backup);
         }
 
-        public void SetCryptedExtensions(string[] extensions)
+        public void SetCryptedExtensions(String[] extensions)
         {
             this.model.SetCryptedExtensions(extensions);
         }
+
         public void RunMultipleBackup(List<Backup> backups)
         {
             this.model.RunMultipleBackup(backups);
         }
 
-        public void SetBlockingProcesses(string[] processes)
+        public void SetBlockingProcesses(String[] processes)
         {
             this.model.SetBlockingProcesses(processes);
+        }
+
+        public void SetHighPriorityExtensions(String[] extensions)
+        {
+            this.model.SetHighPriorityExtensions(extensions);
         }
     }
 }

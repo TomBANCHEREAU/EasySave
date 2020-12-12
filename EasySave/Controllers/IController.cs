@@ -13,7 +13,8 @@ namespace EasySave.Controllers
         public void RunBackup(Backup backup);
         public void RunMultipleBackup(List<Backup> backups);
         public void RestoreBackup(Backup backup);
-        public void SetCryptedExtensions(string[] extensions);
-        public void SetBlockingProcesses(string[] processes);
+        public void SetCryptedExtensions(String[] extensions);
+        public void SetBlockingProcesses(String[] processes);
+        public void SetHighPriorityExtensions(String[] extensions);
     }
 }
