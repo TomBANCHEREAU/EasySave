@@ -142,6 +142,7 @@ namespace EasySave.Models
 
                         cryptedExtensions = settingsJSON.CryptedExtensions;
                         blockingProcesses = settingsJSON.BlockingProcesses;
+                        highPriorityExtensions = settingsJSON.HighPriorityExtensions;
                         foreach (SettingsJSON.SettingsEnvironmentJSON backupEnvironments in settingsJSON.Environments)
                         {
                             try
@@ -171,6 +172,7 @@ namespace EasySave.Models
                 SettingsJSON settings = new SettingsJSON();
                 settings.CryptedExtensions = CryptedExtensions;
                 settings.BlockingProcesses = BlockingProcesses;
+                settings.HighPriorityExtensions = HighPriorityExtensions;
                 List<SettingsJSON.SettingsEnvironmentJSON> backupEnvironmentDatas = new List<SettingsJSON.SettingsEnvironmentJSON>();
                 foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
@@ -212,6 +214,7 @@ namespace EasySave.Models
         {
             public String[] CryptedExtensions;
             public String[] BlockingProcesses;
+            public String[] HighPriorityExtensions;
             public SettingsEnvironmentJSON[] Environments;
             public class SettingsEnvironmentJSON
             {
