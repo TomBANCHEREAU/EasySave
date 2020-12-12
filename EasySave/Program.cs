@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Threading;
 using EasySave.Controllers;
 using EasySave.Models;
 using EasySave.Views;
@@ -10,14 +10,22 @@ namespace EasySave
 {
     class Program
     {
-
         [STAThread]
         static void Main(string[] args)
         {
+            bool newInstance;
+            Mutex mutex = new Mutex(false, "EasySave", out newInstance);
+
+            if (!newInstance)
+            {
+                // EasySave is already running!
+                return;
+            }
+
             IModel model = new Model();
             // IView view = new ConsoleView();
             IView view = new GraphicalView();
-            IController controller = new Controller(model,view);
+            IController controller = new Controller(model, view);
             controller.Start();
         }
     }
