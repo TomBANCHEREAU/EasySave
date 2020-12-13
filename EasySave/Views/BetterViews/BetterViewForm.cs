@@ -14,7 +14,8 @@ namespace EasySave.Views.BetterViews
     {
         internal IReadOnlyModel model;
         internal IController controller;
-        public BetterViewForm(IController controller,IReadOnlyModel model)
+
+        public BetterViewForm(IController controller, IReadOnlyModel model)
         {
             this.model = model;
             this.controller = controller;
@@ -24,6 +25,39 @@ namespace EasySave.Views.BetterViews
         private void BetterViewForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        internal enum ViewState { DEFAULT_VIEW, CREATE_ENVIRONMENT, ENVIRONMENT_MENU }
+
+        internal void SetViewState(ViewState viewState)
+        {
+            foreach (var item in DynamicPanel.Controls)
+            {
+                if (item is UserControl)
+                {
+                    ((UserControl)item).Hide();
+                }
+            }
+
+            switch (viewState)
+            {
+                case ViewState.DEFAULT_VIEW:
+                    DefaultView.Show();
+                    break;
+                case ViewState.CREATE_ENVIRONMENT:
+                    CreateEnvironment.Show();
+                    break;
+                case ViewState.ENVIRONMENT_MENU:
+                    EnvironmentMenu.Show();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Title_Click(object sender, EventArgs e)
+        {
+            SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
         }
     }
 }
