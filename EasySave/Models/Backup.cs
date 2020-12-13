@@ -7,35 +7,13 @@ namespace EasySave.Models
 {
     public class Backup
     {
+        #region public
         public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
-        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
-        private DateTime executionDate;
+        public DateTime ExecutionDate { get => executionDate; }
+        public String DestinationDirectory { get => destinationDir; }
+        public BackupEnvironment BackupEnvironment { get => backupEnvironment; }
+        public BackupStrategy BackupStrategy { get => backupStrategy; }
 
-        public DateTime ExecutionDate
-        {
-            get { return executionDate; }
-            internal set => executionDate = value;
-        }
-        private String destinationDir;
-
-        public String DestinationDirectory
-        {
-            get { return destinationDir; }
-            internal set => destinationDir = value;
-        }
-
-        private BackupEnvironment backupEnvironment;
-
-        public BackupEnvironment BackupEnvironment
-        {
-            get { return backupEnvironment; }
-        }
-        private BackupStrategy backupStrategy;
-
-        public BackupStrategy BackupStrategy
-        {
-            get { return backupStrategy; }
-        }
 
         public Backup(BackupEnvironment backupEnvironment,BackupStrategy backupStrategy)
         {
@@ -44,6 +22,24 @@ namespace EasySave.Models
             backupStrategy.Backup = this;
             backupStrategy.OnFileTransfer += onFileTransfer;
         }
+        #endregion
+
+
+
+        #region PrivateAndInternal
+
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
+        private DateTime executionDate;
+        private String destinationDir;
+        private BackupEnvironment backupEnvironment;
+        private BackupStrategy backupStrategy;
+
+        internal Backup(BackupEnvironment backupEnvironment, BackupStrategy backupStrategy, string destinationDirectory, DateTime dateTime) : this(backupEnvironment, backupStrategy)
+        {
+            this.destinationDir = destinationDirectory;
+            this.executionDate = dateTime;
+        }
+
         internal void Execute()
         {
             if (this.destinationDir != null)
@@ -63,5 +59,6 @@ namespace EasySave.Models
             public String DestinationDirectory;
             public String FullBackupDirectory;
         }
+        #endregion
     }
 }

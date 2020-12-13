@@ -8,6 +8,10 @@ namespace EasySave.Models
 {
     public class BackupEnvironment
     {
+        private Boolean isRunning;
+
+        public Boolean IsRunning { get => isRunning; }
+
 
         public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
         private void onFileTransfer(Object a, FileTransferEvent f)=>OnFileTransfer(a, f);
@@ -127,9 +131,7 @@ namespace EasySave.Models
                             break;
                             default: throw new Exception("Unknowned backup type");
                         }
-                        Backup b = new Backup(this,s);
-                        b.DestinationDirectory = backupData.DestinationDirectory;
-                        b.ExecutionDate = DateTime.Parse(backupData.ExecutionDate);
+                        Backup b = new Backup(this,s, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate));
                         AddBackup(b);
                     }
                     catch (Exception ex)
@@ -155,16 +157,32 @@ namespace EasySave.Models
         }
         internal void Restore(Backup backup)
         {
-            backup.Restore();
-            State.SetState(new State.StateStatus() { Name = Name, Running = false });
-            save();
+            lock (this)
+            {
+                if (backups.Contains(backup) && !IsRunning)
+                {
+                    isRunning = true;
+                    backup.Restore();
+                    State.SetState(new State.StateStatus() { Name = Name, Running = false });
+                    save();
+                    isRunning = false;
+                }
+            }
         }
 
         internal void Execute(Backup backup)
         {
-            backup.Execute();
-            State.SetState(new State.StateStatus() { Name = Name, Running = false });
-            save();
+            lock (this)
+            {
+                if (backups.Contains(backup) && !IsRunning)
+                {
+                    isRunning = true;
+                    backup.Execute();
+                    State.SetState(new State.StateStatus() { Name = Name, Running = false });
+                    save();
+                    isRunning = false;
+                }
+            }
         }
     }
 }

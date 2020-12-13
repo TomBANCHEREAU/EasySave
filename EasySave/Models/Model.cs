@@ -9,50 +9,25 @@ namespace EasySave.Models
 {
     public class Model : IModel
     {
-        private String[] cryptedExtensions;
-
-        public String[] CryptedExtensions
-        {
-            get {
-                if (cryptedExtensions == null)
-                    return new String[0];
-                return cryptedExtensions;
-
-            }
-        }
-
-        private String[] blockingProcesses;
-
-        public String[] BlockingProcesses
-        {
-            get
-            {
-                if (blockingProcesses == null)
-                    return new String[0];
-                return blockingProcesses;
-
-            }
-        }
-
-        private String[] highPriorityExtensions;
-
-        public String[] HighPriorityExtensions
-        {
-            get
-            {
-                if (highPriorityExtensions == null)
-                    return new String[0];
-                return highPriorityExtensions;
-
-            }
-        }
-
         public event EventHandler<FileTransferEvent> OnFileTransfer;
-        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
 
-        #region BackupEnvironment
+        public String[] CryptedExtensions { get => (cryptedExtensions == null) ? new String[0] : cryptedExtensions; }
+        public String[] BlockingProcesses { get => (blockingProcesses == null) ? new String[0] : blockingProcesses; }
+        public String[] HighPriorityExtensions { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
+        //public String[] BackupEnvironments { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
+
+
+        private String[] cryptedExtensions;
+        private String[] blockingProcesses;
+        private String[] highPriorityExtensions;
         private List<BackupEnvironment> backupEnvironments;
 
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
+
+
+
+
+        #region BackupEnvironment
         List<BackupEnvironment> BackupEnvironments
         {
             get

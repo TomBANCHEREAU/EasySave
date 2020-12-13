@@ -17,6 +17,7 @@ namespace EasySave.Models
         }
         protected override void Execute()
         {
+            Directory.CreateDirectory(DestinationDirectory);
             String[] sourceFiles = Directory.GetFiles(SourceDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true });
 
             // Saving new and edited files
@@ -31,7 +32,7 @@ namespace EasySave.Models
             CopyFiles(fileToCopy.ToArray(),SourceDirectory,DestinationDirectory);
 
             // Saving Deleted files
-            List<String> deletedFileContent = new List<string>();
+            List<String> deletedFileContent = new List<String>();
             foreach (String savedFile in Directory.EnumerateFiles(SavedDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
                 String filePathFromBase = Path.GetRelativePath(SavedDirectory, savedFile);
