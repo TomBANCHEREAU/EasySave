@@ -21,15 +21,10 @@ namespace EasySave.Views.BetterViews.Components
             InitializeComponent();
         }
 
-        public Settings(IController controller, IReadOnlyModel model) : this()
-        {
-            this.controller = controller;
-            this.model = model;
-        }
-
         private void Settings_Load(object sender, EventArgs e)
         {
-
+            this.model = ((BetterViewForm)ParentForm).model;
+            this.controller = ((BetterViewForm)ParentForm).controller;
         }
 
         private void RunMutipleBackupsButton_Click(object sender, EventArgs e)
@@ -44,6 +39,11 @@ namespace EasySave.Views.BetterViews.Components
             UserDoc.Verb = "OPEN";
             UserDoc.UseShellExecute = true;
             Process.Start(UserDoc);
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            ((BetterViewForm)ParentForm).SetViewState(new SettingstMenu(controller, model));
         }
     }
 }
