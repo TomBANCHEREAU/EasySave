@@ -36,9 +36,16 @@ namespace EasySave.Views.BetterViews.Components
             {
                 ListViewItem listViewItem = new ListViewItem(new string[2] { 
                     backupEnvironment.Name, 
-                    "" 
+                    ""
                 });
                 listViewItem.Tag = backupEnvironment;
+
+                if (backupEnvironment.IsRunning)
+                {
+                    listViewItem.SubItems[1].Tag = backupEnvironment;
+                    listViewItem.SubItems[1].Text = "Already running";
+                }
+
                 EnvironmentList.Items.Add(listViewItem);
             }
         }
@@ -48,10 +55,25 @@ namespace EasySave.Views.BetterViews.Components
             if (EnvironmentList.SelectedItems.Count > 0)
             {
                 selected = EnvironmentList.SelectedItems[0];
-                NoBackupRadio.Checked = selected.SubItems[1].Tag == null;
-                FullBackupRadio.Checked = ((BackupType)selected.SubItems[1].Tag) == BackupType.FULL;
-                DifferentialBackupRadio.Checked = ((BackupType)selected.SubItems[1].Tag) == BackupType.DIFFERENTIAL;
-                DifferentialBackupRadio.Enabled = ((BackupEnvironment)selected.Tag).FullBackups.Count > 0;
+
+                if (!(selected.SubItems[1].Tag is BackupEnvironment))
+                {
+                    NoBackupRadio.Checked = selected.SubItems[1].Tag == null;
+                    FullBackupRadio.Checked = BackupType.FULL.CompareTo(selected.SubItems[1].Tag) == 0;
+                    DifferentialBackupRadio.Checked = BackupType.DIFFERENTIAL.CompareTo(selected.SubItems[1].Tag) == 0;
+                    NoBackupRadio.Enabled = true;
+                    FullBackupRadio.Enabled = true;
+                    DifferentialBackupRadio.Enabled = ((BackupEnvironment)selected.Tag).FullBackups.Count > 0;
+                } 
+                else
+                {
+                    FullBackupRadio.Enabled = false;
+                    FullBackupRadio.Checked = false;
+                    DifferentialBackupRadio.Enabled = false;
+                    DifferentialBackupRadio.Checked = false;
+                    NoBackupRadio.Enabled = false;
+                    NoBackupRadio.Checked = true;
+                }
             }
             else
             {
@@ -72,7 +94,7 @@ namespace EasySave.Views.BetterViews.Components
         {
             if (selected != null && FullBackupRadio.Checked)
             {
-                selected.SubItems[1].Tag = null;
+                selected.SubItems[1].Tag = BackupType.FULL;
                 selected.SubItems[1].Text = "Full";
             }
         }
@@ -81,49 +103,23 @@ namespace EasySave.Views.BetterViews.Components
         {
             if (selected != null && DifferentialBackupRadio.Checked)
             {
-                selected.SubItems[1].Tag = null;
+                selected.SubItems[1].Tag = BackupType.DIFFERENTIAL;
                 selected.SubItems[1].Text = "Differential";
             }
         }
 
         private void RunMultipleBackupsButton_Click(object sender, EventArgs e)
         {
-            List<Backup> backups = new List<Backup>();
-
             foreach (ListViewItem item in EnvironmentList.Items)
-            {
-                throw new Exception();
-                /*
-                String type = item.SubItems[1].Text;
-
-                if (type == "Full" || type == "Complète")
+                try
                 {
-                    Backup full = new Backup((BackupEnvironment)item.Tag, new FullBackup());
-                    ((BackupEnvironment)item.Tag).AddBackup(full);
-                    backups.Add(full);
-                }
-                else if (type == "Differential" || type == "Différentielle")
+                    if (item.SubItems[1].Tag != null)
+                        controller.RunBackup((BackupEnvironment)item.Tag, (BackupType)selected.SubItems[1].Tag);
+                } 
+                catch
                 {
-                    BackupStrategy backupStrategy = new DifferentialBackupStrategy(((BackupEnvironment)item.Tag).FullBackups[((BackupEnvironment)item.Tag).FullBackups.Count - 1]);
-                    Backup differential = new Backup((BackupEnvironment)item.Tag, backupStrategy);
-                    ((BackupEnvironment)item.Tag).AddBackup(differential);
-                    backups.Add(differential);
+                    MessageBox.Show("A backup is already running on one of the environment you have selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
-            }
-            try
-            {
-                throw new Exception();
-                /*
-                GraphicalView.Controller.RunMultipleBackup(backups);
-                MessageBox.Show(Resources.mbRunMultipleBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
-                */
-            }
-            catch
-            {
-                MessageBox.Show("A business software has been detected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }
