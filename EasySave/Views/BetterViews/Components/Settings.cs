@@ -19,10 +19,5 @@ namespace EasySave.Views.BetterViews.Components
         {
 
         }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
