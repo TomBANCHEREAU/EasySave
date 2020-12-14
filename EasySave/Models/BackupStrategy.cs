@@ -127,10 +127,22 @@ namespace EasySave.Models
 
             highPriorityDone = false;
             highPriorityRunning++;
-            transfers.Sort((FileTransferEvent a, FileTransferEvent b) => a.HighPriority ? 1 : -1);
+            transfers.Sort((FileTransferEvent a, FileTransferEvent b) =>
+            {
+                if (a == null)
+                    return 1;
+                if (b == null)
+                    return -1;
+                if (a.HighPriority && !b.HighPriority)
+                    return -1;
+                if (!a.HighPriority && b.HighPriority)
+                    return 1;
+                return 0;
+            });
             for (int i = 0; transfers.Count>0; i++)
             {
                 FileTransferEvent transfer = transfers[0];
+                transfers.RemoveAt(0);
                 pause.WaitOne();
                 if (!highPriorityDone && !transfer.HighPriority)
                     endHighPriority();
@@ -160,7 +172,7 @@ namespace EasySave.Models
 
                 new Thread(() => { OnFileTransfer(this, transfer); }).Start(); 
             }
-            transfers.Clear();
+            //transfers.Clear();
             status = Status.IDLE;
         }
 
