@@ -17,27 +17,21 @@ namespace EasySave.Views.BetterViews.Components
         private IReadOnlyModel model;
         private IController controller;
 
-        public EnvironmentMenu(IController controller, IReadOnlyModel model) : this()
-        {
-            this.controller = controller;
-            this.model = model;
-        }
         public EnvironmentMenu()
         {
             InitializeComponent();
         }
 
-        public EnvironmentMenu(IController controller, IReadOnlyModel model, BackupEnvironment backupEnvironment) : this(controller, model)
+        public EnvironmentMenu(IController controller, IReadOnlyModel model, BackupEnvironment backupEnvironment) : this()
         {
+            this.controller = controller;
+            this.model = model;
             selected = backupEnvironment;
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
         {
-            // model = ((BetterViewForm)ParentForm).model;
-            // controller = ((BetterViewForm)ParentForm).controller;
-
-            UpdateBackupsList();
+            UpdateBackupList();
 
             if (selected.FullBackups.Count > 0)
             {
@@ -80,15 +74,15 @@ namespace EasySave.Views.BetterViews.Components
 
         private void RestoreButton_Click(object sender, EventArgs e)
         {
-            Backup backupToRestore = (Backup)BackupsList.SelectedItems[0].Tag;
+            Backup backupToRestore = (Backup)BackupList.SelectedItems[0].Tag;
             controller.RestoreBackup(backupToRestore);
             ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             MessageBox.Show("The restoration has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BackupsList_SelectedIndexChanged(object sender, EventArgs e)
+        private void BackupList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (BackupsList.SelectedItems.Count == 1)
+            if (BackupList.SelectedItems.Count == 1)
             {
                 RestoreButton.Enabled = true;
             }
@@ -98,33 +92,25 @@ namespace EasySave.Views.BetterViews.Components
             }
         }
 
-        internal void UpdateBackupsList()
+        internal void UpdateBackupList()
         {
             IReadOnlyList<Backup> backupList = selected.Backups;
-            BackupsList.Items.Clear();
+            BackupList.Items.Clear();
 
-            if (BackupsList.Items.Count == 0)
+            for (int i = 1; backupList.Count >= i; i++)
             {
-                BackupsList.Enabled = false;
-            }
-            else
-            {
-                BackupsList.Enabled = true;
-
-                for (int i = 1; backupList.Count >= i; i++)
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.Tag = backupList[i - 1];
-                    item.Text = i + ":" + backupList[i - 1].ExecutionDate;
-                    BackupsList.Items.Add(item);
-                }
+                ListViewItem item = new ListViewItem(new String[2] {
+                    i + ": " + backupList[i - 1].ExecutionDate,
+                    backupList[i - 1].Type.ToString()
+                });
+                item.Tag = backupList[i - 1];
+                BackupList.Items.Add(item);
             }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             controller.DeleteBackupEnvironment((BackupEnvironment)selected);
-            // EnvironmentList.EnvList.SelectedItems.Clear();
             // Refresh
         }
     }

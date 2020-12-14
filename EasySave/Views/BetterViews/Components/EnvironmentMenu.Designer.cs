@@ -35,8 +35,9 @@ namespace EasySave.Views.BetterViews.Components
             this.DifferentialBackupButton = new System.Windows.Forms.Button();
             this.RestoreButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
-            this.BackupsList = new System.Windows.Forms.ListView();
-            this.BackupsColumn = new System.Windows.Forms.ColumnHeader();
+            this.BackupList = new System.Windows.Forms.ListView();
+            this.BackupColumn = new System.Windows.Forms.ColumnHeader();
+            this.TypeColumn = new System.Windows.Forms.ColumnHeader();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.Controls.Add(this.DifferentialBackupButton, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.RestoreButton, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.DeleteButton, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.BackupsList, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.BackupList, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -124,27 +125,33 @@ namespace EasySave.Views.BetterViews.Components
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
-            // BackupsList
+            // BackupList
             // 
-            this.BackupsList.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BackupsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.BackupsColumn});
-            this.BackupsList.Enabled = false;
-            this.BackupsList.HideSelection = false;
-            this.BackupsList.Location = new System.Drawing.Point(217, 349);
-            this.BackupsList.Name = "BackupsList";
-            this.tableLayoutPanel1.SetRowSpan(this.BackupsList, 2);
-            this.BackupsList.Size = new System.Drawing.Size(268, 302);
-            this.BackupsList.TabIndex = 5;
-            this.BackupsList.UseCompatibleStateImageBehavior = false;
-            this.BackupsList.View = System.Windows.Forms.View.Details;
-            this.BackupsList.SelectedIndexChanged += new System.EventHandler(this.BackupsList_SelectedIndexChanged);
+            this.BackupList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.BackupColumn,
+            this.TypeColumn});
+            this.BackupList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BackupList.FullRowSelect = true;
+            this.BackupList.HideSelection = false;
+            this.BackupList.Location = new System.Drawing.Point(165, 349);
+            this.BackupList.Name = "BackupList";
+            this.tableLayoutPanel1.SetRowSpan(this.BackupList, 2);
+            this.BackupList.Size = new System.Drawing.Size(373, 302);
+            this.BackupList.TabIndex = 5;
+            this.BackupList.UseCompatibleStateImageBehavior = false;
+            this.BackupList.View = System.Windows.Forms.View.Details;
+            this.BackupList.SelectedIndexChanged += new System.EventHandler(this.BackupList_SelectedIndexChanged);
             // 
-            // BackupsColumn
+            // BackupColumn
             // 
-            this.BackupsColumn.Tag = "";
-            this.BackupsColumn.Text = "Backups";
-            this.BackupsColumn.Width = 150;
+            this.BackupColumn.Tag = "";
+            this.BackupColumn.Text = "Backup";
+            this.BackupColumn.Width = 200;
+            // 
+            // TypeColumn
+            // 
+            this.TypeColumn.Text = "Type";
+            this.TypeColumn.Width = 150;
             // 
             // EnvironmentMenu
             // 
@@ -153,6 +160,7 @@ namespace EasySave.Views.BetterViews.Components
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "EnvironmentMenu";
             this.Size = new System.Drawing.Size(1084, 772);
+            this.Load += new System.EventHandler(this.EnvironmentMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -167,7 +175,8 @@ namespace EasySave.Views.BetterViews.Components
         private System.Windows.Forms.Button DifferentialBackupButton;
         private System.Windows.Forms.Button RestoreButton;
         private System.Windows.Forms.Button DeleteButton;
-        private System.Windows.Forms.ListView BackupsList;
-        private System.Windows.Forms.ColumnHeader BackupsColumn;
+        private System.Windows.Forms.ListView BackupList;
+        private System.Windows.Forms.ColumnHeader BackupColumn;
+        private System.Windows.Forms.ColumnHeader TypeColumn;
     }
 }

@@ -25,10 +25,10 @@ namespace EasySave.Views.BetterViews.Components
         {
             InitializeComponent();
         }
+
         private void CreateEnvironment_Load(object sender, EventArgs e)
         {
-            // model = ((BetterViewForm)ParentForm).model;
-            // controller = ((BetterViewForm)ParentForm).controller;
+            
         }
 
         private void SourceDirectoryExplorer_Click(object sender, EventArgs e)
@@ -59,18 +59,18 @@ namespace EasySave.Views.BetterViews.Components
                 {
                     BackupEnvironment backupEnvironment = new BackupEnvironment(NameTextBox.Text, SourceDirectoryTextBox.Text, DestinationDirectoryTextBox.Text);
                     controller.AddBackupEnvironment(backupEnvironment);
-                    MessageBox.Show("The " + NameTextBox.Text + "envrionment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("The " + NameTextBox.Text + " envrionment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, backupEnvironment));
                     // Refresh
                 }
                 else
                 {
-                    MessageBox.Show("Wrong Information", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Wrong Information!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Wrong Format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong Format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

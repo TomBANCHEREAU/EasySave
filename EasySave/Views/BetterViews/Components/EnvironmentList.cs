@@ -51,9 +51,9 @@ namespace EasySave.Views.BetterViews.Components
 
         private void EnvList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (EnvList.SelectedItems.Count > 0)
+            if (EnvList.SelectedItems.Count == 1)
             {
-                ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, (BackupEnvironment)EnvList.SelectedItems[0].Tag));
+                ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller, model, (BackupEnvironment)EnvList.SelectedItems[0].Tag));
             }
             else
             {
