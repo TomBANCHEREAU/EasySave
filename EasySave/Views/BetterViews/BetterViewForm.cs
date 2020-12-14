@@ -21,14 +21,13 @@ namespace EasySave.Views.BetterViews
             this.model = model;
             this.controller = controller;
             InitializeComponent();
+            MainLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
         }
 
         private void BetterViewForm_Load(object sender, EventArgs e)
         {
 
         }
-
-        internal enum ViewState { DEFAULT_VIEW, CREATE_ENVIRONMENT, ENVIRONMENT_MENU }
 
         internal void SetViewState(UserControl viewState)
         {
@@ -42,7 +41,6 @@ namespace EasySave.Views.BetterViews
             this.DynamicPanel.Location = new System.Drawing.Point(361, 136);
             this.DynamicPanel.Margin = new System.Windows.Forms.Padding(0);
             this.DynamicPanel.Name = "DynamicPanel";
-            this.DynamicPanel.Size = new System.Drawing.Size(1084, 772);
             this.DynamicPanel.TabIndex = 1;
             this.DynamicPanel.ResumeLayout(false);
             this.ResumeLayout(false);

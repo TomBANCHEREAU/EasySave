@@ -37,7 +37,7 @@ namespace EasySave.Views.BetterViews.Components
             {
                 DifferentialBackupButton.Enabled = true;
             }
-            if (selected.Backups.Count == 0)
+            if (selected.Backups.Count == 1)
             {
                 RestoreButton.Enabled = true;
             }
@@ -94,16 +94,22 @@ namespace EasySave.Views.BetterViews.Components
 
         internal void UpdateBackupList()
         {
-            IReadOnlyList<Backup> backupList = selected.Backups;
             BackupList.Items.Clear();
 
-            for (int i = 1; backupList.Count >= i; i++)
+            foreach (Backup backup in selected.Backups)
             {
+                String type = "No backup";
+
+                if (backup.Type == BackupType.FULL)
+                    type = "Full";
+                if (backup.Type == BackupType.DIFFERENTIAL)
+                    type = "Differential";
+
                 ListViewItem item = new ListViewItem(new String[2] {
-                    i + ": " + backupList[i - 1].ExecutionDate,
-                    backupList[i - 1].Type.ToString()
+                    backup.ExecutionDate.ToString(),
+                    type
                 });
-                item.Tag = backupList[i - 1];
+                item.Tag = backup;
                 BackupList.Items.Add(item);
             }
         }

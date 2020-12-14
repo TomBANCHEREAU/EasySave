@@ -45,13 +45,13 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // CreateEnvironmentLabel
             // 
-            this.CreateEnvironmentLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateEnvironmentLabel.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.CreateEnvironmentLabel, 2);
+            this.CreateEnvironmentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CreateEnvironmentLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CreateEnvironmentLabel.Location = new System.Drawing.Point(435, 42);
+            this.CreateEnvironmentLabel.Location = new System.Drawing.Point(357, 0);
             this.CreateEnvironmentLabel.Name = "CreateEnvironmentLabel";
-            this.CreateEnvironmentLabel.Size = new System.Drawing.Size(309, 108);
+            this.CreateEnvironmentLabel.Size = new System.Drawing.Size(466, 193);
             this.CreateEnvironmentLabel.TabIndex = 0;
             this.CreateEnvironmentLabel.Text = "Create a backup environment";
             this.CreateEnvironmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

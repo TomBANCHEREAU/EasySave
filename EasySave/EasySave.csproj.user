@@ -16,6 +16,9 @@
     <Compile Update="Views\BetterViews\Components\EnvironmentMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\BetterViews\Components\RunMultipleBackups.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\BetterViews\Components\Settings.cs">
       <SubType>UserControl</SubType>
     </Compile>

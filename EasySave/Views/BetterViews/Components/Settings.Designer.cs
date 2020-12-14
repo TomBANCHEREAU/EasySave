@@ -32,9 +32,9 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.FRButton = new System.Windows.Forms.Button();
             this.UKButton = new System.Windows.Forms.Button();
-            this.HelpButton = new System.Windows.Forms.Button();
-            this.SettingsButton = new System.Windows.Forms.Button();
             this.RunMutipleBackupsButton = new System.Windows.Forms.Button();
+            this.SettingsButton = new System.Windows.Forms.Button();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,8 +62,9 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // FRButton
             // 
-            this.FRButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FRButton.Location = new System.Drawing.Point(891, 33);
+            this.FRButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.FRButton.Location = new System.Drawing.Point(864, 33);
+            this.FRButton.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.FRButton.Name = "FRButton";
             this.FRButton.Size = new System.Drawing.Size(120, 60);
             this.FRButton.TabIndex = 6;
@@ -72,23 +73,25 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // UKButton
             // 
-            this.UKButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UKButton.Location = new System.Drawing.Point(678, 33);
+            this.UKButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.UKButton.Location = new System.Drawing.Point(704, 33);
+            this.UKButton.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.UKButton.Name = "UKButton";
             this.UKButton.Size = new System.Drawing.Size(120, 60);
             this.UKButton.TabIndex = 5;
             this.UKButton.Text = "English";
             this.UKButton.UseVisualStyleBackColor = true;
             // 
-            // HelpButton
+            // RunMutipleBackupsButton
             // 
-            this.HelpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.HelpButton.Location = new System.Drawing.Point(467, 33);
-            this.HelpButton.Name = "HelpButton";
-            this.HelpButton.Size = new System.Drawing.Size(120, 60);
-            this.HelpButton.TabIndex = 4;
-            this.HelpButton.Text = "Help";
-            this.HelpButton.UseVisualStyleBackColor = true;
+            this.RunMutipleBackupsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RunMutipleBackupsButton.Location = new System.Drawing.Point(45, 33);
+            this.RunMutipleBackupsButton.Name = "RunMutipleBackupsButton";
+            this.RunMutipleBackupsButton.Size = new System.Drawing.Size(120, 60);
+            this.RunMutipleBackupsButton.TabIndex = 8;
+            this.RunMutipleBackupsButton.Text = "Run multiple backups";
+            this.RunMutipleBackupsButton.UseVisualStyleBackColor = true;
+            this.RunMutipleBackupsButton.Click += new System.EventHandler(this.RunMutipleBackupsButton_Click);
             // 
             // SettingsButton
             // 
@@ -100,15 +103,15 @@ namespace EasySave.Views.BetterViews.Components
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
             // 
-            // RunMutipleBackupsButton
+            // HelpButton
             // 
-            this.RunMutipleBackupsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RunMutipleBackupsButton.Location = new System.Drawing.Point(45, 33);
-            this.RunMutipleBackupsButton.Name = "RunMutipleBackupsButton";
-            this.RunMutipleBackupsButton.Size = new System.Drawing.Size(120, 60);
-            this.RunMutipleBackupsButton.TabIndex = 8;
-            this.RunMutipleBackupsButton.Text = "Run multiple backups";
-            this.RunMutipleBackupsButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.HelpButton.Location = new System.Drawing.Point(467, 33);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(120, 60);
+            this.HelpButton.TabIndex = 4;
+            this.HelpButton.Text = "Help";
+            this.HelpButton.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
