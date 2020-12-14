@@ -15,12 +15,14 @@ namespace EasySave.Models
         public String[] BlockingProcesses { get => (blockingProcesses == null) ? new String[0] : blockingProcesses; }
         public String[] HighPriorityExtensions { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
         //public String[] BackupEnvironments { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
+        public long KoLimit { get => kolimit; }
 
 
         private String[] cryptedExtensions;
         private String[] blockingProcesses;
         private String[] highPriorityExtensions;
         private List<BackupEnvironment> backupEnvironments;
+        private long kolimit;
 
         private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
 
@@ -168,6 +170,11 @@ namespace EasySave.Models
         public void SetHighPriorityExtensions(String[] extensions)
         {
             highPriorityExtensions = extensions;
+            SaveSettings();
+        }
+        public void SetKoLimit(long kolimit)
+        {
+            this.kolimit = kolimit;
             SaveSettings();
         }
 

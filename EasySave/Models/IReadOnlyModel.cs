@@ -10,6 +10,7 @@ namespace EasySave.Models
         public String[] CryptedExtensions { get; }
         public String[] BlockingProcesses { get; }
         public String[] HighPriorityExtensions { get; }
+        public long KoLimit { get; }
         public IReadOnlyList<BackupEnvironment> GetBackupEnvironments();
     }
 }

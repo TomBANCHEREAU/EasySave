@@ -58,5 +58,11 @@ namespace EasySave.Controllers
         {
             this.model.SetHighPriorityExtensions(extensions);
         }
+
+        public void SetKoLimit(long kolimit)
+        {
+            this.model.SetKoLimit(kolimit);
+        }
+
     }
 }
