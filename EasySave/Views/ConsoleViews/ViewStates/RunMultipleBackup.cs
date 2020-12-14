@@ -38,14 +38,15 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     {
                         if (choice == 1)
                         {
-                            toExecute.Add(new Backup(backupEnvironment, new FullBackupStrategy())); 
-                            break;
+                            throw new Exception("");
+                            //toExecute.Add(new Backup(backupEnvironment, new FullBackup())); 
+                            //break;
                         }
                         else if (choice == 2)
                         {
                             if (backupEnvironment.FullBackups.Count > 0)
                             {
-                                toExecute.Add(new Backup(backupEnvironment, new DifferentialBackupStrategy(backupEnvironment.FullBackups[backupEnvironment.FullBackups.Count-1])));
+                                //toExecute.Add(new Backup(backupEnvironment, new DifferentialBackupStrategy(backupEnvironment.FullBackups[backupEnvironment.FullBackups.Count-1])));
                                 break;
                             }
                             else

@@ -102,7 +102,7 @@ namespace EasySave.Models
         {
             if (!backups.Contains(backup)) {
                 backups.Add(backup);
-                if (backup.BackupStrategy is FullBackupStrategy)
+                if (backup.Type == BackupType.FULL)
                     this.fullBackups.Add(backup);
                 backup.OnFileTransfer += onFileTransfer;
                 save();
@@ -118,20 +118,19 @@ namespace EasySave.Models
                 {
                     try
                     {
-                        BackupStrategy s;
                         switch (backupData.BackupType)
                         {
-                            case "Full": s = new FullBackupStrategy(); break;
-                            case "Differential":
+                            case BackupType.FULL: 
+                                AddBackup(new FullBackup(this,backupData.DestinationDirectory,DateTime.Parse(backupData.ExecutionDate))); 
+                                break;
+                            case BackupType.DIFFERENTIAL:
                                 Backup fb = fullBackups.Find((backup)=>backup.DestinationDirectory== backupData.FullBackupDirectory);
                                 if (fb == null)
                                     throw new Exception("A full backup cant be found");
-                                s = new DifferentialBackupStrategy(fb); 
-                            break;
+                                AddBackup(new DifferentialBackup(this, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate),fb));
+                                break;
                             default: throw new Exception("Unknowned backup type");
                         }
-                        Backup b = new Backup(this,s, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate));
-                        AddBackup(b);
                     }
                     catch (Exception ex)
                     {
@@ -146,10 +145,10 @@ namespace EasySave.Models
             foreach (Backup backup in backups)
             {
                 Backup.BackupData data = new Backup.BackupData();
-                data.BackupType = backup.BackupStrategy.Name;
+                data.BackupType = backup.Type;
                 data.DestinationDirectory = backup.DestinationDirectory;
                 data.ExecutionDate = backup.ExecutionDate.ToString();
-                data.FullBackupDirectory = backup.BackupStrategy is DifferentialBackupStrategy ? ((DifferentialBackupStrategy)backup.BackupStrategy).FullBackup.DestinationDirectory : "";
+                data.FullBackupDirectory = backup.Type == BackupType.DIFFERENTIAL ? ((DifferentialBackup)backup).FullBackup.DestinationDirectory : "";
                 backupDatas.Add(data);
             }
             File.WriteAllText(Path.Join(this.destinationDirectory, "./backups.json"), JsonConvert.SerializeObject(backupDatas, Formatting.Indented));
@@ -184,14 +183,14 @@ namespace EasySave.Models
                 switch (type)
                 {
                     case BackupType.FULL:
-                        backup = new Backup(this,new FullBackupStrategy());
+                        backup = new FullBackup(this);
                         fullBackups.Add(backup);
                         break;
                     case BackupType.DIFFERENTIAL:
                         if (fullBackups.Count == 0)
                             throw new Exception("No full backup has been done");
                         Backup lastFull = fullBackups[fullBackups.Count - 1];
-                        backup = new Backup(this, new DifferentialBackupStrategy(lastFull));
+                        backup = new DifferentialBackup(this, lastFull);
                         break;
                     default:
                         throw new Exception("");

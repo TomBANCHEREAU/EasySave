@@ -5,17 +5,24 @@ using System.Text;
 
 namespace EasySave.Models
 {
-    public class DifferentialBackupStrategy : BackupStrategy
+    public class DifferentialBackup : Backup
     {
 
         public readonly Backup FullBackup;
         public String SavedDirectory { get => FullBackup.DestinationDirectory; }
 
-        public DifferentialBackupStrategy(Backup fullBackup) : base("Differential")
+        public DifferentialBackup(BackupEnvironment backupEnvironment,Backup fullBackup) : base(backupEnvironment, BackupType.DIFFERENTIAL)
         {
             FullBackup = fullBackup;
         }
-        protected override void Execute()
+
+
+        internal DifferentialBackup(BackupEnvironment backupEnvironment, String destinationDirectory, DateTime dateTime, Backup fullBackup) : base(backupEnvironment, BackupType.DIFFERENTIAL, destinationDirectory, dateTime)
+        {
+            FullBackup = fullBackup;
+        }
+
+        protected override void RunExecute()
         {
             Directory.CreateDirectory(DestinationDirectory);
             String[] sourceFiles = Directory.GetFiles(SourceDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true });
@@ -43,7 +50,7 @@ namespace EasySave.Models
             File.WriteAllLines(Path.Join(DestinationDirectory, "./.easysave"), deletedFileContent);
         }
 
-        protected override void Restore()
+        protected override void RunRestore()
         {
             FullBackup.Restore();
             Directory.CreateDirectory(DestinationDirectory);

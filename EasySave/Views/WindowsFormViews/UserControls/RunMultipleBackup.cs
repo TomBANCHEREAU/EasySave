@@ -115,10 +115,11 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             List<Backup> backups = new List<Backup>();
             foreach (ListViewItem item in listEnvironments.Items)
             {
-                String type = item.SubItems[1].Text;
+                throw new Exception();
+                /*String type = item.SubItems[1].Text;
                 if (type == "Full" || type == "Complète")
                 {
-                    Backup full = new Backup((BackupEnvironment)item.Tag, new FullBackupStrategy());
+                    Backup full = new Backup((BackupEnvironment)item.Tag, new FullBackup());
                     ((BackupEnvironment)item.Tag).AddBackup(full);
                     backups.Add(full);
                 }
@@ -128,14 +129,14 @@ namespace EasySave.Views.WindowsFormViews.UserControls
                     Backup differential = new Backup((BackupEnvironment)item.Tag, backupStrategy);
                     ((BackupEnvironment)item.Tag).AddBackup(differential);
                     backups.Add(differential);
-                }
+                }*/
             }
             try
             {
                 throw new Exception();
                 //GraphicalView.Controller.RunMultipleBackup(backups);
-                MessageBox.Show(Resources.mbRunMultipleBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
+                /*MessageBox.Show(Resources.mbRunMultipleBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);*/
             }
             catch
             {

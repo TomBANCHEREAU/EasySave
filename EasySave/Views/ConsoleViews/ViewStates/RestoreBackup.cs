@@ -55,7 +55,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                         Console.WriteLine("0. Return to the menu");
                         for (int i = 1; backupEnvironmentList[choiceEnvironment - 1].Backups.Count >= i; i++)
                         {
-                            Console.WriteLine(i + ". " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].ExecutionDate + "\t| " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].BackupStrategy.Name);
+                            Console.WriteLine(i + ". " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].ExecutionDate + "\t| " + backupEnvironmentList[choiceEnvironment - 1].Backups[i - 1].Type);
                         }
 
                         // User chooses a backup
