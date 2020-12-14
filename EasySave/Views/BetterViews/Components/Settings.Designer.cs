@@ -112,6 +112,7 @@ namespace EasySave.Views.BetterViews.Components
             this.HelpButton.TabIndex = 4;
             this.HelpButton.Text = "Help";
             this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // Settings
             // 
