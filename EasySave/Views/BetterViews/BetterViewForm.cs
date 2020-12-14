@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Views.BetterViews.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,35 +30,27 @@ namespace EasySave.Views.BetterViews
 
         internal enum ViewState { DEFAULT_VIEW, CREATE_ENVIRONMENT, ENVIRONMENT_MENU }
 
-        internal void SetViewState(ViewState viewState)
+        internal void SetViewState(UserControl viewState)
         {
-            foreach (var item in DynamicPanel.Controls)
-            {
-                if (item is UserControl)
-                {
-                    ((UserControl)item).Hide();
-                }
-            }
+            this.MainLayout.Controls.Remove(this.DynamicPanel);
+            this.DynamicPanel = viewState;
 
-            switch (viewState)
-            {
-                case ViewState.DEFAULT_VIEW:
-                    DefaultView.Show();
-                    break;
-                case ViewState.CREATE_ENVIRONMENT:
-                    CreateEnvironment.Show();
-                    break;
-                case ViewState.ENVIRONMENT_MENU:
-                    EnvironmentMenu.Show();
-                    break;
-                default:
-                    break;
-            }
+            this.DynamicPanel.SuspendLayout();
+            this.SuspendLayout();
+            this.MainLayout.Controls.Add(this.DynamicPanel, 1, 1);
+            this.DynamicPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DynamicPanel.Location = new System.Drawing.Point(361, 136);
+            this.DynamicPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.DynamicPanel.Name = "DynamicPanel";
+            this.DynamicPanel.Size = new System.Drawing.Size(1084, 772);
+            this.DynamicPanel.TabIndex = 1;
+            this.DynamicPanel.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         private void Title_Click(object sender, EventArgs e)
         {
-            SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+            SetViewState(new DefaultView(controller,model));
         }
     }
 }

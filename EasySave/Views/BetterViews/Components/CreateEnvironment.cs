@@ -15,11 +15,16 @@ namespace EasySave.Views.BetterViews.Components
         private IReadOnlyModel model;
         private IController controller;
 
+        public CreateEnvironment(IController controller, IReadOnlyModel model) : this()
+        {
+            this.controller = controller;
+            this.model = model;
+        }
+
         public CreateEnvironment()
         {
             InitializeComponent();
         }
-
         private void CreateEnvironment_Load(object sender, EventArgs e)
         {
             // model = ((BetterViewForm)ParentForm).model;
@@ -55,7 +60,7 @@ namespace EasySave.Views.BetterViews.Components
                     BackupEnvironment backupEnvironment = new BackupEnvironment(NameTextBox.Text, SourceDirectoryTextBox.Text, DestinationDirectoryTextBox.Text);
                     controller.AddBackupEnvironment(backupEnvironment);
                     MessageBox.Show("The " + NameTextBox.Text + "envrionment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+                    ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, backupEnvironment));
                     // Refresh
                 }
                 else

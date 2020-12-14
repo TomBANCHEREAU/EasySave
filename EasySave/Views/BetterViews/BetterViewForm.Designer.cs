@@ -33,10 +33,7 @@ namespace EasySave.Views.BetterViews
             this.Title = new System.Windows.Forms.Label();
             this.EnvironmentList = new EasySave.Views.BetterViews.Components.EnvironmentList();
             this.Settings = new EasySave.Views.BetterViews.Components.Settings();
-            this.DynamicPanel = new System.Windows.Forms.Panel();
-            this.EnvironmentMenu = new EasySave.Views.BetterViews.Components.EnvironmentMenu();
-            this.DefaultView = new EasySave.Views.BetterViews.Components.DefaultView();
-            this.CreateEnvironment = new EasySave.Views.BetterViews.Components.CreateEnvironment();
+            this.DynamicPanel = new EasySave.Views.BetterViews.Components.DefaultView();
             this.MainLayout.SuspendLayout();
             this.DynamicPanel.SuspendLayout();
             this.SuspendLayout();
@@ -97,43 +94,12 @@ namespace EasySave.Views.BetterViews
             // 
             // DynamicPanel
             // 
-            this.DynamicPanel.Controls.Add(this.DefaultView);
-            this.DynamicPanel.Controls.Add(this.CreateEnvironment);
-            this.DynamicPanel.Controls.Add(this.EnvironmentMenu);
             this.DynamicPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DynamicPanel.Location = new System.Drawing.Point(361, 136);
             this.DynamicPanel.Margin = new System.Windows.Forms.Padding(0);
             this.DynamicPanel.Name = "DynamicPanel";
             this.DynamicPanel.Size = new System.Drawing.Size(1084, 772);
             this.DynamicPanel.TabIndex = 1;
-            // 
-            // EnvironmentMenu
-            // 
-            this.EnvironmentMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EnvironmentMenu.Location = new System.Drawing.Point(0, 0);
-            this.EnvironmentMenu.Margin = new System.Windows.Forms.Padding(5);
-            this.EnvironmentMenu.Name = "EnvironmentMenu";
-            this.EnvironmentMenu.Size = new System.Drawing.Size(1084, 772);
-            this.EnvironmentMenu.TabIndex = 1;
-            // 
-            // DefaultView
-            // 
-            this.DefaultView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DefaultView.Location = new System.Drawing.Point(0, 0);
-            this.DefaultView.Margin = new System.Windows.Forms.Padding(5);
-            this.DefaultView.Name = "DefaultView";
-            this.DefaultView.Size = new System.Drawing.Size(1084, 772);
-            this.DefaultView.TabIndex = 2;
-            // 
-            // CreateEnvironment
-            // 
-            this.CreateEnvironment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CreateEnvironment.Location = new System.Drawing.Point(0, 0);
-            this.CreateEnvironment.Margin = new System.Windows.Forms.Padding(5);
-            this.CreateEnvironment.Name = "CreateEnvironment";
-            this.CreateEnvironment.Size = new System.Drawing.Size(1084, 772);
-            this.CreateEnvironment.TabIndex = 0;
-            this.CreateEnvironment.Visible = false;
             // 
             // BetterViewForm
             // 
@@ -160,9 +126,6 @@ namespace EasySave.Views.BetterViews
         private System.Windows.Forms.Label Title;
         private Components.EnvironmentList EnvironmentList;
         private Components.Settings Settings;
-        private System.Windows.Forms.Panel DynamicPanel;
-        private Components.CreateEnvironment CreateEnvironment;
-        private Components.EnvironmentMenu EnvironmentMenu;
-        private Components.DefaultView DefaultView;
+        private System.Windows.Forms.UserControl DynamicPanel;
     }
 }

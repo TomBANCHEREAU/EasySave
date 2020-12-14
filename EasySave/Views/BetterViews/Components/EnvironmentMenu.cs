@@ -17,9 +17,19 @@ namespace EasySave.Views.BetterViews.Components
         private IReadOnlyModel model;
         private IController controller;
 
+        public EnvironmentMenu(IController controller, IReadOnlyModel model) : this()
+        {
+            this.controller = controller;
+            this.model = model;
+        }
         public EnvironmentMenu()
         {
             InitializeComponent();
+        }
+
+        public EnvironmentMenu(IController controller, IReadOnlyModel model, BackupEnvironment backupEnvironment) : this(controller, model)
+        {
+            selected = backupEnvironment;
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
@@ -47,7 +57,7 @@ namespace EasySave.Views.BetterViews.Components
             {
                 controller.RunBackup(fullbackup);
                 MessageBox.Show("The full backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+                ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller,model));
             }
             catch
             {
@@ -65,7 +75,7 @@ namespace EasySave.Views.BetterViews.Components
             {
                 controller.RunBackup(differentialbackup);
                 MessageBox.Show("The differential backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+                ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             }
             catch
             {
@@ -77,7 +87,7 @@ namespace EasySave.Views.BetterViews.Components
         {
             Backup backupToRestore = (Backup)BackupsList.SelectedItems[0].Tag;
             controller.RestoreBackup(backupToRestore);
-            ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+            ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             MessageBox.Show("The restoration has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

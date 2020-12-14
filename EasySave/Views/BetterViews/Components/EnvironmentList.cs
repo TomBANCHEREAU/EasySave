@@ -46,18 +46,18 @@ namespace EasySave.Views.BetterViews.Components
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.CREATE_ENVIRONMENT);
+            ((BetterViewForm)ParentForm).SetViewState(new CreateEnvironment(controller,model));
         }
 
         private void EnvList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (EnvList.SelectedItems.Count > 0)
             {
-                ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.ENVIRONMENT_MENU);
+                ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, (BackupEnvironment)EnvList.SelectedItems[0].Tag));
             }
             else
             {
-                ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+                ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             }
         }
 
