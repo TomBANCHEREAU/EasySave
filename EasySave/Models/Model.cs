@@ -15,14 +15,14 @@ namespace EasySave.Models
         public String[] BlockingProcesses { get => (blockingProcesses == null) ? new String[0] : blockingProcesses; }
         public String[] HighPriorityExtensions { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
         //public String[] BackupEnvironments { get => (highPriorityExtensions == null) ? new String[0] : highPriorityExtensions; }
-        public long KoLimit { get => kolimit; }
+        public long KoLimit { get => koLimit; }
 
 
         private String[] cryptedExtensions;
         private String[] blockingProcesses;
         private String[] highPriorityExtensions;
         private List<BackupEnvironment> backupEnvironments;
-        private long kolimit;
+        private long koLimit;
 
         private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
 
@@ -106,6 +106,7 @@ namespace EasySave.Models
                         cryptedExtensions = settingsJSON.CryptedExtensions;
                         blockingProcesses = settingsJSON.BlockingProcesses;
                         highPriorityExtensions = settingsJSON.HighPriorityExtensions;
+                        koLimit = settingsJSON.KoLimit;
                         foreach (SettingsJSON.SettingsEnvironmentJSON backupEnvironments in settingsJSON.Environments)
                         {
                             try
@@ -136,6 +137,7 @@ namespace EasySave.Models
                 settings.CryptedExtensions = CryptedExtensions;
                 settings.BlockingProcesses = BlockingProcesses;
                 settings.HighPriorityExtensions = HighPriorityExtensions;
+                settings.KoLimit = KoLimit;
                 List<SettingsJSON.SettingsEnvironmentJSON> backupEnvironmentDatas = new List<SettingsJSON.SettingsEnvironmentJSON>();
                 foreach (BackupEnvironment backupEnvironment in backupEnvironments)
                 {
@@ -172,9 +174,9 @@ namespace EasySave.Models
             highPriorityExtensions = extensions;
             SaveSettings();
         }
-        public void SetKoLimit(long kolimit)
+        public void SetKoLimit(long koLimit)
         {
-            this.kolimit = kolimit;
+            this.koLimit = koLimit;
             SaveSettings();
         }
 
@@ -183,6 +185,7 @@ namespace EasySave.Models
             public String[] CryptedExtensions;
             public String[] BlockingProcesses;
             public String[] HighPriorityExtensions;
+            public long KoLimit;
             public SettingsEnvironmentJSON[] Environments;
             public class SettingsEnvironmentJSON
             {
