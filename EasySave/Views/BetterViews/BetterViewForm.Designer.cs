@@ -34,9 +34,9 @@ namespace EasySave.Views.BetterViews
             this.EnvironmentList = new EasySave.Views.BetterViews.Components.EnvironmentList();
             this.Settings = new EasySave.Views.BetterViews.Components.Settings();
             this.DynamicPanel = new System.Windows.Forms.Panel();
+            this.EnvironmentMenu = new EasySave.Views.BetterViews.Components.EnvironmentMenu();
             this.DefaultView = new EasySave.Views.BetterViews.Components.DefaultView();
             this.CreateEnvironment = new EasySave.Views.BetterViews.Components.CreateEnvironment();
-            this.EnvironmentMenu = new EasySave.Views.BetterViews.Components.EnvironmentMenu();
             this.MainLayout.SuspendLayout();
             this.DynamicPanel.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +52,7 @@ namespace EasySave.Views.BetterViews
             this.MainLayout.Controls.Add(this.DynamicPanel, 1, 1);
             this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainLayout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MainLayout.Margin = new System.Windows.Forms.Padding(5);
             this.MainLayout.Name = "MainLayout";
             this.MainLayout.RowCount = 2;
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -107,6 +107,15 @@ namespace EasySave.Views.BetterViews
             this.DynamicPanel.Size = new System.Drawing.Size(1084, 772);
             this.DynamicPanel.TabIndex = 1;
             // 
+            // EnvironmentMenu
+            // 
+            this.EnvironmentMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EnvironmentMenu.Location = new System.Drawing.Point(0, 0);
+            this.EnvironmentMenu.Margin = new System.Windows.Forms.Padding(5);
+            this.EnvironmentMenu.Name = "EnvironmentMenu";
+            this.EnvironmentMenu.Size = new System.Drawing.Size(1084, 772);
+            this.EnvironmentMenu.TabIndex = 1;
+            // 
             // DefaultView
             // 
             this.DefaultView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -125,16 +134,6 @@ namespace EasySave.Views.BetterViews
             this.CreateEnvironment.Size = new System.Drawing.Size(1084, 772);
             this.CreateEnvironment.TabIndex = 0;
             this.CreateEnvironment.Visible = false;
-            // 
-            // EnvironmentMenu
-            // 
-            this.EnvironmentMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EnvironmentMenu.Location = new System.Drawing.Point(0, 0);
-            this.EnvironmentMenu.Margin = new System.Windows.Forms.Padding(5);
-            this.EnvironmentMenu.Name = "EnvironmentMenu";
-            this.EnvironmentMenu.Size = new System.Drawing.Size(1084, 772);
-            this.EnvironmentMenu.TabIndex = 1;
-            this.EnvironmentMenu.Visible = false;
             // 
             // BetterViewForm
             // 

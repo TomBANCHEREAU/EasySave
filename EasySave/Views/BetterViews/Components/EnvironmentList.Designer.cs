@@ -133,7 +133,7 @@ namespace EasySave.Views.BetterViews.Components
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView EnvList;
+        public System.Windows.Forms.ListView EnvList;
         private System.Windows.Forms.ColumnHeader EnvName;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Label SearchLabel;

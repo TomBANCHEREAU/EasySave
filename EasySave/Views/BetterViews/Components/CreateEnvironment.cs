@@ -56,6 +56,7 @@ namespace EasySave.Views.BetterViews.Components
                     controller.AddBackupEnvironment(backupEnvironment);
                     MessageBox.Show("The " + NameTextBox.Text + "envrionment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((BetterViewForm)ParentForm).SetViewState(BetterViewForm.ViewState.DEFAULT_VIEW);
+                    // Refresh
                 }
                 else
                 {
