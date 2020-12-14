@@ -40,6 +40,8 @@ namespace EasySave.Models
         }
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
         {
+            if (BackupEnvironments.FindAll((be) => be.Name == backupEnvironment.Name).Count > 0)
+                throw new ArgumentException("This environment name is already used");
             if (!BackupEnvironments.Contains(backupEnvironment))
             {
                 BackupEnvironments.Add(backupEnvironment);
