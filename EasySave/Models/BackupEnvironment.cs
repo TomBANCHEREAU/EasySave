@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -99,10 +100,8 @@ namespace EasySave.Models
         }
         internal void AddBackup(Backup backup)
         {
-            if (backup.BackupEnvironment != this)
-                throw new ArgumentException("A backup cannot be added to another backup environment");
-            if (!this.backups.Contains(backup)) {
-                this.backups.Add(backup);
+            if (!backups.Contains(backup)) {
+                backups.Add(backup);
                 if (backup.BackupStrategy is FullBackupStrategy)
                     this.fullBackups.Add(backup);
                 backup.OnFileTransfer += onFileTransfer;
@@ -170,10 +169,34 @@ namespace EasySave.Models
             }
         }
 
-        internal void Execute(Backup backup)
+        internal Backup RunBackup(BackupType type)
         {
             lock (this)
             {
+                if (IsRunning)
+                    throw new Exception("A backup is already running on this environment");
+                foreach (String processName in model.BlockingProcesses)
+                {
+                    if (Process.GetProcessesByName(processName).Length != 0)
+                        throw new Exception();
+                }
+                Backup backup;
+                switch (type)
+                {
+                    case BackupType.FULL:
+                        backup = new Backup(this,new FullBackupStrategy());
+                        fullBackups.Add(backup);
+                        break;
+                    case BackupType.DIFFERENTIAL:
+                        if (fullBackups.Count == 0)
+                            throw new Exception("No full backup has been done");
+                        Backup lastFull = fullBackups[fullBackups.Count - 1];
+                        backup = new Backup(this, new DifferentialBackupStrategy(lastFull));
+                        break;
+                    default:
+                        throw new Exception("");
+                }
+                AddBackup(backup);
                 if (backups.Contains(backup) && !IsRunning)
                 {
                     isRunning = true;
@@ -182,6 +205,7 @@ namespace EasySave.Models
                     save();
                     isRunning = false;
                 }
+                return backup;
             }
         }
     }

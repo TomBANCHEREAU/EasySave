@@ -15,7 +15,7 @@ namespace EasySave.Models
         public BackupStrategy BackupStrategy { get => backupStrategy; }
 
 
-        public Backup(BackupEnvironment backupEnvironment,BackupStrategy backupStrategy)
+        internal Backup(BackupEnvironment backupEnvironment,BackupStrategy backupStrategy)
         {
             this.backupEnvironment = backupEnvironment;
             this.backupStrategy = backupStrategy;

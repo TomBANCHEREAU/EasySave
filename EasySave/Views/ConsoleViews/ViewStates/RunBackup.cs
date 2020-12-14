@@ -66,7 +66,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
 
                                     // Run a full backup
                                     case 1: 
-                                        controller.RunBackup(new Backup(environment, new FullBackupStrategy()));
+                                        controller.RunBackup(environment,BackupType.FULL);
                                     
                                         Console.Clear();
                                         Console.WriteLine("The full backup has been done");
@@ -77,8 +77,7 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                                     case 2:
                                         if (environment.FullBackups.Count > 0)
                                         {
-                                            Backup backup = new Backup(environment, new DifferentialBackupStrategy(environment.FullBackups[environment.FullBackups.Count - 1]));
-                                            controller.RunBackup(backup);
+                                            controller.RunBackup(environment, BackupType.DIFFERENTIAL);
                                         
                                             Console.Clear();
                                             Console.WriteLine("The differential backup has been done");

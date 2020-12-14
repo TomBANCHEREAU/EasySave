@@ -58,9 +58,11 @@ namespace EasySave.Views.ConsoleViews.ViewStates
                     }
                 }
             }
+
             foreach (Backup backup in toExecute)
             {
-                controller.RunBackup(backup);
+                throw new Exception();
+                //controller.RunBackup(backup);
             }
             return new MainMenu();
         }

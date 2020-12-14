@@ -44,10 +44,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
         {
             if (radioButton1.Checked)
             { 
-                Backup fullbackup = new Backup(selected, new FullBackupStrategy());
                 try
                 {
-                    GraphicalView.Controller.RunBackup(fullbackup);
+                    GraphicalView.Controller.RunBackup(selected,BackupType.FULL);
                     MessageBox.Show(Resources.mbFullBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
                 }
@@ -60,12 +59,9 @@ namespace EasySave.Views.WindowsFormViews.UserControls
             {
                 if (selected.FullBackups.Count > 0)
                 {
-                    Backup fullbackup = selected.FullBackups[selected.FullBackups.Count - 1];
-                    BackupStrategy strategy = new DifferentialBackupStrategy(fullbackup);
-                    Backup differentialbackup = new Backup(selected, strategy);
                     try
                     {
-                        GraphicalView.Controller.RunBackup(differentialbackup);
+                        GraphicalView.Controller.RunBackup(selected,BackupType.DIFFERENTIAL);
                         MessageBox.Show(Resources.mbDifferentialBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GraphicalView.MainView.setViewState(GraphicalView.MainView.Main);
                     }

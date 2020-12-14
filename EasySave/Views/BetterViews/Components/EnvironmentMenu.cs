@@ -51,11 +51,10 @@ namespace EasySave.Views.BetterViews.Components
 
         private void FullBackupButton_Click(object sender, EventArgs e)
         {
-            Backup fullbackup = new Backup(selected, new FullBackupStrategy());
 
             try
             {
-                controller.RunBackup(fullbackup);
+                controller.RunBackup(selected,BackupType.FULL);
                 MessageBox.Show("The full backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller,model));
             }
@@ -67,13 +66,9 @@ namespace EasySave.Views.BetterViews.Components
 
         private void DifferentialBackupButton_Click(object sender, EventArgs e)
         {
-            Backup fullbackup = selected.FullBackups[selected.FullBackups.Count - 1];
-            BackupStrategy strategy = new DifferentialBackupStrategy(fullbackup);
-            Backup differentialbackup = new Backup(selected, strategy);
-
             try
             {
-                controller.RunBackup(differentialbackup);
+                controller.RunBackup(selected,BackupType.DIFFERENTIAL);
                 MessageBox.Show("The differential backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             }

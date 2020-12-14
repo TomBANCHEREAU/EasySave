@@ -30,8 +30,7 @@ namespace UnitTest
             string text = "First Text";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
+            Backup fullBackup = model.RunBackup(backupEnvironment,BackupType.FULL);
             File.Delete(file);
             Assert.AreNotEqual(text,File.ReadAllText(Path.Join(fullBackup.DestinationDirectory, "text.txt")));
             Assert.AreEqual(text.Length,File.ReadAllText(Path.Join(fullBackup.DestinationDirectory, "text.txt")).Length);

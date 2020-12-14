@@ -10,8 +10,7 @@ namespace EasySave.Models
         public void Stop();
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment);
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
-        public void RunBackup(Backup backup);
-        public void RunMultipleBackup(List<Backup> backups);
+        public Backup RunBackup(BackupEnvironment backupEnvironment,BackupType type);
         public void RestoreBackup(Backup backup);
         public void SetCryptedExtensions(String[] extensions);
         public void SetBlockingProcesses(String[] processes);

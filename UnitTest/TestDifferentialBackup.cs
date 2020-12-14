@@ -34,10 +34,8 @@ namespace UnitTest
             string text = "First Text";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
-            Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
-            model.RunBackup(differentialBackup);
+            model.RunBackup(backupEnvironment,BackupType.FULL);
+            Backup differentialBackup = model.RunBackup(backupEnvironment, BackupType.DIFFERENTIAL);
             Assert.IsFalse(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
@@ -53,11 +51,9 @@ namespace UnitTest
             string text2 = "First Text 2";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
+            model.RunBackup(backupEnvironment,BackupType.FULL);
             File.WriteAllText(file, text2);
-            Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
-            model.RunBackup(differentialBackup);
+            Backup differentialBackup = model.RunBackup(backupEnvironment,BackupType.DIFFERENTIAL);
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
@@ -67,13 +63,11 @@ namespace UnitTest
         [TestMethod]
         public void FileAdded()
         {
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
+            model.RunBackup(backupEnvironment,BackupType.FULL);
             string text = "First Text";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
-            model.RunBackup(differentialBackup);
+            Backup differentialBackup = model.RunBackup(backupEnvironment,BackupType.DIFFERENTIAL);
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
@@ -86,11 +80,9 @@ namespace UnitTest
             string text = "First Text";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup fullBackup = new Backup(backupEnvironment, new FullBackupStrategy());
-            model.RunBackup(fullBackup);
+            model.RunBackup(backupEnvironment,BackupType.FULL);
             File.Delete(file);
-            Backup differentialBackup = new Backup(backupEnvironment, new DifferentialBackupStrategy(fullBackup));
-            model.RunBackup(differentialBackup);
+            Backup differentialBackup = model.RunBackup(backupEnvironment,BackupType.DIFFERENTIAL);
             Assert.IsFalse(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
             Assert.IsTrue(File.ReadAllText(Path.Join(differentialBackup.DestinationDirectory, ".easysave")).Contains("text.txt"));
 

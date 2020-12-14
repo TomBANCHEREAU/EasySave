@@ -38,9 +38,9 @@ namespace EasySave.Controllers
             this.model.RestoreBackup(backup);
         }
 
-        public void RunBackup(Backup backup)
+        public void RunBackup(BackupEnvironment backupEnvironment,BackupType type)
         {
-            this.model.RunBackup(backup);
+            this.model.RunBackup(backupEnvironment,type);
         }
 
         public void SetCryptedExtensions(String[] extensions)
@@ -48,10 +48,6 @@ namespace EasySave.Controllers
             this.model.SetCryptedExtensions(extensions);
         }
 
-        public void RunMultipleBackup(List<Backup> backups)
-        {
-            this.model.RunMultipleBackup(backups);
-        }
 
         public void SetBlockingProcesses(String[] processes)
         {

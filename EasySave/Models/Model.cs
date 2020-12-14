@@ -84,25 +84,9 @@ namespace EasySave.Models
 
         }
 
-        public void RunBackup(Backup backup)
+        public Backup RunBackup(BackupEnvironment backupEnvironment, BackupType type)
         {
-            if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
-                throw new ArgumentException("The backup environment need to be registered before running a backup");
-            foreach (String processName in BlockingProcesses)
-            {
-                if (Process.GetProcessesByName(processName).Length!=0)
-                    throw new Exception();
-            }
-            backup.BackupEnvironment.AddBackup(backup);
-            backup.BackupEnvironment.Execute(backup);
-        }
-
-        public void RunMultipleBackup(List<Backup> backups)
-        {
-            foreach (Backup backup in backups)
-            {
-                RunBackup(backup);
-            }
+            return backupEnvironment.RunBackup(type);
         }
 
         public void Start()
