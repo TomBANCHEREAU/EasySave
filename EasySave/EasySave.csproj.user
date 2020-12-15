@@ -28,29 +28,5 @@
     <Compile Update="Views\BetterViews\Components\StartAndStop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\BackupEnvironmentForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\BusinessSoftwaresSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\ExtensionsSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\Home.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\MainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\RestoreBackup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\RunBackup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\WindowsFormViews\UserControls\RunMultipleBackup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 </Project>
