@@ -41,7 +41,7 @@ namespace EasySave.Views.BetterViews.Components
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            ((BetterViewForm)ParentForm).SetViewState(new SettingstMenu(controller, model));
+            ((BetterViewForm)ParentForm).SetViewState(new SettingsMenu(controller, model));
         }
     }
 }

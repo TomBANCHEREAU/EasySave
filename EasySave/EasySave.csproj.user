@@ -25,6 +25,9 @@
     <Compile Update="Views\BetterViews\Components\SettingsMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\BetterViews\Components\StartAndStop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\WindowsFormViews\UserControls\BackupEnvironmentForm.cs">
       <SubType>UserControl</SubType>
     </Compile>

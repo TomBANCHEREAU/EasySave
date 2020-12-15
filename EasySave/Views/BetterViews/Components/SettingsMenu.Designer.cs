@@ -1,7 +1,7 @@
 ﻿
 namespace EasySave.Views.BetterViews.Components
 {
-    partial class SettingstMenu
+    partial class SettingsMenu
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -21,368 +21,446 @@ namespace EasySave.Views.BetterViews.Components
             base.Dispose(disposing);
         }
 
+        #region Code généré par le Concepteur de composants
+
+        /// <summary> 
+        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas 
+        /// le contenu de cette méthode avec l'éditeur de code.
+        /// </summary>
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.add = new System.Windows.Forms.Button();
-            this.remove = new System.Windows.Forms.Button();
-            this.addPrio = new System.Windows.Forms.Button();
-            this.removePrio = new System.Windows.Forms.Button();
-            this.inputPrio = new System.Windows.Forms.TextBox();
-            this.input = new System.Windows.Forms.TextBox();
-            this.extensionsList = new System.Windows.Forms.ListView();
-            this.extensionsListPrio = new System.Windows.Forms.ListView();
-            this.processesList = new System.Windows.Forms.ListView();
-            this.addbusiness = new System.Windows.Forms.Button();
-            this.removebusiness = new System.Windows.Forms.Button();
-            this.inputbusiness = new System.Windows.Forms.TextBox();
-            this.labelextensions = new System.Windows.Forms.Label();
-            this.labelextensionsprio = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ko1000 = new System.Windows.Forms.RadioButton();
-            this.ko100 = new System.Windows.Forms.RadioButton();
-            this.ko500 = new System.Windows.Forms.RadioButton();
-            this.ko10000 = new System.Windows.Forms.RadioButton();
-            this.kochoose = new System.Windows.Forms.RadioButton();
-            this.inputko = new System.Windows.Forms.NumericUpDown();
-            this.validateko = new System.Windows.Forms.Button();
-            this.komax = new System.Windows.Forms.Label();
+            this.CryptLabel = new System.Windows.Forms.Label();
+            this.PriorityLabel = new System.Windows.Forms.Label();
+            this.BusinessSoftwareLabel = new System.Windows.Forms.Label();
+            this.LimitSizeLabel = new System.Windows.Forms.Label();
+            this.CryptInput = new System.Windows.Forms.TextBox();
+            this.PriorityInput = new System.Windows.Forms.TextBox();
+            this.BusinessSoftwareInput = new System.Windows.Forms.TextBox();
+            this.CryptAdd = new System.Windows.Forms.Button();
+            this.CryptRemove = new System.Windows.Forms.Button();
+            this.PriorityAdd = new System.Windows.Forms.Button();
+            this.PriorityRemove = new System.Windows.Forms.Button();
+            this.BusinessSoftwareAdd = new System.Windows.Forms.Button();
+            this.BusinessSoftwareRemove = new System.Windows.Forms.Button();
+            this.LimitSizeConfirm = new System.Windows.Forms.Button();
+            this.CryptListView = new System.Windows.Forms.ListView();
+            this.PriorityListView = new System.Windows.Forms.ListView();
+            this.BusinessSoftwareListView = new System.Windows.Forms.ListView();
+            this.Ko100 = new System.Windows.Forms.RadioButton();
+            this.Ko500 = new System.Windows.Forms.RadioButton();
+            this.Ko1000 = new System.Windows.Forms.RadioButton();
+            this.Ko10000 = new System.Windows.Forms.RadioButton();
+            this.KoMax = new System.Windows.Forms.RadioButton();
+            this.KoInput = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inputko)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KoInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 14;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel1.Controls.Add(this.add, 7, 2);
-            this.tableLayoutPanel1.Controls.Add(this.remove, 7, 3);
-            this.tableLayoutPanel1.Controls.Add(this.addPrio, 9, 2);
-            this.tableLayoutPanel1.Controls.Add(this.removePrio, 9, 3);
-            this.tableLayoutPanel1.Controls.Add(this.inputPrio, 8, 2);
-            this.tableLayoutPanel1.Controls.Add(this.input, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.extensionsList, 6, 3);
-            this.tableLayoutPanel1.Controls.Add(this.extensionsListPrio, 8, 3);
-            this.tableLayoutPanel1.Controls.Add(this.processesList, 10, 3);
-            this.tableLayoutPanel1.Controls.Add(this.addbusiness, 11, 2);
-            this.tableLayoutPanel1.Controls.Add(this.removebusiness, 11, 3);
-            this.tableLayoutPanel1.Controls.Add(this.inputbusiness, 10, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelextensions, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelextensionsprio, 8, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 10, 1);
-            this.tableLayoutPanel1.Controls.Add(this.ko1000, 12, 5);
-            this.tableLayoutPanel1.Controls.Add(this.ko100, 12, 3);
-            this.tableLayoutPanel1.Controls.Add(this.ko500, 12, 4);
-            this.tableLayoutPanel1.Controls.Add(this.ko10000, 12, 6);
-            this.tableLayoutPanel1.Controls.Add(this.kochoose, 12, 7);
-            this.tableLayoutPanel1.Controls.Add(this.inputko, 12, 8);
-            this.tableLayoutPanel1.Controls.Add(this.validateko, 12, 2);
-            this.tableLayoutPanel1.Controls.Add(this.komax, 12, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 12);
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 13;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tableLayoutPanel1.Controls.Add(this.CryptLabel, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityLabel, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.BusinessSoftwareLabel, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LimitSizeLabel, 10, 1);
+            this.tableLayoutPanel1.Controls.Add(this.CryptInput, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityInput, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BusinessSoftwareInput, 7, 2);
+            this.tableLayoutPanel1.Controls.Add(this.CryptAdd, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.CryptRemove, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityAdd, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityRemove, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.BusinessSoftwareAdd, 7, 3);
+            this.tableLayoutPanel1.Controls.Add(this.BusinessSoftwareRemove, 8, 3);
+            this.tableLayoutPanel1.Controls.Add(this.LimitSizeConfirm, 10, 3);
+            this.tableLayoutPanel1.Controls.Add(this.CryptListView, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityListView, 4, 4);
+            this.tableLayoutPanel1.Controls.Add(this.BusinessSoftwareListView, 7, 4);
+            this.tableLayoutPanel1.Controls.Add(this.Ko100, 10, 4);
+            this.tableLayoutPanel1.Controls.Add(this.Ko500, 10, 5);
+            this.tableLayoutPanel1.Controls.Add(this.Ko1000, 10, 6);
+            this.tableLayoutPanel1.Controls.Add(this.Ko10000, 10, 7);
+            this.tableLayoutPanel1.Controls.Add(this.KoMax, 10, 8);
+            this.tableLayoutPanel1.Controls.Add(this.KoInput, 10, 9);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.30769F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.69231F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 289F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(948, 567);
+            this.tableLayoutPanel1.RowCount = 12;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 772);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // add
+            // CryptLabel
             // 
-            this.add.Location = new System.Drawing.Point(203, 97);
-            this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(72, 20);
-            this.add.TabIndex = 6;
-            this.add.Text = "Add";
-            this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            this.CryptLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.CryptLabel, 2);
+            this.CryptLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CryptLabel.Location = new System.Drawing.Point(32, 38);
+            this.CryptLabel.Name = "CryptLabel";
+            this.CryptLabel.Size = new System.Drawing.Size(229, 84);
+            this.CryptLabel.TabIndex = 0;
+            this.CryptLabel.Text = "Choose the extensions of the files that will be encrypted.";
+            this.CryptLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // remove
+            // PriorityLabel
             // 
-            this.remove.Location = new System.Drawing.Point(203, 129);
-            this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(72, 23);
-            this.remove.TabIndex = 7;
-            this.remove.Text = "Remove";
-            this.remove.UseVisualStyleBackColor = true;
+            this.PriorityLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.PriorityLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.PriorityLabel, 2);
+            this.PriorityLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PriorityLabel.Location = new System.Drawing.Point(327, 38);
+            this.PriorityLabel.Name = "PriorityLabel";
+            this.PriorityLabel.Size = new System.Drawing.Size(229, 84);
+            this.PriorityLabel.TabIndex = 1;
+            this.PriorityLabel.Text = "Choose the extensions of the files that will have an high priority.";
+            this.PriorityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // addPrio
+            // BusinessSoftwareLabel
             // 
-            this.addPrio.Location = new System.Drawing.Point(442, 97);
-            this.addPrio.Name = "addPrio";
-            this.addPrio.Size = new System.Drawing.Size(74, 20);
-            this.addPrio.TabIndex = 9;
-            this.addPrio.Text = "Add";
-            this.addPrio.UseVisualStyleBackColor = true;
-            this.addPrio.Click += new System.EventHandler(this.addPrio_Click);
+            this.BusinessSoftwareLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BusinessSoftwareLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.BusinessSoftwareLabel, 2);
+            this.BusinessSoftwareLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BusinessSoftwareLabel.Location = new System.Drawing.Point(623, 38);
+            this.BusinessSoftwareLabel.Name = "BusinessSoftwareLabel";
+            this.BusinessSoftwareLabel.Size = new System.Drawing.Size(227, 112);
+            this.BusinessSoftwareLabel.TabIndex = 2;
+            this.BusinessSoftwareLabel.Text = "Choose the business software that will disable the backup execution if they are d" +
+    "etected";
+            this.BusinessSoftwareLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // removePrio
+            // LimitSizeLabel
             // 
-            this.removePrio.Location = new System.Drawing.Point(442, 129);
-            this.removePrio.Name = "removePrio";
-            this.removePrio.Size = new System.Drawing.Size(74, 23);
-            this.removePrio.TabIndex = 10;
-            this.removePrio.Text = "Remove";
-            this.removePrio.UseVisualStyleBackColor = true;
-            this.removePrio.Click += new System.EventHandler(this.removePrio_Click);
+            this.LimitSizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LimitSizeLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.LimitSizeLabel, 2);
+            this.LimitSizeLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LimitSizeLabel.Location = new System.Drawing.Point(925, 38);
+            this.LimitSizeLabel.Name = "LimitSizeLabel";
+            this.LimitSizeLabel.Size = new System.Drawing.Size(214, 84);
+            this.LimitSizeLabel.TabIndex = 3;
+            this.LimitSizeLabel.Text = "Choose the limit size of files for simultaneous transfert.";
+            this.LimitSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // inputPrio
+            // CryptInput
             // 
-            this.inputPrio.Location = new System.Drawing.Point(281, 97);
-            this.inputPrio.Name = "inputPrio";
-            this.inputPrio.Size = new System.Drawing.Size(100, 23);
-            this.inputPrio.TabIndex = 11;
-            this.inputPrio.TextChanged += new System.EventHandler(this.inputPrio_TextChanged);
+            this.CryptInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.CryptInput, 2);
+            this.CryptInput.Location = new System.Drawing.Point(39, 198);
+            this.CryptInput.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.CryptInput.Name = "CryptInput";
+            this.CryptInput.Size = new System.Drawing.Size(216, 27);
+            this.CryptInput.TabIndex = 4;
             // 
-            // input
+            // PriorityInput
             // 
-            this.input.Location = new System.Drawing.Point(43, 97);
-            this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(100, 23);
-            this.input.TabIndex = 8;
-            this.input.TextChanged += new System.EventHandler(this.input_TextChanged);
+            this.PriorityInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.PriorityInput, 2);
+            this.PriorityInput.Location = new System.Drawing.Point(334, 198);
+            this.PriorityInput.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.PriorityInput.Name = "PriorityInput";
+            this.PriorityInput.Size = new System.Drawing.Size(216, 27);
+            this.PriorityInput.TabIndex = 5;
             // 
-            // extensionsList
+            // BusinessSoftwareInput
             // 
-            this.extensionsList.HideSelection = false;
-            this.extensionsList.Location = new System.Drawing.Point(43, 129);
-            this.extensionsList.Name = "extensionsList";
-            this.tableLayoutPanel1.SetRowSpan(this.extensionsList, 6);
-            this.extensionsList.Size = new System.Drawing.Size(154, 336);
-            this.extensionsList.TabIndex = 0;
-            this.extensionsList.UseCompatibleStateImageBehavior = false;
-            this.extensionsList.SelectedIndexChanged += new System.EventHandler(this.extensionsList_SelectedIndexChanged);
+            this.BusinessSoftwareInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.BusinessSoftwareInput, 2);
+            this.BusinessSoftwareInput.Location = new System.Drawing.Point(629, 198);
+            this.BusinessSoftwareInput.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.BusinessSoftwareInput.Name = "BusinessSoftwareInput";
+            this.BusinessSoftwareInput.Size = new System.Drawing.Size(216, 27);
+            this.BusinessSoftwareInput.TabIndex = 6;
             // 
-            // extensionsListPrio
+            // CryptAdd
             // 
-            this.extensionsListPrio.HideSelection = false;
-            this.extensionsListPrio.Location = new System.Drawing.Point(281, 129);
-            this.extensionsListPrio.Name = "extensionsListPrio";
-            this.tableLayoutPanel1.SetRowSpan(this.extensionsListPrio, 6);
-            this.extensionsListPrio.Size = new System.Drawing.Size(154, 336);
-            this.extensionsListPrio.TabIndex = 1;
-            this.extensionsListPrio.UseCompatibleStateImageBehavior = false;
-            this.extensionsListPrio.SelectedIndexChanged += new System.EventHandler(this.extensionsListPrio_SelectedIndexChanged);
+            this.CryptAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CryptAdd.Location = new System.Drawing.Point(39, 235);
+            this.CryptAdd.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.CryptAdd.Name = "CryptAdd";
+            this.CryptAdd.Size = new System.Drawing.Size(98, 28);
+            this.CryptAdd.TabIndex = 7;
+            this.CryptAdd.Text = "Add";
+            this.CryptAdd.UseVisualStyleBackColor = true;
+            this.CryptAdd.Click += new System.EventHandler(this.CryptAdd_Click);
             // 
-            // processesList
+            // CryptRemove
             // 
-            this.processesList.HideSelection = false;
-            this.processesList.Location = new System.Drawing.Point(523, 129);
-            this.processesList.Name = "processesList";
-            this.tableLayoutPanel1.SetRowSpan(this.processesList, 6);
-            this.processesList.Size = new System.Drawing.Size(153, 336);
-            this.processesList.TabIndex = 2;
-            this.processesList.UseCompatibleStateImageBehavior = false;
-            this.processesList.SelectedIndexChanged += new System.EventHandler(this.businessSoftware_SelectedIndexChanged);
+            this.CryptRemove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CryptRemove.Location = new System.Drawing.Point(157, 235);
+            this.CryptRemove.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.CryptRemove.Name = "CryptRemove";
+            this.CryptRemove.Size = new System.Drawing.Size(98, 28);
+            this.CryptRemove.TabIndex = 8;
+            this.CryptRemove.Text = "Remove";
+            this.CryptRemove.UseVisualStyleBackColor = true;
+            this.CryptRemove.Click += new System.EventHandler(this.CryptRemove_Click);
             // 
-            // addbusiness
+            // PriorityAdd
             // 
-            this.addbusiness.Location = new System.Drawing.Point(682, 96);
-            this.addbusiness.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addbusiness.Name = "addbusiness";
-            this.addbusiness.Size = new System.Drawing.Size(75, 23);
-            this.addbusiness.TabIndex = 12;
-            this.addbusiness.Text = "Add";
-            this.addbusiness.UseVisualStyleBackColor = true;
-            this.addbusiness.Click += new System.EventHandler(this.addBusiness_Click);
+            this.PriorityAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriorityAdd.Location = new System.Drawing.Point(334, 235);
+            this.PriorityAdd.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.PriorityAdd.Name = "PriorityAdd";
+            this.PriorityAdd.Size = new System.Drawing.Size(98, 28);
+            this.PriorityAdd.TabIndex = 9;
+            this.PriorityAdd.Text = "Add";
+            this.PriorityAdd.UseVisualStyleBackColor = true;
+            this.PriorityAdd.Click += new System.EventHandler(this.PriorityAdd_Click);
             // 
-            // removebusiness
+            // PriorityRemove
             // 
-            this.removebusiness.Location = new System.Drawing.Point(682, 128);
-            this.removebusiness.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.removebusiness.Name = "removebusiness";
-            this.removebusiness.Size = new System.Drawing.Size(75, 23);
-            this.removebusiness.TabIndex = 13;
-            this.removebusiness.Text = "Remove";
-            this.removebusiness.UseVisualStyleBackColor = true;
-            this.removebusiness.Click += new System.EventHandler(this.removebusiness_Click);
+            this.PriorityRemove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriorityRemove.Location = new System.Drawing.Point(452, 235);
+            this.PriorityRemove.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.PriorityRemove.Name = "PriorityRemove";
+            this.PriorityRemove.Size = new System.Drawing.Size(98, 28);
+            this.PriorityRemove.TabIndex = 10;
+            this.PriorityRemove.Text = "Remove";
+            this.PriorityRemove.UseVisualStyleBackColor = true;
+            this.PriorityRemove.Click += new System.EventHandler(this.PriorityRemove_Click);
             // 
-            // inputbusiness
+            // BusinessSoftwareAdd
             // 
-            this.inputbusiness.Location = new System.Drawing.Point(523, 96);
-            this.inputbusiness.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.inputbusiness.Name = "inputbusiness";
-            this.inputbusiness.Size = new System.Drawing.Size(100, 23);
-            this.inputbusiness.TabIndex = 14;
+            this.BusinessSoftwareAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BusinessSoftwareAdd.Location = new System.Drawing.Point(629, 235);
+            this.BusinessSoftwareAdd.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.BusinessSoftwareAdd.Name = "BusinessSoftwareAdd";
+            this.BusinessSoftwareAdd.Size = new System.Drawing.Size(98, 28);
+            this.BusinessSoftwareAdd.TabIndex = 11;
+            this.BusinessSoftwareAdd.Text = "Add";
+            this.BusinessSoftwareAdd.UseVisualStyleBackColor = true;
+            this.BusinessSoftwareAdd.Click += new System.EventHandler(this.BusinessSoftwareAdd_Click);
             // 
-            // labelextensions
+            // BusinessSoftwareRemove
             // 
-            this.labelextensions.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelextensions.AutoSize = true;
-            this.labelextensions.Location = new System.Drawing.Point(62, 34);
-            this.labelextensions.Name = "labelextensions";
-            this.labelextensions.Size = new System.Drawing.Size(115, 45);
-            this.labelextensions.TabIndex = 15;
-            this.labelextensions.Text = "All files within these extensions will be encrypted.";
-            this.labelextensions.Click += new System.EventHandler(this.label1_Click);
+            this.BusinessSoftwareRemove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BusinessSoftwareRemove.Location = new System.Drawing.Point(747, 235);
+            this.BusinessSoftwareRemove.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.BusinessSoftwareRemove.Name = "BusinessSoftwareRemove";
+            this.BusinessSoftwareRemove.Size = new System.Drawing.Size(98, 28);
+            this.BusinessSoftwareRemove.TabIndex = 12;
+            this.BusinessSoftwareRemove.Text = "Remove";
+            this.BusinessSoftwareRemove.UseVisualStyleBackColor = true;
+            this.BusinessSoftwareRemove.Click += new System.EventHandler(this.BusinessSoftwareRemove_Click);
             // 
-            // labelextensionsprio
+            // LimitSizeConfirm
             // 
-            this.labelextensionsprio.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelextensionsprio.AutoSize = true;
-            this.labelextensionsprio.Location = new System.Drawing.Point(300, 34);
-            this.labelextensionsprio.Name = "labelextensionsprio";
-            this.labelextensionsprio.Size = new System.Drawing.Size(117, 45);
-            this.labelextensionsprio.TabIndex = 16;
-            this.labelextensionsprio.Text = "All files within these extensions will be encrypted in priority.";
-            this.labelextensionsprio.Click += new System.EventHandler(this.labelextensionsprio_Click);
+            this.tableLayoutPanel1.SetColumnSpan(this.LimitSizeConfirm, 2);
+            this.LimitSizeConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LimitSizeConfirm.Enabled = false;
+            this.LimitSizeConfirm.Location = new System.Drawing.Point(924, 235);
+            this.LimitSizeConfirm.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.LimitSizeConfirm.Name = "LimitSizeConfirm";
+            this.LimitSizeConfirm.Size = new System.Drawing.Size(216, 28);
+            this.LimitSizeConfirm.TabIndex = 13;
+            this.LimitSizeConfirm.Text = "Confirm";
+            this.LimitSizeConfirm.UseVisualStyleBackColor = true;
+            this.LimitSizeConfirm.Click += new System.EventHandler(this.LimitSizeConfirm_Click);
             // 
-            // label2
+            // CryptListView
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(527, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 15);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Define business softwares.";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.tableLayoutPanel1.SetColumnSpan(this.CryptListView, 2);
+            this.CryptListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CryptListView.HideSelection = false;
+            this.CryptListView.Location = new System.Drawing.Point(39, 273);
+            this.CryptListView.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.CryptListView.Name = "CryptListView";
+            this.tableLayoutPanel1.SetRowSpan(this.CryptListView, 7);
+            this.CryptListView.Size = new System.Drawing.Size(216, 295);
+            this.CryptListView.TabIndex = 14;
+            this.CryptListView.UseCompatibleStateImageBehavior = false;
+            this.CryptListView.View = System.Windows.Forms.View.List;
             // 
-            // ko1000
+            // PriorityListView
             // 
-            this.ko1000.AutoSize = true;
-            this.ko1000.Location = new System.Drawing.Point(779, 190);
-            this.ko1000.Name = "ko1000";
-            this.ko1000.Size = new System.Drawing.Size(69, 19);
-            this.ko1000.TabIndex = 19;
-            this.ko1000.TabStop = true;
-            this.ko1000.Text = "1 000 Ko";
-            this.ko1000.UseVisualStyleBackColor = true;
-            this.ko1000.CheckedChanged += new System.EventHandler(this.ko1000_CheckedChanged);
+            this.tableLayoutPanel1.SetColumnSpan(this.PriorityListView, 2);
+            this.PriorityListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriorityListView.HideSelection = false;
+            this.PriorityListView.Location = new System.Drawing.Point(334, 273);
+            this.PriorityListView.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.PriorityListView.Name = "PriorityListView";
+            this.tableLayoutPanel1.SetRowSpan(this.PriorityListView, 7);
+            this.PriorityListView.Size = new System.Drawing.Size(216, 295);
+            this.PriorityListView.TabIndex = 15;
+            this.PriorityListView.UseCompatibleStateImageBehavior = false;
+            this.PriorityListView.View = System.Windows.Forms.View.List;
             // 
-            // ko100
+            // BusinessSoftwareListView
             // 
-            this.ko100.AutoSize = true;
-            this.ko100.Location = new System.Drawing.Point(779, 129);
-            this.ko100.Name = "ko100";
-            this.ko100.Size = new System.Drawing.Size(60, 19);
-            this.ko100.TabIndex = 18;
-            this.ko100.TabStop = true;
-            this.ko100.Text = "100 Ko";
-            this.ko100.UseVisualStyleBackColor = true;
-            this.ko100.CheckedChanged += new System.EventHandler(this.ko100_CheckedChanged);
+            this.tableLayoutPanel1.SetColumnSpan(this.BusinessSoftwareListView, 2);
+            this.BusinessSoftwareListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BusinessSoftwareListView.HideSelection = false;
+            this.BusinessSoftwareListView.Location = new System.Drawing.Point(629, 273);
+            this.BusinessSoftwareListView.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.BusinessSoftwareListView.Name = "BusinessSoftwareListView";
+            this.tableLayoutPanel1.SetRowSpan(this.BusinessSoftwareListView, 7);
+            this.BusinessSoftwareListView.Size = new System.Drawing.Size(216, 295);
+            this.BusinessSoftwareListView.TabIndex = 16;
+            this.BusinessSoftwareListView.UseCompatibleStateImageBehavior = false;
+            this.BusinessSoftwareListView.View = System.Windows.Forms.View.List;
             // 
-            // ko500
+            // Ko100
             // 
-            this.ko500.AutoSize = true;
-            this.ko500.Location = new System.Drawing.Point(779, 158);
-            this.ko500.Name = "ko500";
-            this.ko500.Size = new System.Drawing.Size(60, 19);
-            this.ko500.TabIndex = 0;
-            this.ko500.TabStop = true;
-            this.ko500.Text = "500 Ko";
-            this.ko500.UseVisualStyleBackColor = true;
-            this.ko500.CheckedChanged += new System.EventHandler(this.ko500_CheckedChanged);
+            this.Ko100.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ko100.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.Ko100, 2);
+            this.Ko100.Location = new System.Drawing.Point(994, 275);
+            this.Ko100.Name = "Ko100";
+            this.Ko100.Size = new System.Drawing.Size(76, 24);
+            this.Ko100.TabIndex = 17;
+            this.Ko100.TabStop = true;
+            this.Ko100.Text = "100 Ko";
+            this.Ko100.UseVisualStyleBackColor = true;
             // 
-            // ko10000
+            // Ko500
             // 
-            this.ko10000.AutoSize = true;
-            this.ko10000.Location = new System.Drawing.Point(779, 220);
-            this.ko10000.Name = "ko10000";
-            this.ko10000.Size = new System.Drawing.Size(75, 19);
-            this.ko10000.TabIndex = 20;
-            this.ko10000.TabStop = true;
-            this.ko10000.Text = "10 000 Ko";
-            this.ko10000.UseVisualStyleBackColor = true;
-            this.ko10000.CheckedChanged += new System.EventHandler(this.ko10000_CheckedChanged);
+            this.Ko500.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ko500.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.Ko500, 2);
+            this.Ko500.Location = new System.Drawing.Point(994, 313);
+            this.Ko500.Name = "Ko500";
+            this.Ko500.Size = new System.Drawing.Size(76, 24);
+            this.Ko500.TabIndex = 18;
+            this.Ko500.TabStop = true;
+            this.Ko500.Text = "500 Ko";
+            this.Ko500.UseVisualStyleBackColor = true;
             // 
-            // kochoose
+            // Ko1000
             // 
-            this.kochoose.AutoSize = true;
-            this.kochoose.Location = new System.Drawing.Point(779, 249);
-            this.kochoose.Name = "kochoose";
-            this.kochoose.Size = new System.Drawing.Size(108, 19);
-            this.kochoose.TabIndex = 21;
-            this.kochoose.TabStop = true;
-            this.kochoose.Text = "Choose max Ko";
-            this.kochoose.UseVisualStyleBackColor = true;
-            this.kochoose.CheckedChanged += new System.EventHandler(this.kochoose_CheckedChanged);
+            this.Ko1000.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ko1000.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.Ko1000, 2);
+            this.Ko1000.Location = new System.Drawing.Point(988, 351);
+            this.Ko1000.Name = "Ko1000";
+            this.Ko1000.Size = new System.Drawing.Size(87, 24);
+            this.Ko1000.TabIndex = 19;
+            this.Ko1000.TabStop = true;
+            this.Ko1000.Text = "1.000 Ko";
+            this.Ko1000.UseVisualStyleBackColor = true;
             // 
-            // inputko
+            // Ko10000
             // 
-            this.inputko.Location = new System.Drawing.Point(779, 280);
-            this.inputko.Name = "inputko";
-            this.inputko.Size = new System.Drawing.Size(120, 23);
-            this.inputko.TabIndex = 22;
-            this.inputko.ValueChanged += new System.EventHandler(this.inputko_ValueChanged);
+            this.Ko10000.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ko10000.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.Ko10000, 2);
+            this.Ko10000.Location = new System.Drawing.Point(984, 389);
+            this.Ko10000.Name = "Ko10000";
+            this.Ko10000.Size = new System.Drawing.Size(95, 24);
+            this.Ko10000.TabIndex = 20;
+            this.Ko10000.TabStop = true;
+            this.Ko10000.Text = "10.000 Ko";
+            this.Ko10000.UseVisualStyleBackColor = true;
             // 
-            // validateko
+            // KoMax
             // 
-            this.validateko.Location = new System.Drawing.Point(779, 96);
-            this.validateko.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.validateko.Name = "validateko";
-            this.validateko.Size = new System.Drawing.Size(120, 23);
-            this.validateko.TabIndex = 23;
-            this.validateko.Text = "Validate ko max";
-            this.validateko.UseVisualStyleBackColor = true;
-            this.validateko.Click += new System.EventHandler(this.validateko_Click);
+            this.KoMax.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.KoMax.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.KoMax, 2);
+            this.KoMax.Location = new System.Drawing.Point(957, 427);
+            this.KoMax.Name = "KoMax";
+            this.KoMax.Size = new System.Drawing.Size(149, 24);
+            this.KoMax.TabIndex = 21;
+            this.KoMax.TabStop = true;
+            this.KoMax.Text = "Choose maximum";
+            this.KoMax.UseVisualStyleBackColor = true;
             // 
-            // komax
+            // KoInput
             // 
-            this.komax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.komax.AutoSize = true;
-            this.komax.Location = new System.Drawing.Point(798, 49);
-            this.komax.Name = "komax";
-            this.komax.Size = new System.Drawing.Size(86, 15);
-            this.komax.TabIndex = 24;
-            this.komax.Text = "Define ko max.";
-            this.komax.Click += new System.EventHandler(this.label1_Click);
+            this.KoInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.KoInput, 2);
+            this.KoInput.Enabled = false;
+            this.KoInput.Location = new System.Drawing.Point(924, 463);
+            this.KoInput.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.KoInput.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+            this.KoInput.Name = "KoInput";
+            this.KoInput.Size = new System.Drawing.Size(216, 27);
+            this.KoInput.TabIndex = 22;
             // 
-            // SettingstMenu
+            // numericUpDown1
             // 
+            this.numericUpDown1.Location = new System.Drawing.Point(0, 0);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown1.TabIndex = 22;
+            // 
+            // SettingsMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "SettingstMenu";
-            this.Size = new System.Drawing.Size(948, 579);
-            this.Load += new System.EventHandler(this.SettingstMenu_Load);
+            this.Name = "SettingsMenu";
+            this.Size = new System.Drawing.Size(1182, 772);
+            this.Load += new System.EventHandler(this.SettingsMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inputko)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KoInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
+
+        #endregion
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView extensionsList;
-        private System.Windows.Forms.ListView extensionsListPrio;
-        private System.Windows.Forms.ListView processesList;
-        private System.Windows.Forms.Button add;
-        private System.Windows.Forms.Button remove;
-        private System.Windows.Forms.TextBox input;
-        private System.Windows.Forms.Button addPrio;
-        private System.Windows.Forms.Button removePrio;
-        private System.Windows.Forms.TextBox inputPrio;
-        private System.Windows.Forms.Button addbusiness;
-        private System.Windows.Forms.Button removebusiness;
-        private System.Windows.Forms.TextBox inputbusiness;
-        private System.Windows.Forms.Label labelextensions;
-        private System.Windows.Forms.Label labelextensionsprio;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton ko100;
-        private System.Windows.Forms.RadioButton ko500;
-        private System.Windows.Forms.RadioButton ko1000;
-        private System.Windows.Forms.RadioButton ko10000;
-        private System.Windows.Forms.RadioButton kochoose;
-        private System.Windows.Forms.NumericUpDown inputko;
-        private System.Windows.Forms.Button validateko;
-        private System.Windows.Forms.Label komax;
+        private System.Windows.Forms.Label CryptLabel;
+        private System.Windows.Forms.Label PriorityLabel;
+        private System.Windows.Forms.Label BusinessSoftwareLabel;
+        private System.Windows.Forms.Label LimitSizeLabel;
+        private System.Windows.Forms.TextBox CryptInput;
+        private System.Windows.Forms.TextBox PriorityInput;
+        private System.Windows.Forms.TextBox BusinessSoftwareInput;
+        private System.Windows.Forms.Button CryptAdd;
+        private System.Windows.Forms.Button CryptRemove;
+        private System.Windows.Forms.Button PriorityAdd;
+        private System.Windows.Forms.Button PriorityRemove;
+        private System.Windows.Forms.Button BusinessSoftwareAdd;
+        private System.Windows.Forms.Button BusinessSoftwareRemove;
+        private System.Windows.Forms.Button LimitSizeConfirm;
+        private System.Windows.Forms.ListView CryptListView;
+        private System.Windows.Forms.ListView PriorityListView;
+        private System.Windows.Forms.ListView BusinessSoftwareListView;
+        private System.Windows.Forms.RadioButton Ko100;
+        private System.Windows.Forms.RadioButton Ko500;
+        private System.Windows.Forms.RadioButton Ko1000;
+        private System.Windows.Forms.RadioButton Ko10000;
+        private System.Windows.Forms.RadioButton KoMax;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown KoInput;
     }
 }

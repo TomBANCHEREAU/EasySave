@@ -10,228 +10,140 @@ using System.Windows.Forms;
 
 namespace EasySave.Views.BetterViews.Components
 {
-    public partial class SettingstMenu : UserControl
+    public partial class SettingsMenu : UserControl
     {
-        public List<String> extensions;
-        public List<String> extensionsprio;
-        public List<String> processes;
+        public List<String> CryptExtensionsList;
+        public List<String> PriorityExtensionsList;
+        public List<String> BusinessSoftwareList;
+
         private IReadOnlyModel model;
         private IController controller;
 
-        public SettingstMenu(IController controller, IReadOnlyModel model) : this()
+        public SettingsMenu(IController controller, IReadOnlyModel model) : this()
         {
             this.controller = controller;
             this.model = model;
         }
 
-        public SettingstMenu()
+        public SettingsMenu()
         {
             InitializeComponent();
         }
 
-        private void SettingstMenu_Load(object sender, EventArgs e)
+        private void SettingsMenu_Load(object sender, EventArgs e)
         {
-            loadExtensions();
-            loadExtensionsPrio();
-            loadProcesses();
+            LoadCryptExtensions();
+            LoadPriorityExtensions();
+            LoadBusinessSoftware();
         }
 
-        private void input_TextChanged(object sender, EventArgs e)
+        private void LoadCryptExtensions()
         {
+            CryptExtensionsList = new List<string>(model.CryptedExtensions);
+            CryptListView.Items.Clear();
 
+            foreach (String item in CryptExtensionsList)
+                CryptListView.Items.Add(item);
         }
-       
-        private void loadExtensions()
+
+        private void CryptAdd_Click(object sender, EventArgs e)
         {
-            extensions = new List<string>(model.CryptedExtensions);
-            extensionsList.Items.Clear();
-            foreach (String item in extensions)
+            if (CryptInput.Text.Length > 0)
             {
-                extensionsList.Items.Add(item);
+                String ext = CryptInput.Text.ToCharArray()[0] != '.' ? '.' + CryptInput.Text : CryptInput.Text;
+                
+                if (!CryptExtensionsList.Contains(ext))
+                    CryptExtensionsList.Add(ext);
+                controller.SetCryptedExtensions(CryptExtensionsList.ToArray());
             }
+            LoadCryptExtensions();
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void CryptRemove_Click(object sender, EventArgs e)
         {
-            if (input.Text.Length > 0)
+            foreach (ListViewItem item in CryptListView.SelectedItems)
+                CryptExtensionsList.Remove(item.Text);
+
+            controller.SetCryptedExtensions(CryptExtensionsList.ToArray());
+            LoadCryptExtensions();
+        }
+
+        private void LoadPriorityExtensions()
+        {
+            PriorityExtensionsList = new List<string>(model.HighPriorityExtensions);
+            PriorityListView.Items.Clear();
+
+            foreach (String item in PriorityExtensionsList)
+                PriorityListView.Items.Add(item);
+        }
+
+        private void PriorityAdd_Click(object sender, EventArgs e)
+        {
+            if (PriorityInput.Text.Length > 0)
             {
-                String ext = input.Text.ToCharArray()[0] != '.' ? '.' + input.Text : input.Text;
-                if (!extensions.Contains(ext))
-                    extensions.Add(ext);
-               controller.SetCryptedExtensions(extensions.ToArray());
+                String ext = PriorityInput.Text.ToCharArray()[0] != '.' ? '.' + PriorityInput.Text : PriorityInput.Text;
+                
+                if (!PriorityExtensionsList.Contains(ext))
+                    PriorityExtensionsList.Add(ext);
+
+                controller.SetHighPriorityExtensions(PriorityExtensionsList.ToArray());
             }
-            loadExtensions();
+            LoadPriorityExtensions();
         }
 
-        private void remove_Click(object sender, EventArgs e)
+        private void PriorityRemove_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in extensionsList.SelectedItems)
+            foreach (ListViewItem item in PriorityListView.SelectedItems)
+                PriorityExtensionsList.Remove(item.Text);
+
+            controller.SetHighPriorityExtensions(PriorityExtensionsList.ToArray());
+            LoadPriorityExtensions();
+        }
+
+        private void LoadBusinessSoftware()
+        {
+            BusinessSoftwareList = new List<string>(model.BlockingProcesses);
+            BusinessSoftwareListView.Items.Clear();
+
+            foreach (String item in BusinessSoftwareList)
+                BusinessSoftwareListView.Items.Add(item);
+        }
+
+        private void BusinessSoftwareAdd_Click(object sender, EventArgs e)
+        {
+            if (BusinessSoftwareInput.Text.Length > 0)
             {
-                extensions.Remove(item.Text);
+                String proc = BusinessSoftwareInput.Text;
+
+                if (!BusinessSoftwareList.Contains(proc))
+                    BusinessSoftwareList.Add(proc);
+
+                controller.SetBlockingProcesses(BusinessSoftwareList.ToArray());
             }
-           controller.SetCryptedExtensions(extensions.ToArray());
-            loadExtensions();
+            LoadBusinessSoftware();
         }
 
-        private void inputPrio_TextChanged(object sender, EventArgs e)
+        private void BusinessSoftwareRemove_Click(object sender, EventArgs e)
         {
+            foreach (ListViewItem item in BusinessSoftwareListView.SelectedItems)
+                BusinessSoftwareList.Remove(item.Text);
 
+            controller.SetBlockingProcesses(BusinessSoftwareList.ToArray());
+            LoadBusinessSoftware();
         }
 
-        private void loadExtensionsPrio()
+        private void LimitSizeConfirm_Click(object sender, EventArgs e)
         {
-            extensionsprio = new List<string>(model.HighPriorityExtensions);
-            extensionsListPrio.Items.Clear();
-            foreach (String item in extensionsprio)
-            {
-                extensionsListPrio.Items.Add(item);
-            }
-        }
-
-        private void addPrio_Click(object sender, EventArgs e)
-        {
-            if (inputPrio.Text.Length > 0)
-            {
-                String ext = inputPrio.Text.ToCharArray()[0] != '.' ? '.' + inputPrio.Text : inputPrio.Text;
-                if (!extensionsprio.Contains(ext))
-                    extensionsprio.Add(ext);
-                controller.SetHighPriorityExtensions(extensionsprio.ToArray());
-            }
-            loadExtensionsPrio();
-        }
-
-        private void removePrio_Click(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in extensionsListPrio.SelectedItems)
-            {
-                extensionsprio.Remove(item.Text);
-            }
-            controller.SetHighPriorityExtensions(extensionsprio.ToArray());
-            loadExtensionsPrio();
-        }
-
-        private void loadProcesses()
-        {
-            processes = new List<string>(model.BlockingProcesses);
-            processesList.Items.Clear();
-            foreach (String item in processes)
-            {
-                processesList.Items.Add(item);
-            }
-        }
-
-        private void addBusiness_Click(object sender, EventArgs e)
-        {
-            if (inputbusiness.Text.Length > 0)
-            {  
-                String proc = inputbusiness.Text;
-                if (!processes.Contains(proc))
-                    processes.Add(proc);
-                controller.SetBlockingProcesses(processes.ToArray());
-            }
-            loadProcesses();
-        }
-
-        private void removebusiness_Click(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in processesList.SelectedItems)
-            {
-                processes.Remove(item.Text);
-            }
-            controller.SetBlockingProcesses(processes.ToArray());
-            loadProcesses();
-        }
-       
-
-        private void ko100_CheckedChanged(object sender, EventArgs e)
-        {
-            validateko.Enabled = true;
-        }
-
-        private void ko500_CheckedChanged(object sender, EventArgs e)
-        {
-            validateko.Enabled = true;
-        }
-
-        private void ko1000_CheckedChanged(object sender, EventArgs e)
-        {
-            validateko.Enabled = true;
-        }
-
-        private void ko10000_CheckedChanged(object sender, EventArgs e)
-        {
-            validateko.Enabled = true;
-        }
-
-        private void kochoose_CheckedChanged(object sender, EventArgs e)
-        {
-            inputko.Enabled = true;
-        }
-
-        
-
-        private void inputko_ValueChanged(object sender, EventArgs e)
-        {
-            inputko.Minimum= 0;
-        }
-
-        private void validateko_Click(object sender, EventArgs e)
-        {
-            if (ko100.Checked)
-            {
+            if (Ko100.Checked)
                 controller.SetKoLimit(100);
-            }
-            else if (ko500.Checked)
-            {
+            else if (Ko500.Checked)
                 controller.SetKoLimit(500);
-            }
-            else if (ko1000.Checked)
-            {
+            else if (Ko1000.Checked)
                 controller.SetKoLimit(1000);
-            }
-            else if (ko10000.Checked)
-            {
+            else if (Ko10000.Checked)
                 controller.SetKoLimit(10000);
-            }
             else
-            {
-                controller.SetKoLimit((long)inputko.Value);
-            }
+                controller.SetKoLimit((long)KoInput.Value);
         }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void businessSoftware_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void extensionsListPrio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void extensionsList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelextensionsprio_Click(object sender, EventArgs e)
-        {
-
-        }
-    
     }
 }
