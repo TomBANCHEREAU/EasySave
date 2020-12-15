@@ -3,6 +3,7 @@ using EasySave.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EasySave.Controllers
 {
@@ -38,9 +39,9 @@ namespace EasySave.Controllers
             this.model.RestoreBackup(backup);
         }
 
-        public void RunBackup(BackupEnvironment backupEnvironment,BackupType type)
+        public Task<Backup> RunBackup(BackupEnvironment backupEnvironment,BackupType type)
         {
-            this.model.RunBackup(backupEnvironment,type);
+            return this.model.RunBackup(backupEnvironment,type);
         }
 
         public void SetCryptedExtensions(String[] extensions)

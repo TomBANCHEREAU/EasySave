@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EasySave.Models
 {
@@ -10,7 +11,7 @@ namespace EasySave.Models
         public void Stop();
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment);
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
-        public Backup RunBackup(BackupEnvironment backupEnvironment,BackupType type);
+        public Task<Backup> RunBackup(BackupEnvironment backupEnvironment,BackupType type);
         public void RestoreBackup(Backup backup);
         public void SetCryptedExtensions(String[] extensions);
         public void SetBlockingProcesses(String[] processes);

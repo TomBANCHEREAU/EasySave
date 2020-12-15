@@ -4,18 +4,39 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EasySave.Models
 {
     public class BackupEnvironment
     {
-        private Boolean isRunning;
+        private Boolean _isRunning;
+        private Boolean isRunning
+        {
+            get => _isRunning;
+            set
+            {
+                if (_isRunning!=value)
+                {
+                    _isRunning = value;
+                    if (!_isRunning)
+                        currentState.Status = null;
+                    OnStateChange(this, currentState.Clone());
+                }
+            }
+        }
 
         public Boolean IsRunning { get => isRunning; }
 
 
         public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
-        private void onFileTransfer(Object a, FileTransferEvent f)=>OnFileTransfer(a, f);
+        public event EventHandler<BackupEnvironmentState> OnStateChange = (Object s, BackupEnvironmentState b) => { };
+        private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer(a, f);
+        private void onBackupStateChange(Object a, Backup.BackupState f) {
+            currentState.Status = f;
+            OnStateChange(this, currentState.Clone()); 
+        }
+        internal BackupEnvironmentState currentState;
         private Model model;
 
         public Model Model
@@ -90,23 +111,21 @@ namespace EasySave.Models
         #endregion
         public BackupEnvironment()
         {
-
+            currentState = new BackupEnvironmentState(this);
         }
-        public BackupEnvironment(String _name,String src,String dest)
+        public BackupEnvironment(String _name,String src,String dest) : this()
         {
             Name = _name;
             SourceDirectory = src;
             DestinationDirectory = dest;
         }
-        internal void AddBackup(Backup backup)
+        private void AddBackup(Backup backup)
         {
-            if (!backups.Contains(backup)) {
-                backups.Add(backup);
-                if (backup.Type == BackupType.FULL)
-                    this.fullBackups.Add(backup);
-                backup.OnFileTransfer += onFileTransfer;
-                save();
-            }
+            backups.Add(backup);
+            if (backup.Type == BackupType.FULL)
+                this.fullBackups.Add(backup);
+            backup.OnFileTransfer += onFileTransfer;
+            save();
         }
 
         internal void LoadFromFile()
@@ -161,14 +180,13 @@ namespace EasySave.Models
                 {
                     isRunning = true;
                     backup.Restore();
-                    State.SetState(new State.StateStatus() { Name = Name, Running = false });
                     save();
                     isRunning = false;
                 }
             }
         }
 
-        internal Backup RunBackup(BackupType type)
+        internal Task<Backup> RunBackup(BackupType type)
         {
             lock (this)
             {
@@ -196,15 +214,36 @@ namespace EasySave.Models
                         throw new Exception("");
                 }
                 AddBackup(backup);
-                if (backups.Contains(backup) && !IsRunning)
-                {
-                    isRunning = true;
-                    backup.Execute();
-                    State.SetState(new State.StateStatus() { Name = Name, Running = false });
-                    save();
-                    isRunning = false;
-                }
-                return backup;
+                save();
+                backup.OnStateChange += onBackupStateChange;
+                isRunning = true;
+                Task<Backup> b = Task<Backup>.Run(() => {
+                    lock(this){
+                        backup.Execute();
+                        isRunning = false;
+                        backup.OnStateChange -= onBackupStateChange;
+                        return backup;
+                    }
+                });
+                return b; 
+            }
+        }
+        public class BackupEnvironmentState
+        {
+            public DateTime Date = DateTime.Now;
+            public String Name { get => backupEnvironment.Name; }
+            public Boolean Running;
+            public Backup.BackupState Status;
+            private BackupEnvironment backupEnvironment;
+            public BackupEnvironmentState(BackupEnvironment backupEnvironment)
+            {
+                this.backupEnvironment = backupEnvironment;
+            }
+            public BackupEnvironmentState Clone()
+            {
+                this.Running = backupEnvironment.isRunning;
+                this.Date = DateTime.Now;
+                return (BackupEnvironmentState)MemberwiseClone();
             }
         }
     }

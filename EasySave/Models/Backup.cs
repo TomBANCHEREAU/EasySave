@@ -10,7 +10,7 @@ namespace EasySave.Models
     public abstract class Backup
     {
         #region public
-        public enum Status
+        public enum BackupStatus
         {
             IDLE,
             RUNNING,
@@ -19,6 +19,7 @@ namespace EasySave.Models
         }
 
         public event EventHandler<FileTransferEvent> OnFileTransfer = (Object s, FileTransferEvent b) => {};
+        public event EventHandler<BackupState> OnStateChange = (Object s, BackupState b) => { };
         public DateTime ExecutionDate { get => executionDate; }
         public String DestinationDirectory { get => destinationDir; }
         public readonly BackupEnvironment BackupEnvironment;
@@ -37,11 +38,26 @@ namespace EasySave.Models
         private static int highPriorityRunning = 0;
         private static Object highPriorityLock = new Object();
 
+        private BackupState currentState = new BackupState();
+
         private DateTime executionDate;
         private String destinationDir;
         private Boolean highPriorityDone = false;
+        public BackupStatus Status {get => _status; }
+        private BackupStatus status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnStateChange(this, currentState.Clone());
+                }
+            }
+        }
         private Semaphore pause = new Semaphore(1, 1);
-        private Status status = Status.IDLE;
+        private BackupStatus _status = BackupStatus.IDLE;
         private List<FileTransferEvent> transfers = new List<FileTransferEvent>();
 
         internal Backup(BackupEnvironment backupEnvironment, BackupType type)
@@ -69,9 +85,9 @@ namespace EasySave.Models
                     throw new Exception();
                 this.executionDate = DateTime.Now;
                 this.destinationDir = Path.Join(this.BackupEnvironment.DestinationDirectory, this.ExecutionDate.ToString().Replace('/', '-').Replace(':', '-') + "-" + this.executionDate.Millisecond);
-                if (status != Status.IDLE)
+                if (status != BackupStatus.IDLE)
                     throw new Exception();
-                status = Status.RUNNING;
+                status = BackupStatus.RUNNING;
                 RunExecute();
                 ExecuteTransfers();
             }
@@ -80,9 +96,9 @@ namespace EasySave.Models
         {
             lock (this)
             {
-                if (status != Status.IDLE)
+                if (status != BackupStatus.IDLE)
                     throw new Exception();
-                status = Status.RUNNING;
+                status = BackupStatus.RUNNING;
                 RunRestore();
                 ExecuteTransfers();
             }
@@ -95,21 +111,21 @@ namespace EasySave.Models
         {
             lock (this)
             {
-                if (status != Status.RUNNING)
+                if (status != BackupStatus.RUNNING)
                     throw new Exception();
                 Thread pauseThread = new Thread(() => { pause.WaitOne(); });
                 pauseThread.Start();
                 pauseThread.Join();
                 if (!highPriorityDone)
                     highPriorityRunning--;
-                status = Status.PAUSED;
+                status = BackupStatus.PAUSED;
             }
         }
         internal void Resume()
         {
             lock (this)
             {
-                if (status != Status.PAUSED)
+                if (status != BackupStatus.PAUSED)
                     throw new Exception();
                 if (!highPriorityDone)
                     highPriorityRunning++;
@@ -117,7 +133,7 @@ namespace EasySave.Models
                 pauseThread.Start();
                 pauseThread.Join();
 
-                status = Status.RUNNING;
+                status = BackupStatus.RUNNING;
             }
         }
 
@@ -158,22 +174,20 @@ namespace EasySave.Models
                 if (!transfer.HighPriority)
                     waitForHighPriorityEnd();
                 waitForBlockingProcessEnd();
-                status = Status.RUNNING;
-                State.SetState(new State.StateStatus()
-                {
-                    Name = BackupEnvironment.Name,
-                    Running = true,
-                    Status = new State.Status()
-                    {
-                        FileNumber = transfers.Count,
-                        FileSize = transfer.FileSize,
-                        Progression = (float)((float)i / TotalCount * 100.0),
-                        FileLeft = TotalCount - i,
-                        SizeLeft = TotalSize - currentSize,
-                        CurrentSourceFile = transfer.SourceFile,
-                        DestinationFile = transfer.DestinationFile
-                    }
-                });
+                status = BackupStatus.RUNNING;
+
+                currentState.FileNumber = transfers.Count;
+                currentState.FileSize = transfer.FileSize;
+                currentState.Progression = (float)((float)i / TotalCount * 100.0);
+                currentState.FileLeft = TotalCount - i;
+                currentState.SizeLeft = TotalSize - currentSize;
+                currentState.CurrentSourceFile = transfer.SourceFile;
+                currentState.DestinationFile = transfer.DestinationFile;
+
+                OnStateChange(this,currentState.Clone());
+
+
+
                 transfer.ExecuteTransfer();
 
                 currentSize += transfer.FileSize;
@@ -181,7 +195,7 @@ namespace EasySave.Models
                 new Thread(() => { OnFileTransfer(this, transfer); }).Start();
             }
             //transfers.Clear();
-            status = Status.IDLE;
+            status = BackupStatus.IDLE;
         }
 
         private void waitForBlockingProcessEnd()
@@ -192,8 +206,8 @@ namespace EasySave.Models
                 {
                     if (Process.GetProcessesByName(processName).Length != 0)
                     {
-                        if (status == Status.RUNNING)
-                            status = Status.BLOCKED;
+                        if (status == BackupStatus.RUNNING)
+                            status = BackupStatus.BLOCKED;
                         foreach (Process item in Process.GetProcessesByName(processName))
                             item.WaitForExit();
                         continue;
@@ -257,6 +271,19 @@ namespace EasySave.Models
             public String ExecutionDate;
             public String DestinationDirectory;
             public String FullBackupDirectory;
+        }
+        public class BackupState
+        {
+            public BackupStatus status = BackupStatus.IDLE;
+            public long FileNumber=0;
+            public long FileSize=0;
+            public float Progression=0;
+            public long FileLeft=0;
+            public long SizeLeft=0;
+            public String CurrentSourceFile=String.Empty;
+            public String DestinationFile=String.Empty;
+            public BackupState Clone()=>(BackupState)MemberwiseClone();
+            
         }
     }
 }

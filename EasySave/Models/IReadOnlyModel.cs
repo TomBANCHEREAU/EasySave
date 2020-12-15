@@ -6,6 +6,7 @@ namespace EasySave.Models
 {
     public interface IReadOnlyModel
     {
+        public event EventHandler<IReadOnlyList<BackupEnvironment.BackupEnvironmentState>> OnEnvironmentStateChange;
         public event EventHandler<FileTransferEvent> OnFileTransfer;
         public String[] CryptedExtensions { get; }
         public String[] BlockingProcesses { get; }

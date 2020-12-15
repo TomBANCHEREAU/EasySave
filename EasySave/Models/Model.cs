@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EasySave.Models
 {
     public class Model : IModel
     {
         public event EventHandler<FileTransferEvent> OnFileTransfer;
+        public event EventHandler<IReadOnlyList<BackupEnvironment.BackupEnvironmentState>> OnEnvironmentStateChange = State.getInstance().OnEnvironmentStateChange;
 
         public String[] CryptedExtensions { get => (cryptedExtensions == null) ? new String[0] : cryptedExtensions; }
         public String[] BlockingProcesses { get => (blockingProcesses == null) ? new String[0] : blockingProcesses; }
@@ -25,6 +27,15 @@ namespace EasySave.Models
         private long koLimit;
 
         private void onFileTransfer(Object a, FileTransferEvent f) => OnFileTransfer?.Invoke(this, f);
+        private void onEnvironmentStateChange(Object a, BackupEnvironment.BackupEnvironmentState f)
+        {
+            List<BackupEnvironment.BackupEnvironmentState> states = new List<BackupEnvironment.BackupEnvironmentState>();
+            foreach (BackupEnvironment env in backupEnvironments)
+            {
+                states.Add(env.currentState);
+            }
+            OnEnvironmentStateChange?.Invoke(this, states);
+        } 
 
 
 
@@ -34,10 +45,9 @@ namespace EasySave.Models
         {
             get
             {
-                if (backupEnvironments != null)
-                    return backupEnvironments;
-                else
-                    throw new InvalidOperationException("Model need to be started doing anything");
+                if (backupEnvironments == null)
+                    throw new InvalidOperationException("Model need to be started before doing anything");
+                return backupEnvironments;
             }
         }
         public void AddBackupEnvironment(BackupEnvironment backupEnvironment)
@@ -49,7 +59,8 @@ namespace EasySave.Models
                 BackupEnvironments.Add(backupEnvironment);
                 backupEnvironment.Model = this;
                 backupEnvironment.OnFileTransfer += onFileTransfer;
-                State.SetState(new State.StateStatus() { Name = backupEnvironment.Name, Running = false });
+                backupEnvironment.OnStateChange += onEnvironmentStateChange;
+                onEnvironmentStateChange(this,null);
                 SaveSettings();
             }
         }
@@ -61,7 +72,8 @@ namespace EasySave.Models
                 backupEnvironment.OnFileTransfer -= onFileTransfer;
                 BackupEnvironments.Remove(backupEnvironment);
                 SaveSettings();
-                State.RemoveState(backupEnvironment.Name);
+                backupEnvironment.OnStateChange -= onEnvironmentStateChange;
+                onEnvironmentStateChange(this, null);
                 return true;
             }
             return false;
@@ -86,7 +98,7 @@ namespace EasySave.Models
 
         }
 
-        public Backup RunBackup(BackupEnvironment backupEnvironment, BackupType type)
+        public Task<Backup> RunBackup(BackupEnvironment backupEnvironment, BackupType type)
         {
             return backupEnvironment.RunBackup(type);
         }

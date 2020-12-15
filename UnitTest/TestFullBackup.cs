@@ -28,7 +28,7 @@ namespace UnitTest
             string text = "First Text";
             string file = Path.Join(SOURCE_DIRECTORY, "text.txt");
             File.WriteAllText(file, text);
-            Backup fullBackup =  model.RunBackup(backupEnvironment,BackupType.FULL);
+            Backup fullBackup =  model.RunBackup(backupEnvironment,BackupType.FULL).Result;
             File.Delete(file);
             Assert.IsTrue(File.Exists(Path.Join(fullBackup.DestinationDirectory,"text.txt")));
             model.RestoreBackup(fullBackup);
