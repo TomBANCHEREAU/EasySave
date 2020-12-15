@@ -27,6 +27,8 @@ namespace EasySave.Views.BetterViews.Components
             this.controller = controller;
             this.model = model;
             selected = backupEnvironment;
+            if (this.startAndStop1==null)
+                throw new Exception();
             this.startAndStop1.model = model;
             this.startAndStop1.controller = controller;
             this.startAndStop1.backupEnvironment = backupEnvironment;

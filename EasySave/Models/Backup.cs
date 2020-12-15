@@ -38,7 +38,7 @@ namespace EasySave.Models
         private static int highPriorityRunning = 0;
         private static Object highPriorityLock = new Object();
 
-        private BackupState currentState = new BackupState();
+        public BackupState currentState = new BackupState();
 
         private DateTime executionDate;
         private String destinationDir;

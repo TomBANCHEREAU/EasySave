@@ -29,6 +29,7 @@ namespace EasySave.Views.BetterViews.Components
             if (backupEnvironment == null)
                 throw new ArgumentNullException();
             backupEnvironment.OnStateChange += Backup_OnStateChange;
+            Backup_OnStateChange(null, backupEnvironment.currentState);
 
         }
 
@@ -43,9 +44,7 @@ namespace EasySave.Views.BetterViews.Components
                     if (e.Running)
                     {
                         if (e.Status != null)
-                        {
                             this.ProgressBar.Value = (int)e.Status.Progression;
-                        }
                     }
                     else
                     {

@@ -24,27 +24,66 @@ namespace EasySave.Views.BetterViews.Components
 
         private void EnvironmentList_Load(object sender, EventArgs e)
         {
-            UpdateEnvironmentList();
+            UpdateEnvironmentList(null);
             model.OnEnvironmentStateChange += (Object a, IReadOnlyList<BackupEnvironment.BackupEnvironmentState> f) => {
                 try
                 {
-                    if (f.Count != this.EnvList.Items.Count)
-                        this.Invoke(new MethodInvoker(UpdateEnvironmentList));
+                        this.Invoke(new MethodInvoker(()=>UpdateEnvironmentList(f)));
                 }
                 catch {}
             };
         }
 
-        internal void UpdateEnvironmentList()
+        internal void UpdateEnvironmentList(IReadOnlyList<BackupEnvironment.BackupEnvironmentState> f)
         {
-            this.EnvList.Items.Clear();
-            foreach (BackupEnvironment backupEnvironment in model.GetBackupEnvironments())
+            if (f==null || f.Count != EnvList.Items.Count)
             {
-                ListViewItem item = new ListViewItem(new String[1] { 
-                    backupEnvironment.Name 
-                });
-                item.Tag = backupEnvironment;
-                this.EnvList.Items.Add(item);
+                EnvList.Items.Clear();
+                foreach (BackupEnvironment backupEnvironment in model.GetBackupEnvironments())
+                {
+                    ListViewItem item = new ListViewItem(new String[3] {
+                        backupEnvironment.Name,"-","-"
+                    });
+                    item.Tag = backupEnvironment;
+                    item.UseItemStyleForSubItems = false;
+                    EnvList.Items.Add(item);
+
+                }
+            }
+            foreach (ListViewItem item in EnvList.Items)
+            {
+                BackupEnvironment backupEnvironment = (BackupEnvironment)item.Tag;
+                if (backupEnvironment.IsRunning)
+                {
+                    switch (backupEnvironment.runningBackup.currentState.status)
+                    {
+                        case Backup.BackupStatus.IDLE:
+                            item.SubItems[1].ForeColor = Color.Black;
+                            item.SubItems[1].Text = "-";
+                            break;
+                        case Backup.BackupStatus.RUNNING:
+                            item.SubItems[1].ForeColor = Color.Green;
+                            item.SubItems[1].Text = "Running";
+                            break;
+                        case Backup.BackupStatus.PAUSED:
+                            item.SubItems[1].ForeColor = Color.Orange;
+                            item.SubItems[1].Text = "Paused";
+                            break;
+                        case Backup.BackupStatus.BLOCKED:
+                            item.SubItems[1].ForeColor = Color.Orange;
+                            item.SubItems[1].Text = "Blocked";
+                            break;
+                        default:
+                            break;
+                    }
+                    item.SubItems[2].Text = backupEnvironment.runningBackup.currentState.Progression+"%";
+                }
+                else
+                {
+                    item.SubItems[1].Text = "-";
+                    item.SubItems[2].Text = "-";
+                }
+                //item.SubItems[1] = 
             }
         }
 
