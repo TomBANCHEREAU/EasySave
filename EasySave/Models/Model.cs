@@ -192,6 +192,18 @@ namespace EasySave.Models
             SaveSettings();
         }
 
+        public void PauseBackup(Backup backup)
+        {
+            if (backupEnvironments.Contains(backup.BackupEnvironment))
+                backup.Pause();
+        }
+
+        public void ResumeBackup(Backup backup)
+        {
+            if (backupEnvironments.Contains(backup.BackupEnvironment))
+                backup.Resume();
+        }
+
         class SettingsJSON
         {
             public String[] CryptedExtensions;

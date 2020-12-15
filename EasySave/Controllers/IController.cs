@@ -13,6 +13,8 @@ namespace EasySave.Controllers
         public Boolean DeleteBackupEnvironment(BackupEnvironment backupEnvironment);
         public Task<Backup> RunBackup(BackupEnvironment backupEnvironment,BackupType type);
         public void RestoreBackup(Backup backup);
+        public void PauseBackup(Backup backup);
+        public void ResumeBackup(Backup backup);
         public void SetCryptedExtensions(String[] extensions);
         public void SetBlockingProcesses(String[] processes);
         public void SetHighPriorityExtensions(String[] extensions);

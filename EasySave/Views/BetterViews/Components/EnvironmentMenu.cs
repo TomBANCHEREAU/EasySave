@@ -27,6 +27,9 @@ namespace EasySave.Views.BetterViews.Components
             this.controller = controller;
             this.model = model;
             selected = backupEnvironment;
+            this.startAndStop1.model = model;
+            this.startAndStop1.controller = controller;
+            this.startAndStop1.backupEnvironment = backupEnvironment;
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
@@ -49,8 +52,7 @@ namespace EasySave.Views.BetterViews.Components
             try
             {
                 controller.RunBackup(selected,BackupType.FULL);
-                MessageBox.Show("The full backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller,model));
+                MessageBox.Show("The full backup has started.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
@@ -63,8 +65,7 @@ namespace EasySave.Views.BetterViews.Components
             try
             {
                 controller.RunBackup(selected,BackupType.DIFFERENTIAL);
-                MessageBox.Show("The differential backup has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
+                MessageBox.Show("The differential backup has started.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {

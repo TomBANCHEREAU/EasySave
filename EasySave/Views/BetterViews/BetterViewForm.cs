@@ -35,19 +35,25 @@ namespace EasySave.Views.BetterViews
 
         internal void SetViewState(UserControl viewState)
         {
+            viewState.SuspendLayout();
+
+            this.MainLayout.SuspendLayout();
+            this.DynamicPanel.SuspendLayout();
+            this.SuspendLayout();
+
             this.MainLayout.Controls.Remove(this.DynamicPanel);
             this.DynamicPanel = viewState;
 
-            this.DynamicPanel.SuspendLayout();
-            this.SuspendLayout();
             this.MainLayout.Controls.Add(this.DynamicPanel, 1, 1);
             this.DynamicPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DynamicPanel.Location = new System.Drawing.Point(361, 136);
             this.DynamicPanel.Margin = new System.Windows.Forms.Padding(0);
             this.DynamicPanel.Name = "DynamicPanel";
             this.DynamicPanel.TabIndex = 1;
-            this.DynamicPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
+            this.DynamicPanel.ResumeLayout(true);
+            this.MainLayout.ResumeLayout(true);
+            this.MainLayout.PerformLayout();
+            this.ResumeLayout(true);
         }
 
         private void Title_Click(object sender, EventArgs e)

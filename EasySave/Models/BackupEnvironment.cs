@@ -10,6 +10,7 @@ namespace EasySave.Models
 {
     public class BackupEnvironment
     {
+        public Backup runningBackup;
         private Boolean _isRunning;
         private Boolean isRunning
         {
@@ -178,10 +179,12 @@ namespace EasySave.Models
             {
                 if (backups.Contains(backup) && !IsRunning)
                 {
+                    runningBackup = backup;
                     isRunning = true;
                     backup.Restore();
                     save();
                     isRunning = false;
+                    runningBackup = null;
                 }
             }
         }
@@ -214,18 +217,20 @@ namespace EasySave.Models
                         throw new Exception("");
                 }
                 AddBackup(backup);
-                save();
                 backup.OnStateChange += onBackupStateChange;
+                runningBackup = backup;
                 isRunning = true;
                 Task<Backup> b = Task<Backup>.Run(() => {
+                    backup.Execute();
                     lock(this){
-                        backup.Execute();
                         isRunning = false;
+                        runningBackup = null;
                         backup.OnStateChange -= onBackupStateChange;
+                        save();
                         return backup;
                     }
                 });
-                return b; 
+                return b;
             }
         }
         public class BackupEnvironmentState

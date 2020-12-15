@@ -38,6 +38,7 @@ namespace EasySave.Views.BetterViews.Components
             this.BackupList = new System.Windows.Forms.ListView();
             this.BackupColumn = new System.Windows.Forms.ColumnHeader();
             this.TypeColumn = new System.Windows.Forms.ColumnHeader();
+            this.startAndStop1 = new EasySave.Views.BetterViews.Components.StartAndStop();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,20 +52,22 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.Controls.Add(this.EnvironmentMenuLabel, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.FullBackupButton, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.DifferentialBackupButton, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.RestoreButton, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.DeleteButton, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.BackupList, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.RestoreButton, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.DeleteButton, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.startAndStop1, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.7513F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.972366F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1084, 772);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(948, 579);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // EnvironmentMenuLabel
@@ -73,18 +76,19 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvironmentMenuLabel.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.EnvironmentMenuLabel, 2);
             this.EnvironmentMenuLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EnvironmentMenuLabel.Location = new System.Drawing.Point(372, 69);
+            this.EnvironmentMenuLabel.Location = new System.Drawing.Point(336, 50);
             this.EnvironmentMenuLabel.Name = "EnvironmentMenuLabel";
-            this.EnvironmentMenuLabel.Size = new System.Drawing.Size(337, 54);
+            this.EnvironmentMenuLabel.Size = new System.Drawing.Size(273, 45);
             this.EnvironmentMenuLabel.TabIndex = 0;
             this.EnvironmentMenuLabel.Text = "Choose an option";
             // 
             // FullBackupButton
             // 
             this.FullBackupButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FullBackupButton.Location = new System.Drawing.Point(276, 220);
+            this.FullBackupButton.Location = new System.Drawing.Point(242, 166);
+            this.FullBackupButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FullBackupButton.Name = "FullBackupButton";
-            this.FullBackupButton.Size = new System.Drawing.Size(150, 60);
+            this.FullBackupButton.Size = new System.Drawing.Size(131, 45);
             this.FullBackupButton.TabIndex = 1;
             this.FullBackupButton.Text = "Run a full backup";
             this.FullBackupButton.UseVisualStyleBackColor = true;
@@ -94,9 +98,10 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.DifferentialBackupButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DifferentialBackupButton.Enabled = false;
-            this.DifferentialBackupButton.Location = new System.Drawing.Point(655, 220);
+            this.DifferentialBackupButton.Location = new System.Drawing.Point(573, 166);
+            this.DifferentialBackupButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DifferentialBackupButton.Name = "DifferentialBackupButton";
-            this.DifferentialBackupButton.Size = new System.Drawing.Size(150, 60);
+            this.DifferentialBackupButton.Size = new System.Drawing.Size(131, 45);
             this.DifferentialBackupButton.TabIndex = 2;
             this.DifferentialBackupButton.Text = "Run a differential backup";
             this.DifferentialBackupButton.UseVisualStyleBackColor = true;
@@ -106,9 +111,10 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.RestoreButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RestoreButton.Enabled = false;
-            this.RestoreButton.Location = new System.Drawing.Point(655, 393);
+            this.RestoreButton.Location = new System.Drawing.Point(573, 234);
+            this.RestoreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RestoreButton.Name = "RestoreButton";
-            this.RestoreButton.Size = new System.Drawing.Size(150, 60);
+            this.RestoreButton.Size = new System.Drawing.Size(131, 25);
             this.RestoreButton.TabIndex = 3;
             this.RestoreButton.Text = "Restore a backup";
             this.RestoreButton.UseVisualStyleBackColor = true;
@@ -117,9 +123,10 @@ namespace EasySave.Views.BetterViews.Components
             // DeleteButton
             // 
             this.DeleteButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DeleteButton.Location = new System.Drawing.Point(655, 547);
+            this.DeleteButton.Location = new System.Drawing.Point(242, 234);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(150, 60);
+            this.DeleteButton.Size = new System.Drawing.Size(131, 25);
             this.DeleteButton.TabIndex = 4;
             this.DeleteButton.Text = "Delete the environment";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -133,10 +140,11 @@ namespace EasySave.Views.BetterViews.Components
             this.BackupList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BackupList.FullRowSelect = true;
             this.BackupList.HideSelection = false;
-            this.BackupList.Location = new System.Drawing.Point(165, 349);
+            this.BackupList.Location = new System.Drawing.Point(145, 263);
+            this.BackupList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BackupList.Name = "BackupList";
             this.tableLayoutPanel1.SetRowSpan(this.BackupList, 2);
-            this.BackupList.Size = new System.Drawing.Size(373, 302);
+            this.BackupList.Size = new System.Drawing.Size(325, 226);
             this.BackupList.TabIndex = 5;
             this.BackupList.UseCompatibleStateImageBehavior = false;
             this.BackupList.View = System.Windows.Forms.View.Details;
@@ -153,13 +161,21 @@ namespace EasySave.Views.BetterViews.Components
             this.TypeColumn.Text = "Type";
             this.TypeColumn.Width = 150;
             // 
+            // startAndStop1
+            // 
+            this.startAndStop1.Location = new System.Drawing.Point(476, 264);
+            this.startAndStop1.Name = "startAndStop1";
+            this.startAndStop1.Size = new System.Drawing.Size(325, 199);
+            this.startAndStop1.TabIndex = 6;
+            // 
             // EnvironmentMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EnvironmentMenu";
-            this.Size = new System.Drawing.Size(1084, 772);
+            this.Size = new System.Drawing.Size(948, 579);
             this.Load += new System.EventHandler(this.EnvironmentMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -178,5 +194,6 @@ namespace EasySave.Views.BetterViews.Components
         private System.Windows.Forms.ListView BackupList;
         private System.Windows.Forms.ColumnHeader BackupColumn;
         private System.Windows.Forms.ColumnHeader TypeColumn;
+        private StartAndStop startAndStop1;
     }
 }

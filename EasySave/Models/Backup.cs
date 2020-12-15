@@ -52,6 +52,7 @@ namespace EasySave.Models
                 if (_status != value)
                 {
                     _status = value;
+                    currentState.status = value;
                     OnStateChange(this, currentState.Clone());
                 }
             }
@@ -88,9 +89,9 @@ namespace EasySave.Models
                 if (status != BackupStatus.IDLE)
                     throw new Exception();
                 status = BackupStatus.RUNNING;
-                RunExecute();
-                ExecuteTransfers();
             }
+            RunExecute();
+            ExecuteTransfers();
         }
         internal void Restore()
         {
@@ -99,9 +100,9 @@ namespace EasySave.Models
                 if (status != BackupStatus.IDLE)
                     throw new Exception();
                 status = BackupStatus.RUNNING;
-                RunRestore();
-                ExecuteTransfers();
             }
+            RunRestore();
+            ExecuteTransfers();
         }
 
 
@@ -111,6 +112,8 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                if (status == BackupStatus.PAUSED)
+                    return;
                 if (status != BackupStatus.RUNNING)
                     throw new Exception();
                 Thread pauseThread = new Thread(() => { pause.WaitOne(); });
@@ -125,6 +128,8 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                if (status == BackupStatus.RUNNING)
+                    return;
                 if (status != BackupStatus.PAUSED)
                     throw new Exception();
                 if (!highPriorityDone)

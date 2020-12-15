@@ -65,5 +65,14 @@ namespace EasySave.Controllers
             this.model.SetKoLimit(kolimit);
         }
 
+        public void PauseBackup(Backup backup)
+        {
+            this.model.PauseBackup(backup);
+        }
+
+        public void ResumeBackup(Backup backup)
+        {
+            this.model.ResumeBackup(backup);
+        }
     }
 }
