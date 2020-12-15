@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasySave.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -6,35 +8,58 @@ using System.Text;
 
 namespace RemoteEasySave
 {
-    class Client
+    public class Client
     {
-        public static void StartClient()
+        public event EventHandler<List<BackupEnvironment.BackupEnvironmentState>> OnStateChange;
+        private Socket socket;
+        private EndPoint remoteEndPoint;
+        private byte[] buffer = new byte[1024];
+        private String bufferStr = String.Empty;
+        public Client()
         {
-            byte[] bytes = new byte[1024];
+            //IPHostEntry host = Dns.GetHostEntry("localhost");
+            //IPAddress iPAddress = host.AddressList[0];
+            remoteEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 11000);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        }
 
-            try
-            {
-                IPHostEntry host = Dns.GetHostEntry("localhost");
-                IPAddress iPAddress = host.AddressList[0];
-                IPEndPoint remoteEP = new IPEndPoint(iPAddress, 11000);
+        internal void Start()
+        {
+            socket.Connect(remoteEndPoint);
+            socket.BeginReceive(buffer, 0, buffer.Length,0, Receive, new Object());
+        }
 
-                Socket sender = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        private void Receive(IAsyncResult ar)
+        {
+            int byteRead = socket.EndReceive(ar);
+            bufferStr += Encoding.UTF8.GetString(buffer, 0, byteRead);
 
-                try
-                {
-                    sender.Connect(remoteEP);
+            String[] messages = bufferStr.Split("\n");
+            bufferStr = messages[messages.Length - 1];
+            System.Diagnostics.Debug.WriteLine(bufferStr);
+            for (int i = 0; i < messages.Length - 1; i++)
+                OnMessage(messages[i]);
+            socket.BeginReceive(buffer, 0, buffer.Length, 0, Receive, new Object());
+        }
 
-                    Console.WriteLine("Socket connected to {0}"), sender.RemoteEndPoint.ToString());
+        private void OnMessage(string msg)
+        {
+            OnStateChange(this,JsonConvert.DeserializeObject<List<BackupEnvironment.BackupEnvironmentState>>(msg));
+        }
 
-                    byte[] msg = Encoding.ASCII.GetBytes("this is a Test <EOF>");
+        public void PauseBackup(String Name)
+        {
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":0,\"BackupEnvName\":\""+Name+"\"}" + "\n"));
+        }
 
-                    int bytesSent = sender.Send(msg);
+        public void ResumeBackup(String Name)
+        {
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":1,\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
+        }
 
-                    int bytesRec = sender.Receive(bytes);
-                    Console.WriteLine("Echoed test = {0}"), Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                }
-               
-            }
+        public void CancelBackup(String Name)
+        {
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":2,\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
         }
     }
 }

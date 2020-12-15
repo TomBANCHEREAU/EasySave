@@ -60,6 +60,7 @@ namespace EasySave.Models
             {
                 if (value == null || value.Length == 0)
                     throw new ArgumentException("Name cannot be empty");
+                currentState.Name = value;
                 name = value;
             }
         }
@@ -236,13 +237,17 @@ namespace EasySave.Models
         public class BackupEnvironmentState
         {
             public DateTime Date = DateTime.Now;
-            public String Name { get => backupEnvironment.Name; }
+            public String Name;
             public Boolean Running;
             public Backup.BackupState Status;
             private BackupEnvironment backupEnvironment;
+            public BackupEnvironmentState()
+            {
+            }
             public BackupEnvironmentState(BackupEnvironment backupEnvironment)
             {
                 this.backupEnvironment = backupEnvironment;
+                this.Name = backupEnvironment.Name;
             }
             public BackupEnvironmentState Clone()
             {
