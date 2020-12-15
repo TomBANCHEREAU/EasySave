@@ -51,15 +51,18 @@ namespace RemoteEasySave
             this.EnvStatus,
             this.EnvProgress});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(2, 163);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.Location = new System.Drawing.Point(2, 218);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.tableLayoutPanel1.SetRowSpan(this.listView1, 2);
-            this.listView1.Size = new System.Drawing.Size(346, 173);
+            this.listView1.Size = new System.Drawing.Size(396, 230);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // EnvName
             // 
@@ -86,13 +89,12 @@ namespace RemoteEasySave
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(700, 338);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 451);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -106,57 +108,55 @@ namespace RemoteEasySave
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(353, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(403, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(344, 157);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 209);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // pauseButton
             // 
             this.pauseButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pauseButton.Location = new System.Drawing.Point(3, 28);
-            this.pauseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pauseButton.Location = new System.Drawing.Point(4, 37);
             this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(108, 22);
+            this.pauseButton.Size = new System.Drawing.Size(123, 29);
             this.pauseButton.TabIndex = 0;
             this.pauseButton.Text = "Pause";
             this.pauseButton.UseVisualStyleBackColor = true;
+            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // resumeButton
             // 
             this.resumeButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.resumeButton.Location = new System.Drawing.Point(117, 28);
-            this.resumeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.resumeButton.Location = new System.Drawing.Point(135, 37);
             this.resumeButton.Name = "resumeButton";
-            this.resumeButton.Size = new System.Drawing.Size(108, 22);
+            this.resumeButton.Size = new System.Drawing.Size(123, 29);
             this.resumeButton.TabIndex = 1;
             this.resumeButton.Text = "Resume";
             this.resumeButton.UseVisualStyleBackColor = true;
+            this.resumeButton.Click += new System.EventHandler(this.resumeButton_Click);
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cancelButton.Location = new System.Drawing.Point(233, 28);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cancelButton.Location = new System.Drawing.Point(268, 37);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(105, 22);
+            this.cancelButton.Size = new System.Drawing.Size(120, 29);
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // progressBar1
             // 
             this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.progressBar1, 3);
-            this.progressBar1.Location = new System.Drawing.Point(9, 99);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.progressBar1.Location = new System.Drawing.Point(10, 132);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(326, 37);
+            this.progressBar1.Size = new System.Drawing.Size(373, 49);
             this.progressBar1.TabIndex = 3;
             // 
             // label1
@@ -164,19 +164,18 @@ namespace RemoteEasySave
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(64, 62);
+            this.label1.Location = new System.Drawing.Point(61, 84);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 37);
+            this.label1.Size = new System.Drawing.Size(278, 46);
             this.label1.TabIndex = 2;
             this.label1.Text = "EasySave Remote";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

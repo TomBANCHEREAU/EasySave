@@ -1,4 +1,6 @@
 ﻿using EasySave.Models;
+using EasySave.Views.BetterViews;
+using EasySave.Views.BetterViews.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,9 @@ namespace RemoteEasySave
     public partial class Form1 : Form
     {
         Client client;
+
+        public object EnvList { get; private set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -70,6 +75,36 @@ namespace RemoteEasySave
                     listView1.Items.Add(listViewItem);
                 }
             }));
+        }
+
+        private void pauseButton_Click(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {
+                client.PauseBackup(listView1.SelectedItems[0].SubItems[0].Text);
+            }
+            
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resumeButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                client.ResumeBackup(listView1.SelectedItems[0].SubItems[0].Text);
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                client.CancelBackup(listView1.SelectedItems[0].SubItems[0].Text);
+            }
         }
     }
 }
