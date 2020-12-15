@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTe
 		{F2A221A2-228B-438C-9B91-C6E0B68DC75E} = {F2A221A2-228B-438C-9B91-C6E0B68DC75E}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEasySave", "RemoteEasySave\RemoteEasySave.csproj", "{DDC78E8F-3ECD-4A61-8010-1881DCB079F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AFC27166-A998-4960-B17D-BE595F6F2422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFC27166-A998-4960-B17D-BE595F6F2422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFC27166-A998-4960-B17D-BE595F6F2422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC78E8F-3ECD-4A61-8010-1881DCB079F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC78E8F-3ECD-4A61-8010-1881DCB079F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC78E8F-3ECD-4A61-8010-1881DCB079F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC78E8F-3ECD-4A61-8010-1881DCB079F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
