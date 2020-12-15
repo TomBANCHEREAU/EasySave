@@ -15,6 +15,7 @@ namespace EasySave.Views.BetterViews.Components
         public List<String> CryptExtensionsList;
         public List<String> PriorityExtensionsList;
         public List<String> BusinessSoftwareList;
+        public long KoSaved;
 
         private IReadOnlyModel model;
         private IController controller;
@@ -32,6 +33,7 @@ namespace EasySave.Views.BetterViews.Components
 
         private void SettingsMenu_Load(object sender, EventArgs e)
         {
+            LoadkoSaved();
             LoadCryptExtensions();
             LoadPriorityExtensions();
             LoadBusinessSoftware();
@@ -132,18 +134,52 @@ namespace EasySave.Views.BetterViews.Components
             LoadBusinessSoftware();
         }
 
-        private void LimitSizeConfirm_Click(object sender, EventArgs e)
+        private void LoadkoSaved()
         {
-            if (Ko100.Checked)
-                controller.SetKoLimit(100);
-            else if (Ko500.Checked)
-                controller.SetKoLimit(500);
-            else if (Ko1000.Checked)
-                controller.SetKoLimit(1000);
-            else if (Ko10000.Checked)
-                controller.SetKoLimit(10000);
+            KoSaved = model.KoLimit;
+            if (KoSaved == 100)
+                Ko100.Checked = true;
+            else if (KoSaved == 500)
+                Ko500.Checked = true;
+            else if (KoSaved == 1000)
+                Ko1000.Checked = true;
+            else if (KoSaved == 10000)
+                Ko10000.Checked = true;
             else
-                controller.SetKoLimit((long)KoInput.Value);
+            {
+                KoMax.Checked = true;
+                KoInput.Value = KoSaved;
+            }
+        }
+
+        private void Ko100_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.SetKoLimit(100);
+        }
+
+        private void Ko500_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.SetKoLimit(500);
+        }
+
+        private void Ko1000_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.SetKoLimit(1000);
+        }
+
+        private void Ko10000_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.SetKoLimit(10000);
+        }
+
+        private void KoMax_CheckedChanged(object sender, EventArgs e)
+        {
+            KoInput.Enabled = true;
+        }
+
+        private void KoInput_ValueChanged(object sender, EventArgs e)
+        {
+           controller.SetKoLimit((long)KoInput.Value); 
         }
     }
 }
