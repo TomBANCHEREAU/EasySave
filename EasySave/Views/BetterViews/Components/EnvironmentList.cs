@@ -13,8 +13,9 @@ namespace EasySave.Views.BetterViews.Components
 {
     public partial class EnvironmentList : UserControl
     {
-        private IReadOnlyModel model;
-        private IController controller;
+
+        internal IReadOnlyModel model;
+        internal IController controller;
 
         public EnvironmentList()
         {
@@ -23,15 +24,19 @@ namespace EasySave.Views.BetterViews.Components
 
         private void EnvironmentList_Load(object sender, EventArgs e)
         {
-            model = ((BetterViewForm)ParentForm).model;
-            controller = ((BetterViewForm)ParentForm).controller;
             UpdateEnvironmentList();
-            // model.OnEnvironmentListChange += (Object a, FileTransferEvent f) => { UpdateEnvironmentList(); };
+            model.OnEnvironmentStateChange += (Object a, IReadOnlyList<BackupEnvironment.BackupEnvironmentState> f) => {
+                try
+                {
+                    if (f.Count != this.EnvList.Items.Count)
+                        this.Invoke(new MethodInvoker(UpdateEnvironmentList));
+                }
+                catch {}
+            };
         }
 
         internal void UpdateEnvironmentList()
         {
-            Debug.WriteLine("UpdateEnvironmentList");
             this.EnvList.Items.Clear();
             foreach (BackupEnvironment backupEnvironment in model.GetBackupEnvironments())
             {
@@ -41,7 +46,6 @@ namespace EasySave.Views.BetterViews.Components
                 item.Tag = backupEnvironment;
                 this.EnvList.Items.Add(item);
             }
-            Debug.WriteLine("UpdateEnvironmentList END");
         }
 
         private void AddButton_Click(object sender, EventArgs e)

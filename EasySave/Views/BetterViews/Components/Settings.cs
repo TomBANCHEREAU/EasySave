@@ -13,8 +13,8 @@ namespace EasySave.Views.BetterViews.Components
 {
     public partial class Settings : UserControl
     {
-        private IReadOnlyModel model;
-        private IController controller;
+        internal IReadOnlyModel model;
+        internal IController controller;
 
         public Settings()
         {
@@ -23,8 +23,6 @@ namespace EasySave.Views.BetterViews.Components
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            this.model = ((BetterViewForm)ParentForm).model;
-            this.controller = ((BetterViewForm)ParentForm).controller;
         }
 
         private void RunMutipleBackupsButton_Click(object sender, EventArgs e)

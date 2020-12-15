@@ -21,6 +21,10 @@ namespace EasySave.Views.BetterViews
             this.model = model;
             this.controller = controller;
             InitializeComponent();
+            this.EnvironmentList.model = model;
+            this.EnvironmentList.controller = controller;
+            this.Settings.model = model;
+            this.Settings.controller = controller;
             MainLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
         }
 
