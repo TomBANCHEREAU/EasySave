@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace EasySave.Views.BetterViews.Components
         public EnvironmentMenu()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
         public EnvironmentMenu(IController controller, IReadOnlyModel model, BackupEnvironment backupEnvironment) : this()
@@ -127,7 +129,20 @@ namespace EasySave.Views.BetterViews.Components
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             controller.DeleteBackupEnvironment((BackupEnvironment)selected);
-            // Refresh
+        }
+
+        public void UpdateLanguage()
+        {
+            groupBox1.Text = Resources.groupBox1;
+            EnvNameLabel.Text = Resources.NameLabel;
+            SourceLabel.Text = Resources.SourceDirectoryLabel;
+            DestinationLabel.Text = Resources.DestinationDirectoryLabel;
+            FullBackupButton.Text = Resources.FullBackupButton;
+            DifferentialBackupButton.Text = Resources.DifferentialBackupButton;
+            DeleteButton.Text = Resources.DeleteButton;
+            BackupColumn.Text = Resources.BackupColumn;
+            TypeColumn.Text = Resources.TypeColumn;
+            RestoreButton.Text = Resources.RestoreButton;
         }
     }
 }

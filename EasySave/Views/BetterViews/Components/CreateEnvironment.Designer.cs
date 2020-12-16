@@ -49,9 +49,9 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.SetColumnSpan(this.CreateEnvironmentLabel, 2);
             this.CreateEnvironmentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CreateEnvironmentLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CreateEnvironmentLabel.Location = new System.Drawing.Point(313, 0);
+            this.CreateEnvironmentLabel.Location = new System.Drawing.Point(357, 0);
             this.CreateEnvironmentLabel.Name = "CreateEnvironmentLabel";
-            this.CreateEnvironmentLabel.Size = new System.Drawing.Size(406, 144);
+            this.CreateEnvironmentLabel.Size = new System.Drawing.Size(466, 193);
             this.CreateEnvironmentLabel.TabIndex = 0;
             this.CreateEnvironmentLabel.Text = "Create a backup environment";
             this.CreateEnvironmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,32 +60,29 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.NameTextBox, 2);
             this.NameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NameTextBox.Location = new System.Drawing.Point(313, 174);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NameTextBox.Location = new System.Drawing.Point(357, 234);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(406, 23);
+            this.NameTextBox.Size = new System.Drawing.Size(466, 27);
             this.NameTextBox.TabIndex = 4;
             // 
             // SourceDirectoryTextBox
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.SourceDirectoryTextBox, 2);
             this.SourceDirectoryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SourceDirectoryTextBox.Location = new System.Drawing.Point(313, 259);
-            this.SourceDirectoryTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SourceDirectoryTextBox.Location = new System.Drawing.Point(357, 349);
             this.SourceDirectoryTextBox.Name = "SourceDirectoryTextBox";
             this.SourceDirectoryTextBox.ReadOnly = true;
-            this.SourceDirectoryTextBox.Size = new System.Drawing.Size(406, 23);
+            this.SourceDirectoryTextBox.Size = new System.Drawing.Size(466, 27);
             this.SourceDirectoryTextBox.TabIndex = 5;
             // 
             // DestinationDirectoryTextBox
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.DestinationDirectoryTextBox, 2);
             this.DestinationDirectoryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DestinationDirectoryTextBox.Location = new System.Drawing.Point(313, 344);
-            this.DestinationDirectoryTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DestinationDirectoryTextBox.Location = new System.Drawing.Point(357, 464);
             this.DestinationDirectoryTextBox.Name = "DestinationDirectoryTextBox";
             this.DestinationDirectoryTextBox.ReadOnly = true;
-            this.DestinationDirectoryTextBox.Size = new System.Drawing.Size(406, 23);
+            this.DestinationDirectoryTextBox.Size = new System.Drawing.Size(466, 27);
             this.DestinationDirectoryTextBox.TabIndex = 6;
             // 
             // tableLayoutPanel1
@@ -107,7 +104,6 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.Controls.Add(this.CreateEnvironmentLabel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -119,17 +115,16 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1034, 579);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 772);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // CreateButton
             // 
             this.CreateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.SetColumnSpan(this.CreateButton, 2);
-            this.CreateButton.Location = new System.Drawing.Point(450, 423);
-            this.CreateButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CreateButton.Location = new System.Drawing.Point(515, 570);
             this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(131, 38);
+            this.CreateButton.Size = new System.Drawing.Size(150, 51);
             this.CreateButton.TabIndex = 7;
             this.CreateButton.Text = "Create";
             this.CreateButton.UseVisualStyleBackColor = true;
@@ -139,9 +134,9 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.DestinationDirectoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DestinationDirectoryLabel.AutoSize = true;
-            this.DestinationDirectoryLabel.Location = new System.Drawing.Point(313, 327);
+            this.DestinationDirectoryLabel.Location = new System.Drawing.Point(357, 441);
             this.DestinationDirectoryLabel.Name = "DestinationDirectoryLabel";
-            this.DestinationDirectoryLabel.Size = new System.Drawing.Size(117, 15);
+            this.DestinationDirectoryLabel.Size = new System.Drawing.Size(148, 20);
             this.DestinationDirectoryLabel.TabIndex = 3;
             this.DestinationDirectoryLabel.Text = "Destination directory";
             // 
@@ -149,9 +144,9 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.SourceDirectoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SourceDirectoryLabel.AutoSize = true;
-            this.SourceDirectoryLabel.Location = new System.Drawing.Point(313, 242);
+            this.SourceDirectoryLabel.Location = new System.Drawing.Point(357, 326);
             this.SourceDirectoryLabel.Name = "SourceDirectoryLabel";
-            this.SourceDirectoryLabel.Size = new System.Drawing.Size(93, 15);
+            this.SourceDirectoryLabel.Size = new System.Drawing.Size(117, 20);
             this.SourceDirectoryLabel.TabIndex = 2;
             this.SourceDirectoryLabel.Text = "Source directory";
             // 
@@ -159,19 +154,18 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(313, 157);
+            this.NameLabel.Location = new System.Drawing.Point(357, 211);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(39, 15);
+            this.NameLabel.Size = new System.Drawing.Size(49, 20);
             this.NameLabel.TabIndex = 1;
             this.NameLabel.Text = "Name";
             // 
             // DestinationDirectoryExplorer
             // 
             this.DestinationDirectoryExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DestinationDirectoryExplorer.Location = new System.Drawing.Point(656, 319);
-            this.DestinationDirectoryExplorer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DestinationDirectoryExplorer.Location = new System.Drawing.Point(751, 430);
             this.DestinationDirectoryExplorer.Name = "DestinationDirectoryExplorer";
-            this.DestinationDirectoryExplorer.Size = new System.Drawing.Size(63, 21);
+            this.DestinationDirectoryExplorer.Size = new System.Drawing.Size(72, 28);
             this.DestinationDirectoryExplorer.TabIndex = 9;
             this.DestinationDirectoryExplorer.Text = "...";
             this.DestinationDirectoryExplorer.UseVisualStyleBackColor = true;
@@ -180,10 +174,9 @@ namespace EasySave.Views.BetterViews.Components
             // SourceDirectoryExplorer
             // 
             this.SourceDirectoryExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SourceDirectoryExplorer.Location = new System.Drawing.Point(656, 234);
-            this.SourceDirectoryExplorer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SourceDirectoryExplorer.Location = new System.Drawing.Point(751, 315);
             this.SourceDirectoryExplorer.Name = "SourceDirectoryExplorer";
-            this.SourceDirectoryExplorer.Size = new System.Drawing.Size(63, 21);
+            this.SourceDirectoryExplorer.Size = new System.Drawing.Size(72, 28);
             this.SourceDirectoryExplorer.TabIndex = 8;
             this.SourceDirectoryExplorer.Text = "...";
             this.SourceDirectoryExplorer.UseVisualStyleBackColor = true;
@@ -191,12 +184,11 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // CreateEnvironment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CreateEnvironment";
-            this.Size = new System.Drawing.Size(1034, 579);
+            this.Size = new System.Drawing.Size(1182, 772);
             this.Load += new System.EventHandler(this.CreateEnvironment_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

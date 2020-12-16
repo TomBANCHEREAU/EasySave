@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace EasySave.Views.BetterViews.Components
         public CreateEnvironment()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
         private void CreateEnvironment_Load(object sender, EventArgs e)
@@ -59,19 +61,27 @@ namespace EasySave.Views.BetterViews.Components
                 {
                     BackupEnvironment backupEnvironment = new BackupEnvironment(NameTextBox.Text, SourceDirectoryTextBox.Text, DestinationDirectoryTextBox.Text);
                     controller.AddBackupEnvironment(backupEnvironment);
-                    MessageBox.Show("The " + NameTextBox.Text + " envrionment has been created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.mbCreatedEnvironment1 + NameTextBox.Text + Resources.mbCreatedEnvironment2, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, backupEnvironment));
-                    // Refresh
                 }
                 else
                 {
-                    MessageBox.Show("Wrong Information!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbWrongInformation, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Wrong Format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.mbWrongFormat, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void UpdateLanguage()
+        {
+            CreateEnvironmentLabel.Text = Resources.CreateEnvironmentLabel;
+            NameLabel.Text = Resources.NameLabel;
+            SourceDirectoryLabel.Text = Resources.SourceDirectoryLabel;
+            DestinationDirectoryLabel.Text = Resources.DestinationDirectoryLabel;
+            CreateButton.Text = Resources.CreateButton;
         }
     }
 }

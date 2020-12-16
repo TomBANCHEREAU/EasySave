@@ -6,8 +6,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using EasySave.Properties;
 
 namespace EasySave.Views.BetterViews.Components
 {
@@ -19,10 +22,13 @@ namespace EasySave.Views.BetterViews.Components
         public Settings()
         {
             InitializeComponent();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
+            UpdateLanguage();
         }
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void RunMutipleBackupsButton_Click(object sender, EventArgs e)
@@ -42,6 +48,13 @@ namespace EasySave.Views.BetterViews.Components
         private void SettingsButton_Click(object sender, EventArgs e)
         {
             ((BetterViewForm)ParentForm).SetViewState(new SettingsMenu(controller, model));
+        }
+
+        public void UpdateLanguage()
+        {
+            RunMutipleBackupsButton.Text = Resources.RunMutipleBackupsButton;
+            SettingsButton.Text = Resources.SettingsButton;
+            HelpButton.Text = Resources.HelpButton;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ namespace EasySave.Views.BetterViews.Components
         public RunMultipleBackups()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
         private void RunMultipleBackups_Load(object sender, EventArgs e)
@@ -118,8 +120,19 @@ namespace EasySave.Views.BetterViews.Components
                 } 
                 catch
                 {
-                    MessageBox.Show("A backup is already running on one of the environment you have selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbRunMultipleBackups, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+        }
+
+        private void UpdateLanguage()
+        {
+            RunMultipleBackupsLabel.Text = Resources.RunMultipleBackupsLabel;
+            EnvironmentColumn.Text = Resources.EnvironmentColumn;
+            TypeColumn.Text = Resources.TypeColumn;
+            NoBackupRadio.Text = Resources.NoBackupRadio;
+            FullBackupRadio.Text = Resources.FullBackupRadio;
+            DifferentialBackupRadio.Text = Resources.DifferentialBackupRadio;
+            RunMultipleBackupsButton.Text = Resources.RunMultipleBackupsButton;
         }
     }
 }

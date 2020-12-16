@@ -4,10 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 
 namespace EasySave.Views.BetterViews.Components
 {
@@ -20,6 +23,8 @@ namespace EasySave.Views.BetterViews.Components
         public EnvironmentList()
         {
             InitializeComponent();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
+            UpdateLanguage();
         }
 
         private void EnvironmentList_Load(object sender, EventArgs e)
@@ -133,6 +138,15 @@ namespace EasySave.Views.BetterViews.Components
                     EnvList.Items.Add(item);
                 }
             }
+        }
+
+        public void UpdateLanguage()
+        {
+            SearchLabel.Text = Resources.SearchLabel;
+            AddButton.Text = Resources.AddButton;
+            EnvName.Text = Resources.EnvName;
+            statusCol.Text = Resources.statusCol;
+            progressCol.Text = Resources.progressCol;
         }
     }
 }

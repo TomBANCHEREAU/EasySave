@@ -32,11 +32,11 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.EnvList = new System.Windows.Forms.ListView();
             this.EnvName = new System.Windows.Forms.ColumnHeader();
+            this.statusCol = new System.Windows.Forms.ColumnHeader();
+            this.progressCol = new System.Windows.Forms.ColumnHeader();
             this.AddButton = new System.Windows.Forms.Button();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.SearchInput = new System.Windows.Forms.TextBox();
-            this.statusCol = new System.Windows.Forms.ColumnHeader();
-            this.progressCol = new System.Windows.Forms.ColumnHeader();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,13 +51,14 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.Controls.Add(this.SearchInput, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 543);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(378, 724);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // EnvList
@@ -70,10 +71,11 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnvList.FullRowSelect = true;
             this.EnvList.HideSelection = false;
-            this.EnvList.Location = new System.Drawing.Point(3, 47);
+            this.EnvList.Location = new System.Drawing.Point(3, 60);
+            this.EnvList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnvList.MultiSelect = false;
             this.EnvList.Name = "EnvList";
-            this.EnvList.Size = new System.Drawing.Size(325, 493);
+            this.EnvList.Size = new System.Drawing.Size(372, 660);
             this.EnvList.TabIndex = 1;
             this.EnvList.UseCompatibleStateImageBehavior = false;
             this.EnvList.View = System.Windows.Forms.View.Details;
@@ -84,15 +86,26 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvName.Text = "Name";
             this.EnvName.Width = 147;
             // 
+            // statusCol
+            // 
+            this.statusCol.Text = "Status";
+            this.statusCol.Width = 100;
+            // 
+            // progressCol
+            // 
+            this.progressCol.Text = "Progress";
+            this.progressCol.Width = 100;
+            // 
             // AddButton
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddButton.Location = new System.Drawing.Point(135, 18);
-            this.AddButton.MinimumSize = new System.Drawing.Size(160, 0);
+            this.AddButton.Location = new System.Drawing.Point(154, 24);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.AddButton.MinimumSize = new System.Drawing.Size(183, 0);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(193, 23);
+            this.AddButton.Size = new System.Drawing.Size(221, 28);
             this.AddButton.TabIndex = 3;
-            this.AddButton.Text = "Create a new environment";
+            this.AddButton.Text = "New environment";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
@@ -102,35 +115,28 @@ namespace EasySave.Views.BetterViews.Components
             this.SearchLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SearchLabel.Location = new System.Drawing.Point(3, 0);
             this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(126, 15);
+            this.SearchLabel.Size = new System.Drawing.Size(145, 20);
             this.SearchLabel.TabIndex = 4;
             this.SearchLabel.Text = "Search";
             // 
             // SearchInput
             // 
             this.SearchInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchInput.Location = new System.Drawing.Point(3, 18);
+            this.SearchInput.Location = new System.Drawing.Point(3, 24);
+            this.SearchInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SearchInput.Name = "SearchInput";
-            this.SearchInput.Size = new System.Drawing.Size(126, 23);
+            this.SearchInput.Size = new System.Drawing.Size(145, 27);
             this.SearchInput.TabIndex = 5;
             this.SearchInput.TextChanged += new System.EventHandler(this.SearchInput_TextChanged);
             // 
-            // statusCol
-            // 
-            this.statusCol.Text = "Status";
-            this.statusCol.Width = 80;
-            // 
-            // progressCol
-            // 
-            this.progressCol.Text = "Progress";
-            // 
             // EnvironmentList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EnvironmentList";
-            this.Size = new System.Drawing.Size(331, 543);
+            this.Size = new System.Drawing.Size(378, 724);
             this.Load += new System.EventHandler(this.EnvironmentList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

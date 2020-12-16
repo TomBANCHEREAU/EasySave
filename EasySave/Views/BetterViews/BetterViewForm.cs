@@ -30,7 +30,7 @@ namespace EasySave.Views.BetterViews
 
         private void BetterViewForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         internal void SetViewState(UserControl viewState)
@@ -59,6 +59,12 @@ namespace EasySave.Views.BetterViews
         private void Title_Click(object sender, EventArgs e)
         {
             SetViewState(new DefaultView(controller,model));
+        }
+
+        public void UpdateLanguage()
+        {
+            Settings.UpdateLanguage();
+            EnvironmentList.UpdateLanguage();
         }
     }
 }

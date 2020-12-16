@@ -1,11 +1,14 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace EasySave.Views.BetterViews.Components
@@ -29,14 +32,15 @@ namespace EasySave.Views.BetterViews.Components
         public SettingsMenu()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
         private void SettingsMenu_Load(object sender, EventArgs e)
         {
-            LoadkoSaved();
             LoadCryptExtensions();
             LoadPriorityExtensions();
             LoadBusinessSoftware();
+            LoadKoSaved();
         }
 
         private void LoadCryptExtensions()
@@ -134,9 +138,10 @@ namespace EasySave.Views.BetterViews.Components
             LoadBusinessSoftware();
         }
 
-        private void LoadkoSaved()
+        private void LoadKoSaved()
         {
             KoSaved = model.KoLimit;
+
             if (KoSaved == 100)
                 Ko100.Checked = true;
             else if (KoSaved == 500)
@@ -180,6 +185,41 @@ namespace EasySave.Views.BetterViews.Components
         private void KoInput_ValueChanged(object sender, EventArgs e)
         {
            controller.SetKoLimit((long)KoInput.Value); 
+        }
+
+        private void UKButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
+            ((BetterViewForm)ParentForm).UpdateLanguage();
+            UpdateLanguage();
+        }
+
+        private void FRButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            ((BetterViewForm)ParentForm).UpdateLanguage();
+            UpdateLanguage();
+        }
+
+        public void UpdateLanguage()
+        {
+            CryptLabel.Text = Resources.CryptLabel;
+            CryptAdd.Text = Resources.CryptAdd;
+            CryptRemove.Text = Resources.CryptRemove;
+            PriorityLabel.Text = Resources.PriorityLabel;
+            PriorityAdd.Text = Resources.PriorityAdd;
+            PriorityRemove.Text = Resources.PriorityRemove;
+            BusinessSoftwareLabel.Text = Resources.BusinessSoftwareLabel;
+            BusinessSoftwareAdd.Text = Resources.BusinessSoftwareAdd;
+            BusinessSoftwareRemove.Text = Resources.BusinessSoftwareRemove;
+            LimitSizeLabel.Text = Resources.LimitSizeLabel;
+            Ko100.Text = Resources.Ko100;
+            Ko500.Text = Resources.Ko500;
+            Ko1000.Text = Resources.Ko1000;
+            Ko10000.Text = Resources.Ko10000;
+            KoMax.Text = Resources.KoMax;
+            UKButton.Text = Resources.UKButton;
+            FRButton.Text = Resources.FRButton;
         }
     }
 }

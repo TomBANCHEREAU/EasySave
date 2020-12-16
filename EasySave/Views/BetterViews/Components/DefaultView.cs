@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +25,19 @@ namespace EasySave.Views.BetterViews.Components
         public DefaultView()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
 
         private void DefaultView_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void UpdateLanguage()
+        {
+            WelcomeLabel.Text = Resources.WelcomeLabel;
+            DefaultViewLabel.Text = Resources.DefaultViewLabel;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EasySave.Controllers;
 using EasySave.Models;
+using EasySave.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,11 @@ namespace EasySave.Views.BetterViews.Components
         internal IController controller;
         internal BackupEnvironment backupEnvironment;
         internal BackupEnvironment.BackupEnvironmentState last;
+
         public StartAndStop()
         {
             InitializeComponent();
+            UpdateLanguage();
             this.Enabled = false;
         }
 
@@ -28,7 +31,6 @@ namespace EasySave.Views.BetterViews.Components
         {
 
         }
-
 
         public void Backup_OnStateChange(object sender, BackupEnvironment.BackupEnvironmentState e)
         {
@@ -43,7 +45,7 @@ namespace EasySave.Views.BetterViews.Components
                         {
                             this.ProgressBar.Value = (int)e.Status.Progression;
                             this.PauseButton.Enabled = e.Status.status != Backup.BackupStatus.PAUSED;
-                            this.button1.Enabled = e.Status.status == Backup.BackupStatus.PAUSED;
+                            this.ResumeButton.Enabled = e.Status.status == Backup.BackupStatus.PAUSED;
 
                         }
                     }
@@ -66,13 +68,21 @@ namespace EasySave.Views.BetterViews.Components
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ResumeButton_Click(object sender, EventArgs e)
         {
             if (last != null && last.Running && last.Status != null)
             {
                 if (last.Status.status == Backup.BackupStatus.PAUSED)
                     this.controller.ResumeBackup(backupEnvironment.runningBackup);
             }
+        }
+
+        public void UpdateLanguage()
+        {
+            groupBox.Text = Resources.groupBox2;
+            PauseButton.Text = Resources.PauseButton;
+            ResumeButton.Text = Resources.ResumeButton;
+            CancelButton.Text = Resources.CancelButton;
         }
     }
 }

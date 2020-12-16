@@ -30,8 +30,6 @@ namespace EasySave.Views.BetterViews.Components
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.FRButton = new System.Windows.Forms.Button();
-            this.UKButton = new System.Windows.Forms.Button();
             this.RunMutipleBackupsButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.HelpButton = new System.Windows.Forms.Button();
@@ -40,56 +38,28 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.FRButton, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.UKButton, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.RunMutipleBackupsButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.SettingsButton, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.HelpButton, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 94);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1058, 125);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // FRButton
-            // 
-            this.FRButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.FRButton.Location = new System.Drawing.Point(758, 24);
-            this.FRButton.Margin = new System.Windows.Forms.Padding(18, 2, 3, 2);
-            this.FRButton.Name = "FRButton";
-            this.FRButton.Size = new System.Drawing.Size(105, 45);
-            this.FRButton.TabIndex = 6;
-            this.FRButton.Text = "French";
-            this.FRButton.UseVisualStyleBackColor = true;
-            // 
-            // UKButton
-            // 
-            this.UKButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.UKButton.Location = new System.Drawing.Point(617, 24);
-            this.UKButton.Margin = new System.Windows.Forms.Padding(3, 2, 18, 2);
-            this.UKButton.Name = "UKButton";
-            this.UKButton.Size = new System.Drawing.Size(105, 45);
-            this.UKButton.TabIndex = 5;
-            this.UKButton.Text = "English";
-            this.UKButton.UseVisualStyleBackColor = true;
             // 
             // RunMutipleBackupsButton
             // 
             this.RunMutipleBackupsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RunMutipleBackupsButton.Location = new System.Drawing.Point(40, 24);
-            this.RunMutipleBackupsButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RunMutipleBackupsButton.Location = new System.Drawing.Point(93, 32);
             this.RunMutipleBackupsButton.Name = "RunMutipleBackupsButton";
-            this.RunMutipleBackupsButton.Size = new System.Drawing.Size(105, 45);
+            this.RunMutipleBackupsButton.Size = new System.Drawing.Size(165, 60);
             this.RunMutipleBackupsButton.TabIndex = 8;
             this.RunMutipleBackupsButton.Text = "Run multiple backups";
             this.RunMutipleBackupsButton.UseVisualStyleBackColor = true;
@@ -98,10 +68,9 @@ namespace EasySave.Views.BetterViews.Components
             // SettingsButton
             // 
             this.SettingsButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SettingsButton.Location = new System.Drawing.Point(225, 24);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SettingsButton.Location = new System.Drawing.Point(445, 32);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(105, 45);
+            this.SettingsButton.Size = new System.Drawing.Size(165, 60);
             this.SettingsButton.TabIndex = 3;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
@@ -110,10 +79,9 @@ namespace EasySave.Views.BetterViews.Components
             // HelpButton
             // 
             this.HelpButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.HelpButton.Location = new System.Drawing.Point(410, 24);
-            this.HelpButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.HelpButton.Location = new System.Drawing.Point(798, 32);
             this.HelpButton.Name = "HelpButton";
-            this.HelpButton.Size = new System.Drawing.Size(105, 45);
+            this.HelpButton.Size = new System.Drawing.Size(165, 60);
             this.HelpButton.TabIndex = 4;
             this.HelpButton.Text = "Help";
             this.HelpButton.UseVisualStyleBackColor = true;
@@ -121,12 +89,11 @@ namespace EasySave.Views.BetterViews.Components
             // 
             // Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Settings";
-            this.Size = new System.Drawing.Size(926, 94);
+            this.Size = new System.Drawing.Size(1058, 125);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -138,8 +105,6 @@ namespace EasySave.Views.BetterViews.Components
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.Button HelpButton;
-        private System.Windows.Forms.Button UKButton;
-        private System.Windows.Forms.Button FRButton;
         private System.Windows.Forms.Button RunMutipleBackupsButton;
     }
 }

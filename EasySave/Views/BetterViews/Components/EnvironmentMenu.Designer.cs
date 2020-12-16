@@ -63,21 +63,22 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(942, 557);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1077, 744);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // DeleteButton
             // 
             this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteButton.Location = new System.Drawing.Point(742, 10);
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(10);
+            this.DeleteButton.Location = new System.Drawing.Point(866, 13);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(190, 25);
+            this.DeleteButton.Size = new System.Drawing.Size(200, 50);
             this.DeleteButton.TabIndex = 4;
             this.DeleteButton.Text = "Delete this environment";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -90,22 +91,22 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel3.Controls.Add(this.RestoreButton, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.BackupList, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(474, 114);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(541, 152);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(465, 440);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(533, 588);
             this.tableLayoutPanel3.TabIndex = 8;
             // 
             // RestoreButton
             // 
             this.RestoreButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RestoreButton.Enabled = false;
-            this.RestoreButton.Location = new System.Drawing.Point(167, 402);
-            this.RestoreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RestoreButton.Location = new System.Drawing.Point(176, 529);
             this.RestoreButton.Name = "RestoreButton";
-            this.RestoreButton.Size = new System.Drawing.Size(131, 25);
+            this.RestoreButton.Size = new System.Drawing.Size(180, 50);
             this.RestoreButton.TabIndex = 3;
             this.RestoreButton.Text = "Restore a backup";
             this.RestoreButton.UseVisualStyleBackColor = true;
@@ -119,10 +120,9 @@ namespace EasySave.Views.BetterViews.Components
             this.BackupList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BackupList.FullRowSelect = true;
             this.BackupList.HideSelection = false;
-            this.BackupList.Location = new System.Drawing.Point(3, 2);
-            this.BackupList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BackupList.Location = new System.Drawing.Point(3, 3);
             this.BackupList.Name = "BackupList";
-            this.BackupList.Size = new System.Drawing.Size(459, 386);
+            this.BackupList.Size = new System.Drawing.Size(527, 515);
             this.BackupList.TabIndex = 5;
             this.BackupList.UseCompatibleStateImageBehavior = false;
             this.BackupList.View = System.Windows.Forms.View.Details;
@@ -148,21 +148,22 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel2.Controls.Add(this.DifferentialBackupButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.startAndStop1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 114);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 152);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(465, 440);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(532, 588);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // FullBackupButton
             // 
             this.FullBackupButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.FullBackupButton.Location = new System.Drawing.Point(10, 10);
-            this.FullBackupButton.Margin = new System.Windows.Forms.Padding(10);
+            this.FullBackupButton.Location = new System.Drawing.Point(20, 8);
+            this.FullBackupButton.Margin = new System.Windows.Forms.Padding(5);
             this.FullBackupButton.Name = "FullBackupButton";
-            this.FullBackupButton.Size = new System.Drawing.Size(212, 30);
+            this.FullBackupButton.Size = new System.Drawing.Size(225, 50);
             this.FullBackupButton.TabIndex = 1;
             this.FullBackupButton.Text = "Run a full backup";
             this.FullBackupButton.UseVisualStyleBackColor = true;
@@ -172,10 +173,10 @@ namespace EasySave.Views.BetterViews.Components
             // 
             this.DifferentialBackupButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DifferentialBackupButton.Enabled = false;
-            this.DifferentialBackupButton.Location = new System.Drawing.Point(242, 10);
-            this.DifferentialBackupButton.Margin = new System.Windows.Forms.Padding(10);
+            this.DifferentialBackupButton.Location = new System.Drawing.Point(286, 8);
+            this.DifferentialBackupButton.Margin = new System.Windows.Forms.Padding(5);
             this.DifferentialBackupButton.Name = "DifferentialBackupButton";
-            this.DifferentialBackupButton.Size = new System.Drawing.Size(213, 30);
+            this.DifferentialBackupButton.Size = new System.Drawing.Size(225, 50);
             this.DifferentialBackupButton.TabIndex = 2;
             this.DifferentialBackupButton.Text = "Run a differential backup";
             this.DifferentialBackupButton.UseVisualStyleBackColor = true;
@@ -186,9 +187,10 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel2.SetColumnSpan(this.startAndStop1, 2);
             this.startAndStop1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startAndStop1.Enabled = false;
-            this.startAndStop1.Location = new System.Drawing.Point(3, 53);
+            this.startAndStop1.Location = new System.Drawing.Point(3, 72);
+            this.startAndStop1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.startAndStop1.Name = "startAndStop1";
-            this.startAndStop1.Size = new System.Drawing.Size(459, 384);
+            this.startAndStop1.Size = new System.Drawing.Size(526, 512);
             this.startAndStop1.TabIndex = 3;
             // 
             // tableLayoutPanel4
@@ -199,14 +201,15 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel4.Controls.Add(this.SourceLabel, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.DestinationLabel, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 4;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(465, 105);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(532, 140);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
             // EnvNameLabel
@@ -214,48 +217,48 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvNameLabel.AutoSize = true;
             this.EnvNameLabel.Location = new System.Drawing.Point(3, 0);
             this.EnvNameLabel.Name = "EnvNameLabel";
-            this.EnvNameLabel.Size = new System.Drawing.Size(48, 15);
+            this.EnvNameLabel.Size = new System.Drawing.Size(56, 20);
             this.EnvNameLabel.TabIndex = 0;
-            this.EnvNameLabel.Text = "Name : ";
+            this.EnvNameLabel.Text = "Name: ";
             // 
             // SourceLabel
             // 
             this.SourceLabel.AutoSize = true;
-            this.SourceLabel.Location = new System.Drawing.Point(3, 26);
+            this.SourceLabel.Location = new System.Drawing.Point(3, 35);
             this.SourceLabel.Name = "SourceLabel";
-            this.SourceLabel.Size = new System.Drawing.Size(103, 15);
+            this.SourceLabel.Size = new System.Drawing.Size(124, 20);
             this.SourceLabel.TabIndex = 1;
-            this.SourceLabel.Text = "Source Directory : ";
+            this.SourceLabel.Text = "Source directory: ";
             // 
             // DestinationLabel
             // 
             this.DestinationLabel.AutoSize = true;
-            this.DestinationLabel.Location = new System.Drawing.Point(3, 52);
+            this.DestinationLabel.Location = new System.Drawing.Point(3, 70);
             this.DestinationLabel.Name = "DestinationLabel";
-            this.DestinationLabel.Size = new System.Drawing.Size(127, 15);
+            this.DestinationLabel.Size = new System.Drawing.Size(155, 20);
             this.DestinationLabel.TabIndex = 2;
-            this.DestinationLabel.Text = "Destination Directory : ";
+            this.DestinationLabel.Text = "Destination directory: ";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(948, 579);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1083, 772);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Environment DashBoard";
             // 
             // EnvironmentMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EnvironmentMenu";
-            this.Size = new System.Drawing.Size(948, 579);
+            this.Size = new System.Drawing.Size(1083, 772);
             this.Load += new System.EventHandler(this.EnvironmentMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
