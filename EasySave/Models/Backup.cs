@@ -203,7 +203,7 @@ namespace EasySave.Models
 
                 currentState.FileNumber = TotalCount;
                 currentState.FileSize = transfer.FileSize;
-                currentState.Progression = (float)((float)currentSize / TotalSize * 100.0);
+                currentState.Progression = TotalSize>0?(float)((float)currentSize / TotalSize * 100.0):0;
                 currentState.FileLeft = TotalCount - i;
                 currentState.SizeLeft = TotalSize - currentSize;
                 currentState.CurrentSourceFile = transfer.SourceFile;
