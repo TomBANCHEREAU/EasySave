@@ -151,6 +151,8 @@ namespace EasySave.Models
             {
                 if (status == BackupStatus.IDLE)
                     return;
+                if (status == BackupStatus.PAUSED)
+                    Resume();
                 cancel = true;
             }
         }

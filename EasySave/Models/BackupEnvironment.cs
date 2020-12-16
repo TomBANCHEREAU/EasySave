@@ -237,10 +237,8 @@ namespace EasySave.Models
 
         internal void Cancel(Backup backup)
         {
-            Debug.WriteLine("CANCEL");
             if (IsRunning && backups.Contains(backup))
             {
-                Debug.WriteLine("CANCEL");
                 backup.Cancel();
                 backups.Remove(backup);
                 save();

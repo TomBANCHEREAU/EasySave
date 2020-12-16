@@ -39,6 +39,16 @@ namespace EasySave.Views.BetterViews.Components
             this.startAndStop1.controller = controller;
             this.startAndStop1.backupEnvironment = backupEnvironment;
             backupEnvironment.OnStateChange += this.startAndStop1.Backup_OnStateChange;
+            backupEnvironment.OnStateChange += BackupEnvironment_OnStateChange; ;
+        }
+
+        private void BackupEnvironment_OnStateChange(object sender, BackupEnvironment.BackupEnvironmentState e)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                FullBackupButton.Enabled = !e.Running;
+                DifferentialBackupButton.Enabled = !e.Running;
+            }));
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
