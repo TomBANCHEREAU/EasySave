@@ -25,6 +25,7 @@ namespace EasySave.Models
         public readonly BackupEnvironment BackupEnvironment;
         public String SourceDirectory { get => BackupEnvironment.SourceDirectory; }
         public readonly BackupType Type;
+        internal bool done = false;
 
         #endregion
 
@@ -95,6 +96,7 @@ namespace EasySave.Models
             }
             RunExecute();
             ExecuteTransfers();
+            done = true;
         }
         internal void Restore()
         {
@@ -317,7 +319,7 @@ namespace EasySave.Models
 
         #endregion
         #endregion
-        internal class BackupData
+        public class BackupData
         {
             public BackupType BackupType;
             public String ExecutionDate;

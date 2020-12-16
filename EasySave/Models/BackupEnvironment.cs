@@ -140,18 +140,25 @@ namespace EasySave.Models
                 {
                     try
                     {
-                        switch (backupData.BackupType)
+                        if (backupData.DestinationDirectory != null)
                         {
-                            case BackupType.FULL: 
-                                AddBackup(new FullBackup(this,backupData.DestinationDirectory,DateTime.Parse(backupData.ExecutionDate))); 
-                                break;
-                            case BackupType.DIFFERENTIAL:
-                                Backup fb = fullBackups.Find((backup)=>backup.DestinationDirectory== backupData.FullBackupDirectory);
-                                if (fb == null)
-                                    throw new Exception("A full backup cant be found");
-                                AddBackup(new DifferentialBackup(this, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate),fb));
-                                break;
-                            default: throw new Exception("Unknowned backup type");
+                            Backup b;
+                            switch (backupData.BackupType)
+                            {
+                                case BackupType.FULL:
+                                     b = new FullBackup(this, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate));
+                                    AddBackup(b);
+                                    break;
+                                case BackupType.DIFFERENTIAL:
+                                    Backup fb = fullBackups.Find((backup) => backup.DestinationDirectory == backupData.FullBackupDirectory);
+                                    if (fb == null)
+                                        throw new Exception("A full backup cant be found");
+                                    b = new DifferentialBackup(this, backupData.DestinationDirectory, DateTime.Parse(backupData.ExecutionDate), fb);
+                                    AddBackup(b);
+                                    break;
+                                default: throw new Exception("Unknowned backup type");
+                            }
+                            b.done = true;
                         }
                     }
                     catch (Exception ex)
@@ -238,7 +245,12 @@ namespace EasySave.Models
             {
                 backup.Cancel();
                 //runningBackupTask.Wait();
-                backups.Remove(backup);
+                if (!backup.done)
+                {
+                    backups.Remove(backup);
+                    if (fullBackups.Contains(backup))
+                        fullBackups.Remove(backup);
+                }
                 save();
             }
         }
