@@ -144,6 +144,15 @@
   <data name="RunFullButton" xml:space="preserve">
     <value>Full backup</value>
   </data>
+  <data name="StatusBlocked" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
+  <data name="StatusPaused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="StatusRunning" xml:space="preserve">
+    <value>Running</value>
+  </data>
   <data name="UKButton" xml:space="preserve">
     <value>English</value>
   </data>

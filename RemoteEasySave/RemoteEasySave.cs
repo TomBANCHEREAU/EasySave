@@ -70,15 +70,15 @@ namespace RemoteEasySave
                                 break;
                             case Backup.BackupStatus.RUNNING:
                                 listViewItem.SubItems[1].ForeColor = Color.Green;
-                                listViewItem.SubItems[1].Text = "Running";
+                                listViewItem.SubItems[1].Text = Resources.StatusRunning;
                                 break;
                             case Backup.BackupStatus.PAUSED:
                                 listViewItem.SubItems[1].ForeColor = Color.Orange;
-                                listViewItem.SubItems[1].Text = "Paused";
+                                listViewItem.SubItems[1].Text = Resources.StatusPaused;
                                 break;
                             case Backup.BackupStatus.BLOCKED:
                                 listViewItem.SubItems[1].ForeColor = Color.Orange;
-                                listViewItem.SubItems[1].Text = "Blocked";
+                                listViewItem.SubItems[1].Text = Resources.StatusBlocked;
                                 break;
                             default:
                                 break;

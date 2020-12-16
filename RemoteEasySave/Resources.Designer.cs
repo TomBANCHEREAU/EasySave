@@ -142,6 +142,33 @@ namespace RemoteEasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Blocked.
+        /// </summary>
+        internal static string StatusBlocked {
+            get {
+                return ResourceManager.GetString("StatusBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Paused.
+        /// </summary>
+        internal static string StatusPaused {
+            get {
+                return ResourceManager.GetString("StatusPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Running.
+        /// </summary>
+        internal static string StatusRunning {
+            get {
+                return ResourceManager.GetString("StatusRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
         internal static string UKButton {
