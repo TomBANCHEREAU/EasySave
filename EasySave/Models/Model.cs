@@ -89,11 +89,6 @@ namespace EasySave.Models
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
-            foreach (String processName in BlockingProcesses)
-            {
-                if (Process.GetProcessesByName(processName).Length != 0)
-                    throw new Exception();
-            }
             backup.BackupEnvironment.Restore(backup);
 
         }
@@ -202,6 +197,12 @@ namespace EasySave.Models
         {
             if (backupEnvironments.Contains(backup.BackupEnvironment))
                 backup.Resume();
+        }
+
+        public void CancelBackup(Backup backup)
+        {
+            if (this.BackupEnvironments.Contains(backup.BackupEnvironment))
+                backup.BackupEnvironment.Cancel(backup);
         }
 
         class SettingsJSON

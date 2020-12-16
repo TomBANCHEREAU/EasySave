@@ -60,6 +60,7 @@ namespace EasySave.Models
         private Semaphore pause = new Semaphore(1, 1);
         private BackupStatus _status = BackupStatus.IDLE;
         private List<FileTransferEvent> transfers = new List<FileTransferEvent>();
+        private bool cancel;
 
         internal Backup(BackupEnvironment backupEnvironment, BackupType type)
         {
@@ -82,6 +83,7 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                cancel = false;
                 if (this.destinationDir != null)
                     throw new Exception();
                 this.executionDate = DateTime.Now;
@@ -97,6 +99,7 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                cancel = false;
                 if (status != BackupStatus.IDLE)
                     throw new Exception();
                 status = BackupStatus.RUNNING;
@@ -142,6 +145,15 @@ namespace EasySave.Models
             }
         }
 
+        internal void Cancel()
+        {
+            lock (this)
+            {
+                if (status == BackupStatus.IDLE)
+                    return;
+                cancel = true;
+            }
+        }
 
 
 
@@ -180,6 +192,8 @@ namespace EasySave.Models
                     waitForHighPriorityEnd();
                 waitForBlockingProcessEnd();
                 status = BackupStatus.RUNNING;
+                if (cancel)
+                    break;
 
                 currentState.FileNumber = transfers.Count;
                 currentState.FileSize = transfer.FileSize;
@@ -199,7 +213,9 @@ namespace EasySave.Models
 
                 new Thread(() => { OnFileTransfer(this, transfer); }).Start();
             }
-            //transfers.Clear();
+            if (!highPriorityDone)
+                endHighPriority();
+            transfers.Clear();
             status = BackupStatus.IDLE;
         }
 
@@ -259,6 +275,8 @@ namespace EasySave.Models
                 transfers.Add(new FileTransferEvent(this, new FileInfo(file), new FileInfo(Path.Join(destBasePath, filePathFromBase))));
             }
         }
+
+
         protected void AddFileTranfer(FileTransferEvent fileTransfer)
         {
             transfers.Add(fileTransfer);

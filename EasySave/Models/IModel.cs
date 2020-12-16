@@ -19,5 +19,6 @@ namespace EasySave.Models
         public void SetBlockingProcesses(String[] processes);
         public void SetHighPriorityExtensions(String[] extensions);
         public void SetKoLimit(long kolimit);
+        void CancelBackup(Backup backup);
     }
 }

@@ -84,5 +84,14 @@ namespace EasySave.Views.BetterViews.Components
             ResumeButton.Text = Resources.ResumeButton;
             CancelButton.Text = Resources.CancelButton;
         }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            if (last != null && last.Running && last.Status != null)
+            {
+                if (last.Status.status != Backup.BackupStatus.IDLE)
+                    this.controller.CancelBackup(backupEnvironment.runningBackup);
+            }
+        }
     }
 }

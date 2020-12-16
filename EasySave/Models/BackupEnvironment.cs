@@ -234,6 +234,19 @@ namespace EasySave.Models
                 return b;
             }
         }
+
+        internal void Cancel(Backup backup)
+        {
+            Debug.WriteLine("CANCEL");
+            if (IsRunning && backups.Contains(backup))
+            {
+                Debug.WriteLine("CANCEL");
+                backup.Cancel();
+                backups.Remove(backup);
+                save();
+            }
+        }
+
         public class BackupEnvironmentState
         {
             public DateTime Date = DateTime.Now;
