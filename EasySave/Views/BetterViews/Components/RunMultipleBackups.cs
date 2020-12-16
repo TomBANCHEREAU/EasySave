@@ -38,22 +38,15 @@ namespace EasySave.Views.BetterViews.Components
             {
                 ListViewItem listViewItem = new ListViewItem(new string[2] { 
                     backupEnvironment.Name, 
-                    ""
+                    "-"
                 });
                 listViewItem.Tag = backupEnvironment;
 
                 if (backupEnvironment.IsRunning)
                 {
-                    listViewItem.SubItems[1].Tag = null;
-                    listViewItem.SubItems[1].Text = "Already running";
-                    FullBackupRadio.Enabled = false;
-                    FullBackupRadio.Checked = false;
-                    DifferentialBackupRadio.Enabled = false;
-                    DifferentialBackupRadio.Checked = false;
-                    NoBackupRadio.Enabled = false;
-                    NoBackupRadio.Checked = false;
+                    listViewItem.SubItems[1].Tag = 1;
+                    listViewItem.SubItems[1].Text = Resources.TypeAlreadyRunning;
                 }
-
                 EnvironmentList.Items.Add(listViewItem);
             }
         }
@@ -66,12 +59,29 @@ namespace EasySave.Views.BetterViews.Components
 
                 if (!(selected.SubItems[1].Tag is BackupEnvironment))
                 {
-                    NoBackupRadio.Checked = selected.SubItems[1].Tag == null;
-                    FullBackupRadio.Checked = BackupType.FULL.CompareTo(selected.SubItems[1].Tag) == 0;
-                    DifferentialBackupRadio.Checked = BackupType.DIFFERENTIAL.CompareTo(selected.SubItems[1].Tag) == 0;
-                    NoBackupRadio.Enabled = true;
-                    FullBackupRadio.Enabled = true;
-                    DifferentialBackupRadio.Enabled = ((BackupEnvironment)selected.Tag).FullBackups.Count > 0;
+                    if (selected.SubItems[1].Tag is null)
+                    {
+                        NoBackupRadio.Checked = selected.SubItems[1].Tag == null;
+                        NoBackupRadio.Checked = selected.SubItems[1].Text == Resources.TypeNoBackup;
+                        NoBackupRadio.Checked = true;
+                    }
+                    else if (selected.SubItems[1].Text == Resources.TypeAlreadyRunning)
+                    {
+                        FullBackupRadio.Enabled = false;
+                        FullBackupRadio.Checked = false;
+                        DifferentialBackupRadio.Enabled = false;
+                        DifferentialBackupRadio.Checked = false;
+                        NoBackupRadio.Enabled = false;
+                        NoBackupRadio.Checked = false;
+                    }
+                    else
+                    {
+                        FullBackupRadio.Checked = BackupType.FULL.CompareTo(selected.SubItems[1].Tag) == 0;
+                        DifferentialBackupRadio.Checked = BackupType.DIFFERENTIAL.CompareTo(selected.SubItems[1].Tag) == 0;
+                        NoBackupRadio.Enabled = true;
+                        FullBackupRadio.Enabled = true;
+                        DifferentialBackupRadio.Enabled = ((BackupEnvironment)selected.Tag).FullBackups.Count > 0;
+                    }
                 } 
                 else
                 {
@@ -94,7 +104,7 @@ namespace EasySave.Views.BetterViews.Components
             if (selected != null && NoBackupRadio.Checked && NoBackupRadio.Enabled)
             {
                 selected.SubItems[1].Tag = null;
-                selected.SubItems[1].Text = "No backup";
+                selected.SubItems[1].Text = Resources.TypeNoBackup;
             }
         }
 
@@ -103,7 +113,7 @@ namespace EasySave.Views.BetterViews.Components
             if (selected != null && FullBackupRadio.Checked)
             {
                 selected.SubItems[1].Tag = BackupType.FULL;
-                selected.SubItems[1].Text = "Full";
+                selected.SubItems[1].Text = Resources.TypeFull;
             }
         }
 
@@ -112,7 +122,7 @@ namespace EasySave.Views.BetterViews.Components
             if (selected != null && DifferentialBackupRadio.Checked)
             {
                 selected.SubItems[1].Tag = BackupType.DIFFERENTIAL;
-                selected.SubItems[1].Text = "Differential";
+                selected.SubItems[1].Text = Resources.TypeDifferential;
             }
         }
 
@@ -121,7 +131,7 @@ namespace EasySave.Views.BetterViews.Components
             foreach (ListViewItem item in EnvironmentList.Items)
                 try
                 {
-                    if (item.SubItems[1].Tag != null)
+                    if (item.SubItems[1].Tag != null && !((int)item.SubItems[1].Tag == 1))
                         controller.RunBackup((BackupEnvironment)item.Tag, (BackupType)item.SubItems[1].Tag);
                 } 
                 catch

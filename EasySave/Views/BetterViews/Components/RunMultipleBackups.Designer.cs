@@ -89,6 +89,7 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvironmentList.FullRowSelect = true;
             this.EnvironmentList.HideSelection = false;
             this.EnvironmentList.Location = new System.Drawing.Point(165, 196);
+            this.EnvironmentList.MultiSelect = false;
             this.EnvironmentList.Name = "EnvironmentList";
             this.tableLayoutPanel1.SetRowSpan(this.EnvironmentList, 4);
             this.EnvironmentList.Size = new System.Drawing.Size(373, 454);
