@@ -81,7 +81,7 @@ namespace EasySave.Views.BetterViews.Components
                         default:
                             break;
                     }
-                    item.SubItems[2].Text = backupEnvironment.runningBackup.currentState.Progression+"%";
+                    item.SubItems[2].Text = (int)backupEnvironment.runningBackup.currentState.Progression+"%";
                 }
                 else
                 {

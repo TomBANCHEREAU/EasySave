@@ -37,7 +37,11 @@ namespace EasySave.Controllers
                 try
                 {
                     client.Client.BeginSend(buffer, 0, buffer.Length, 0, (IAsyncResult ar) => {
-                        client.Client.EndSend(ar);
+                        try
+                        {
+                            client.Client.EndSend(ar);
+                        }
+                        catch { }
                     }, new Object());
                 }
                 catch{}

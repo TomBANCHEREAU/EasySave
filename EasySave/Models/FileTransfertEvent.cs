@@ -9,7 +9,6 @@ namespace EasySave.Models
 {
     public class FileTransferEvent
     {
-        private static Mutex bigFile = new Mutex();
         private Boolean done = false;
         private long transferTime;
         private long encryptionTime;
@@ -30,7 +29,7 @@ namespace EasySave.Models
         public String EnvironmentName { get => BackupEnvironment.Name; }
         public Boolean Encrypted { get => new List<String>(Model.CryptedExtensions).Contains(SourceFileInfo.Extension); }
         public Boolean BigFile { get => FileSize > Model.KoLimit*1000; }
-        public Boolean HighPriority { get => new List<String>(Model.CryptedExtensions).Contains(SourceFileInfo.Extension); }
+        public Boolean HighPriority { get => new List<String>(Model.HighPriorityExtensions).Contains(SourceFileInfo.Extension); }
 
         internal FileTransferEvent(Backup Backup, FileInfo SourceFileInfo, FileInfo DestinationFileInfo)
         {
@@ -47,16 +46,14 @@ namespace EasySave.Models
                 done = true;
             }
 
-            if (BigFile)
-                bigFile.WaitOne();
 
+            //Debug.WriteLine(HighPriority);
             if (Encrypted)
                 encryptionTime = encryptFile();
             else
                 transferTime = copyFile();
+            //Debug.WriteLine("FILE TRANSFERT END : " + SourceFileInfo.FullName);
 
-            if (BigFile)
-                bigFile.ReleaseMutex();
         }
 
         private long copyFile()

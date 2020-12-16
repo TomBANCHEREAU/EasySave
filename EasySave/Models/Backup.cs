@@ -34,6 +34,7 @@ namespace EasySave.Models
 
         private delegate int OnHighPriorityEnd();
 
+        private static Mutex bigFile = new Mutex();
         private static OnHighPriorityEnd onHighPriorityEnd = () => 0;
         private static int highPriorityRunning = 0;
         private static Object highPriorityLock = new Object();
@@ -117,13 +118,22 @@ namespace EasySave.Models
             {
                 if (status == BackupStatus.PAUSED)
                     return;
-                if (status != BackupStatus.RUNNING)
-                    throw new Exception();
+                if (status == BackupStatus.IDLE)
+                    return;
                 Thread pauseThread = new Thread(() => { pause.WaitOne(); });
                 pauseThread.Start();
                 pauseThread.Join();
                 if (!highPriorityDone)
                     highPriorityRunning--;
+
+                if (highPriorityRunning == 0)
+                {
+                    lock (highPriorityLock)
+                    {
+                        onHighPriorityEnd();
+                        onHighPriorityEnd = () => 0;
+                    }
+                }
                 status = BackupStatus.PAUSED;
             }
         }
@@ -134,7 +144,7 @@ namespace EasySave.Models
                 if (status == BackupStatus.RUNNING)
                     return;
                 if (status != BackupStatus.PAUSED)
-                    throw new Exception();
+                    return;
                 if (!highPriorityDone)
                     highPriorityRunning++;
                 Thread pauseThread = new Thread(() => { pause.Release(); });
@@ -151,9 +161,9 @@ namespace EasySave.Models
             {
                 if (status == BackupStatus.IDLE)
                     return;
+                cancel = true;
                 if (status == BackupStatus.PAUSED)
                     Resume();
-                cancel = true;
             }
         }
 
@@ -168,8 +178,6 @@ namespace EasySave.Models
             foreach (FileTransferEvent transfer in transfers)
                 TotalSize += transfer.SourceFileInfo.Length;
 
-            highPriorityDone = false;
-            highPriorityRunning++;
             transfers.Sort((FileTransferEvent a, FileTransferEvent b) =>
             {
                 if (a == null)
@@ -182,9 +190,25 @@ namespace EasySave.Models
                     return 1;
                 return 0;
             });
+            highPriorityDone = false;
+            highPriorityRunning++;
+
             for (int i = 0; transfers.Count > 0; i++)
             {
                 FileTransferEvent transfer = transfers[0];
+
+
+
+                currentState.FileNumber = TotalCount;
+                currentState.FileSize = transfer.FileSize;
+                currentState.Progression = (float)((float)currentSize / TotalSize * 100.0);
+                currentState.FileLeft = TotalCount - i;
+                currentState.SizeLeft = TotalSize - currentSize;
+                currentState.CurrentSourceFile = transfer.SourceFile;
+                currentState.DestinationFile = transfer.DestinationFile;
+
+                OnStateChange(this, currentState.Clone());
+
                 transfers.RemoveAt(0);
                 pause.WaitOne();
                 if (!highPriorityDone && !transfer.HighPriority)
@@ -192,24 +216,23 @@ namespace EasySave.Models
                 pause.Release();
                 if (!transfer.HighPriority)
                     waitForHighPriorityEnd();
+
+
                 waitForBlockingProcessEnd();
-                status = BackupStatus.RUNNING;
                 if (cancel)
                     break;
 
-                currentState.FileNumber = transfers.Count;
-                currentState.FileSize = transfer.FileSize;
-                currentState.Progression = (float)((float)i / TotalCount * 100.0);
-                currentState.FileLeft = TotalCount - i;
-                currentState.SizeLeft = TotalSize - currentSize;
-                currentState.CurrentSourceFile = transfer.SourceFile;
-                currentState.DestinationFile = transfer.DestinationFile;
-
-                OnStateChange(this,currentState.Clone());
 
 
-
+                if (transfer.BigFile)
+                {
+                    status = BackupStatus.BLOCKED;
+                    bigFile.WaitOne();
+                }
+                status = BackupStatus.RUNNING;
                 transfer.ExecuteTransfer();
+                if (transfer.BigFile)
+                    bigFile.ReleaseMutex();
 
                 currentSize += transfer.FileSize;
 
@@ -225,18 +248,21 @@ namespace EasySave.Models
         {
             while (true)
             {
+                bool found = false;
                 foreach (String processName in BackupEnvironment.Model.BlockingProcesses)
                 {
                     if (Process.GetProcessesByName(processName).Length != 0)
                     {
+                        found = true;
                         if (status == BackupStatus.RUNNING)
                             status = BackupStatus.BLOCKED;
                         foreach (Process item in Process.GetProcessesByName(processName))
-                            item.WaitForExit();
+                            item.WaitForExit(1000);
                         continue;
                     }
                 }
-                return;
+                if (!found)
+                    return;
             }
         }
 
@@ -249,22 +275,23 @@ namespace EasySave.Models
                 lock (highPriorityLock)
                 {
                     onHighPriorityEnd();
+                    onHighPriorityEnd = () => 0;
                 }
             }
         }
 
         private void waitForHighPriorityEnd()
         {
+            Semaphore highPriority = new Semaphore(0, 1);
             lock (highPriorityLock)
             {
                 if (highPriorityRunning > 0)
-                {
-                    Semaphore highPriority = new Semaphore(1, 1);
                     onHighPriorityEnd += highPriority.Release;
-                    highPriority.WaitOne();
-                    onHighPriorityEnd -= highPriority.Release;
-                }
+                else
+                    return;
             }
+            status = BackupStatus.BLOCKED;
+            highPriority.WaitOne();
         }
 
 

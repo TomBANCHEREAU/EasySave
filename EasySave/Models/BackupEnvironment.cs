@@ -11,6 +11,7 @@ namespace EasySave.Models
     public class BackupEnvironment
     {
         public Backup runningBackup;
+        private Task<Backup> runningBackupTask;
         private Boolean _isRunning;
         private Boolean isRunning
         {
@@ -196,11 +197,6 @@ namespace EasySave.Models
             {
                 if (IsRunning)
                     throw new Exception("A backup is already running on this environment");
-                foreach (String processName in model.BlockingProcesses)
-                {
-                    if (Process.GetProcessesByName(processName).Length != 0)
-                        throw new Exception();
-                }
                 Backup backup;
                 switch (type)
                 {
@@ -221,17 +217,18 @@ namespace EasySave.Models
                 backup.OnStateChange += onBackupStateChange;
                 runningBackup = backup;
                 isRunning = true;
-                Task<Backup> b = Task<Backup>.Run(() => {
+                runningBackupTask = Task<Backup>.Run(() => {
                     backup.Execute();
                     lock(this){
                         isRunning = false;
                         runningBackup = null;
                         backup.OnStateChange -= onBackupStateChange;
                         save();
+                        runningBackupTask = null;
                         return backup;
                     }
                 });
-                return b;
+                return runningBackupTask;
             }
         }
 
@@ -240,6 +237,7 @@ namespace EasySave.Models
             if (IsRunning && backups.Contains(backup))
             {
                 backup.Cancel();
+                //runningBackupTask.Wait();
                 backups.Remove(backup);
                 save();
             }

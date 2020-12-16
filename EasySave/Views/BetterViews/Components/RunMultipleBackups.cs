@@ -44,7 +44,7 @@ namespace EasySave.Views.BetterViews.Components
 
                 if (backupEnvironment.IsRunning)
                 {
-                    listViewItem.SubItems[1].Tag = backupEnvironment;
+                    listViewItem.SubItems[1].Tag = null;
                     listViewItem.SubItems[1].Text = "Already running";
                     FullBackupRadio.Enabled = false;
                     FullBackupRadio.Checked = false;
@@ -122,7 +122,7 @@ namespace EasySave.Views.BetterViews.Components
                 try
                 {
                     if (item.SubItems[1].Tag != null)
-                        controller.RunBackup((BackupEnvironment)item.Tag, (BackupType)selected.SubItems[1].Tag);
+                        controller.RunBackup((BackupEnvironment)item.Tag, (BackupType)item.SubItems[1].Tag);
                 } 
                 catch
                 {
