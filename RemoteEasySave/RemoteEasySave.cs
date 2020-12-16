@@ -14,17 +14,17 @@ using System.Windows.Forms;
 
 namespace RemoteEasySave
 {
-    public partial class Form1 : Form
+    public partial class RemoteEasySave : Form
     {
         Client client;
 
         public object EnvList { get; private set; }
 
-        public Form1()
+        public RemoteEasySave()
         {
             InitializeComponent();
         }
-        public Form1(Client client) : this()
+        public RemoteEasySave(Client client) : this()
         {
             this.client = client;
         }
@@ -37,17 +37,28 @@ namespace RemoteEasySave
         private void Client_OnStateChange(object sender, List<BackupEnvironment.BackupEnvironmentState> e)
         {
             this.Invoke(new MethodInvoker(()=> {
-                listView1.Items.Clear();
                 foreach (BackupEnvironment.BackupEnvironmentState item in e)
                 {
-                    ListViewItem listViewItem = new ListViewItem(new String[3] {
-                        item.Name,
-                        "-",
-                        "-"
-                    });
-                    listViewItem.UseItemStyleForSubItems = false;
-                    Debug.WriteLine(item.Running+" " + item.Status);
-                    if (item.Running && item.Status!=null)
+                    ListViewItem listViewItem = null;
+                    foreach (ListViewItem viewItem in listView1.Items)
+                    {
+                        if (viewItem.SubItems[0].Text == item.Name)
+                        {
+                            listViewItem = viewItem;
+                        }
+                    }
+                    if (listViewItem==null)
+                    {
+                        listViewItem = new ListViewItem(new String[3] {
+                                item.Name,
+                                "-",
+                                "-"
+                            });
+                        listViewItem.UseItemStyleForSubItems = false;
+                        listView1.Items.Add(listViewItem);
+                    }
+                    listViewItem.Tag = item;
+                    if (item.Running && item.Status != null)
                     {
                         switch (item.Status.status)
                         {
@@ -70,11 +81,33 @@ namespace RemoteEasySave
                             default:
                                 break;
                         }
-                        listViewItem.SubItems[2].Text = item.Status.Progression + "%";
+                        listViewItem.SubItems[1].Tag = item.Status.status;
+                        listViewItem.SubItems[2].Text = (int)item.Status.Progression + "%";
                     }
-                    listView1.Items.Add(listViewItem);
+                    else
+                    {
+                        listViewItem.SubItems[1].Tag = null;
+                        listViewItem.SubItems[1].ForeColor = Color.Black;
+                        listViewItem.SubItems[1].Text = "-";
+                        listViewItem.SubItems[2].Text = "-";
+                    }
                 }
+                UpdateSelected();
             }));
+        }
+
+        private void UpdateSelected()
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                BackupEnvironment.BackupEnvironmentState environmentState = (BackupEnvironment.BackupEnvironmentState)listView1.SelectedItems[0].Tag;
+                this.pauseButton.Enabled = environmentState.Running && environmentState.Status != null && environmentState.Status.status != Backup.BackupStatus.PAUSED;
+                this.resumeButton.Enabled = environmentState.Running && environmentState.Status != null && environmentState.Status.status == Backup.BackupStatus.PAUSED;
+                this.cancelButton.Enabled = environmentState.Running;
+                this.RunDiffButton.Enabled = !environmentState.Running;
+                this.RunFullButton.Enabled = !environmentState.Running;
+                this.progressBar1.Value = environmentState.Running && environmentState.Status != null ? (int)environmentState.Status.Progression : 0;
+            }
         }
 
         private void pauseButton_Click(object sender, EventArgs e)
@@ -88,7 +121,7 @@ namespace RemoteEasySave
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            UpdateSelected();
         }
 
         private void resumeButton_Click(object sender, EventArgs e)
@@ -104,6 +137,23 @@ namespace RemoteEasySave
             if (listView1.SelectedItems.Count > 0)
             {
                 client.CancelBackup(listView1.SelectedItems[0].SubItems[0].Text);
+            }
+        }
+
+        private void RunFullButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                client.RunFullBackup(listView1.SelectedItems[0].SubItems[0].Text);
+            }
+        }
+
+        private void RunDiffButton_Click(object sender, EventArgs e)
+        {
+
+            if (listView1.SelectedItems.Count > 0)
+            {
+                client.RunDiffBackup(listView1.SelectedItems[0].SubItems[0].Text);
             }
         }
     }

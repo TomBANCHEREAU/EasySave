@@ -78,11 +78,13 @@ namespace EasySave.Controllers
 
         private void ProcessMessage(ClientStatus status, String message)
         {
-            Command command = Newtonsoft.Json.JsonConvert.DeserializeObject<Command>(message);
+            Command command = JsonConvert.DeserializeObject<Command>(message);
             foreach (BackupEnvironment backupEnvironment in Model.GetBackupEnvironments())
             {
                 if (backupEnvironment.Name == command.BackupEnvName)
                 {
+                    Debug.WriteLine(message);
+                    Debug.WriteLine(command.Type);
                     switch (command.Type)
                     {
                         case CommandType.PAUSE_BACKUP:
@@ -92,7 +94,13 @@ namespace EasySave.Controllers
                             Controller.ResumeBackup(backupEnvironment.runningBackup);
                             break;
                         case CommandType.CANCEL_BACKUP:
-                            //Controller.ResumeBackup(backupEnvironment.runningBackup);
+                            Controller.CancelBackup(backupEnvironment.runningBackup);
+                            break;
+                        case CommandType.RUN_FULL_BACKUP:
+                            Controller.RunBackup(backupEnvironment, BackupType.FULL);
+                            break;
+                        case CommandType.RUN_DIFFERENTIAL_BACKUP:
+                            Controller.RunBackup(backupEnvironment, BackupType.DIFFERENTIAL);
                             break;
                         default:
                             break;
@@ -115,11 +123,13 @@ namespace EasySave.Controllers
         {
             PAUSE_BACKUP,
             RESUME_BACKUP,
-            CANCEL_BACKUP
+            CANCEL_BACKUP,
+            RUN_FULL_BACKUP,
+            RUN_DIFFERENTIAL_BACKUP
         }
         public class Command
         {
-            public readonly CommandType Type;
+            public CommandType Type;
             public String BackupEnvName;
         }
     }

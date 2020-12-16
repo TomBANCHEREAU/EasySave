@@ -75,5 +75,10 @@ namespace EasySave.Controllers
         {
             this.model.ResumeBackup(backup);
         }
+
+        public void CancelBackup(Backup backup)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

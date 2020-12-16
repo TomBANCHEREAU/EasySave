@@ -15,6 +15,7 @@ namespace EasySave.Controllers
         public void RestoreBackup(Backup backup);
         public void PauseBackup(Backup backup);
         public void ResumeBackup(Backup backup);
+        public void CancelBackup(Backup backup);
         public void SetCryptedExtensions(String[] extensions);
         public void SetBlockingProcesses(String[] processes);
         public void SetHighPriorityExtensions(String[] extensions);

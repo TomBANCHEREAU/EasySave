@@ -49,17 +49,27 @@ namespace RemoteEasySave
 
         public void PauseBackup(String Name)
         {
-            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":0,\"BackupEnvName\":\""+Name+"\"}" + "\n"));
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":\"PAUSE_BACKUP\",\"BackupEnvName\":\"" + Name+"\"}" + "\n"));
         }
 
         public void ResumeBackup(String Name)
         {
-            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":1,\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":\"RESUME_BACKUP\",\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
         }
 
         public void CancelBackup(String Name)
         {
-            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":2,\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":\"CANCEL_BACKUP\",\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
+        }
+
+        public void RunFullBackup(String Name)
+        {
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":\"RUN_FULL_BACKUP\",\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
+        }
+
+        public void RunDiffBackup(String Name)
+        {
+            socket.Send(Encoding.ASCII.GetBytes("{\"Type\":\"RUN_DIFFERENTIAL_BACKUP\",\"BackupEnvName\":\"" + Name + "\"}" + "\n"));
         }
     }
 }
