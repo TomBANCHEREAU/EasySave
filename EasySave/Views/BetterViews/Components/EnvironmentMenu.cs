@@ -27,15 +27,22 @@ namespace EasySave.Views.BetterViews.Components
             this.controller = controller;
             this.model = model;
             selected = backupEnvironment;
+            this.EnvNameLabel.Text += backupEnvironment.Name;
+            this.SourceLabel.Text += backupEnvironment.SourceDirectory;
+            this.DestinationLabel.Text += backupEnvironment.DestinationDirectory;
+
             if (this.startAndStop1==null)
                 throw new Exception();
             this.startAndStop1.model = model;
             this.startAndStop1.controller = controller;
             this.startAndStop1.backupEnvironment = backupEnvironment;
+            backupEnvironment.OnStateChange += this.startAndStop1.Backup_OnStateChange;
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
         {
+            this.startAndStop1.Backup_OnStateChange(this, selected.currentState);
+            RestoreButton.Enabled = false;
             UpdateBackupList();
 
             if (selected.FullBackups.Count > 0)

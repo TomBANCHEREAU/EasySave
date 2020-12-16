@@ -21,20 +21,16 @@ namespace EasySave.Views.BetterViews.Components
         public StartAndStop()
         {
             InitializeComponent();
+            this.Enabled = false;
         }
 
         private void StartAndStop_Load(object sender, EventArgs e)
         {
-            this.Enabled = false;
-            if (backupEnvironment == null)
-                throw new ArgumentNullException();
-            backupEnvironment.OnStateChange += Backup_OnStateChange;
-            Backup_OnStateChange(null, backupEnvironment.currentState);
 
         }
 
 
-        private void Backup_OnStateChange(object sender, BackupEnvironment.BackupEnvironmentState e)
+        public void Backup_OnStateChange(object sender, BackupEnvironment.BackupEnvironmentState e)
         {
             try
             {
@@ -44,7 +40,12 @@ namespace EasySave.Views.BetterViews.Components
                     if (e.Running)
                     {
                         if (e.Status != null)
+                        {
                             this.ProgressBar.Value = (int)e.Status.Progression;
+                            this.PauseButton.Enabled = e.Status.status != Backup.BackupStatus.PAUSED;
+                            this.button1.Enabled = e.Status.status == Backup.BackupStatus.PAUSED;
+
+                        }
                     }
                     else
                     {
@@ -60,10 +61,17 @@ namespace EasySave.Views.BetterViews.Components
         {
             if (last != null && last.Running && last.Status!=null)
             {
+                if (last.Status.status != Backup.BackupStatus.PAUSED)
+                    this.controller.PauseBackup(backupEnvironment.runningBackup);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (last != null && last.Running && last.Status != null)
+            {
                 if (last.Status.status == Backup.BackupStatus.PAUSED)
                     this.controller.ResumeBackup(backupEnvironment.runningBackup);
-                else
-                    this.controller.PauseBackup(backupEnvironment.runningBackup);
             }
         }
     }
