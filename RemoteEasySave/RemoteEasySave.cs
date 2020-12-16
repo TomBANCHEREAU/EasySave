@@ -7,8 +7,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -155,6 +157,32 @@ namespace RemoteEasySave
             {
                 client.RunDiffBackup(listView1.SelectedItems[0].SubItems[0].Text);
             }
+        }
+
+        private void UKButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("");
+            UpdateLanguage();
+        }
+
+        private void FRButton_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            UpdateLanguage();
+        }
+
+        public void UpdateLanguage()
+        {
+            EnvName.Text = Resources.EnvName;
+            EnvStatus.Text = Resources.EnvSatus;
+            EnvProgress.Text = Resources.EnvProgress;
+            pauseButton.Text = Resources.pauseButton;
+            resumeButton.Text = Resources.resumeButton;
+            cancelButton.Text = Resources.cancelButton;
+            RunFullButton.Text = Resources.RunFullButton;
+            RunDiffButton.Text = Resources.RunDiffButton;
+            UKButton.Text = Resources.UKButton;
+            FRButton.Text = Resources.FRButton;
         }
     }
 }
