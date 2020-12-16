@@ -105,12 +105,12 @@ namespace EasySave.Views.BetterViews.Components
 
             foreach (Backup backup in selected.Backups)
             {
-                String type = "No backup";
+                String type = Resources.TypeNoBackup;
 
                 if (backup.Type == BackupType.FULL)
-                    type = "Full";
+                    type = Resources.TypeFull;
                 if (backup.Type == BackupType.DIFFERENTIAL)
-                    type = "Differential";
+                    type = Resources.TypeDifferential;
 
                 ListViewItem item = new ListViewItem(new String[2] {
                     backup.ExecutionDate.ToString(),
@@ -124,6 +124,7 @@ namespace EasySave.Views.BetterViews.Components
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             controller.DeleteBackupEnvironment((BackupEnvironment)selected);
+            MessageBox.Show(Resources.mbDelete, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ((BetterViewForm)ParentForm).SetViewState(new DefaultView());
         }
 

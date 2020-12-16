@@ -349,6 +349,15 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The environment has been deleted..
+        /// </summary>
+        internal static string mbDelete {
+            get {
+                return ResourceManager.GetString("mbDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The differential backup has started..
         /// </summary>
         internal static string mbDifferentialBackup {
@@ -529,6 +538,15 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Blocked.
+        /// </summary>
+        internal static string StatusBlocked {
+            get {
+                return ResourceManager.GetString("StatusBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Status.
         /// </summary>
         internal static string statusCol {
@@ -538,11 +556,65 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Paused.
+        /// </summary>
+        internal static string StatusPaused {
+            get {
+                return ResourceManager.GetString("StatusPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Running.
+        /// </summary>
+        internal static string StatusRunning {
+            get {
+                return ResourceManager.GetString("StatusRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Already running.
+        /// </summary>
+        internal static string TypeAlreadyRunning {
+            get {
+                return ResourceManager.GetString("TypeAlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Type.
         /// </summary>
         internal static string TypeColumn {
             get {
                 return ResourceManager.GetString("TypeColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Differential.
+        /// </summary>
+        internal static string TypeDifferential {
+            get {
+                return ResourceManager.GetString("TypeDifferential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Full.
+        /// </summary>
+        internal static string TypeFull {
+            get {
+                return ResourceManager.GetString("TypeFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No backup.
+        /// </summary>
+        internal static string TypeNoBackup {
+            get {
+                return ResourceManager.GetString("TypeNoBackup", resourceCulture);
             }
         }
         

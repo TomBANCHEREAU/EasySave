@@ -68,15 +68,15 @@ namespace EasySave.Views.BetterViews.Components
                             break;
                         case Backup.BackupStatus.RUNNING:
                             item.SubItems[1].ForeColor = Color.Green;
-                            item.SubItems[1].Text = "Running";
+                            item.SubItems[1].Text = Resources.StatusRunning;
                             break;
                         case Backup.BackupStatus.PAUSED:
                             item.SubItems[1].ForeColor = Color.Orange;
-                            item.SubItems[1].Text = "Paused";
+                            item.SubItems[1].Text = Resources.StatusPaused;
                             break;
                         case Backup.BackupStatus.BLOCKED:
                             item.SubItems[1].ForeColor = Color.Orange;
-                            item.SubItems[1].Text = "Blocked";
+                            item.SubItems[1].Text = Resources.StatusBlocked;
                             break;
                         default:
                             break;
