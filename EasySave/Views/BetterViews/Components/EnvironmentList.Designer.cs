@@ -35,8 +35,6 @@ namespace EasySave.Views.BetterViews.Components
             this.statusCol = new System.Windows.Forms.ColumnHeader();
             this.progressCol = new System.Windows.Forms.ColumnHeader();
             this.AddButton = new System.Windows.Forms.Button();
-            this.SearchLabel = new System.Windows.Forms.Label();
-            this.SearchInput = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,8 +45,6 @@ namespace EasySave.Views.BetterViews.Components
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.Controls.Add(this.EnvList, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.AddButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.SearchLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.SearchInput, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -71,11 +67,11 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnvList.FullRowSelect = true;
             this.EnvList.HideSelection = false;
-            this.EnvList.Location = new System.Drawing.Point(3, 60);
+            this.EnvList.Location = new System.Drawing.Point(3, 40);
             this.EnvList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EnvList.MultiSelect = false;
             this.EnvList.Name = "EnvList";
-            this.EnvList.Size = new System.Drawing.Size(372, 660);
+            this.EnvList.Size = new System.Drawing.Size(372, 680);
             this.EnvList.TabIndex = 1;
             this.EnvList.UseCompatibleStateImageBehavior = false;
             this.EnvList.View = System.Windows.Forms.View.Details;
@@ -84,7 +80,7 @@ namespace EasySave.Views.BetterViews.Components
             // EnvName
             // 
             this.EnvName.Text = "Name";
-            this.EnvName.Width = 147;
+            this.EnvName.Width = 115;
             // 
             // statusCol
             // 
@@ -94,40 +90,21 @@ namespace EasySave.Views.BetterViews.Components
             // progressCol
             // 
             this.progressCol.Text = "Progress";
-            this.progressCol.Width = 100;
+            this.progressCol.Width = 115;
             // 
             // AddButton
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.AddButton, 2);
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddButton.Location = new System.Drawing.Point(154, 24);
+            this.AddButton.Location = new System.Drawing.Point(3, 4);
             this.AddButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddButton.MinimumSize = new System.Drawing.Size(183, 0);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(221, 28);
+            this.AddButton.Size = new System.Drawing.Size(372, 28);
             this.AddButton.TabIndex = 3;
             this.AddButton.Text = "New environment";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
-            // SearchLabel
-            // 
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchLabel.Location = new System.Drawing.Point(3, 0);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(145, 20);
-            this.SearchLabel.TabIndex = 4;
-            this.SearchLabel.Text = "Search";
-            // 
-            // SearchInput
-            // 
-            this.SearchInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchInput.Location = new System.Drawing.Point(3, 24);
-            this.SearchInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SearchInput.Name = "SearchInput";
-            this.SearchInput.Size = new System.Drawing.Size(145, 27);
-            this.SearchInput.TabIndex = 5;
-            this.SearchInput.TextChanged += new System.EventHandler(this.SearchInput_TextChanged);
             // 
             // EnvironmentList
             // 
@@ -139,7 +116,6 @@ namespace EasySave.Views.BetterViews.Components
             this.Size = new System.Drawing.Size(378, 724);
             this.Load += new System.EventHandler(this.EnvironmentList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -150,8 +126,6 @@ namespace EasySave.Views.BetterViews.Components
         public System.Windows.Forms.ListView EnvList;
         private System.Windows.Forms.ColumnHeader EnvName;
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Label SearchLabel;
-        private System.Windows.Forms.TextBox SearchInput;
         private System.Windows.Forms.ColumnHeader statusCol;
         private System.Windows.Forms.ColumnHeader progressCol;
     }

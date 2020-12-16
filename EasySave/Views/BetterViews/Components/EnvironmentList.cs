@@ -101,7 +101,7 @@ namespace EasySave.Views.BetterViews.Components
         {
             if (EnvList.SelectedItems.Count == 1)
             {
-                ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller, model, (BackupEnvironment)EnvList.SelectedItems[0].Tag));
+                ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller, model, (BackupEnvironment)EnvList.SelectedItems[0].Tag));   
             }
             else
             {
@@ -109,40 +109,13 @@ namespace EasySave.Views.BetterViews.Components
             }
         }
 
-        private void SearchInput_TextChanged(object sender, EventArgs e)
+        public void UpdateEnvironmentList()
         {
-            IReadOnlyList<BackupEnvironment> backupEnvironments = model.GetBackupEnvironments();
-            EnvList.Items.Clear();
-
-            if (string.IsNullOrEmpty(SearchInput.Text) == false)
-            {
-                foreach (var backupEnvironment in backupEnvironments)
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.Tag = backupEnvironment;
-                    item.Text = backupEnvironment.Name;
-
-                    if (item.Text.StartsWith(SearchInput.Text, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        EnvList.Items.Add(item);
-                    }
-                }
-            }
-            else if (SearchInput.Text == "")
-            {
-                foreach (var backupEnvironment in backupEnvironments)
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.Tag = backupEnvironment;
-                    item.Text = backupEnvironment.Name;
-                    EnvList.Items.Add(item);
-                }
-            }
+            EnvList.SelectedItems.Clear();
         }
 
         public void UpdateLanguage()
         {
-            SearchLabel.Text = Resources.SearchLabel;
             AddButton.Text = Resources.AddButton;
             EnvName.Text = Resources.EnvName;
             statusCol.Text = Resources.statusCol;

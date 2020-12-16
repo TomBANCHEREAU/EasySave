@@ -213,6 +213,15 @@
   <data name="mbCreatedEnvironment2" xml:space="preserve">
     <value> environment has been created.</value>
   </data>
+  <data name="mbDifferentialBackup" xml:space="preserve">
+    <value>The differential backup has started.</value>
+  </data>
+  <data name="mbFullBackup" xml:space="preserve">
+    <value>The full backup has started.</value>
+  </data>
+  <data name="mbRestore" xml:space="preserve">
+    <value>The restoration has been done.</value>
+  </data>
   <data name="mbRunMultipleBackups" xml:space="preserve">
     <value>A backup is already running on one of the environments selected!</value>
   </data>
@@ -257,9 +266,6 @@
   </data>
   <data name="RunMutipleBackupsButton" xml:space="preserve">
     <value>Run multiple backups</value>
-  </data>
-  <data name="SearchLabel" xml:space="preserve">
-    <value>Search...</value>
   </data>
   <data name="SettingsButton" xml:space="preserve">
     <value>Settings</value>

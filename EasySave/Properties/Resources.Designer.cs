@@ -349,6 +349,33 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The differential backup has started..
+        /// </summary>
+        internal static string mbDifferentialBackup {
+            get {
+                return ResourceManager.GetString("mbDifferentialBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The full backup has started..
+        /// </summary>
+        internal static string mbFullBackup {
+            get {
+                return ResourceManager.GetString("mbFullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The restoration has been done..
+        /// </summary>
+        internal static string mbRestore {
+            get {
+                return ResourceManager.GetString("mbRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à A backup is already running on one of the environments selected!.
         /// </summary>
         internal static string mbRunMultipleBackups {
@@ -480,15 +507,6 @@ namespace EasySave.Properties {
         internal static string RunMutipleBackupsButton {
             get {
                 return ResourceManager.GetString("RunMutipleBackupsButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Search....
-        /// </summary>
-        internal static string SearchLabel {
-            get {
-                return ResourceManager.GetString("SearchLabel", resourceCulture);
             }
         }
         

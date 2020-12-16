@@ -37,6 +37,9 @@ namespace EasySave.Views.BetterViews
         {
             viewState.SuspendLayout();
 
+            if (!(viewState is EnvironmentMenu))
+                EnvironmentList.UpdateEnvironmentList();
+
             this.MainLayout.SuspendLayout();
             this.DynamicPanel.SuspendLayout();
             this.SuspendLayout();

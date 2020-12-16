@@ -86,6 +86,7 @@ namespace EasySave.Views.BetterViews.Components
             this.EnvironmentColumn,
             this.TypeColumn});
             this.EnvironmentList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EnvironmentList.FullRowSelect = true;
             this.EnvironmentList.HideSelection = false;
             this.EnvironmentList.Location = new System.Drawing.Point(165, 196);
             this.EnvironmentList.Name = "EnvironmentList";

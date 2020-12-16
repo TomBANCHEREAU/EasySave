@@ -69,29 +69,14 @@ namespace EasySave.Views.BetterViews.Components
 
         private void FullBackupButton_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                controller.RunBackup(selected,BackupType.FULL);
-                MessageBox.Show("The full backup has started.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch
-            {
-                MessageBox.Show("A bussiness has been detected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            controller.RunBackup(selected,BackupType.FULL);
+            MessageBox.Show(Resources.mbFullBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DifferentialBackupButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                controller.RunBackup(selected,BackupType.DIFFERENTIAL);
-                MessageBox.Show("The differential backup has started.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch
-            {
-                MessageBox.Show("A bussiness has been detected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            controller.RunBackup(selected,BackupType.DIFFERENTIAL);
+            MessageBox.Show(Resources.mbDifferentialBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void RestoreButton_Click(object sender, EventArgs e)
@@ -99,7 +84,7 @@ namespace EasySave.Views.BetterViews.Components
             Backup backupToRestore = (Backup)BackupList.SelectedItems[0].Tag;
             controller.RestoreBackup(backupToRestore);
             ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
-            MessageBox.Show("The restoration has been done.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.mbRestore, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BackupList_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,6 +124,7 @@ namespace EasySave.Views.BetterViews.Components
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             controller.DeleteBackupEnvironment((BackupEnvironment)selected);
+            ((BetterViewForm)ParentForm).SetViewState(new DefaultView());
         }
 
         public void UpdateLanguage()

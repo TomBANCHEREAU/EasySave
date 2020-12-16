@@ -46,6 +46,12 @@ namespace EasySave.Views.BetterViews.Components
                 {
                     listViewItem.SubItems[1].Tag = backupEnvironment;
                     listViewItem.SubItems[1].Text = "Already running";
+                    FullBackupRadio.Enabled = false;
+                    FullBackupRadio.Checked = false;
+                    DifferentialBackupRadio.Enabled = false;
+                    DifferentialBackupRadio.Checked = false;
+                    NoBackupRadio.Enabled = false;
+                    NoBackupRadio.Checked = false;
                 }
 
                 EnvironmentList.Items.Add(listViewItem);
@@ -85,7 +91,7 @@ namespace EasySave.Views.BetterViews.Components
 
         private void NoBackupRadio_CheckedChanged(object sender, EventArgs e)
         {
-            if (selected != null && NoBackupRadio.Checked)
+            if (selected != null && NoBackupRadio.Checked && NoBackupRadio.Enabled)
             {
                 selected.SubItems[1].Tag = null;
                 selected.SubItems[1].Text = "No backup";
