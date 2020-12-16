@@ -121,6 +121,7 @@ namespace EasySave.Views.BetterViews.Components
             this.BackupList.FullRowSelect = true;
             this.BackupList.HideSelection = false;
             this.BackupList.Location = new System.Drawing.Point(3, 3);
+            this.BackupList.MultiSelect = false;
             this.BackupList.Name = "BackupList";
             this.BackupList.Size = new System.Drawing.Size(527, 515);
             this.BackupList.TabIndex = 5;
