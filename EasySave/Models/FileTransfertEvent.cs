@@ -29,7 +29,7 @@ namespace EasySave.Models
         public long FileSize { get => SourceFileInfo.Length; }
         public String EnvironmentName { get => BackupEnvironment.Name; }
         public Boolean Encrypted { get => new List<String>(Model.CryptedExtensions).Contains(SourceFileInfo.Extension); }
-        public Boolean BigFile { get => FileSize > 0; }
+        public Boolean BigFile { get => FileSize > Model.KoLimit*1000; }
         public Boolean HighPriority { get => new List<String>(Model.CryptedExtensions).Contains(SourceFileInfo.Extension); }
 
         internal FileTransferEvent(Backup Backup, FileInfo SourceFileInfo, FileInfo DestinationFileInfo)
