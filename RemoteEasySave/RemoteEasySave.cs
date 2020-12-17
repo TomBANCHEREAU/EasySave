@@ -26,6 +26,7 @@ namespace RemoteEasySave
         public RemoteEasySave()
         {
             InitializeComponent();
+            Text = "Remote EasySave";
         }
         public RemoteEasySave(Client client) : this()
         {

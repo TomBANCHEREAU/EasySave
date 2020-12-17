@@ -26,6 +26,7 @@ namespace EasySave.Views.BetterViews
             this.Settings.model = model;
             this.Settings.controller = controller;
             MainLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+            Text = "EasySave";
         }
 
         private void BetterViewForm_Load(object sender, EventArgs e)
