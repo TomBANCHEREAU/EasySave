@@ -1,10 +1,13 @@
 ﻿using EasySave.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows.Forms;
 
 namespace RemoteEasySave
 {
@@ -19,14 +22,30 @@ namespace RemoteEasySave
         {
             //IPHostEntry host = Dns.GetHostEntry("localhost");
             //IPAddress iPAddress = host.AddressList[0];
-            remoteEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 11000);
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+
+                String ip = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("./config.json")).GetValue("ip").Value<String>();
+                remoteEndPoint = new IPEndPoint(IPAddress.Parse(ip), 11000);
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            }
+            catch {}
+
         }
 
         internal void Start()
         {
-            socket.Connect(remoteEndPoint);
-            socket.BeginReceive(buffer, 0, buffer.Length,0, Receive, new Object());
+            try
+            {
+
+                socket.Connect(remoteEndPoint);
+                socket.BeginReceive(buffer, 0, buffer.Length, 0, Receive, new Object());
+            }
+            catch
+            {
+                MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            }
         }
 
         private void Receive(IAsyncResult ar)
