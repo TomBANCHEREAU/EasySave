@@ -20,16 +20,17 @@ namespace RemoteEasySave
         private String bufferStr = String.Empty;
         public Client()
         {
-            //IPHostEntry host = Dns.GetHostEntry("localhost");
-            //IPAddress iPAddress = host.AddressList[0];
+                /*IPHostEntry host = Dns.GetHostEntry("localhost");
+                IPAddress iPAddress = host.AddressList[0];*/
             try
             {
-
                 String ip = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("./config.json")).GetValue("ip").Value<String>();
                 remoteEndPoint = new IPEndPoint(IPAddress.Parse(ip), 11000);
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
             }
-            catch {}
+            catch {
+                MessageBox.Show(Resources.mbServerError, Resources.mbTypeError, MessageBoxButtons.OK, MessageBoxIcon.Error);}
 
         }
 

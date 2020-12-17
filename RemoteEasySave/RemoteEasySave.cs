@@ -34,6 +34,7 @@ namespace RemoteEasySave
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cultureInfo = Thread.CurrentThread.CurrentUICulture;
             this.client.OnStateChange += Client_OnStateChange;
             this.client.Start(); ;
         }
