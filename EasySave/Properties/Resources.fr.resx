@@ -228,6 +228,12 @@
   <data name="mbRunMultipleBackups" xml:space="preserve">
     <value>Une sauvegarde est déjà en cours sur l'un des environnements sélectionnés !</value>
   </data>
+  <data name="mbTypeError" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="mbTypeSuccess" xml:space="preserve">
+    <value>Succès</value>
+  </data>
   <data name="mbWrongFormat" xml:space="preserve">
     <value>Le nom n'est pas au bon format ! (entre 3 à 30 caractères)</value>
   </data>

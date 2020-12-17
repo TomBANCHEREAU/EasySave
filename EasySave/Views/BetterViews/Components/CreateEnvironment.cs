@@ -61,17 +61,17 @@ namespace EasySave.Views.BetterViews.Components
                 {
                     BackupEnvironment backupEnvironment = new BackupEnvironment(NameTextBox.Text, SourceDirectoryTextBox.Text, DestinationDirectoryTextBox.Text);
                     controller.AddBackupEnvironment(backupEnvironment);
-                    MessageBox.Show(Resources.mbCreatedEnvironment1 + NameTextBox.Text + Resources.mbCreatedEnvironment2, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.mbCreatedEnvironment1 + NameTextBox.Text + Resources.mbCreatedEnvironment2, Resources.mbTypeSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((BetterViewForm)ParentForm).SetViewState(new EnvironmentMenu(controller,model, backupEnvironment));
                 }
                 else
                 {
-                    MessageBox.Show(Resources.mbWrongInformation, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbWrongInformation, Resources.mbTypeError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(Resources.mbWrongFormat, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.mbWrongFormat, Resources.mbTypeError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

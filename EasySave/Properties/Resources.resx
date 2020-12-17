@@ -228,6 +228,12 @@
   <data name="mbRunMultipleBackups" xml:space="preserve">
     <value>A backup is already running on one of the environments selected!</value>
   </data>
+  <data name="mbTypeError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="mbTypeSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="mbWrongFormat" xml:space="preserve">
     <value>The name format is incorrect! (between 3 to 35 characters)</value>
   </data>

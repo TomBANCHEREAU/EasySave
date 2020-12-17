@@ -394,6 +394,24 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error.
+        /// </summary>
+        internal static string mbTypeError {
+            get {
+                return ResourceManager.GetString("mbTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Success.
+        /// </summary>
+        internal static string mbTypeSuccess {
+            get {
+                return ResourceManager.GetString("mbTypeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The name format is incorrect! (between 3 to 35 characters).
         /// </summary>
         internal static string mbWrongFormat {

@@ -106,6 +106,33 @@ namespace RemoteEasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Could not connect to the server!.
+        /// </summary>
+        internal static string mbServerError {
+            get {
+                return ResourceManager.GetString("mbServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error.
+        /// </summary>
+        internal static string mbTypeError {
+            get {
+                return ResourceManager.GetString("mbTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Success.
+        /// </summary>
+        internal static string mbTypeSuccess {
+            get {
+                return ResourceManager.GetString("mbTypeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Pause.
         /// </summary>
         internal static string pauseButton {

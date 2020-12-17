@@ -136,7 +136,7 @@ namespace EasySave.Views.BetterViews.Components
                 } 
                 catch
                 {
-                    MessageBox.Show(Resources.mbRunMultipleBackups, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.mbRunMultipleBackups, Resources.mbTypeError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
         }
 

@@ -42,7 +42,7 @@ namespace RemoteEasySave
             }
             catch
             {
-                MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.mbServerError, Resources.mbTypeError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
         }

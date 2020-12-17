@@ -132,6 +132,15 @@
   <data name="FRButton" xml:space="preserve">
     <value>French</value>
   </data>
+  <data name="mbServerError" xml:space="preserve">
+    <value>Could not connect to the server!</value>
+  </data>
+  <data name="mbTypeError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="mbTypeSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="pauseButton" xml:space="preserve">
     <value>Pause</value>
   </data>

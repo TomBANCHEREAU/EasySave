@@ -74,20 +74,20 @@ namespace EasySave.Views.BetterViews.Components
         private void FullBackupButton_Click(object sender, EventArgs e)
         {
             controller.RunBackup(selected,BackupType.FULL);
-            MessageBox.Show(Resources.mbFullBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.mbFullBackup, Resources.mbTypeSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DifferentialBackupButton_Click(object sender, EventArgs e)
         {
             controller.RunBackup(selected,BackupType.DIFFERENTIAL);
-            MessageBox.Show(Resources.mbDifferentialBackup, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.mbDifferentialBackup, Resources.mbTypeSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void RestoreButton_Click(object sender, EventArgs e)
         {
             Backup backupToRestore = (Backup)BackupList.SelectedItems[0].Tag;
             controller.RestoreBackup(backupToRestore);
-            MessageBox.Show(Resources.mbRestore, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.mbRestore, Resources.mbTypeSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BackupList_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace EasySave.Views.BetterViews.Components
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             controller.DeleteBackupEnvironment((BackupEnvironment)selected);
-            MessageBox.Show(Resources.mbDelete, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.mbDelete, Resources.mbTypeSuccess, MessageBoxButtons.OK, MessageBoxIcon.Information);
             ((BetterViewForm)ParentForm).SetViewState(new DefaultView());
         }
 
