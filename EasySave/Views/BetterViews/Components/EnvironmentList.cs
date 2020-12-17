@@ -16,6 +16,7 @@ namespace EasySave.Views.BetterViews.Components
 {
     public partial class EnvironmentList : UserControl
     {
+        internal CultureInfo cultureInfo;
 
         internal IReadOnlyModel model;
         internal IController controller;
@@ -41,6 +42,7 @@ namespace EasySave.Views.BetterViews.Components
 
         internal void UpdateEnvironmentList(IReadOnlyList<BackupEnvironment.BackupEnvironmentState> f)
         {
+            Thread.CurrentThread.CurrentUICulture = this.cultureInfo;
             if (f==null || f.Count != EnvList.Items.Count)
             {
                 EnvList.Items.Clear();
@@ -116,6 +118,7 @@ namespace EasySave.Views.BetterViews.Components
 
         public void UpdateLanguage()
         {
+            this.cultureInfo = Thread.CurrentThread.CurrentUICulture;
             AddButton.Text = Resources.AddButton;
             EnvName.Text = Resources.EnvName;
             statusCol.Text = Resources.statusCol;
