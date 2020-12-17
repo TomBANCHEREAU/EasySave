@@ -31,7 +31,7 @@ namespace UnitTest
             Backup fullBackup =  model.RunBackup(backupEnvironment,BackupType.FULL).Result;
             File.Delete(file);
             Assert.IsTrue(File.Exists(Path.Join(fullBackup.DestinationDirectory,"text.txt")));
-            model.RestoreBackup(fullBackup);
+            model.RestoreBackup(fullBackup).Wait();
             Assert.AreEqual(text, File.ReadAllText(file));
         }
         [TestCleanup]

@@ -52,26 +52,44 @@ namespace EasySave.Models
 
         protected override void RunRestore()
         {
-            FullBackup.Restore();
+            //FullBackup.Restore();
             Directory.CreateDirectory(DestinationDirectory);
+            Directory.CreateDirectory(FullBackup.DestinationDirectory);
 
 
-            // Creating new and edited files
-            List<String> fileToCopy = new List<String>();
-            foreach (String destFile in Directory.EnumerateFiles(DestinationDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            List<String> AllPathFormBase = new List<String>();
+
+            foreach (String FullSavedFile in Directory.EnumerateFiles(FullBackup.DestinationDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
             {
-                String filePathFromBase = Path.GetRelativePath(DestinationDirectory, destFile);
-                if (!filePathFromBase.Equals(".easysave"))
-                    fileToCopy.Add(destFile);
+                String filePathFromBase = Path.GetRelativePath(FullBackup.DestinationDirectory, FullSavedFile);
+                if (!AllPathFormBase.Contains(filePathFromBase))
+                    AllPathFormBase.Add(filePathFromBase);
             }
-            CopyFiles(fileToCopy.ToArray(), DestinationDirectory, SourceDirectory);
 
-            // Deleting deleted files
+            foreach (String DiffSavedFile in Directory.EnumerateFiles(DestinationDirectory, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+            {
+                String filePathFromBase = Path.GetRelativePath(DestinationDirectory, DiffSavedFile);
+                if (!AllPathFormBase.Contains(filePathFromBase))
+                    AllPathFormBase.Add(filePathFromBase);
+            }
+
             if (File.Exists(Path.Join(DestinationDirectory, "./.easysave")))
             {
                 foreach (String filePathFromBase in File.ReadAllLines(Path.Join(DestinationDirectory, "./.easysave")))
-                    File.Delete(Path.Join(SourceDirectory, filePathFromBase));
+                    AllPathFormBase.Remove(filePathFromBase);
             }
+
+            foreach (String filePathFromBase in AllPathFormBase)
+            {
+                String FullSavedFile = Path.Join(FullBackup.DestinationDirectory, filePathFromBase);
+                String DiffSavedFile = Path.Join(DestinationDirectory,filePathFromBase);
+                String DestFile = Path.Join(SourceDirectory, filePathFromBase);
+                if (File.Exists(DiffSavedFile))
+                    AddFileTranfer(new FileTransferEvent(this,new FileInfo(DiffSavedFile),new FileInfo(DestFile)));
+                else
+                    AddFileTranfer(new FileTransferEvent(this, new FileInfo(FullSavedFile), new FileInfo(DestFile)));
+            }
+
         }
 
 

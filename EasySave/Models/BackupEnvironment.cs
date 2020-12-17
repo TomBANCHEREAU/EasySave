@@ -182,7 +182,7 @@ namespace EasySave.Models
             }
             File.WriteAllText(Path.Join(this.destinationDirectory, "./backups.json"), JsonConvert.SerializeObject(backupDatas, Formatting.Indented));
         }
-        internal void Restore(Backup backup)
+        internal Task<Backup> Restore(Backup backup)
         {
             lock (this)
             {
@@ -190,10 +190,23 @@ namespace EasySave.Models
                 {
                     runningBackup = backup;
                     isRunning = true;
-                    backup.Restore();
-                    save();
-                    isRunning = false;
-                    runningBackup = null;
+                    backup.OnStateChange += onBackupStateChange;
+                    runningBackupTask = Task<Backup>.Run(() => {
+                        backup.Restore();
+                        lock (this)
+                        {
+                            save();
+                            isRunning = false;
+                            runningBackup = null;
+                            backup.OnStateChange -= onBackupStateChange;
+                            return backup;
+                        }
+                    });
+                    return runningBackupTask;
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
         }
