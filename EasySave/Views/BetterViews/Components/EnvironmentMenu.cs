@@ -44,11 +44,15 @@ namespace EasySave.Views.BetterViews.Components
 
         private void BackupEnvironment_OnStateChange(object sender, BackupEnvironment.BackupEnvironmentState e)
         {
-            Invoke(new MethodInvoker(() =>
+            try
             {
-                FullBackupButton.Enabled = !e.Running;
-                DifferentialBackupButton.Enabled = !e.Running;
-            }));
+                Invoke(new MethodInvoker(() =>
+                {
+                    FullBackupButton.Enabled = !e.Running;
+                    DifferentialBackupButton.Enabled = !e.Running;
+                }));
+            }
+            catch {}
         }
 
         private void EnvironmentMenu_Load(object sender, EventArgs e)
@@ -83,7 +87,6 @@ namespace EasySave.Views.BetterViews.Components
         {
             Backup backupToRestore = (Backup)BackupList.SelectedItems[0].Tag;
             controller.RestoreBackup(backupToRestore);
-            ((BetterViewForm)ParentForm).SetViewState(new DefaultView(controller, model));
             MessageBox.Show(Resources.mbRestore, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

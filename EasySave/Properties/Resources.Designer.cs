@@ -376,7 +376,7 @@ namespace EasySave.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The restoration has been done..
+        ///   Recherche une chaîne localisée semblable à The restoration has started..
         /// </summary>
         internal static string mbRestore {
             get {

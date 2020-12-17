@@ -223,7 +223,7 @@
     <value>The full backup has started.</value>
   </data>
   <data name="mbRestore" xml:space="preserve">
-    <value>The restoration has been done.</value>
+    <value>The restoration has started.</value>
   </data>
   <data name="mbRunMultipleBackups" xml:space="preserve">
     <value>A backup is already running on one of the environments selected!</value>

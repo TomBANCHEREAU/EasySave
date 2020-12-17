@@ -223,7 +223,7 @@
     <value>La sauvegarde complète a commencé.</value>
   </data>
   <data name="mbRestore" xml:space="preserve">
-    <value>La restoration a été effectuée.</value>
+    <value>La restoration a commencé.</value>
   </data>
   <data name="mbRunMultipleBackups" xml:space="preserve">
     <value>Une sauvegarde est déjà en cours sur l'un des environnements sélectionnés !</value>
