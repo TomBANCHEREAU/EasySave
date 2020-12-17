@@ -19,6 +19,7 @@ namespace RemoteEasySave
     public partial class RemoteEasySave : Form
     {
         Client client;
+        private CultureInfo cultureInfo;
 
         public object EnvList { get; private set; }
 
@@ -40,6 +41,7 @@ namespace RemoteEasySave
         private void Client_OnStateChange(object sender, List<BackupEnvironment.BackupEnvironmentState> e)
         {
             this.Invoke(new MethodInvoker(()=> {
+                Thread.CurrentThread.CurrentUICulture = cultureInfo;
                 foreach (BackupEnvironment.BackupEnvironmentState item in e)
                 {
                     ListViewItem listViewItem = null;
@@ -174,6 +176,7 @@ namespace RemoteEasySave
 
         public void UpdateLanguage()
         {
+            cultureInfo = Thread.CurrentThread.CurrentUICulture;
             EnvName.Text = Resources.EnvName;
             EnvStatus.Text = Resources.EnvSatus;
             EnvProgress.Text = Resources.EnvProgress;
