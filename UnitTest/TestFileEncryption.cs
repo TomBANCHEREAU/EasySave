@@ -34,7 +34,7 @@ namespace UnitTest
             File.Delete(file);
             Assert.AreNotEqual(text,File.ReadAllText(Path.Join(fullBackup.DestinationDirectory, "text.txt")));
             Assert.AreEqual(text.Length,File.ReadAllText(Path.Join(fullBackup.DestinationDirectory, "text.txt")).Length);
-            model.RestoreBackup(fullBackup);
+            model.RestoreBackup(fullBackup).Wait();
             Assert.AreEqual(text, File.ReadAllText(file));
         }
         [TestCleanup]

@@ -39,7 +39,7 @@ namespace UnitTest
             Assert.IsFalse(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
-            model.RestoreBackup(differentialBackup);
+            model.RestoreBackup(differentialBackup).Wait();
             Assert.AreEqual(text, File.ReadAllText(file));
 
 
@@ -57,7 +57,7 @@ namespace UnitTest
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
-            model.RestoreBackup(differentialBackup);
+            model.RestoreBackup(differentialBackup).Wait();
             Assert.AreEqual(text2, File.ReadAllText(file));
         }
         [TestMethod]
@@ -71,7 +71,7 @@ namespace UnitTest
             Assert.IsTrue(File.Exists(Path.Join(differentialBackup.DestinationDirectory, "text.txt")));
 
             File.Delete(file);
-            model.RestoreBackup(differentialBackup);
+            model.RestoreBackup(differentialBackup).Wait();
             Assert.AreEqual(text, File.ReadAllText(file));
         }
         [TestMethod]
@@ -88,7 +88,7 @@ namespace UnitTest
 
 
             File.Delete(file);
-            model.RestoreBackup(differentialBackup);
+            model.RestoreBackup(differentialBackup).Wait();
             Assert.IsFalse(File.Exists(file));
         }
 

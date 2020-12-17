@@ -85,11 +85,11 @@ namespace EasySave.Models
         }
         #endregion
 
-        public void RestoreBackup(Backup backup)
+        public Task<Backup> RestoreBackup(Backup backup)
         {
             if (!this.BackupEnvironments.Contains(backup.BackupEnvironment))
                 throw new ArgumentException("The backup environment need to be registered before running a backup");
-            backup.BackupEnvironment.Restore(backup);
+            return backup.BackupEnvironment.Restore(backup);
 
         }
 
