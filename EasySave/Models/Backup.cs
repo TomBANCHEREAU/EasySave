@@ -26,6 +26,7 @@ namespace EasySave.Models
         public String SourceDirectory { get => BackupEnvironment.SourceDirectory; }
         public readonly BackupType Type;
         internal bool done = false;
+        private bool paused = false;
 
         #endregion
 
@@ -51,7 +52,7 @@ namespace EasySave.Models
             get => _status;
             set
             {
-                if (_status != value)
+                if (_status != value && (!paused || value==BackupStatus.PAUSED))
                 {
                     _status = value;
                     currentState.status = value;
@@ -85,6 +86,7 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                paused = false;
                 cancel = false;
                 if (this.destinationDir != null)
                     throw new Exception();
@@ -102,6 +104,7 @@ namespace EasySave.Models
         {
             lock (this)
             {
+                paused = false;
                 cancel = false;
                 if (status != BackupStatus.IDLE)
                     throw new Exception();
@@ -118,11 +121,11 @@ namespace EasySave.Models
         {
             lock (this)
             {
-                if (status == BackupStatus.PAUSED)
+                if (status == BackupStatus.PAUSED || paused)
                     return;
                 if (status == BackupStatus.IDLE)
                     return;
-                Thread pauseThread = new Thread(() => { pause.WaitOne(); });
+                Thread pauseThread = new Thread(() => { pause.WaitOne(); paused = true;});
                 pauseThread.Start();
                 pauseThread.Join();
                 if (!highPriorityDone)
@@ -145,11 +148,11 @@ namespace EasySave.Models
             {
                 if (status == BackupStatus.RUNNING)
                     return;
-                if (status != BackupStatus.PAUSED)
+                if (status != BackupStatus.PAUSED || !paused)
                     return;
                 if (!highPriorityDone)
                     highPriorityRunning++;
-                Thread pauseThread = new Thread(() => { pause.Release(); });
+                Thread pauseThread = new Thread(() => { paused = false; pause.Release(); });
                 pauseThread.Start();
                 pauseThread.Join();
 
