@@ -34,6 +34,7 @@ namespace RemoteEasySave
         private void Form1_Load(object sender, EventArgs e)
         {
             this.client.OnStateChange += Client_OnStateChange;
+            this.client.Start(); ;
         }
 
         private void Client_OnStateChange(object sender, List<BackupEnvironment.BackupEnvironmentState> e)

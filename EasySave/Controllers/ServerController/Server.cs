@@ -31,6 +31,7 @@ namespace EasySave.Controllers
 
         private void Model_OnEnvironmentStateChange(object sender, IReadOnlyList<BackupEnvironment.BackupEnvironmentState> e)
         {
+            last = e;
             byte[] buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(e) + "\n");
             foreach (ClientStatus client in clients)
             {
@@ -50,11 +51,15 @@ namespace EasySave.Controllers
         }
 
         private Socket server;
+        private IReadOnlyList<BackupEnvironment.BackupEnvironmentState> last;
+
         private void Accept(IAsyncResult ar)
         {
             ClientStatus status = new ClientStatus(server.EndAccept(ar));
             status.Client.BeginReceive(status.Buffer, 0,status.Buffer.Length,0, Receive, status);
             clients.Add(status);
+            if (last != null)
+                Model_OnEnvironmentStateChange(this, last);
             server.BeginAccept(Accept, server);
         }
 

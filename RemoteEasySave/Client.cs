@@ -13,7 +13,7 @@ namespace RemoteEasySave
 {
     public class Client
     {
-        public event EventHandler<List<BackupEnvironment.BackupEnvironmentState>> OnStateChange;
+        public event EventHandler<List<BackupEnvironment.BackupEnvironmentState>> OnStateChange = (Object o, List<BackupEnvironment.BackupEnvironmentState> l) =>{};
         private Socket socket;
         private EndPoint remoteEndPoint;
         private byte[] buffer = new byte[1024];
@@ -37,7 +37,6 @@ namespace RemoteEasySave
         {
             try
             {
-
                 socket.Connect(remoteEndPoint);
                 socket.BeginReceive(buffer, 0, buffer.Length, 0, Receive, new Object());
             }

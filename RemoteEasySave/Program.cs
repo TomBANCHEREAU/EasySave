@@ -15,7 +15,6 @@ namespace RemoteEasySave
         static void Main()
         {
             Client client = new Client();
-            client.Start();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

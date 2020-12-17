@@ -31,9 +31,7 @@ namespace EasySave.Models
         {
             List<BackupEnvironment.BackupEnvironmentState> states = new List<BackupEnvironment.BackupEnvironmentState>();
             foreach (BackupEnvironment env in backupEnvironments)
-            {
                 states.Add(env.currentState);
-            }
             OnEnvironmentStateChange?.Invoke(this, states);
         } 
 

@@ -20,8 +20,8 @@ namespace EasySave.Controllers
 
         public void Start()
         {
-            this.model.Start();
             new Server(this,model).Start();
+            this.model.Start();
             this.view.Start(model,this);
         }
 
